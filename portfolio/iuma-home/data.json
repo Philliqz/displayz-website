@@ -1,0 +1,27 @@
+{
+  "name": "IUMA Home",
+  "slug": "iuma-home",
+  "thumbnail": "casas-modulares-10k.jpg",
+  "logo": "casas-modulares-10k.jpg",
+  "instagram": "https://www.instagram.com/iuma.home/",
+  "description": "Casas modulares — piezas gráficas para campañas: construcción, diseño moderno y cotizaciones.",
+  "sections": {
+    "video": true,
+    "fotografia": true,
+    "diseno": true
+  },
+  "media": {
+    "video": [],
+    "fotografia": [],
+    "diseno": [
+      { "file": "casas-modulares-10k.jpg", "alt": "IUMA Home — Casas modulares desde 10,000" },
+      { "file": "diseno-modular.jpg", "alt": "IUMA Home — Diseño modular" },
+      { "file": "que-es-casa-modular.jpg", "alt": "IUMA Home — No es un contenedor" },
+      { "file": "que-es-casa-modular-2.jpg", "alt": "IUMA Home — Se fabrica primero, se instala después" },
+      { "file": "que-es-casa-modular-3.jpg", "alt": "IUMA Home — Por qué las eligen" },
+      { "file": "que-es-casa-modular-4.jpg", "alt": "IUMA Home — Cotiza tu nueva casa modular" },
+      { "file": "que-es-casa-modular-5.jpg", "alt": "IUMA Home — ¿Qué es una casa modular?" },
+      { "file": "te-imaginas-despertar-aqui.jpg", "alt": "IUMA Home — ¿Te imaginas despertar aquí?" }
+    ]
+  }
+}

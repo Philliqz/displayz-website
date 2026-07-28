@@ -1,0 +1,32 @@
+{
+  "name": "Hikaru",
+  "slug": "hikaru",
+  "thumbnail": "etiqueta-cena-sushi.jpg",
+  "logo": "logo.jpg",
+  "instagram": "https://www.instagram.com/restaurantehikaru/",
+  "description": "Restaurante de comida japonesa — piezas gráficas para menú, promociones y anuncios de sucursal.",
+  "sections": {
+    "video": true,
+    "fotografia": true,
+    "diseno": true
+  },
+  "media": {
+    "video": [],
+    "fotografia": [],
+    "diseno": [
+      { "file": "etiqueta-cena-sushi.jpg", "alt": "Hikaru — Cena de Sushi" },
+      { "file": "sashimi-lunch.jpg", "alt": "Hikaru — Sashimi Lunch" },
+      { "file": "ensalada-sashimi.jpg", "alt": "Hikaru — Ensalada Sashimi" },
+      { "file": "curry-rice.jpg", "alt": "Hikaru — Curry Rice" },
+      { "file": "katsudon.jpg", "alt": "Hikaru — Katsudon" },
+      { "file": "20-descuento.jpg", "alt": "Hikaru — 20% de descuento" },
+      { "file": "20-descuento-v2.jpg", "alt": "Hikaru — 20% de descuento" },
+      { "file": "nueva-sucursal.jpg", "alt": "Hikaru — Nueva sucursal" },
+      { "file": "sucursal.jpg", "alt": "Hikaru — Sucursal" },
+      { "file": "horario.jpg", "alt": "Hikaru — Horario" },
+      { "file": "mesa-trabajo-1.jpg", "alt": "Hikaru" },
+      { "file": "mesa-trabajo-2.jpg", "alt": "Hikaru" },
+      { "file": "mesa-trabajo-3.jpg", "alt": "Hikaru" }
+    ]
+  }
+}

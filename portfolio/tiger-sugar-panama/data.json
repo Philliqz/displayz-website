@@ -16,7 +16,13 @@
     "diseno": [
       { "file": "diseno/dragon-fruit-sago.jpg", "alt": "Tiger Sugar — Dragon Fruit Sago" },
       { "file": "diseno/dragon-ice-lemon-tea.jpg", "alt": "Tiger Sugar — Dragon Ice Lemon Tea" },
-      { "file": "diseno/dragon-fruit-collage.jpg", "alt": "Tiger Sugar — Dragon Fruit Series" }
+      { "file": "diseno/dragon-fruit-collage.jpg", "alt": "Tiger Sugar — Dragon Fruit Series" },
+      { "file": "diseno/choco-chips.jpg", "alt": "Tiger Sugar — Chocolate Chips" },
+      { "file": "diseno/mango-sago.jpg", "alt": "Tiger Sugar — Mango Sago" },
+      { "file": "diseno/chicken-popcorn.jpg", "alt": "Tiger Sugar — Chicken Popcorn" },
+      { "file": "diseno/san-valentin.jpg", "alt": "Tiger Sugar — Valentine's Day" },
+      { "file": "diseno/strawberry-matcha.jpg", "alt": "Tiger Sugar — Strawberry Matcha" },
+      { "file": "diseno/tiger-combo.jpg", "alt": "Tiger Sugar — Tiger Combo" }
     ]
   }
 }

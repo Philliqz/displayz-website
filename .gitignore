@@ -1,5 +1,3 @@
-.DS_Store
-*.zip
-.image-slots.state.json
 uploads/
-*.testoverwrite
+screenshots/
+.DS_Store

@@ -1,0 +1,25 @@
+{
+  "name": "Sur-Ron",
+  "slug": "surron",
+  "thumbnail": "ultrabee.jpg",
+  "logo": "logo.png",
+  "instagram": "https://www.instagram.com/surron.panama/",
+  "description": "Motos eléctricas todo terreno — piezas gráficas para campañas de producto y promociones.",
+  "sections": {
+    "video": true,
+    "fotografia": true,
+    "diseno": true
+  },
+  "media": {
+    "video": [],
+    "fotografia": [],
+    "diseno": [
+      { "file": "ultrabee.jpg", "alt": "Sur-Ron — Ultra Bee" },
+      { "file": "hyperbee.jpg", "alt": "Sur-Ron — Hyper Bee" },
+      { "file": "lightbee.jpg", "alt": "Sur-Ron — Light Bee" },
+      { "file": "todos-los-terrenos.jpg", "alt": "Sur-Ron — Ultra Bee para todos los terrenos" },
+      { "file": "chifea-el-tranque.jpg", "alt": "Sur-Ron — Chifea el tranque, Light Bee" },
+      { "file": "feliz-navidad.jpg", "alt": "Sur-Ron — Feliz Navidad" }
+    ]
+  }
+}

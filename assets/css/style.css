@@ -217,6 +217,12 @@ img { max-width: 100%; display: block; }
 }
 .portfolio-item-bg { position: absolute; inset: 0; z-index: 0; opacity: 0.6;
   background-size: 220% 220%; animation: portfolioGradientMove 16s ease infinite; transition: opacity 0.2s ease; }
+.portfolio-item-thumbs { position: absolute; inset: 0; z-index: 0; }
+.portfolio-item-thumb { position: absolute; inset: 0; z-index: 0; width: 75%; opacity: 0;
+  background-size: cover; background-position: center; animation: thumb-cycle 12s ease-in-out infinite;
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 60%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 0%, #000 60%, transparent 100%); }
+@keyframes thumb-cycle { 0%, 100% { opacity: 0; } 4%, 29% { opacity: 0.4; } 33% { opacity: 0; } }
 .portfolio-item:hover .portfolio-item-bg { opacity: 0.85; }
 .portfolio-item--video .portfolio-item-bg { background-image: radial-gradient(ellipse 60% 100% at 15% 50%, var(--color-red), var(--color-black) 70%); animation-duration: 13s; }
 .portfolio-item--foto .portfolio-item-bg { background-image: radial-gradient(ellipse 60% 100% at 15% 50%, var(--color-violet), var(--color-black) 70%); animation-duration: 16s; }
@@ -301,14 +307,23 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 /* ---- Gallery / brand block ---- */
 .brand-section { padding: 64px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .brand-header { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 32px; flex-wrap: wrap; }
-.brand-block { display: flex; align-items: center; gap: 16px; }
+.brand-block { display: flex; align-items: center; gap: 16px; flex: 1 1 auto; min-width: 220px; }
+.brand-info { min-width: 0; }
+.brand-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; margin-left: auto; }
 .brand-logo { width: 64px; height: 64px; flex-shrink: 0; border-radius: 14px; object-fit: contain; padding: 10px; background: var(--color-panel); }
-.brand-name { font-family: var(--font-display); font-size: 32px; font-weight: 700; letter-spacing: -0.01em; margin: 0; }
+.brand-name { font-family: var(--font-display); font-size: 32px; font-weight: 700; letter-spacing: -0.01em; margin: 0; line-height: 1.25; }
 .brand-desc { color: var(--color-muted); font-size: 15px; max-width: 640px; margin-top: 8px; }
 .brand-ig-btn { flex-shrink: 0; display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display);
   font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em; padding: 10px 20px; border-radius: 999px;
   border: 1px solid rgba(255,255,255,0.25); transition: border-color 0.2s ease; }
 .brand-ig-btn:hover { border-color: var(--color-violet); color: var(--color-white); }
+.brand-like-btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display);
+  font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em; padding: 10px 20px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.25); background: none; color: var(--color-white); cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease; }
+.brand-like-btn:hover { border-color: var(--color-red); }
+.brand-like-btn.is-liked { border-color: var(--color-red); color: var(--color-red); }
+.brand-like-btn span { font-variant-numeric: tabular-nums; }
 .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .gallery-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 8px;
   border: 1px solid rgba(255,255,255,0.08); cursor: pointer; transition: opacity 0.2s ease;
@@ -321,7 +336,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .services-strip-icon { height: 20px; width: auto; object-fit: contain; flex-shrink: 0; margin-left: 12px; margin-right: 12px; }
 @keyframes services-strip-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .about-grid { display: grid; grid-template-columns: 380px 1fr; gap: 64px; align-items: center; }
-.about-photo { width: 100%; aspect-ratio: 4/5; }
+.about-photo { width: 100%; aspect-ratio: 4/5; display: block; object-fit: cover; border-radius: 16px; }
 .about-title { font-family: var(--font-display); font-size: clamp(26px,3.4vw,36px); font-weight: 600; margin: 16px 0 20px; }
 .about-desc { color: var(--color-muted); font-size: 16px; margin: 0 0 16px; }
 .about-desc:last-child { margin-bottom: 0; }
@@ -329,8 +344,9 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   .about-grid { grid-template-columns: 1fr; }
   .about-photo { max-width: 320px; margin: 0 auto; }
 }
-.gallery-marquee { overflow: hidden; width: 100%; mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
 .gallery-carousel { position: relative; }
+.gallery-carousel.is-static .gallery-track { overflow: visible; cursor: default; display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; }
+.gallery-carousel.is-static .gallery-nav-btn { display: none; }
 .gallery-carousel .gallery-track { overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; cursor: grab; width: 100%; }
 .gallery-carousel .gallery-track::-webkit-scrollbar { display: none; }
 .gallery-carousel .gallery-track.is-dragging { cursor: grabbing; }
@@ -342,7 +358,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .gallery-track { display: flex; gap: 16px; width: max-content; cursor: grab; touch-action: pan-y; user-select: none; }
 .gallery-track.is-dragging { cursor: grabbing; }
 .gallery-track .gallery-img { width: 260px; flex-shrink: 0; }
-@keyframes gallery-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .empty-state { text-align: center; padding: 96px 0; color: var(--color-muted); }
 
 /* ---- Lightbox ---- */

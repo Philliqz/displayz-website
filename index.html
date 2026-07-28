@@ -20,7 +20,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
-<script src="assets/js/image-slot.js"></script>
 </head>
 <body>
 
@@ -51,7 +50,7 @@
       <div class="hero-contact-trigger">Hablemos de tu marca</div>
       <div class="hero-contact-panel">
         <div class="hero-contact-panel-inner">
-          <a href="https://wa.me/50764498833" class="dropdown-link" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+          <a href="https://wa.me/50764498833" class="dropdown-link" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px;margin-right:6px"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.4-1.36a9.94 9.94 0 0 0 4.64 1.15h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.13-2.9-7C17.17 3.03 14.7 2 12.04 2Zm0 18.11h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.78.83-3.03-.2-.31a8.18 8.18 0 0 1-1.27-4.39c0-4.53 3.7-8.22 8.24-8.22 2.2 0 4.27.86 5.83 2.42a8.16 8.16 0 0 1 2.41 5.82c0 4.53-3.7 8.26-8.24 8.26Zm4.51-6.16c-.25-.12-1.46-.72-1.68-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.78.96-.14.16-.29.18-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.49-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.39 1.01 2.56.12.16 1.75 2.68 4.25 3.75.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.46-.6 1.66-1.17.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>Escribir por WhatsApp</a>
           <a href="#" class="dropdown-link" data-open-modal>Llenar formulario</a>
         </div>
       </div>
@@ -78,7 +77,7 @@
 <section id="sobre-mi" class="section about-section">
   <div class="section-glow-violet"></div>
   <div class="container about-grid">
-    <image-slot id="about-photo" shape="rounded" radius="16" placeholder="Foto de perfil" class="about-photo reveal"></image-slot>
+    <img src="assets/images/about-photo.webp" alt="Foto de perfil" class="about-photo reveal" loading="lazy">
     <div class="about-content reveal">
       <span class="section-eyebrow">Sobre mí</span>
       <h2 class="about-title">Detrás de cada pieza, un ojo que entiende tu marca</h2>
@@ -131,6 +130,7 @@
     </div>
     <div class="portfolio-list">
       <a href="video.html" class="portfolio-item portfolio-item--video reveal">
+        <div class="portfolio-item-thumbs" data-portfolio-thumbs="video"></div>
         <div class="portfolio-item-bg"></div>
         <div class="portfolio-item-content">
           <h3 class="portfolio-item-title">Video</h3>
@@ -139,6 +139,7 @@
         <span class="portfolio-item-cta btn-pill-small">Ver reels →</span>
       </a>
       <a href="fotografia.html" class="portfolio-item portfolio-item--foto reveal">
+        <div class="portfolio-item-thumbs" data-portfolio-thumbs="fotografia"></div>
         <div class="portfolio-item-bg"></div>
         <div class="portfolio-item-content">
           <h3 class="portfolio-item-title">Fotografía</h3>
@@ -147,6 +148,7 @@
         <span class="portfolio-item-cta btn-pill-small">Ver sesiones →</span>
       </a>
       <a href="diseno.html" class="portfolio-item portfolio-item--diseno reveal">
+        <div class="portfolio-item-thumbs" data-portfolio-thumbs="diseno"></div>
         <div class="portfolio-item-bg"></div>
         <div class="portfolio-item-content">
           <h3 class="portfolio-item-title">Diseño</h3>
@@ -177,7 +179,7 @@
           </li>
           <li><span class="contact-label">WhatsApp</span><a href="https://wa.me/50764498833" target="_blank" rel="noopener">+507 6449-8833</a></li>
         </ul>
-        <a href="https://wa.me/50764498833" class="btn btn-gradient btn-sm" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        <a href="https://wa.me/50764498833" class="btn btn-gradient btn-sm" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px;margin-right:6px"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.4-1.36a9.94 9.94 0 0 0 4.64 1.15h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.13-2.9-7C17.17 3.03 14.7 2 12.04 2Zm0 18.11h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.78.83-3.03-.2-.31a8.18 8.18 0 0 1-1.27-4.39c0-4.53 3.7-8.22 8.24-8.22 2.2 0 4.27.86 5.83 2.42a8.16 8.16 0 0 1 2.41 5.82c0 4.53-3.7 8.26-8.24 8.26Zm4.51-6.16c-.25-.12-1.46-.72-1.68-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.78.96-.14.16-.29.18-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.49-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.39 1.01 2.56.12.16 1.75 2.68 4.25 3.75.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.46-.6 1.66-1.17.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>Escribir por WhatsApp</a>
       </div>
       <div class="contact-form-panel">
         <h3 class="contact-form-title">O llena el formulario</h3>

@@ -108,7 +108,6 @@
           e.preventDefault();
           close();
           setTimeout(function () {
-            var target = document.getElementById('portafolio') || document.querySelector('a[href="index.html#portafolio"]');
             if (document.getElementById('portafolio')) {
               document.getElementById('portafolio').scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else {
@@ -124,7 +123,6 @@
   var Forms = {
     init: function () {
       document.querySelectorAll('form[data-contact-form]').forEach(function (form) {
-        var success = document.createElement('p');
         form.addEventListener('submit', function (e) {
           Forms.handleSubmit(e, form, function () {
             form.reset();
@@ -263,6 +261,10 @@
         })
         .then(function (companies) {
           var visible = companies.filter(function (c) { return c && c.media && c.media[sectionKey] && c.media[sectionKey].length; });
+          for (var vi = visible.length - 1; vi > 0; vi--) {
+            var vj = Math.floor(Math.random() * (vi + 1));
+            var vtmp = visible[vi]; visible[vi] = visible[vj]; visible[vj] = vtmp;
+          }
           if (!visible.length) {
             if (emptyState) emptyState.style.display = 'block';
             return;
@@ -292,6 +294,7 @@
       logo.src = 'portfolio/' + company.slug + '/' + (company.logo || company.thumbnail || '');
       logo.alt = company.name + ' — logo';
       var info = document.createElement('div');
+      info.className = 'brand-info';
       var name = document.createElement('h2');
       name.className = 'brand-name';
       name.textContent = company.name;
@@ -306,6 +309,8 @@
       block.appendChild(info);
       header.appendChild(block);
 
+      var actions = document.createElement('div');
+      actions.className = 'brand-actions';
       if (company.instagram) {
         var ig = document.createElement('a');
         ig.className = 'brand-ig-btn';
@@ -313,16 +318,47 @@
         ig.target = '_blank';
         ig.rel = 'noopener';
         ig.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"></rect><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="2"></circle><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"></circle></svg> Instagram';
-        header.appendChild(ig);
+        actions.appendChild(ig);
       }
+      actions.appendChild(Portfolio.makeLikeBtn(company.slug));
+      header.appendChild(actions);
       wrap.appendChild(header);
 
       var items = (company.media && company.media[sectionKey]) || [];
       wrap.appendChild(Portfolio.renderGallery(items, sectionKey, company));
       return wrap;
     },
+    makeLikeBtn: function (slug) {
+      var likedKey = 'displayz-like-' + slug;
+      var countKey = 'displayz-likes-' + slug;
+      var liked = localStorage.getItem(likedKey) === '1';
+      var count = parseInt(localStorage.getItem(countKey), 10);
+      if (isNaN(count)) count = liked ? 1 : 0;
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'brand-like-btn' + (liked ? ' is-liked' : '');
+      btn.setAttribute('aria-label', 'Me gusta');
+      function render() {
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 20s-7-4.35-9.5-8.5C.7 8 2.3 4.5 6 4.5c2 0 3.3 1 4.5 2.5C11.7 5.5 13 4.5 15 4.5c3.7 0 5.3 3.5 3.5 7C18 15.65 12 20 12 20z" stroke="currentColor" stroke-width="2" fill="' + (liked ? 'currentColor' : 'none') + '"/></svg><span>' + count + '</span>';
+      }
+      render();
+      btn.addEventListener('click', function () {
+        liked = !liked;
+        count = Math.max(0, count + (liked ? 1 : -1));
+        btn.classList.toggle('is-liked', liked);
+        localStorage.setItem(likedKey, liked ? '1' : '0');
+        localStorage.setItem(countKey, String(count));
+        render();
+      });
+      return btn;
+    },
     renderGallery: function (items, sectionKey, company) {
       var isVideo = sectionKey === 'video';
+      items = items.slice();
+      for (var i = items.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = items[i]; items[i] = items[j]; items[j] = tmp;
+      }
       function makeImg(item, isClone) {
         var img = document.createElement('img');
         img.className = 'gallery-img';
@@ -338,33 +374,27 @@
         }
         return img;
       }
-      if (items.length > 3) {
-        var outer = document.createElement('div');
-        outer.className = 'gallery-carousel';
-        if (!isVideo) outer.setAttribute('data-lightbox-group', '');
-        var track = document.createElement('div');
-        track.className = 'gallery-track';
-        items.forEach(function (item) { track.appendChild(makeImg(item, false)); });
-        var prevBtn = document.createElement('button');
-        prevBtn.className = 'gallery-nav-btn prev'; prevBtn.type = 'button'; prevBtn.setAttribute('aria-label', 'Anterior');
-        prevBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-        var nextBtn = document.createElement('button');
-        nextBtn.className = 'gallery-nav-btn next'; nextBtn.type = 'button'; nextBtn.setAttribute('aria-label', 'Siguiente');
-        nextBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-        outer.appendChild(track);
-        outer.appendChild(prevBtn);
-        outer.appendChild(nextBtn);
-        Portfolio.setupCarousel(track, prevBtn, nextBtn);
-        return outer;
-      }
-      var grid = document.createElement('div');
-      grid.className = 'gallery-grid';
-      if (!isVideo) grid.setAttribute('data-lightbox-group', '');
-      items.forEach(function (item) { grid.appendChild(makeImg(item, false)); });
-      return grid;
+      var outer = document.createElement('div');
+      outer.className = 'gallery-carousel';
+      if (!isVideo) outer.setAttribute('data-lightbox-group', '');
+      var track = document.createElement('div');
+      track.className = 'gallery-track';
+      items.forEach(function (item) { track.appendChild(makeImg(item, false)); });
+      var prevBtn = document.createElement('button');
+      prevBtn.className = 'gallery-nav-btn prev'; prevBtn.type = 'button'; prevBtn.setAttribute('aria-label', 'Anterior');
+      prevBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      var nextBtn = document.createElement('button');
+      nextBtn.className = 'gallery-nav-btn next'; nextBtn.type = 'button'; nextBtn.setAttribute('aria-label', 'Siguiente');
+      nextBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      outer.appendChild(track);
+      outer.appendChild(prevBtn);
+      outer.appendChild(nextBtn);
+      if (items.length > 3) Portfolio.setupCarousel(track, prevBtn, nextBtn);
+      else outer.classList.add('is-static');
+      return outer;
     },
     setupCarousel: function (track, prevBtn, nextBtn) {
-      var startX = 0, startScroll = 0, dragging = false, moved = false;
+      var startX = 0, startScroll = 0, moved = false;
       function step() { return track.querySelector('.gallery-img').getBoundingClientRect().width + 16; }
       function maxScroll() { return track.scrollWidth - track.clientWidth; }
       nextBtn.addEventListener('click', function () {
@@ -382,7 +412,6 @@
         track.scrollLeft = startScroll - dx;
       }
       function endDrag() {
-        dragging = false;
         track.classList.remove('is-dragging');
         track.style.scrollBehavior = 'smooth';
         window.removeEventListener('pointermove', onMove);
@@ -390,7 +419,7 @@
         window.removeEventListener('pointercancel', endDrag);
       }
       track.addEventListener('pointerdown', function (e) {
-        dragging = true; moved = false; startX = e.clientX; startScroll = track.scrollLeft;
+        moved = false; startX = e.clientX; startScroll = track.scrollLeft;
         track.classList.add('is-dragging');
         track.style.scrollBehavior = 'auto';
         window.addEventListener('pointermove', onMove);
@@ -404,6 +433,49 @@
     }
   };
 
+  /* ============ Home portfolio-card thumbnail rotator ============
+     Reads portfolio/manifest.json + each company's data.json and drops up to 3 rotating
+     background thumbnails into each .portfolio-item-thumbs slot. Stays empty automatically
+     when a section (e.g. video) has no content yet — picks it up the moment content is added. */
+  var PortfolioPreview = {
+    init: function () {
+      var slots = document.querySelectorAll('[data-portfolio-thumbs]');
+      if (!slots.length) return;
+      fetch('portfolio/manifest.json')
+        .then(function (res) { return res.json(); })
+        .then(function (manifest) {
+          var slugs = manifest.companies || [];
+          return Promise.all(slugs.map(function (slug) {
+            return fetch('portfolio/' + slug + '/data.json')
+              .then(function (res) { return res.json(); })
+              .catch(function () { return null; });
+          }));
+        })
+        .then(function (companies) {
+          companies = companies.filter(Boolean);
+          slots.forEach(function (slot) {
+            var key = slot.getAttribute('data-portfolio-thumbs');
+            var images = [];
+            companies.forEach(function (c) {
+              var items = c.media && c.media[key];
+              if (!items || !items.length) return;
+              var item = items[0];
+              var file = key === 'video' ? item.thumbnail : item.file;
+              if (file) images.push('portfolio/' + c.slug + '/' + file);
+            });
+            images.slice(0, 3).forEach(function (src, i) {
+              var div = document.createElement('div');
+              div.className = 'portfolio-item-thumb';
+              div.style.backgroundImage = 'url(' + src + ')';
+              div.style.animationDelay = (-i * 4) + 's';
+              slot.appendChild(div);
+            });
+          });
+        })
+        .catch(function () {});
+    }
+  };
+
   document.addEventListener('DOMContentLoaded', function () {
     Nav.init();
     Animations.init();
@@ -413,5 +485,6 @@
     Lightbox.init();
     VideoModal.init();
     Portfolio.init();
+    PortfolioPreview.init();
   });
 })();

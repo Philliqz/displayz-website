@@ -1,0 +1,30 @@
+{
+  "name": "Fosters",
+  "slug": "fosters",
+  "thumbnail": "trufada-burger.jpg",
+  "logo": "logo.png",
+  "instagram": "https://www.instagram.com/fosterspty/",
+  "description": "Restaurante de burgers y bar — piezas gráficas para promociones, menú y eventos.",
+  "sections": {
+    "video": true,
+    "fotografia": true,
+    "diseno": true
+  },
+  "media": {
+    "video": [],
+    "fotografia": [],
+    "diseno": [
+      { "file": "trufada-burger.jpg", "alt": "Fosters — Trufada Burger" },
+      { "file": "te-mereces-burger.jpg", "alt": "Fosters — Te mereces una burger" },
+      { "file": "mushrooms-burger.jpg", "alt": "Fosters — Mushrooms Vegan Burger" },
+      { "file": "burgers-promo.jpg", "alt": "Fosters — Burgers en promo" },
+      { "file": "kikirihot-menu-lunch.jpg", "alt": "Fosters — Kikirihot Burger Menú Lunch" },
+      { "file": "milanesa-pollo-plancha.jpg", "alt": "Fosters — Milanesa y Pollo a la Plancha" },
+      { "file": "martes.jpg", "alt": "Fosters — Martes 2da Burger" },
+      { "file": "miercoles.jpg", "alt": "Fosters — Miércoles 2x1 Alitas" },
+      { "file": "fin-de-semana.jpg", "alt": "Fosters — Fin de semana" },
+      { "file": "celebremos-mexico.jpg", "alt": "Fosters — Celebremos México" },
+      { "file": "dj-penonome.jpg", "alt": "Fosters — DJ en Penonomé" }
+    ]
+  }
+}
