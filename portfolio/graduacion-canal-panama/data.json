@@ -1,0 +1,23 @@
+{
+  "name": "Graduación — Administración del Canal de Panamá",
+  "slug": "graduacion-canal-panama",
+  "thumbnail": "foto-2.jpg",
+  "logo": "foto-2.jpg",
+  "instagram": "",
+  "description": "Sesión de fotos de graduación realizada en las instalaciones de la Administración del Canal de Panamá.",
+  "sections": {
+    "video": true,
+    "fotografia": true,
+    "diseno": true
+  },
+  "media": {
+    "video": [],
+    "fotografia": [
+      { "file": "foto-1.jpg", "alt": "Graduación — Administración del Canal de Panamá" },
+      { "file": "foto-2.jpg", "alt": "Graduación — Administración del Canal de Panamá" },
+      { "file": "foto-3.jpg", "alt": "Graduación — Administración del Canal de Panamá" },
+      { "file": "foto-4.jpg", "alt": "Graduación — Administración del Canal de Panamá" }
+    ],
+    "diseno": []
+  }
+}

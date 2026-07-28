@@ -1,0 +1,22 @@
+{
+  "name": "Tiger Sugar Panamá",
+  "slug": "tiger-sugar-panama",
+  "thumbnail": "thumbnail.jpg",
+  "logo": "logo.png",
+  "instagram": "https://www.instagram.com/tigersugar.panama/",
+  "description": "Cadena de bubble tea originaria de Taiwán, reconocida por su icónica Brown Sugar Boba Milk. En Panamá cuenta con locales en Condado del Rey y La Chorrera.",
+  "sections": {
+    "video": true,
+    "fotografia": true,
+    "diseno": true
+  },
+  "media": {
+    "video": [],
+    "fotografia": [],
+    "diseno": [
+      { "file": "diseno/dragon-fruit-sago.jpg", "alt": "Tiger Sugar — Dragon Fruit Sago" },
+      { "file": "diseno/dragon-ice-lemon-tea.jpg", "alt": "Tiger Sugar — Dragon Ice Lemon Tea" },
+      { "file": "diseno/dragon-fruit-collage.jpg", "alt": "Tiger Sugar — Dragon Fruit Series" }
+    ]
+  }
+}

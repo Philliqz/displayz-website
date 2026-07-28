@@ -1,0 +1,34 @@
+{
+  "name": "MOVIT",
+  "slug": "movit",
+  "thumbnail": "ducati.jpg",
+  "logo": "ducati.jpg",
+  "instagram": "https://www.instagram.com/movitpanama/",
+  "description": "Movilidad eléctrica en Panamá — patinetas eléctricas Ducati e Inokim, movilidad sostenible.",
+  "sections": {
+    "video": true,
+    "fotografia": true,
+    "diseno": true
+  },
+  "media": {
+    "video": [],
+    "fotografia": [],
+    "diseno": [
+      { "file": "ducati.jpg", "alt": "MOVIT — Ducati Pro II Evo" },
+      { "file": "ducati-pro-evo-ii.jpg", "alt": "MOVIT — Ducati Pro Evo II" },
+      { "file": "al-ext-lambo.jpg", "alt": "MOVIT — AL EXT Lambo" },
+      { "file": "argento-active-evo.jpg", "alt": "MOVIT — Argento Active Evo" },
+      { "file": "light2-inokim.jpg", "alt": "MOVIT — Light2 Inokim" },
+      { "file": "ox-inokim.jpg", "alt": "MOVIT — OX Inokim" },
+      { "file": "quick4-inokim.jpg", "alt": "MOVIT — Quick 4 Inokim" },
+      { "file": "casco-gratis.jpg", "alt": "MOVIT — Casco gratis" },
+      { "file": "black-week-a.jpg", "alt": "MOVIT — Black Week" },
+      { "file": "black-week-b.jpg", "alt": "MOVIT — Black Week" },
+      { "file": "black-week-c.jpg", "alt": "MOVIT — Black Week" },
+      { "file": "black-week-d.jpg", "alt": "MOVIT — Black Week" },
+      { "file": "black-week-e.jpg", "alt": "MOVIT — Black Week" },
+      { "file": "black-week-f.jpg", "alt": "MOVIT — Black Week" },
+      { "file": "black-week-g.jpg", "alt": "MOVIT — Black Week" }
+    ]
+  }
+}

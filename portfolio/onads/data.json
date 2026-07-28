@@ -1,0 +1,22 @@
+{
+  "name": "OnAds",
+  "slug": "onads",
+  "thumbnail": "sillon.jpg",
+  "logo": "logo.png",
+  "instagram": "https://www.instagram.com/onadspa/",
+  "description": "Publicidad digital en movimiento dentro de vehículos, con pantallas en los reposacabezas para llevar tu marca donde va el pasajero.",
+  "sections": {
+    "video": true,
+    "fotografia": true,
+    "diseno": true
+  },
+  "media": {
+    "video": [],
+    "fotografia": [],
+    "diseno": [
+      { "file": "sillon.jpg", "alt": "OnAds — Tu marca viaja más lejos" },
+      { "file": "enciende-tu-marca.jpg", "alt": "OnAds — Enciende tu marca" },
+      { "file": "post-30.jpg", "alt": "OnAds — Revive los mejores goles del Mundial" }
+    ]
+  }
+}

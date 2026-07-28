@@ -1,0 +1,23 @@
+{
+  "name": "Villa de las Palmas",
+  "slug": "villa-de-las-palmas",
+  "thumbnail": "casa-propia.jpg",
+  "logo": "casa-propia.jpg",
+  "instagram": "https://www.instagram.com/villadelaspalmas_/",
+  "description": "Proyecto residencial — piezas gráficas para campañas de venta de casas.",
+  "sections": {
+    "video": true,
+    "fotografia": true,
+    "diseno": true
+  },
+  "media": {
+    "video": [],
+    "fotografia": [],
+    "diseno": [
+      { "file": "casa-propia.jpg", "alt": "Villa de las Palmas — Casa propia" },
+      { "file": "casa-16.jpg", "alt": "Villa de las Palmas — Casa 16" },
+      { "file": "casa-3-habitaciones.jpg", "alt": "Villa de las Palmas — Casa con 3 habitaciones" },
+      { "file": "ultimas-casas.jpg", "alt": "Villa de las Palmas — Últimas casas" }
+    ]
+  }
+}

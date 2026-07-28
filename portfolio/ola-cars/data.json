@@ -1,0 +1,29 @@
+{
+  "name": "Ola Cars",
+  "slug": "ola-cars",
+  "thumbnail": "geely-okavango.jpg",
+  "logo": "geely-okavango.jpg",
+  "instagram": "https://www.instagram.com/olacarspa/",
+  "description": "Venta de vehículos nuevos y seminuevos — piezas gráficas para campañas y promociones.",
+  "sections": {
+    "video": true,
+    "fotografia": true,
+    "diseno": true
+  },
+  "media": {
+    "video": [],
+    "fotografia": [],
+    "diseno": [
+      { "file": "geely-okavango.jpg", "alt": "Ola Cars — Geely Okavango" },
+      { "file": "tiggo-8-sport.jpg", "alt": "Ola Cars — Tiggo 8 Sport" },
+      { "file": "x70-pago-semanal.jpg", "alt": "Ola Cars — X70 pago semanal" },
+      { "file": "oferta-flash-paga-240.jpg", "alt": "Ola Cars — Oferta flash, paga 240" },
+      { "file": "seminuevos-garantizado.jpg", "alt": "Ola Cars — Seminuevos garantizado" },
+      { "file": "soluto-promo.jpg", "alt": "Ola Cars — Soluto promo" },
+      { "file": "referidos.jpg", "alt": "Ola Cars — Referidos" },
+      { "file": "km-plus.jpg", "alt": "Ola Cars — KM+" },
+      { "file": "dia-libre.jpg", "alt": "Ola Cars — Día libre" },
+      { "file": "cumpleanos.jpg", "alt": "Ola Cars — Cumpleaños" }
+    ]
+  }
+}
