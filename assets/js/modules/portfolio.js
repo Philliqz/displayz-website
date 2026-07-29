@@ -135,7 +135,7 @@ export function renderGallery(rawItems, sectionKey, company) {
     img.draggable = false;
     img.loading = 'lazy';
     if (isVideo) {
-      img.src = item.miniatura || '';
+      img.src = item.miniatura || company.logo || '';
       img.alt = item.titulo || company.nombre + ' — video';
       const embedSrc = toEmbedSrc(item.url, item.provider);
       if (embedSrc) img.setAttribute('data-video-embed', embedSrc);
