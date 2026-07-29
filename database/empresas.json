@@ -1,0 +1,1058 @@
+[
+  {
+    "id": "tiger-sugar-panama",
+    "slug": "tiger-sugar-panama",
+    "nombre": "Tiger Sugar Panamá",
+    "descripcion": "Cadena de bubble tea originaria de Taiwán, reconocida por su icónica Brown Sugar Boba Milk. En Panamá cuenta con locales en Condado del Rey y La Chorrera.",
+    "logo": "portfolio/tiger-sugar-panama/logo.png",
+    "categoria": "diseno",
+    "categorias": [
+      "diseno"
+    ],
+    "video": false,
+    "fotografia": false,
+    "diseno": true,
+    "galeria": [
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/dragon-fruit-sago.jpg",
+        "alt": "Tiger Sugar — Dragon Fruit Sago",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/dragon-ice-lemon-tea.jpg",
+        "alt": "Tiger Sugar — Dragon Ice Lemon Tea",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/dragon-fruit-collage.jpg",
+        "alt": "Tiger Sugar — Dragon Fruit Series",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/choco-chips.jpg",
+        "alt": "Tiger Sugar — Chocolate Chips",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/mango-sago.jpg",
+        "alt": "Tiger Sugar — Mango Sago",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/chicken-popcorn.jpg",
+        "alt": "Tiger Sugar — Chicken Popcorn",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/san-valentin.jpg",
+        "alt": "Tiger Sugar — Valentine's Day",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/strawberry-matcha.jpg",
+        "alt": "Tiger Sugar — Strawberry Matcha",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/tiger-combo.jpg",
+        "alt": "Tiger Sugar — Tiger Combo",
+        "tipo": "diseno"
+      }
+    ],
+    "videos": [],
+    "telefono": "",
+    "correo": "",
+    "direccion": "",
+    "instagram": "https://www.instagram.com/tigersugar.panama/",
+    "facebook": "",
+    "tiktok": "",
+    "youtube": "",
+    "linkedin": "",
+    "sitioWeb": "",
+    "horario": "",
+    "estado": "activo"
+  },
+  {
+    "id": "onads",
+    "slug": "onads",
+    "nombre": "OnAds",
+    "descripcion": "Publicidad digital en movimiento dentro de vehículos, con pantallas en los reposacabezas para llevar tu marca donde va el pasajero.",
+    "logo": "portfolio/onads/logo.png",
+    "categoria": "diseno",
+    "categorias": [
+      "diseno"
+    ],
+    "video": false,
+    "fotografia": false,
+    "diseno": true,
+    "galeria": [
+      {
+        "archivo": "portfolio/onads/sillon.jpg",
+        "alt": "OnAds — Tu marca viaja más lejos",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/onads/enciende-tu-marca.jpg",
+        "alt": "OnAds — Enciende tu marca",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/onads/post-30.jpg",
+        "alt": "OnAds — Revive los mejores goles del Mundial",
+        "tipo": "diseno"
+      }
+    ],
+    "videos": [],
+    "telefono": "",
+    "correo": "",
+    "direccion": "",
+    "instagram": "https://www.instagram.com/onadspa/",
+    "facebook": "",
+    "tiktok": "",
+    "youtube": "",
+    "linkedin": "",
+    "sitioWeb": "",
+    "horario": "",
+    "estado": "activo"
+  },
+  {
+    "id": "graduacion-canal-panama",
+    "slug": "graduacion-canal-panama",
+    "nombre": "Graduación — Administración del Canal de Panamá",
+    "descripcion": "Sesión de fotos de graduación realizada en las instalaciones de la Administración del Canal de Panamá.",
+    "logo": "portfolio/graduacion-canal-panama/foto-2.jpg",
+    "categoria": "fotografia",
+    "categorias": [
+      "fotografia"
+    ],
+    "video": false,
+    "fotografia": true,
+    "diseno": false,
+    "galeria": [
+      {
+        "archivo": "portfolio/graduacion-canal-panama/foto-1.jpg",
+        "alt": "Graduación — Administración del Canal de Panamá",
+        "tipo": "fotografia"
+      },
+      {
+        "archivo": "portfolio/graduacion-canal-panama/foto-2.jpg",
+        "alt": "Graduación — Administración del Canal de Panamá",
+        "tipo": "fotografia"
+      },
+      {
+        "archivo": "portfolio/graduacion-canal-panama/foto-3.jpg",
+        "alt": "Graduación — Administración del Canal de Panamá",
+        "tipo": "fotografia"
+      },
+      {
+        "archivo": "portfolio/graduacion-canal-panama/foto-4.jpg",
+        "alt": "Graduación — Administración del Canal de Panamá",
+        "tipo": "fotografia"
+      }
+    ],
+    "videos": [],
+    "telefono": "",
+    "correo": "",
+    "direccion": "",
+    "instagram": "",
+    "facebook": "",
+    "tiktok": "",
+    "youtube": "",
+    "linkedin": "",
+    "sitioWeb": "",
+    "horario": "",
+    "estado": "activo"
+  },
+  {
+    "id": "movit",
+    "slug": "movit",
+    "nombre": "MOVIT",
+    "descripcion": "Movilidad eléctrica en Panamá — patinetas eléctricas Ducati e Inokim, movilidad sostenible.",
+    "logo": "portfolio/movit/ducati.jpg",
+    "categoria": "diseno",
+    "categorias": [
+      "diseno"
+    ],
+    "video": false,
+    "fotografia": false,
+    "diseno": true,
+    "galeria": [
+      {
+        "archivo": "portfolio/movit/ducati.jpg",
+        "alt": "MOVIT — Ducati Pro II Evo",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/movit/ducati-pro-evo-ii.jpg",
+        "alt": "MOVIT — Ducati Pro Evo II",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/movit/al-ext-lambo.jpg",
+        "alt": "MOVIT — AL EXT Lambo",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/movit/argento-active-evo.jpg",
+        "alt": "MOVIT — Argento Active Evo",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/movit/light2-inokim.jpg",
+        "alt": "MOVIT — Light2 Inokim",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/movit/ox-inokim.jpg",
+        "alt": "MOVIT — OX Inokim",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/movit/quick4-inokim.jpg",
+        "alt": "MOVIT — Quick 4 Inokim",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/movit/casco-gratis.jpg",
+        "alt": "MOVIT — Casco gratis",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/movit/black-week-a.jpg",
+        "alt": "MOVIT — Black Week",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/movit/black-week-b.jpg",
+        "alt": "MOVIT — Black Week",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/movit/black-week-c.jpg",
+        "alt": "MOVIT — Black Week",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/movit/black-week-d.jpg",
+        "alt": "MOVIT — Black Week",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/movit/black-week-e.jpg",
+        "alt": "MOVIT — Black Week",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/movit/black-week-f.jpg",
+        "alt": "MOVIT — Black Week",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/movit/black-week-g.jpg",
+        "alt": "MOVIT — Black Week",
+        "tipo": "diseno"
+      }
+    ],
+    "videos": [],
+    "telefono": "",
+    "correo": "",
+    "direccion": "",
+    "instagram": "https://www.instagram.com/movitpanama/",
+    "facebook": "",
+    "tiktok": "",
+    "youtube": "",
+    "linkedin": "",
+    "sitioWeb": "",
+    "horario": "",
+    "estado": "activo"
+  },
+  {
+    "id": "moocha",
+    "slug": "moocha",
+    "nombre": "Moocha",
+    "descripcion": "Bubble tea y postres en Panamá — piezas gráficas para campañas, promociones y redes.",
+    "logo": "portfolio/moocha/brown-sugar-fresh-milk.jpg",
+    "categoria": "diseno",
+    "categorias": [
+      "diseno"
+    ],
+    "video": false,
+    "fotografia": false,
+    "diseno": true,
+    "galeria": [
+      {
+        "archivo": "portfolio/moocha/brown-sugar-fresh-milk.jpg",
+        "alt": "Moocha — Brown Sugar Fresh Milk",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/matcha.jpg",
+        "alt": "Moocha — Matcha",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/lychee-lemon-black-tea.jpg",
+        "alt": "Moocha — Lychee Lemon Black Tea",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/fruit-tea-series.jpg",
+        "alt": "Moocha — Fruit Tea Series",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/opciones-de-leche.jpg",
+        "alt": "Moocha — Opciones de leche",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/waffle-favorito.jpg",
+        "alt": "Moocha — Waffle favorito",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/cheesecake-promo.jpg",
+        "alt": "Moocha — Cheesecake promo",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/2x1-miercoles.jpg",
+        "alt": "Moocha — 2x1 Miércoles",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/felicidad-es.jpg",
+        "alt": "Moocha — La felicidad es",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/dos-tipos-de-personas.jpg",
+        "alt": "Moocha — Existen dos tipos de personas",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/1-de-julio.jpg",
+        "alt": "Moocha — 1 de Julio",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/dia-del-trabajador.jpg",
+        "alt": "Moocha — Día del Trabajador",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/dia-de-las-madres.jpg",
+        "alt": "Moocha — Día de las Madres",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/dia-del-nino.jpg",
+        "alt": "Moocha — Día del Niño",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/promo-dia-del-nino.jpg",
+        "alt": "Moocha — Promo Día del Niño",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/dia-del-bubble-tea.jpg",
+        "alt": "Moocha — Día del Bubble Tea",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/ano-nuevo-chino.jpg",
+        "alt": "Moocha — Año Nuevo Chino",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/danza-de-leones.jpg",
+        "alt": "Moocha — Danza de Leones",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/sobres-rojos.jpg",
+        "alt": "Moocha — Sobres rojos",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/mesa-de-trabajo-3.jpg",
+        "alt": "Moocha",
+        "tipo": "diseno"
+      }
+    ],
+    "videos": [],
+    "telefono": "",
+    "correo": "",
+    "direccion": "",
+    "instagram": "https://www.instagram.com/moochapty/",
+    "facebook": "",
+    "tiktok": "",
+    "youtube": "",
+    "linkedin": "",
+    "sitioWeb": "",
+    "horario": "",
+    "estado": "activo"
+  },
+  {
+    "id": "ola-cars",
+    "slug": "ola-cars",
+    "nombre": "Ola Cars",
+    "descripcion": "Venta de vehículos nuevos y seminuevos — piezas gráficas para campañas y promociones.",
+    "logo": "portfolio/ola-cars/geely-okavango.jpg",
+    "categoria": "diseno",
+    "categorias": [
+      "diseno"
+    ],
+    "video": false,
+    "fotografia": false,
+    "diseno": true,
+    "galeria": [
+      {
+        "archivo": "portfolio/ola-cars/geely-okavango.jpg",
+        "alt": "Ola Cars — Geely Okavango",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/tiggo-8-sport.jpg",
+        "alt": "Ola Cars — Tiggo 8 Sport",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/x70-pago-semanal.jpg",
+        "alt": "Ola Cars — X70 pago semanal",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/oferta-flash-paga-240.jpg",
+        "alt": "Ola Cars — Oferta flash, paga 240",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/seminuevos-garantizado.jpg",
+        "alt": "Ola Cars — Seminuevos garantizado",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/soluto-promo.jpg",
+        "alt": "Ola Cars — Soluto promo",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/referidos.jpg",
+        "alt": "Ola Cars — Referidos",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/km-plus.jpg",
+        "alt": "Ola Cars — KM+",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/dia-libre.jpg",
+        "alt": "Ola Cars — Día libre",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/cumpleanos.jpg",
+        "alt": "Ola Cars — Cumpleaños",
+        "tipo": "diseno"
+      }
+    ],
+    "videos": [],
+    "telefono": "",
+    "correo": "",
+    "direccion": "",
+    "instagram": "https://www.instagram.com/olacarspa/",
+    "facebook": "",
+    "tiktok": "",
+    "youtube": "",
+    "linkedin": "",
+    "sitioWeb": "",
+    "horario": "",
+    "estado": "activo"
+  },
+  {
+    "id": "villa-de-las-palmas",
+    "slug": "villa-de-las-palmas",
+    "nombre": "Villa de las Palmas",
+    "descripcion": "Proyecto residencial — piezas gráficas para campañas de venta de casas.",
+    "logo": "portfolio/villa-de-las-palmas/casa-propia.jpg",
+    "categoria": "diseno",
+    "categorias": [
+      "diseno"
+    ],
+    "video": false,
+    "fotografia": false,
+    "diseno": true,
+    "galeria": [
+      {
+        "archivo": "portfolio/villa-de-las-palmas/casa-propia.jpg",
+        "alt": "Villa de las Palmas — Casa propia",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/villa-de-las-palmas/casa-16.jpg",
+        "alt": "Villa de las Palmas — Casa 16",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/villa-de-las-palmas/casa-3-habitaciones.jpg",
+        "alt": "Villa de las Palmas — Casa con 3 habitaciones",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/villa-de-las-palmas/ultimas-casas.jpg",
+        "alt": "Villa de las Palmas — Últimas casas",
+        "tipo": "diseno"
+      }
+    ],
+    "videos": [],
+    "telefono": "",
+    "correo": "",
+    "direccion": "",
+    "instagram": "https://www.instagram.com/villadelaspalmas_/",
+    "facebook": "",
+    "tiktok": "",
+    "youtube": "",
+    "linkedin": "",
+    "sitioWeb": "",
+    "horario": "",
+    "estado": "activo"
+  },
+  {
+    "id": "bremers",
+    "slug": "bremers",
+    "nombre": "Bremer's",
+    "descripcion": "Salón de belleza y spa — piezas gráficas para redes: cuidado capilar, manicura y servicios de spa.",
+    "logo": "portfolio/bremers/salon-spa.jpg",
+    "categoria": "diseno",
+    "categorias": [
+      "diseno"
+    ],
+    "video": false,
+    "fotografia": false,
+    "diseno": true,
+    "galeria": [
+      {
+        "archivo": "portfolio/bremers/salon-spa.jpg",
+        "alt": "Bremer's — Salón & Spa",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/bremers/manicura.jpg",
+        "alt": "Bremer's — Importancia de una buena manicura",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/bremers/sabias-que.jpg",
+        "alt": "Bremer's — ¿Sabías que?",
+        "tipo": "diseno"
+      }
+    ],
+    "videos": [],
+    "telefono": "",
+    "correo": "",
+    "direccion": "",
+    "instagram": "https://www.instagram.com/bremerbeautybar/",
+    "facebook": "",
+    "tiktok": "",
+    "youtube": "",
+    "linkedin": "",
+    "sitioWeb": "",
+    "horario": "",
+    "estado": "activo"
+  },
+  {
+    "id": "hikaru",
+    "slug": "hikaru",
+    "nombre": "Hikaru",
+    "descripcion": "Restaurante de comida japonesa — piezas gráficas para menú, promociones y anuncios de sucursal.",
+    "logo": "portfolio/hikaru/logo.jpg",
+    "categoria": "diseno",
+    "categorias": [
+      "diseno"
+    ],
+    "video": false,
+    "fotografia": false,
+    "diseno": true,
+    "galeria": [
+      {
+        "archivo": "portfolio/hikaru/etiqueta-cena-sushi.jpg",
+        "alt": "Hikaru — Cena de Sushi",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/hikaru/sashimi-lunch.jpg",
+        "alt": "Hikaru — Sashimi Lunch",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/hikaru/ensalada-sashimi.jpg",
+        "alt": "Hikaru — Ensalada Sashimi",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/hikaru/curry-rice.jpg",
+        "alt": "Hikaru — Curry Rice",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/hikaru/katsudon.jpg",
+        "alt": "Hikaru — Katsudon",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/hikaru/20-descuento.jpg",
+        "alt": "Hikaru — 20% de descuento",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/hikaru/20-descuento-v2.jpg",
+        "alt": "Hikaru — 20% de descuento",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/hikaru/nueva-sucursal.jpg",
+        "alt": "Hikaru — Nueva sucursal",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/hikaru/sucursal.jpg",
+        "alt": "Hikaru — Sucursal",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/hikaru/horario.jpg",
+        "alt": "Hikaru — Horario",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/hikaru/mesa-trabajo-1.jpg",
+        "alt": "Hikaru",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/hikaru/mesa-trabajo-2.jpg",
+        "alt": "Hikaru",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/hikaru/mesa-trabajo-3.jpg",
+        "alt": "Hikaru",
+        "tipo": "diseno"
+      }
+    ],
+    "videos": [],
+    "telefono": "",
+    "correo": "",
+    "direccion": "",
+    "instagram": "https://www.instagram.com/restaurantehikaru/",
+    "facebook": "",
+    "tiktok": "",
+    "youtube": "",
+    "linkedin": "",
+    "sitioWeb": "",
+    "horario": "",
+    "estado": "activo"
+  },
+  {
+    "id": "zero-one",
+    "slug": "zero-one",
+    "nombre": "Zero One",
+    "descripcion": "Restaurante — piezas gráficas para redes: promociones, delivery y campañas.",
+    "logo": "portfolio/zero-one/post1.jpg",
+    "categoria": "diseno",
+    "categorias": [
+      "diseno"
+    ],
+    "video": false,
+    "fotografia": false,
+    "diseno": true,
+    "galeria": [
+      {
+        "archivo": "portfolio/zero-one/post1.jpg",
+        "alt": "Zero One",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/post2.jpg",
+        "alt": "Zero One",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/post6.jpg",
+        "alt": "Zero One",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/post7.jpg",
+        "alt": "Zero One",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/post8.jpg",
+        "alt": "Zero One",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/post9.jpg",
+        "alt": "Zero One",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/post10.jpg",
+        "alt": "Zero One",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/ht11.jpg",
+        "alt": "Zero One",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/adomicilio.jpg",
+        "alt": "Zero One — A domicilio",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/adomicilio-2.jpg",
+        "alt": "Zero One — A domicilio",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/conteo-regresivo.jpg",
+        "alt": "Zero One — Conteo regresivo",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/mesa-trabajo-5.jpg",
+        "alt": "Zero One",
+        "tipo": "diseno"
+      }
+    ],
+    "videos": [],
+    "telefono": "",
+    "correo": "",
+    "direccion": "",
+    "instagram": "",
+    "facebook": "",
+    "tiktok": "",
+    "youtube": "",
+    "linkedin": "",
+    "sitioWeb": "",
+    "horario": "",
+    "estado": "activo"
+  },
+  {
+    "id": "iuma-home",
+    "slug": "iuma-home",
+    "nombre": "IUMA Home",
+    "descripcion": "Casas modulares — piezas gráficas para campañas: construcción, diseño moderno y cotizaciones.",
+    "logo": "portfolio/iuma-home/casas-modulares-10k.jpg",
+    "categoria": "diseno",
+    "categorias": [
+      "diseno"
+    ],
+    "video": false,
+    "fotografia": false,
+    "diseno": true,
+    "galeria": [
+      {
+        "archivo": "portfolio/iuma-home/casas-modulares-10k.jpg",
+        "alt": "IUMA Home — Casas modulares desde 10,000",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/iuma-home/diseno-modular.jpg",
+        "alt": "IUMA Home — Diseño modular",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/iuma-home/que-es-casa-modular.jpg",
+        "alt": "IUMA Home — No es un contenedor",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/iuma-home/que-es-casa-modular-2.jpg",
+        "alt": "IUMA Home — Se fabrica primero, se instala después",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/iuma-home/que-es-casa-modular-3.jpg",
+        "alt": "IUMA Home — Por qué las eligen",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/iuma-home/que-es-casa-modular-4.jpg",
+        "alt": "IUMA Home — Cotiza tu nueva casa modular",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/iuma-home/que-es-casa-modular-5.jpg",
+        "alt": "IUMA Home — ¿Qué es una casa modular?",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/iuma-home/te-imaginas-despertar-aqui.jpg",
+        "alt": "IUMA Home — ¿Te imaginas despertar aquí?",
+        "tipo": "diseno"
+      }
+    ],
+    "videos": [],
+    "telefono": "",
+    "correo": "",
+    "direccion": "",
+    "instagram": "https://www.instagram.com/iuma.home/",
+    "facebook": "",
+    "tiktok": "",
+    "youtube": "",
+    "linkedin": "",
+    "sitioWeb": "",
+    "horario": "",
+    "estado": "activo"
+  },
+  {
+    "id": "fosters",
+    "slug": "fosters",
+    "nombre": "Fosters",
+    "descripcion": "Restaurante de burgers y bar — piezas gráficas para promociones, menú y eventos.",
+    "logo": "portfolio/fosters/logo.png",
+    "categoria": "diseno",
+    "categorias": [
+      "diseno"
+    ],
+    "video": false,
+    "fotografia": false,
+    "diseno": true,
+    "galeria": [
+      {
+        "archivo": "portfolio/fosters/trufada-burger.jpg",
+        "alt": "Fosters — Trufada Burger",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/fosters/te-mereces-burger.jpg",
+        "alt": "Fosters — Te mereces una burger",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/fosters/mushrooms-burger.jpg",
+        "alt": "Fosters — Mushrooms Vegan Burger",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/fosters/burgers-promo.jpg",
+        "alt": "Fosters — Burgers en promo",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/fosters/kikirihot-menu-lunch.jpg",
+        "alt": "Fosters — Kikirihot Burger Menú Lunch",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/fosters/milanesa-pollo-plancha.jpg",
+        "alt": "Fosters — Milanesa y Pollo a la Plancha",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/fosters/martes.jpg",
+        "alt": "Fosters — Martes 2da Burger",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/fosters/miercoles.jpg",
+        "alt": "Fosters — Miércoles 2x1 Alitas",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/fosters/fin-de-semana.jpg",
+        "alt": "Fosters — Fin de semana",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/fosters/celebremos-mexico.jpg",
+        "alt": "Fosters — Celebremos México",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/fosters/dj-penonome.jpg",
+        "alt": "Fosters — DJ en Penonomé",
+        "tipo": "diseno"
+      }
+    ],
+    "videos": [],
+    "telefono": "",
+    "correo": "",
+    "direccion": "",
+    "instagram": "https://www.instagram.com/fosterspty/",
+    "facebook": "",
+    "tiktok": "",
+    "youtube": "",
+    "linkedin": "",
+    "sitioWeb": "",
+    "horario": "",
+    "estado": "activo"
+  },
+  {
+    "id": "surron",
+    "slug": "surron",
+    "nombre": "Sur-Ron",
+    "descripcion": "Motos eléctricas todo terreno — piezas gráficas para campañas de producto y promociones.",
+    "logo": "portfolio/surron/logo.png",
+    "categoria": "diseno",
+    "categorias": [
+      "diseno"
+    ],
+    "video": false,
+    "fotografia": false,
+    "diseno": true,
+    "galeria": [
+      {
+        "archivo": "portfolio/surron/ultrabee.jpg",
+        "alt": "Sur-Ron — Ultra Bee",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/surron/hyperbee.jpg",
+        "alt": "Sur-Ron — Hyper Bee",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/surron/lightbee.jpg",
+        "alt": "Sur-Ron — Light Bee",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/surron/todos-los-terrenos.jpg",
+        "alt": "Sur-Ron — Ultra Bee para todos los terrenos",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/surron/chifea-el-tranque.jpg",
+        "alt": "Sur-Ron — Chifea el tranque, Light Bee",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/surron/feliz-navidad.jpg",
+        "alt": "Sur-Ron — Feliz Navidad",
+        "tipo": "diseno"
+      }
+    ],
+    "videos": [],
+    "telefono": "",
+    "correo": "",
+    "direccion": "",
+    "instagram": "https://www.instagram.com/surron.panama/",
+    "facebook": "",
+    "tiktok": "",
+    "youtube": "",
+    "linkedin": "",
+    "sitioWeb": "",
+    "horario": "",
+    "estado": "activo"
+  },
+  {
+    "id": "lissette-y-luis",
+    "slug": "lissette-y-luis",
+    "nombre": "Lissette y Luis",
+    "descripcion": "Boda de Lissette y Luis — cobertura fotográfica de la ceremonia y sesión de novios.",
+    "logo": "portfolio/lissette-y-luis/foto-5.jpg",
+    "categoria": "fotografia",
+    "categorias": [
+      "fotografia"
+    ],
+    "video": false,
+    "fotografia": true,
+    "diseno": false,
+    "galeria": [
+      {
+        "archivo": "portfolio/lissette-y-luis/foto-5.jpg",
+        "alt": "Lissette y Luis — novios",
+        "tipo": "fotografia"
+      },
+      {
+        "archivo": "portfolio/lissette-y-luis/foto-6.jpg",
+        "alt": "Lissette y Luis — novios en las escaleras",
+        "tipo": "fotografia"
+      },
+      {
+        "archivo": "portfolio/lissette-y-luis/foto-7.jpg",
+        "alt": "Lissette y Luis — novios abrazados",
+        "tipo": "fotografia"
+      },
+      {
+        "archivo": "portfolio/lissette-y-luis/foto-1.jpg",
+        "alt": "Lissette y Luis — novia con su ramo",
+        "tipo": "fotografia"
+      },
+      {
+        "archivo": "portfolio/lissette-y-luis/foto-2.jpg",
+        "alt": "Lissette y Luis — novia",
+        "tipo": "fotografia"
+      },
+      {
+        "archivo": "portfolio/lissette-y-luis/foto-3.jpg",
+        "alt": "Lissette y Luis — anillo y ramo",
+        "tipo": "fotografia"
+      },
+      {
+        "archivo": "portfolio/lissette-y-luis/foto-4.jpg",
+        "alt": "Lissette y Luis — anillo",
+        "tipo": "fotografia"
+      },
+      {
+        "archivo": "portfolio/lissette-y-luis/foto-8.jpg",
+        "alt": "Lissette y Luis — novios",
+        "tipo": "fotografia"
+      }
+    ],
+    "videos": [],
+    "telefono": "",
+    "correo": "",
+    "direccion": "",
+    "instagram": "",
+    "facebook": "",
+    "tiktok": "",
+    "youtube": "",
+    "linkedin": "",
+    "sitioWeb": "",
+    "horario": "",
+    "estado": "activo"
+  },
+  {
+    "id": "por-amor-a-panama-monte-santo",
+    "slug": "por-amor-a-panama-monte-santo",
+    "nombre": "Por Amor a Panamá x Monte Santo",
+    "descripcion": "Recap del evento realizado por la Fundación Por Amor a Panamá junto al grupo Monte Santo.",
+    "logo": "portfolio/por-amor-a-panama-monte-santo/thumbnail.jpg",
+    "categoria": "video",
+    "categorias": [
+      "video"
+    ],
+    "video": true,
+    "fotografia": false,
+    "diseno": false,
+    "galeria": [],
+    "videos": [
+      {
+        "titulo": "Recap evento Por Amor a Panamá x Monte Santo",
+        "provider": "iframe",
+        "url": "https://mega.nz/embed/WfZw3CaB#ivVQBOB40xwGxiCGJHhHO2lScLypOkr-GPcjeVBTwNw",
+        "miniatura": "portfolio/por-amor-a-panama-monte-santo/video/miniatura.jpg"
+      }
+    ],
+    "telefono": "",
+    "correo": "",
+    "direccion": "",
+    "instagram": "",
+    "facebook": "",
+    "tiktok": "",
+    "youtube": "",
+    "linkedin": "",
+    "sitioWeb": "",
+    "horario": "",
+    "estado": "activo"
+  }
+]
