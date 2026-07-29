@@ -1,0 +1,24 @@
+{
+  "name": "Por Amor a Panamá x Monte Santo",
+  "slug": "por-amor-a-panama-monte-santo",
+  "thumbnail": "thumbnail.jpg",
+  "logo": "thumbnail.jpg",
+  "instagram": "",
+  "description": "Recap del evento realizado por la Fundación Por Amor a Panamá junto al grupo Monte Santo.",
+  "sections": {
+    "video": true,
+    "fotografia": true,
+    "diseno": true
+  },
+  "media": {
+    "video": [
+      {
+        "thumbnail": "video/miniatura.jpg",
+        "embed": "https://mega.nz/embed/WfZw3CaB#ivVQBOB40xwGxiCGJHhHO2lScLypOkr-GPcjeVBTwNw",
+        "title": "Recap evento Por Amor a Panamá x Monte Santo"
+      }
+    ],
+    "fotografia": [],
+    "diseno": []
+  }
+}
