@@ -2,13 +2,13 @@ import { CONFIG } from './config.js';
 import * as mailto from './forms/adapter-mailto.js';
 import * as webhook from './forms/adapter-webhook.js';
 import * as supabaseStub from './forms/adapter-supabase-stub.js';
-import * as sheetsStub from './forms/adapter-sheets-stub.js';
+import * as sheets from './forms/adapter-sheets.js';
 
 const ADAPTERS = {
   mailto,
   webhook,
   'supabase-stub': supabaseStub,
-  'sheets-stub': sheetsStub
+  sheets
 };
 
 export function init() {

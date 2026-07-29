@@ -110,17 +110,24 @@ canal, pero sí se pueden embeber en cualquier sitio).
 
 ## Formulario de contacto
 
-`assets/js/modules/config.js` tiene `CONFIG.FORM_PROVIDER` — por defecto `'mailto'`
-(cero backend, abre el cliente de correo del visitante). Para conectar un backend real,
-cambia esa única línea:
+`assets/js/modules/config.js` tiene `CONFIG.FORM_PROVIDER` — hoy en `'sheets'` (activo,
+desde 2026-07-29). Cambiar de proveedor es esa única línea, sin tocar HTML:
 
-- `'webhook'` — envía POST en JSON a `CONFIG.FORM_ENDPOINT` (Google Apps Script, API
-  REST, Zapier, Make, etc.)
-- `'supabase-stub'` / `'sheets-stub'` — placeholders listos en `assets/js/modules/forms/`,
-  completa el `submit()` de esos archivos cuando tengas esa integración lista
+- `'sheets'` (**activo**) — cada envío cae como fila nueva en una Google Sheet, vía un
+  Google Apps Script publicado como Web App (`CONFIG.SHEETS_ENDPOINT`). El script vive
+  en la cuenta de Google del fundador (Extensiones → Apps Script de la hoja), no en
+  este repo. Ver `assets/js/modules/forms/adapter-sheets.js` — usa
+  `Content-Type: text/plain` a propósito para evitar el preflight CORS que Apps Script
+  no maneja bien con `application/json`.
+- `'mailto'` — cero backend, abre el cliente de correo del visitante. Es el respaldo
+  automático: si el proveedor activo falla por lo que sea, cae aquí solo.
+- `'webhook'` — envía POST en JSON a `CONFIG.FORM_ENDPOINT` (API REST, Zapier, Make,
+  etc. — cualquier otro webhook que no sea Apps Script).
+- `'supabase-stub'` — placeholder listo en `assets/js/modules/forms/`, completa el
+  `submit()` de ese archivo cuando haya esa integración.
 
-No hace falta tocar ningún HTML. Si el proveedor elegido falla, siempre cae de vuelta a
-`mailto` — el formulario nunca se rompe para el visitante.
+Si el proveedor activo falla, siempre cae de vuelta a `mailto` — el formulario nunca se
+rompe para el visitante, en el peor caso el fundador recibe el lead por correo igual.
 
 ## Escalabilidad y backend futuro
 
