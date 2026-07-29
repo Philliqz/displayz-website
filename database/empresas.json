@@ -58,6 +58,106 @@
         "archivo": "portfolio/tiger-sugar-panama/diseno/tiger-combo.jpg",
         "alt": "Tiger Sugar — Tiger Combo",
         "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/2x1-passion-lychee.jpg",
+        "alt": "Tiger Sugar Panamá — 2x1 Passion Lychee",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/tiger-choco-chips-1040323.jpg",
+        "alt": "Tiger Sugar Panamá — Tiger Choco CHIPS_1040323",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/tiger-ht-black-sugar.jpg",
+        "alt": "Tiger Sugar Panamá — Tiger Ht Black Sugar",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/tiger-ht-oolong-tea.jpg",
+        "alt": "Tiger Sugar Panamá — Tiger Ht Oolong Tea",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/tiger-ht-taro-milk.jpg",
+        "alt": "Tiger Sugar Panamá — Tiger Ht Taro Milk",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/2-1-v2.jpg",
+        "alt": "Tiger Sugar Panamá — 2+1 v2",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/2-10k.jpg",
+        "alt": "Tiger Sugar Panamá — 2- 10K",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/20-descuento.jpg",
+        "alt": "Tiger Sugar Panamá — 20 Descuento",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/ano-nuevo-chino-2.jpg",
+        "alt": "Tiger Sugar Panamá — Año Nuevo CHINO_2",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/c1.jpg",
+        "alt": "Tiger Sugar Panamá — C1",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/cafe-y-emapanadas.jpg",
+        "alt": "Tiger Sugar Panamá — Cafe Y Emapanadas",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/de-vuelta.jpg",
+        "alt": "Tiger Sugar Panamá — De Vuelta",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/estamos-abiertos.jpg",
+        "alt": "Tiger Sugar Panamá — Estamos Abiertos",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/feliz-ano-nuevo.jpg",
+        "alt": "Tiger Sugar Panamá — Feliz Año Nuevo",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/loyalty-card-back.jpg",
+        "alt": "Tiger Sugar Panamá — Loyalty Card Back",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/loyalty-card-front.jpg",
+        "alt": "Tiger Sugar Panamá — Loyalty Card Front",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/mesa-de-trabajo-1.jpg",
+        "alt": "Tiger Sugar Panamá — Mesa De Trabajo 1",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/san-valentin-1.jpg",
+        "alt": "Tiger Sugar Panamá — San VALENTIN_1",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/strawberry-mochi-art.jpg",
+        "alt": "Tiger Sugar Panamá — Strawberry Mochi Art",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tiger-sugar-panama/diseno/yogurt-series-1.jpg",
+        "alt": "Tiger Sugar Panamá — Yogurt SERIES_1",
+        "tipo": "diseno"
       }
     ],
     "videos": [],
@@ -275,6 +375,21 @@
         "archivo": "portfolio/movit/black-week-g.jpg",
         "alt": "MOVIT — Black Week",
         "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/movit/diseno/black-week2.jpg",
+        "alt": "MOVIT — Black WEEK2",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/movit/diseno/black-week3.jpg",
+        "alt": "MOVIT — Black WEEK3",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/movit/diseno/ligth2-inokim.jpg",
+        "alt": "MOVIT — LIGTH2 Inokim",
+        "tipo": "diseno"
       }
     ],
     "videos": [],
@@ -404,6 +519,26 @@
         "archivo": "portfolio/moocha/mesa-de-trabajo-3.jpg",
         "alt": "Moocha",
         "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/diseno/existen-dos-tipo-de-personas.jpg",
+        "alt": "Moocha — Existen Dos Tipo De Personas",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/diseno/fuit-tea-series.jpg",
+        "alt": "Moocha — Fuit Tea Series",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/diseno/mesa-de-trabajo-3.jpg",
+        "alt": "Moocha — Mesa De Trabajo 3",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/moocha/diseno/sobres-rojis.jpg",
+        "alt": "Moocha — Sobres Rojis",
+        "tipo": "diseno"
       }
     ],
     "videos": [],
@@ -482,6 +617,116 @@
       {
         "archivo": "portfolio/ola-cars/cumpleanos.jpg",
         "alt": "Ola Cars — Cumpleaños",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/honda-brv-220-x-2-meses.jpg",
+        "alt": "Ola Cars — Honda Brv 220 X 2 Meses",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/kia-carens-pago-diario.jpg",
+        "alt": "Ola Cars — Kia Carens Pago Diario",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/mesa-de-trabajo-15.jpg",
+        "alt": "Ola Cars — Mesa De Trabajo 15",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/paga-semanal-kia-carens.jpg",
+        "alt": "Ola Cars — Paga Semanal Kia Carens",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/pauta-kai-carens.jpg",
+        "alt": "Ola Cars — Pauta Kai Carens",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/promo-200-semanales.jpg",
+        "alt": "Ola Cars — Promo 200 Semanales",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/s07-oferta-flash.jpg",
+        "alt": "Ola Cars — S07 Oferta Flash",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/sabias-que-kia-soluto.jpg",
+        "alt": "Ola Cars — Sabias Que Kia Soluto",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/trabaja-con-tu-s07-soueast.jpg",
+        "alt": "Ola Cars — Trabaja Con Tu S07 Soueast",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/visitanos-en-oceania-bussnises-plaza.jpg",
+        "alt": "Ola Cars — Visitanos En Oceania Bussnises Plaza",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/x70-pago-diario.jpg",
+        "alt": "Ola Cars — X70 Pago Diario",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/c1-mantenimiento-integral.jpg",
+        "alt": "Ola Cars — C1_MANTENIMIENTO Integral",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/c2-seguro-completo.jpg",
+        "alt": "Ola Cars — C2_SEGURO Completo",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/c3-vanguadia.jpg",
+        "alt": "Ola Cars — C3_VANGUADIA",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/c4-profesional.jpg",
+        "alt": "Ola Cars — C4_PROFESIONAL",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/conduce-mientras-pagas-kia-soluto.jpg",
+        "alt": "Ola Cars — Conduce Mientras Pagas Kia Soluto",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/conduce-tu-auto-kia-soluto.jpg",
+        "alt": "Ola Cars — Conduce Tu Auto Kia Soluto",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/el-dueno-de-tu-s07.jpg",
+        "alt": "Ola Cars — El Dueño De Tu S07",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/s07-alquila-y-conduce-ht.jpg",
+        "alt": "Ola Cars — S07 Alquila Y Conduce Ht",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/s07-quieres-ser-tu-jefe-ht2.jpg",
+        "alt": "Ola Cars — S07 Quieres Ser Tu Jefe HT2",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/s07-quieres-ser-tu-propio-jefe.jpg",
+        "alt": "Ola Cars — S07 Quieres Ser Tu Propio Jefe",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cars/diseno/trabaja-sin-jefes.jpg",
+        "alt": "Ola Cars — Trabaja Sin Jefes",
         "tipo": "diseno"
       }
     ],
@@ -670,6 +915,11 @@
         "archivo": "portfolio/hikaru/mesa-trabajo-3.jpg",
         "alt": "Hikaru",
         "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/hikaru/diseno/mesa-de-trabajo-1.jpg",
+        "alt": "Hikaru — Mesa De Trabajo 1",
+        "tipo": "diseno"
       }
     ],
     "videos": [],
@@ -758,6 +1008,56 @@
       {
         "archivo": "portfolio/zero-one/mesa-trabajo-5.jpg",
         "alt": "Zero One",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/diseno/adomicilio.jpg",
+        "alt": "Zero One — Adomicilio",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/diseno/ht11.jpg",
+        "alt": "Zero One — HT11",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/diseno/post10.jpg",
+        "alt": "Zero One — POST10",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/diseno/post8.jpg",
+        "alt": "Zero One — POST8",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/diseno/mesa-de-trabajo-5.jpg",
+        "alt": "Zero One — Mesa De Trabajo 5",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/diseno/post1.jpg",
+        "alt": "Zero One — POST1",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/diseno/post2.jpg",
+        "alt": "Zero One — POST2",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/diseno/post6.jpg",
+        "alt": "Zero One — POST6",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/diseno/post7.jpg",
+        "alt": "Zero One — POST7",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/zero-one/diseno/post9.jpg",
+        "alt": "Zero One — POST9",
         "tipo": "diseno"
       }
     ],
@@ -1095,13 +1395,94 @@
     "slug": "alpha-gun",
     "nombre": "Alpha Gun",
     "descripcion": "Armería / airsoft en Panamá. Rubro confirmado, cuenta de Instagram/Facebook exacta pendiente de confirmar con el fundador.",
-    "logo": "",
+    "logo": "portfolio/alpha-gun/diseno/22lr.jpg",
     "categoria": "",
     "categorias": [],
     "video": false,
     "fotografia": false,
     "diseno": false,
-    "galeria": [],
+    "galeria": [
+      {
+        "archivo": "portfolio/alpha-gun/diseno/22lr.jpg",
+        "alt": "Alpha Gun — 22LR",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/alpha-gun/diseno/arma-nueva-de-derya.jpg",
+        "alt": "Alpha Gun — Arma Nueva De Derya",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/alpha-gun/diseno/carina-q-qr-112.jpg",
+        "alt": "Alpha Gun — Carina Q QR-112",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/alpha-gun/diseno/derya-lever-action.jpg",
+        "alt": "Alpha Gun — Derya Lever Action",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/alpha-gun/diseno/derya-lion-xt-401.jpg",
+        "alt": "Alpha Gun — Derya Lion XT-401",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/alpha-gun/diseno/dy9-c101.jpg",
+        "alt": "Alpha Gun — DY9 C101",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/alpha-gun/diseno/dy9c103f.jpg",
+        "alt": "Alpha Gun — DY9C103F",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/alpha-gun/diseno/horario.jpg",
+        "alt": "Alpha Gun — Horario",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/alpha-gun/diseno/lion-x-x-301.jpg",
+        "alt": "Alpha Gun — Lion X X-301",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/alpha-gun/diseno/mk-12-as-103s.jpg",
+        "alt": "Alpha Gun — MK-12 AS-103S",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/alpha-gun/diseno/mk-12-as-104se.jpg",
+        "alt": "Alpha Gun — MK-12 AS-104SE",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/alpha-gun/diseno/mk-12-as-240.jpg",
+        "alt": "Alpha Gun — MK-12 AS-240",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/alpha-gun/diseno/sterling-ammo.jpg",
+        "alt": "Alpha Gun — Sterling Ammo",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/alpha-gun/diseno/tramita-tu-primer-arma.jpg",
+        "alt": "Alpha Gun — Tramita Tu Primer Arma",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/alpha-gun/diseno/whatsapp-v1.jpg",
+        "alt": "Alpha Gun — Whatsapp v1",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/alpha-gun/diseno/volante.jpg",
+        "alt": "Alpha Gun — Volante",
+        "tipo": "diseno"
+      }
+    ],
     "videos": [],
     "telefono": "",
     "correo": "",
@@ -1120,13 +1501,104 @@
     "slug": "atelier-dental",
     "nombre": "Atelier Dental",
     "descripcion": "Clínica dental en Panamá (Obarrio).",
-    "logo": "",
+    "logo": "portfolio/atelier-dental/diseno/atelier-beneficio-1.jpg",
     "categoria": "",
     "categorias": [],
     "video": false,
     "fotografia": false,
     "diseno": false,
-    "galeria": [],
+    "galeria": [
+      {
+        "archivo": "portfolio/atelier-dental/diseno/atelier-beneficio-1.jpg",
+        "alt": "Atelier Dental — Atelier Beneficio 1",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/atelier-dental/diseno/atelier-beneficio-2.jpg",
+        "alt": "Atelier Dental — Atelier Beneficio 2",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/atelier-dental/diseno/atelier-beneficio-3.jpg",
+        "alt": "Atelier Dental — Atelier Beneficio 3",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/atelier-dental/diseno/atelier-beneficio-4.jpg",
+        "alt": "Atelier Dental — Atelier Beneficio 4",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/atelier-dental/diseno/atelier-beneficio-5.jpg",
+        "alt": "Atelier Dental — Atelier Beneficio 5",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/atelier-dental/diseno/atelier-beneficios-de-los-alineadores.jpg",
+        "alt": "Atelier Dental — Atelier Beneficios De Los Alineadores",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/atelier-dental/diseno/atelier-mal-aliento-2.jpg",
+        "alt": "Atelier Dental — Atelier Mal Aliento 2",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/atelier-dental/diseno/atelier-mal-aliento.jpg",
+        "alt": "Atelier Dental — Atelier Mal Aliento",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/atelier-dental/diseno/atelier-pride.jpg",
+        "alt": "Atelier Dental — Atelier Pride",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/atelier-dental/diseno/atelier-promo-limpieza-dental.jpg",
+        "alt": "Atelier Dental — Atelier Promo Limpieza Dental",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/atelier-dental/diseno/blanqueamiento-limpieza.jpg",
+        "alt": "Atelier Dental — Blanqueamiento + Limpieza",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/atelier-dental/diseno/blanqueamiento-limpieza1.jpg",
+        "alt": "Atelier Dental — Blanqueamiento + LIMPIEZA1",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/atelier-dental/diseno/blanqueamiento-limpieza2.jpg",
+        "alt": "Atelier Dental — Blanqueamiento + LIMPIEZA2",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/atelier-dental/diseno/blanqueamiento-limpieza3.jpg",
+        "alt": "Atelier Dental — Blanqueamiento + LIMPIEZA3",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/atelier-dental/diseno/limpieza-dental.jpg",
+        "alt": "Atelier Dental — Limpieza Dental",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/atelier-dental/diseno/limpieza-dental-1.jpg",
+        "alt": "Atelier Dental — Limpieza DENTAL_1",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/atelier-dental/diseno/limpieza-dental-11.jpg",
+        "alt": "Atelier Dental — Limpieza DENTAL_11",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/atelier-dental/diseno/mesa-de-trabajo-14.jpg",
+        "alt": "Atelier Dental — Mesa De Trabajo 14",
+        "tipo": "diseno"
+      }
+    ],
     "videos": [],
     "telefono": "",
     "correo": "",
@@ -1145,13 +1617,84 @@
     "slug": "autocare",
     "nombre": "Autocare",
     "descripcion": "Taller mecánico en Panamá (Río Abajo).",
-    "logo": "",
+    "logo": "portfolio/autocare/diseno/aire-acondicionado.jpg",
     "categoria": "",
     "categorias": [],
     "video": false,
     "fotografia": false,
     "diseno": false,
-    "galeria": [],
+    "galeria": [
+      {
+        "archivo": "portfolio/autocare/diseno/aire-acondicionado.jpg",
+        "alt": "Autocare — Aire Acondicionado",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/autocare/diseno/alineamiento-y-balanceo.jpg",
+        "alt": "Autocare — Alineamiento Y Balanceo",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/autocare/diseno/alternador.jpg",
+        "alt": "Autocare — Alternador",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/autocare/diseno/amortiguadores.jpg",
+        "alt": "Autocare — Amortiguadores",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/autocare/diseno/cambio-de-aceite-y-filtro.jpg",
+        "alt": "Autocare — Cambio De Aceite Y Filtro",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/autocare/diseno/cambio-de-bujias.jpg",
+        "alt": "Autocare — Cambio De Bujias",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/autocare/diseno/cambio-de-neumaticos.jpg",
+        "alt": "Autocare — Cambio De Neumaticos",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/autocare/diseno/diagnostico-computarizado.jpg",
+        "alt": "Autocare — Diagnostico Computarizado",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/autocare/diseno/electromecanica.jpg",
+        "alt": "Autocare — Electromecanica",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/autocare/diseno/neumaticos.jpg",
+        "alt": "Autocare — Neumaticos",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/autocare/diseno/no-te-quedes-sin-energia.jpg",
+        "alt": "Autocare — No Te Quedes Sin Energia",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/autocare/diseno/nuevo-horario.jpg",
+        "alt": "Autocare — Nuevo Horario",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/autocare/diseno/radiador.jpg",
+        "alt": "Autocare — Radiador",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/autocare/diseno/revicion-de-frenos.jpg",
+        "alt": "Autocare — Revicion De Frenos",
+        "tipo": "diseno"
+      }
+    ],
     "videos": [],
     "telefono": "",
     "correo": "",
@@ -1170,13 +1713,124 @@
     "slug": "mr-tallarin",
     "nombre": "Mr Tallarín",
     "descripcion": "Comida rápida asiática en Panamá (Brisas del Golf).",
-    "logo": "",
+    "logo": "portfolio/mr-tallarin/diseno/cheongfun-tallarin.jpg",
     "categoria": "",
     "categorias": [],
     "video": false,
     "fotografia": false,
     "diseno": false,
-    "galeria": [],
+    "galeria": [
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/cheongfun-tallarin.jpg",
+        "alt": "Mr Tallarín — Cheongfun-- Tallarin",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/dumpling-tallarin.jpg",
+        "alt": "Mr Tallarín — Dumpling-- Tallarin",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/guacho-tallarin.jpg",
+        "alt": "Mr Tallarín — Guacho-- Tallarin",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/menu-tallarin.jpg",
+        "alt": "Mr Tallarín — Menu-- Tallarin",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/otros-tallarin.jpg",
+        "alt": "Mr Tallarín — Otros-- Tallarin",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/sopa-de-wanton-tallarin.jpg",
+        "alt": "Mr Tallarín — Sopa De Wanton-- Tallarin",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/costillas-salteadas.jpg",
+        "alt": "Mr Tallarín — Costillas Salteadas",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/estamos-en-asap.jpg",
+        "alt": "Mr Tallarín — Estamos En Asap",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/rollitos-de-primavera.jpg",
+        "alt": "Mr Tallarín — Rollitos De Primavera",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/sopa-de-dumplings.jpg",
+        "alt": "Mr Tallarín — Sopa De Dumplings",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/sopa-de-fideos-con-falda.jpg",
+        "alt": "Mr Tallarín — Sopa De Fideos Con Falda",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/apertura.jpg",
+        "alt": "Mr Tallarín — Apertura",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/apertura-1.jpg",
+        "alt": "Mr Tallarín — APERTURA_1",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/apertura-2.jpg",
+        "alt": "Mr Tallarín — APERTURA_2",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/clay-pot-sizzling.jpg",
+        "alt": "Mr Tallarín — Clay Pot Sizzling",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/clay-pot.jpg",
+        "alt": "Mr Tallarín — Clay Pot",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/dumpling.jpg",
+        "alt": "Mr Tallarín — Dumpling",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/estamos-abiertos.jpg",
+        "alt": "Mr Tallarín — Estamos Abiertos",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/huevo-con-cha-siu.jpg",
+        "alt": "Mr Tallarín — Huevo Con Cha Siu",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/otros.jpg",
+        "alt": "Mr Tallarín — Otros",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/pedidos-ya.jpg",
+        "alt": "Mr Tallarín — Pedidos Ya",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mr-tallarin/diseno/ubicacion.jpg",
+        "alt": "Mr Tallarín — Ubicacion",
+        "tipo": "diseno"
+      }
+    ],
     "videos": [],
     "telefono": "",
     "correo": "",
@@ -1195,13 +1849,119 @@
     "slug": "mystery-armory",
     "nombre": "Mystery Armory",
     "descripcion": "Armería / equipo táctico en Panamá, registrada como Mystery Armory, S.A.",
-    "logo": "",
+    "logo": "portfolio/mystery-armory/diseno/590-mariner.jpg",
     "categoria": "",
     "categorias": [],
     "video": false,
     "fotografia": false,
     "diseno": false,
-    "galeria": [],
+    "galeria": [
+      {
+        "archivo": "portfolio/mystery-armory/diseno/590-mariner.jpg",
+        "alt": "Mystery Armory — 590 Mariner",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/930-waterfowl.jpg",
+        "alt": "Mystery Armory — 930 Waterfowl",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/940-jm-pro-optic-ready.jpg",
+        "alt": "Mystery Armory — 940 Jm Pro Optic-ready",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/blaze.jpg",
+        "alt": "Mystery Armory — Blaze",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/bodyguard-380.jpg",
+        "alt": "Mystery Armory — Bodyguard 380",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/equalizer.jpg",
+        "alt": "Mystery Armory — Equalizer",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/m-p-5-7-series.jpg",
+        "alt": "Mystery Armory — M&p 5.7 Series",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/m-p9-shiled-plus-v2.jpg",
+        "alt": "Mystery Armory — M&P9 Shiled Plus v2",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/m2-comfortech.jpg",
+        "alt": "Mystery Armory — M2 Comfortech",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/maverick-88-all-purpose.jpg",
+        "alt": "Mystery Armory — Maverick 88 All-purpose",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/maverick-88.jpg",
+        "alt": "Mystery Armory — Maverick 88",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/mc2-c.jpg",
+        "alt": "Mystery Armory — MC2 C",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/mvp-patrol.jpg",
+        "alt": "Mystery Armory — Mvp Patrol",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/one-shoot-madera.jpg",
+        "alt": "Mystery Armory — One Shoot Madera",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/one-shoot-negra.jpg",
+        "alt": "Mystery Armory — One Shoot Negra",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/patriot-synthetic-vortex-scoped-combo-v2.jpg",
+        "alt": "Mystery Armory — Patriot Synthetic Vortex Scoped Combo v2",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/patriot-synthetic-vortex-scoped-combo.jpg",
+        "alt": "Mystery Armory — Patriot Synthetic Vortex Scoped Combo",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/promo-de-fin-v1.jpg",
+        "alt": "Mystery Armory — Promo De Fin V1",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/promo-de-fin-v2.jpg",
+        "alt": "Mystery Armory — Promo De Fin V2",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/promo-m-p9.jpg",
+        "alt": "Mystery Armory — Promo M&P9",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/mystery-armory/diseno/sd9-20.jpg",
+        "alt": "Mystery Armory — SD9 20",
+        "tipo": "diseno"
+      }
+    ],
     "videos": [],
     "telefono": "",
     "correo": "",
@@ -1220,13 +1980,64 @@
     "slug": "ola-cell",
     "nombre": "Ola Cell",
     "descripcion": "Rubro y presencia exactos pendientes de confirmar con el fundador.",
-    "logo": "",
+    "logo": "portfolio/ola-cell/diseno/adquiere-tu-iphone.jpg",
     "categoria": "",
     "categorias": [],
     "video": false,
     "fotografia": false,
     "diseno": false,
-    "galeria": [],
+    "galeria": [
+      {
+        "archivo": "portfolio/ola-cell/diseno/adquiere-tu-iphone.jpg",
+        "alt": "Ola Cell — Adquiere Tu Iphone",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cell/diseno/compra-iphone-nuevo.jpg",
+        "alt": "Ola Cell — Compra Iphone Nuevo",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cell/diseno/iphone-14.jpg",
+        "alt": "Ola Cell — Iphone 14",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cell/diseno/iphone-15-pro-max.jpg",
+        "alt": "Ola Cell — Iphone 15 Pro Max",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cell/diseno/iphone-16-pro-max.jpg",
+        "alt": "Ola Cell — Iphone 16 Pro Max",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cell/diseno/lista-iphone-14.jpg",
+        "alt": "Ola Cell — Lista Iphone 14",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cell/diseno/lista-iphone-15.jpg",
+        "alt": "Ola Cell — Lista Iphone 15",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cell/diseno/lista-iphone-16.jpg",
+        "alt": "Ola Cell — Lista Iphone 16",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cell/diseno/lista-iphone-general.jpg",
+        "alt": "Ola Cell — Lista Iphone General",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/ola-cell/diseno/queriendo-iphone.jpg",
+        "alt": "Ola Cell — Queriendo Iphone",
+        "tipo": "diseno"
+      }
+    ],
     "videos": [],
     "telefono": "",
     "correo": "",
@@ -1245,14 +2056,75 @@
     "slug": "senderos-del-maria",
     "nombre": "Senderos del María",
     "descripcion": "Proyecto residencial en Penonomé, Coclé.",
-    "logo": "",
+    "logo": "portfolio/senderos-del-maria/diseno/post1.jpg",
     "nicho": "Bienes Raíces",
     "categoria": "",
     "categorias": [],
     "video": false,
     "fotografia": false,
     "diseno": false,
-    "galeria": [],
+    "galeria": [
+      {
+        "archivo": "portfolio/senderos-del-maria/diseno/post1.jpg",
+        "alt": "Senderos del María — POST1",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/senderos-del-maria/diseno/post10.jpg",
+        "alt": "Senderos del María — POST10",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/senderos-del-maria/diseno/post11.jpg",
+        "alt": "Senderos del María — POST11",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/senderos-del-maria/diseno/post12.jpg",
+        "alt": "Senderos del María — POST12",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/senderos-del-maria/diseno/post2.jpg",
+        "alt": "Senderos del María — POST2",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/senderos-del-maria/diseno/post3.jpg",
+        "alt": "Senderos del María — POST3",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/senderos-del-maria/diseno/post4.jpg",
+        "alt": "Senderos del María — POST4",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/senderos-del-maria/diseno/post5-carrusel.jpg",
+        "alt": "Senderos del María — POST5-CARRUSEL",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/senderos-del-maria/diseno/post6-carrusel.jpg",
+        "alt": "Senderos del María — POST6-CARRUSEL",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/senderos-del-maria/diseno/post7.jpg",
+        "alt": "Senderos del María — POST7",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/senderos-del-maria/diseno/post8.jpg",
+        "alt": "Senderos del María — POST8",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/senderos-del-maria/diseno/post9.jpg",
+        "alt": "Senderos del María — POST9",
+        "tipo": "diseno"
+      }
+    ],
     "videos": [],
     "telefono": "",
     "correo": "",
@@ -1277,7 +2149,63 @@
     "video": false,
     "fotografia": false,
     "diseno": false,
-    "galeria": [],
+    "galeria": [
+      {
+        "archivo": "portfolio/tech-mobile/diseno/controles-para-televisores-1.jpg",
+        "alt": "Tech Mobile — Controles Para Televisores #1",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tech-mobile/diseno/galaxy-a25.jpg",
+        "alt": "Tech Mobile — Galaxy A25",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tech-mobile/diseno/honor-x5b-plus.jpg",
+        "alt": "Tech Mobile — Honor X5B Plus",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tech-mobile/diseno/honor-x6b.jpg",
+        "alt": "Tech Mobile — Honor X6B",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tech-mobile/diseno/honor-x7c.jpg",
+        "alt": "Tech Mobile — Honor X7C",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tech-mobile/diseno/honor-x8a.jpg",
+        "alt": "Tech Mobile — Honor X8A",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tech-mobile/diseno/honor-x8b.jpg",
+        "alt": "Tech Mobile — Honor X8B",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tech-mobile/diseno/redmi-14c.jpg",
+        "alt": "Tech Mobile — Redmi 14C",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tech-mobile/diseno/redmi-a3x.jpg",
+        "alt": "Tech Mobile — Redmi A3X",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tech-mobile/diseno/redmi-note-13-pro.jpg",
+        "alt": "Tech Mobile — Redmi Note 13 Pro",
+        "tipo": "diseno"
+      },
+      {
+        "archivo": "portfolio/tech-mobile/diseno/redmi13.jpg",
+        "alt": "Tech Mobile — REDMI13",
+        "tipo": "diseno"
+      }
+    ],
     "videos": [],
     "telefono": "",
     "correo": "",
