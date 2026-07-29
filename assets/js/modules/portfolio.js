@@ -5,7 +5,7 @@ import { fetchCompanies } from './data-store.js';
 import { observe } from './animations.js';
 import * as Lightbox from './lightbox.js';
 import * as VideoModal from './video-modal.js';
-import { toEmbedSrc } from './video-provider.js';
+import { toEmbedSrc, getThumbnailSync, fetchThumbnail } from './video-provider.js';
 
 export function init() {
   const section = document.querySelector('[data-portfolio-section]');
@@ -135,10 +135,17 @@ export function renderGallery(rawItems, sectionKey, company) {
     img.draggable = false;
     img.loading = 'lazy';
     if (isVideo) {
-      img.src = item.miniatura || company.logo || '';
+      const autoThumb = getThumbnailSync(item.url, item.provider);
+      img.src = item.miniatura || autoThumb || company.logo || '';
       img.alt = item.titulo || company.nombre + ' — video';
       const embedSrc = toEmbedSrc(item.url, item.provider);
       if (embedSrc) img.setAttribute('data-video-embed', embedSrc);
+      // Mejora progresiva: si no había miniatura propia ni una automática por
+      // URL (ej. Vimeo), preguntar de forma async y actualizar si aparece algo
+      // mejor que el logo de respaldo. Nunca bloquea el render inicial.
+      if (!item.miniatura && !autoThumb) {
+        fetchThumbnail(item.url, item.provider).then((src) => { if (src) img.src = src; });
+      }
     } else {
       img.src = item.archivo;
       img.alt = item.alt || company.nombre;

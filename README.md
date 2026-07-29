@@ -80,7 +80,7 @@ Nunca se guarda HTML de embed ni iframes en los datos — solo `{ "titulo", "pro
 por video, dentro del array `videos[]` de la empresa:
 
 ```json
-{ "titulo": "Reel de campaña", "provider": "youtube", "url": "https://youtu.be/XXXXXXXX", "miniatura": "portfolio/mi-marca/video/miniatura.jpg" }
+{ "titulo": "Reel de campaña", "provider": "youtube", "url": "https://youtu.be/XXXXXXXX" }
 ```
 
 `assets/js/modules/video-provider.js` detecta el proveedor desde la URL (`youtu.be/`,
@@ -88,6 +88,22 @@ por video, dentro del array `videos[]` de la empresa:
 automáticamente. Si el proveedor no es ninguno de esos (por ejemplo Mega.nz, o cualquier
 otro host que ya te dé un link de embed listo), usa `"provider": "iframe"` y pega la URL
 de embed directamente en `url` — se pasa tal cual, sin transformar.
+
+### Miniaturas de video — automáticas, no hace falta subir nada
+
+`miniatura` es un campo **opcional**. Si no lo pones, el sitio la resuelve solo, en este orden:
+
+1. **YouTube**: se genera sola por URL pública (`i.ytimg.com/vi/<id>/hqdefault.jpg`) — sin
+   pedir nada a ninguna API, instantáneo.
+2. **Vimeo**: se consulta su oEmbed público (`vimeo.com/api/oembed.json`) para obtener la
+   miniatura real — pequeño delay async, pero también automático.
+3. **Bunny Stream / Mega / cualquier otro (`provider: "iframe"`)**: no tienen forma pública
+   de resolver una miniatura sin credenciales, así que se usa el **logo de la empresa**
+   como respaldo — nunca queda una imagen rota.
+
+Si en algún momento quieres una miniatura específica (un fotograma exacto en vez del que
+elige YouTube automáticamente), agrega `"miniatura": "portfolio/mi-marca/video/mi-foto.jpg"`
+al video y esa siempre gana sobre la automática.
 
 Sube los videos como **"No listados"** en YouTube (no aparecen en búsquedas ni en tu
 canal, pero sí se pueden embeber en cualquier sitio).
