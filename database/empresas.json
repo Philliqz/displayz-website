@@ -80,9 +80,10 @@
     "logo": "portfolio/onads/logo.png",
     "categoria": "diseno",
     "categorias": [
-      "diseno"
+      "diseno",
+      "video"
     ],
-    "video": false,
+    "video": true,
     "fotografia": false,
     "diseno": true,
     "galeria": [
@@ -102,7 +103,26 @@
         "tipo": "diseno"
       }
     ],
-    "videos": [],
+    "videos": [
+      {
+        "titulo": "Video ATP — OnAds",
+        "provider": "youtube",
+        "url": "https://youtube.com/shorts/hus_HceZKdU",
+        "miniatura": "portfolio/onads/video/atp.jpg"
+      },
+      {
+        "titulo": "Cómo funciona — OnAds",
+        "provider": "youtube",
+        "url": "https://youtube.com/shorts/31pmTj8myz8",
+        "miniatura": "portfolio/onads/video/como-funciona.jpg"
+      },
+      {
+        "titulo": "QR de oro — OnAds",
+        "provider": "youtube",
+        "url": "https://youtube.com/shorts/rQ4REsEk1lo",
+        "miniatura": "portfolio/onads/video/qr-de-oro.jpg"
+      }
+    ],
     "telefono": "",
     "correo": "",
     "direccion": "",
