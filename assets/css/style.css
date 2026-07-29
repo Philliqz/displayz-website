@@ -120,6 +120,11 @@ img { max-width: 100%; display: block; }
   align-items: center; justify-content: center; text-align: center; overflow: hidden;
   padding: 175px 32px 120px;
 }
+.hero-video-bg { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0.18; display: none; }
+@media (min-width: 900px) {
+  .hero-video-bg { display: block; }
+}
 .hero-gradient-bg { position: absolute; inset: 0; z-index: 0; background-image: var(--gradient-hero);
   background-size: 300% 300%; animation: heroGradientMove 16s ease infinite; opacity: 0.65; }
 .hero-fade-bg { position: absolute; inset: 0; z-index: 0;
