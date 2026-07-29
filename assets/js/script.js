@@ -397,6 +397,7 @@
       }
       var outer = document.createElement('div');
       outer.className = 'gallery-carousel';
+      if (isVideo) outer.classList.add('gallery-video');
       if (!isVideo) outer.setAttribute('data-lightbox-group', '');
       var track = document.createElement('div');
       track.className = 'gallery-track';
@@ -410,8 +411,12 @@
       outer.appendChild(track);
       outer.appendChild(prevBtn);
       outer.appendChild(nextBtn);
-      if (items.length > 3) Portfolio.setupCarousel(track, prevBtn, nextBtn);
-      else outer.classList.add('is-static');
+      if (items.length > 3) {
+        Portfolio.setupCarousel(track, prevBtn, nextBtn);
+      } else {
+        outer.classList.add('is-static');
+        if (isVideo && items.length === 1) outer.classList.add('is-single');
+      }
       return outer;
     },
     setupCarousel: function (track, prevBtn, nextBtn) {

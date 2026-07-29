@@ -376,6 +376,12 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .gallery-track .gallery-img { width: 260px; flex-shrink: 0; }
 .empty-state { text-align: center; padding: 96px 0; color: var(--color-muted); }
 
+/* ---- Video gallery: se adapta según cantidad (16:9, 1 = ancho, 2-3 = fila, 4+ = carrusel) ---- */
+.gallery-video .gallery-img { aspect-ratio: 16/9; }
+.gallery-video.is-static .gallery-track .gallery-img { width: 100%; flex-shrink: 1; }
+.gallery-video.is-single .gallery-track { grid-template-columns: 1fr; }
+.gallery-video.is-single .gallery-img { max-width: 900px; margin: 0 auto; }
+
 /* ---- Lightbox ---- */
 .lightbox-overlay {
   position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.9); display: flex;
@@ -435,4 +441,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   .brand-header { align-items: flex-start; }
   .contact-info, .contact-form-panel { padding: 28px 24px; }
   .contact-label { min-width: 84px; font-size: 12px; }
+  .page-nav-inner { flex-direction: column; align-items: stretch; }
+  .page-nav-link { margin-left: 0; text-align: center; }
 }
