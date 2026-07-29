@@ -68,6 +68,12 @@ export function renderCompany(company, sectionKey) {
   name.className = 'brand-name';
   name.textContent = company.nombre;
   info.appendChild(name);
+  if (company.nicho) {
+    const nichoTag = document.createElement('span');
+    nichoTag.className = 'brand-nicho-tag';
+    nichoTag.textContent = company.nicho;
+    info.appendChild(nichoTag);
+  }
   if (company.descripcion) {
     const desc = document.createElement('p');
     desc.className = 'brand-desc';

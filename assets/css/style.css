@@ -176,28 +176,6 @@ img { max-width: 100%; display: block; }
   border: 1px solid rgba(255,255,255,0.3); padding: 12px 24px; border-radius: 999px; white-space: nowrap;
 }
 
-/* ---- Hero contact menu ---- */
-.hero-contact-menu { position: relative; }
-.hero-contact-trigger {
-  cursor: pointer; font-family: var(--font-display); font-size: 14px; text-transform: uppercase;
-  letter-spacing: 0.03em; padding: 16px 32px; border-radius: 999px; background: var(--gradient-brand);
-  color: var(--color-white); transition: transform 0.2s ease, opacity 0.2s ease;
-}
-.hero-contact-trigger:hover { transform: translateY(-2px); opacity: 0.92; }
-.hero-contact-panel {
-  position: absolute; top: 100%; left: 50%; transform: translateX(-50%); padding-top: 10px; z-index: 200;
-  opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
-}
-.hero-contact-menu:hover .hero-contact-panel,
-.hero-contact-menu.is-open .hero-contact-panel { opacity: 1; pointer-events: auto; }
-.hero-contact-panel-inner {
-  min-width: 220px; background: var(--color-panel); border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px; padding: 8px; display: flex; flex-direction: column; gap: 2px; text-align: left;
-}
-.dropdown-link { color: var(--color-white); font-size: 14px; padding: 10px 12px; border-radius: 8px;
-  transition: background 0.2s ease; display: block; }
-.dropdown-link:hover { background: rgba(255,255,255,0.06); color: var(--color-white); }
-
 /* ---- Sections ---- */
 .section { position: relative; overflow: hidden; padding: 96px 0; border-top: 1px solid rgba(255,255,255,0.06);
   animation: lineGlowTop 5s ease-in-out infinite; }
@@ -300,31 +278,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .footer-links { display: flex; gap: 24px; font-family: var(--font-display); font-size: 13px; text-transform: uppercase; }
 .footer-links a:hover { color: var(--color-violet); }
 
-/* ---- Modal (contact form floating window) ---- */
-.modal-overlay {
-  position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.75); display: flex;
-  align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none;
-  transition: opacity 0.25s ease;
-}
-.modal-overlay.is-open { opacity: 1; pointer-events: auto; }
-.modal-panel {
-  position: relative; width: 100%; max-width: 460px; max-height: 85vh; overflow-y: auto;
-  background: linear-gradient(160deg, var(--color-panel), var(--color-panel-2));
-  border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 40px;
-  transform: translateY(14px) scale(0.96); transition: transform 0.25s ease;
-}
-.modal-overlay.is-open .modal-panel { transform: translateY(0) scale(1); }
-.modal-close {
-  position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--color-muted);
-  font-size: 22px; line-height: 1; cursor: pointer; padding: 4px;
-}
-.modal-close:hover { color: var(--color-white); }
-.modal-success { text-align: center; padding: 16px 0; display: none; }
-.modal-success.is-visible { display: block; }
-.modal-form.is-hidden { display: none; }
-.modal-success-title { font-family: var(--font-display); font-size: 22px; font-weight: 600; margin: 0 0 12px; }
-.modal-success-desc { color: var(--color-muted); font-size: 15px; margin: 0 0 28px; }
-
 /* ---- Gallery / brand block ---- */
 .brand-section { padding: 64px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .brand-header { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 32px; flex-wrap: wrap; }
@@ -333,6 +286,11 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .brand-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; margin-left: auto; }
 .brand-logo { width: 64px; height: 64px; flex-shrink: 0; border-radius: 14px; object-fit: contain; padding: 10px; background: var(--color-panel); }
 .brand-name { font-family: var(--font-display); font-size: 32px; font-weight: 700; letter-spacing: -0.01em; margin: 0; line-height: 1.25; }
+.brand-nicho-tag {
+  display: inline-block; font-family: var(--font-display); font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.03em; color: var(--color-muted); border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 999px; padding: 4px 12px; margin-top: 8px;
+}
 .brand-desc { color: var(--color-muted); font-size: 15px; max-width: 640px; margin-top: 8px; }
 .brand-ig-btn { flex-shrink: 0; display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display);
   font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em; padding: 10px 20px; border-radius: 999px;
