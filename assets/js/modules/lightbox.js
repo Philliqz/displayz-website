@@ -19,7 +19,7 @@ export function init() {
     const imgs = Array.prototype.slice.call(group.querySelectorAll('img'));
     imgs.forEach((img, i) => {
       img.addEventListener('click', () => {
-        images = imgs.map((im) => ({ src: im.src, alt: im.alt }));
+        images = imgs.map((im) => ({ src: im.currentSrc || im.src, alt: im.alt }));
         open(i);
       });
     });

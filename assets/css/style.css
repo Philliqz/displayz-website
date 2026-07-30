@@ -289,6 +289,11 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .brand-info { min-width: 0; }
 .brand-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; margin-left: auto; }
 .brand-logo { width: 64px; height: 64px; flex-shrink: 0; border-radius: 14px; object-fit: contain; padding: 10px; background: var(--color-panel); }
+/* <picture> envuelve el <img> cuando hay versión WebP — display:contents lo
+   saca del árbol de layout para que flex/grid sigan viendo directo al <img>
+   (mismo tamaño/posición que antes, sin este wrapper no aplicarían .brand-logo
+   ni .gallery-img al hijo real). */
+picture { display: contents; }
 .brand-name { font-family: var(--font-display); font-size: 32px; font-weight: 700; letter-spacing: -0.01em; margin: 0; line-height: 1.25; }
 .brand-nicho-tag {
   display: inline-block; font-family: var(--font-display); font-size: 11px; text-transform: uppercase;

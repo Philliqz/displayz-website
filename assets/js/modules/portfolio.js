@@ -48,6 +48,31 @@ function companyItems(company, sectionKey) {
   return (company.galeria || []).filter((g) => g.tipo === sectionKey);
 }
 
+const LOCAL_JPG_RE = /\.jpe?g$/i;
+
+/**
+ * Crea un <img> y, cuando src es un .jpg local (no una URL remota tipo
+ * miniatura de YouTube/Vimeo), lo envuelve en <picture> con un <source
+ * type="image/webp"> hermano — cada .jpg del repo ya tiene su .webp generado
+ * al lado. Devuelve { node, img }: node es lo que se agrega al DOM (picture o
+ * el propio img si no aplica webp), img es siempre el <img> real para seguir
+ * configurándolo (data-* , listeners, etc.) después de llamar esta función.
+ */
+function makePictureImg(src) {
+  const img = document.createElement('img');
+  img.src = src || '';
+  if (src && LOCAL_JPG_RE.test(src) && !/^https?:\/\//i.test(src)) {
+    const picture = document.createElement('picture');
+    const source = document.createElement('source');
+    source.srcset = src.replace(LOCAL_JPG_RE, '.webp');
+    source.type = 'image/webp';
+    picture.appendChild(source);
+    picture.appendChild(img);
+    return { node: picture, img };
+  }
+  return { node: img, img };
+}
+
 export function renderCompany(company, sectionKey) {
   const wrap = document.createElement('div');
   wrap.className = 'brand-section reveal';
@@ -57,9 +82,8 @@ export function renderCompany(company, sectionKey) {
 
   const block = document.createElement('div');
   block.className = 'brand-block';
-  const logo = document.createElement('img');
+  const { node: logoNode, img: logo } = makePictureImg(company.logo || '');
   logo.className = 'brand-logo';
-  logo.src = company.logo || '';
   logo.alt = company.nombre + ' — logo';
   logo.loading = 'lazy';
   const info = document.createElement('div');
@@ -80,7 +104,7 @@ export function renderCompany(company, sectionKey) {
     desc.textContent = company.descripcion;
     info.appendChild(desc);
   }
-  block.appendChild(logo);
+  block.appendChild(logoNode);
   block.appendChild(info);
   header.appendChild(block);
 
@@ -136,27 +160,37 @@ export function renderGallery(rawItems, sectionKey, company) {
   const items = shuffle(rawItems);
 
   function makeImg(item) {
-    const img = document.createElement('img');
+    const autoThumb = isVideo ? getThumbnailSync(item.url, item.provider) : null;
+    const src = isVideo ? (item.miniatura || autoThumb || company.logo || '') : item.archivo;
+    const { node, img } = makePictureImg(src);
     img.className = 'gallery-img';
     img.draggable = false;
     img.loading = 'lazy';
     if (isVideo) {
-      const autoThumb = getThumbnailSync(item.url, item.provider);
-      img.src = item.miniatura || autoThumb || company.logo || '';
       img.alt = item.titulo || company.nombre + ' — video';
       const embedSrc = toEmbedSrc(item.url, item.provider);
       if (embedSrc) img.setAttribute('data-video-embed', embedSrc);
       // Mejora progresiva: si no había miniatura propia ni una automática por
       // URL (ej. Vimeo), preguntar de forma async y actualizar si aparece algo
-      // mejor que el logo de respaldo. Nunca bloquea el render inicial.
+      // mejor que el logo de respaldo. Nunca bloquea el render inicial. Si el
+      // <img> quedó envuelto en <picture> (miniatura/logo local), se quita el
+      // <source> webp viejo antes de cambiar el src — si no, el navegador se
+      // queda mostrando la imagen local en vez de la remota nueva.
       if (!item.miniatura && !autoThumb) {
-        fetchThumbnail(item.url, item.provider).then((src) => { if (src) img.src = src; });
+        fetchThumbnail(item.url, item.provider).then((src2) => {
+          if (!src2) return;
+          const picture = node.tagName === 'PICTURE' ? node : null;
+          if (picture) {
+            const source = picture.querySelector('source');
+            if (source) source.remove();
+          }
+          img.src = src2;
+        });
       }
     } else {
-      img.src = item.archivo;
       img.alt = item.alt || company.nombre;
     }
-    return img;
+    return node;
   }
 
   const outer = document.createElement('div');
