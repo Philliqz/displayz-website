@@ -56,13 +56,24 @@ const LOCAL_JPG_RE = /\.jpe?g$/i;
  * type="image/webp"> hermano — cada .jpg del repo ya tiene su .webp generado
  * al lado. Devuelve { node, img }: node es lo que se agrega al DOM (picture o
  * el propio img si no aplica webp), img es siempre el <img> real para seguir
- * configurándolo (data-* , listeners, etc.) después de llamar esta función.
+ * configurándolo (data-*, listeners, etc.) después de llamar esta función.
+ *
+ * `className` se aplica a AMBOS: al <picture> (que es el hijo directo real
+ * dentro de contenedores flex/grid como .gallery-track o .brand-block, así
+ * que necesita el ancho/flex-shrink/etc. de esa clase para no colapsar) y al
+ * <img> (que necesita aspect-ratio/object-fit/border-radius de la misma
+ * clase para recortarse bien). Antes esto se resolvía con
+ * `picture { display: contents }`, pero eso rompe el cálculo de tamaño del
+ * contenedor cuando .gallery-track está en modo grid (galerías de ≤3 fotos)
+ * — con las clases duplicadas no hace falta ese truco.
  */
-function makePictureImg(src) {
+function makePictureImg(src, className) {
   const img = document.createElement('img');
   img.src = src || '';
+  if (className) img.className = className;
   if (src && LOCAL_JPG_RE.test(src) && !/^https?:\/\//i.test(src)) {
     const picture = document.createElement('picture');
+    if (className) picture.className = className;
     const source = document.createElement('source');
     source.srcset = src.replace(LOCAL_JPG_RE, '.webp');
     source.type = 'image/webp';
@@ -82,8 +93,7 @@ export function renderCompany(company, sectionKey) {
 
   const block = document.createElement('div');
   block.className = 'brand-block';
-  const { node: logoNode, img: logo } = makePictureImg(company.logo || '');
-  logo.className = 'brand-logo';
+  const { node: logoNode, img: logo } = makePictureImg(company.logo || '', 'brand-logo');
   logo.alt = company.nombre + ' — logo';
   logo.loading = 'lazy';
   const info = document.createElement('div');
@@ -162,8 +172,7 @@ export function renderGallery(rawItems, sectionKey, company) {
   function makeImg(item) {
     const autoThumb = isVideo ? getThumbnailSync(item.url, item.provider) : null;
     const src = isVideo ? (item.miniatura || autoThumb || company.logo || '') : item.archivo;
-    const { node, img } = makePictureImg(src);
-    img.className = 'gallery-img';
+    const { node, img } = makePictureImg(src, 'gallery-img');
     img.draggable = false;
     img.loading = 'lazy';
     if (isVideo) {
