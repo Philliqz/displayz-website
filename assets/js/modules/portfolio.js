@@ -34,10 +34,30 @@ export function init() {
     });
 }
 
+// Semilla determinística por día: el orden se siente "fresco" (cambia día a
+// día) sin reordenarse en cada recarga — antes Math.random() podía enterrar
+// el mejor trabajo justo en la visita que importaba.
+function daySeed() {
+  const d = new Date().toISOString().slice(0, 10);
+  let h = 0;
+  for (let i = 0; i < d.length; i++) h = (h * 31 + d.charCodeAt(i)) >>> 0;
+  return h;
+}
+
+function mulberry32(seed) {
+  return function () {
+    seed = (seed + 0x6D2B79F5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
 function shuffle(list) {
+  const rand = mulberry32(daySeed());
   const arr = list.slice();
   for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(rand() * (i + 1));
     const tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
   }
   return arr;
@@ -243,6 +263,11 @@ export function setupCarousel(track, prevBtn, nextBtn) {
   prevBtn.addEventListener('click', () => {
     if (track.scrollLeft <= 4) track.scrollTo({ left: maxScroll(), behavior: 'smooth' });
     else track.scrollBy({ left: -step(), behavior: 'smooth' });
+  });
+  track.tabIndex = 0;
+  track.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); nextBtn.click(); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); prevBtn.click(); }
   });
   track.addEventListener('dragstart', (e) => e.preventDefault());
 

@@ -26,4 +26,7 @@ function initMobileToggle() {
   document.addEventListener('click', (e) => {
     if (!siteNav.contains(e.target)) close();
   });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') close();
+  });
 }
