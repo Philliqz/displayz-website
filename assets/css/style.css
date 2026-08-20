@@ -331,13 +331,22 @@ picture { display: block; }
 .services-strip-icon { height: 20px; width: auto; object-fit: contain; flex-shrink: 0; margin-left: 12px; margin-right: 12px; }
 @keyframes services-strip-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .about-grid { display: grid; grid-template-columns: 380px 1fr; gap: 64px; align-items: center; }
-.about-photo { width: 100%; aspect-ratio: 4/5; display: block; object-fit: cover; border-radius: 16px; }
+/* 3/4 es la relación NATIVA de las tres fotos (800x1067), así que no se recorta
+   ninguna: se ven completas, tal como se tomaron. Decisión del fundador — prefiere
+   respetar el encuadre original antes que igualar el peso visual entre planos.
+   Si algún día se suma una foto con otra relación, hay que reexportarla a 3/4 en
+   vez de cambiar esta regla, o se recortará sola. */
+.about-photo {
+  width: 100%; display: block; object-fit: cover; object-position: center;
+  border-radius: 16px; border: 1px solid rgba(255,255,255,0.08);
+  aspect-ratio: 3/4;
+}
 .about-title { font-family: var(--font-display); font-size: clamp(26px,3.4vw,36px); font-weight: 600; margin: 16px 0 20px; }
 .about-desc { color: var(--color-muted); font-size: 16px; margin: 0 0 16px; }
 .about-desc:last-child { margin-bottom: 0; }
 @media (max-width: 860px) {
   .about-grid { grid-template-columns: 1fr; }
-  .about-photo { max-width: 320px; margin: 0 auto; }
+  .about-photo { max-width: 300px; margin: 0 auto; }
 }
 .gallery-carousel { position: relative; }
 .gallery-carousel.is-static .gallery-track { overflow: visible; cursor: default; display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; }

@@ -7,6 +7,7 @@ import * as VideoModal from './video-modal.js';
 import * as Portfolio from './portfolio.js';
 import * as PortfolioPreview from './portfolio-preview.js';
 import * as Router from './router.js';
+import * as AboutPhoto from './about-photo.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   Nav.init();
@@ -18,4 +19,5 @@ document.addEventListener('DOMContentLoaded', () => {
   Portfolio.init();
   PortfolioPreview.init();
   Router.init();
+  AboutPhoto.init();
 });
