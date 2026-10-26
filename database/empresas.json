@@ -1054,9 +1054,10 @@
     "nicho": "Restaurante",
     "categoria": "diseno",
     "categorias": [
+      "video",
       "diseno"
     ],
-    "video": false,
+    "video": true,
     "fotografia": false,
     "diseno": true,
     "galeria": [
@@ -1116,7 +1117,18 @@
         "tipo": "diseno"
       }
     ],
-    "videos": [],
+    "videos": [
+      {
+        "titulo": "¿Puedes con la Chanchomilla?",
+        "provider": "archivo",
+        "url": "portfolio/fosters/video/chanchomilla.mp4",
+        "url_ligera": "portfolio/fosters/video/chanchomilla-telefono.mp4",
+        "miniatura": "portfolio/fosters/video/chanchomilla.jpg",
+        "miniatura_vertical": "portfolio/fosters/video/chanchomilla.jpg",
+        "reel": true,
+        "destacado": true
+      }
+    ],
     "telefono": "",
     "correo": "",
     "direccion": "",
@@ -1127,7 +1139,8 @@
     "linkedin": "",
     "sitioWeb": "",
     "horario": "",
-    "estado": "activo"
+    "estado": "activo",
+    "destacado": 8
   },
   {
     "id": "surron",
@@ -1259,6 +1272,44 @@
     "horario": "",
     "estado": "activo",
     "destacado": 2
+  },
+  {
+    "id": "ali-y-rola",
+    "slug": "ali-y-rola",
+    "nombre": "Ali y Rola",
+    "titulo": "Boda: video de Ali y Rola",
+    "descripcion": "Boda de Ali y Rola, organizada por Tagris Wedding Planner — video de la celebración.",
+    "logo": "",
+    "nicho": "Boda",
+    "categoria": "video",
+    "categorias": [
+      "video"
+    ],
+    "video": true,
+    "fotografia": false,
+    "diseno": false,
+    "videos": [
+      {
+        "titulo": "Boda Ali y Rola",
+        "provider": "archivo",
+        "url": "portfolio/ali-y-rola/video/boda.mp4",
+        "url_ligera": "portfolio/ali-y-rola/video/boda-telefono.mp4",
+        "miniatura": "portfolio/ali-y-rola/video/boda.jpg",
+        "destacado": true
+      }
+    ],
+    "telefono": "",
+    "correo": "",
+    "direccion": "",
+    "instagram": "",
+    "facebook": "",
+    "tiktok": "",
+    "youtube": "",
+    "linkedin": "",
+    "sitioWeb": "",
+    "horario": "",
+    "estado": "activo",
+    "destacado": 10
   },
   {
     "id": "por-amor-a-panama-monte-santo",
@@ -2641,15 +2692,28 @@
     "id": "cobre-panama",
     "slug": "cobre-panama",
     "nombre": "Cobre Panamá",
-    "descripcion": "Serie de 14 videos institucionales con motion graphics — edición y participación en grabación. Sin permiso confirmado para uso público del nombre en portafolio; no publicar visualmente hasta confirmarlo.",
+    "descripcion": "Videos institucionales con motion graphics: edición y participación en la grabación.",
     "logo": "",
-    "categoria": "",
-    "categorias": [],
-    "video": false,
+    "categoria": "video",
+    "categorias": [
+      "video"
+    ],
+    "video": true,
     "fotografia": false,
     "diseno": false,
     "galeria": [],
-    "videos": [],
+    "videos": [
+      {
+        "titulo": "El Tajo",
+        "provider": "archivo",
+        "url": "portfolio/cobre-panama/video/el-tajo.mp4",
+        "url_ligera": "portfolio/cobre-panama/video/el-tajo-telefono.mp4",
+        "miniatura": "portfolio/cobre-panama/video/el-tajo.jpg",
+        "miniatura_vertical": "portfolio/cobre-panama/video/el-tajo.jpg",
+        "reel": true,
+        "destacado": true
+      }
+    ],
     "telefono": "",
     "correo": "",
     "direccion": "",
@@ -2660,7 +2724,11 @@
     "linkedin": "",
     "sitioWeb": "",
     "horario": "",
-    "estado": "pendiente"
+    "estado": "activo",
+    "publico": true,
+    "titulo": "Video institucional para una minera",
+    "nicho": "Minería",
+    "destacado": 6
   },
   {
     "id": "metro-de-panama",
@@ -2691,15 +2759,26 @@
     "id": "argos-panama",
     "slug": "argos-panama",
     "nombre": "Argos Panamá",
-    "descripcion": "Edición de video institucional con motion graphics. Sin permiso confirmado para uso público del nombre en portafolio; no publicar visualmente hasta confirmarlo.",
+    "descripcion": "Video institucional sobre su planta de carbono neutro, con motion graphics.",
     "logo": "",
-    "categoria": "",
-    "categorias": [],
-    "video": false,
+    "categoria": "video",
+    "categorias": [
+      "video"
+    ],
+    "video": true,
     "fotografia": false,
     "diseno": false,
     "galeria": [],
-    "videos": [],
+    "videos": [
+      {
+        "titulo": "Planta de carbono neutro",
+        "provider": "archivo",
+        "url": "portfolio/argos-panama/video/planta-carbono-neutro.mp4",
+        "url_ligera": "portfolio/argos-panama/video/planta-carbono-neutro-telefono.mp4",
+        "miniatura": "portfolio/argos-panama/video/planta-carbono-neutro.jpg",
+        "destacado": true
+      }
+    ],
     "telefono": "",
     "correo": "",
     "direccion": "",
@@ -2710,21 +2789,36 @@
     "linkedin": "",
     "sitioWeb": "",
     "horario": "",
-    "estado": "pendiente"
+    "estado": "activo",
+    "publico": true,
+    "titulo": "Video institucional de una planta de carbono neutro",
+    "nicho": "Construcción",
+    "destacado": 5
   },
   {
     "id": "seguros-kam",
     "slug": "seguros-kam",
     "nombre": "Seguros KAM",
-    "descripcion": "Video corporativo. Tamaño/escala de la empresa sin confirmar.",
+    "descripcion": "Video corporativo para una aseguradora.",
     "logo": "",
-    "categoria": "",
-    "categorias": [],
-    "video": false,
+    "categoria": "video",
+    "categorias": [
+      "video"
+    ],
+    "video": true,
     "fotografia": false,
     "diseno": false,
     "galeria": [],
-    "videos": [],
+    "videos": [
+      {
+        "titulo": "Video corporativo",
+        "provider": "archivo",
+        "url": "portfolio/seguros-kam/video/video-corporativo.mp4",
+        "url_ligera": "portfolio/seguros-kam/video/video-corporativo-telefono.mp4",
+        "miniatura": "portfolio/seguros-kam/video/video-corporativo.jpg",
+        "destacado": true
+      }
+    ],
     "telefono": "",
     "correo": "",
     "direccion": "",
@@ -2735,8 +2829,11 @@
     "linkedin": "",
     "sitioWeb": "",
     "horario": "",
-    "estado": "pendiente",
-    "nicho": "Seguros"
+    "estado": "activo",
+    "nicho": "Seguros",
+    "publico": true,
+    "titulo": "Video corporativo para una aseguradora",
+    "destacado": 7
   },
   {
     "id": "credits",
@@ -2979,9 +3076,21 @@
         "miniatura": "portfolio/kia/video/panama-motor-show-2.jpg",
         "miniatura_vertical": "portfolio/kia/video/panama-motor-show-2.jpg",
         "reel": true
+      },
+      {
+        "titulo": "KIA K2700",
+        "provider": "archivo",
+        "url": "portfolio/kia/video/k2700.mp4",
+        "url_ligera": "portfolio/kia/video/k2700-telefono.mp4",
+        "miniatura": "portfolio/kia/video/k2700.jpg",
+        "miniatura_vertical": "portfolio/kia/video/k2700.jpg",
+        "reel": true,
+        "destacado": true
       }
     ],
-    "publico": false
+    "publico": false,
+    "estado": "activo",
+    "destacado": 9
   },
   {
     "id": "nissan",

@@ -1,12 +1,12 @@
 // Home: "Lo más destacado" (galería, una pieza por caso).
-// Casos = empresas visibles con "destacado": 1, 2, 3… en database/empresas.json, en
-// ese orden. Todo se llena solo desde los datos — para cambiar un caso destacado
-// basta con mover ese número en el JSON.
+// Casos = empresas visibles con "destacado" (un número > 0) en database/empresas.json. Sus piezas
+// se barajan en cada visita y se muestran MAX: el número ya no ordena, solo incluye.
 import { fetchCompanies } from './data-store.js';
 import { makePictureImg, tituloDe } from './portfolio.js';
 import { observe } from './animations.js';
 import { ARCHIVO_RE } from './video-provider.js';
 
+const MAX = 8; // piezas por visita: dos filas en PC (4 columnas)
 const SECCIONES = { video: 'Video', fotografia: 'Fotografía', diseno: 'Diseño' };
 
 function disciplinas(c) {
@@ -65,6 +65,11 @@ function renderPieza(c, keys, p) {
     const { node, img } = makePictureImg(p.src);
     img.alt = ''; // el nombre del enlace ya lo dan el título y las disciplinas del overlay
     img.loading = 'lazy';
+    const azar = (a, b) => (a + Math.random() * (b - a)).toFixed(2);
+    img.style.setProperty('--kb-dur', azar(14, 24) + 's');
+    img.style.setProperty('--kb-delay', '-' + azar(0, 20) + 's');
+    img.style.setProperty('--kb-x', azar(-3, 3) + '%');
+    img.style.setProperty('--kb-y', azar(-3, 3) + '%');
     art.appendChild(node);
   }
   const over = el('span', 'case-over');
@@ -90,13 +95,12 @@ export function init() {
 
   fetchCompanies().then((companies) => {
     const visibles = companies.filter((c) => c && disciplinas(c).length);
-    const casos = visibles.filter((c) => Number(c.destacado) > 0)
-      .sort((a, b) => Number(a.destacado) - Number(b.destacado));
+    const casos = visibles.filter((c) => Number(c.destacado) > 0);
 
-    casos.forEach((c) => {
-      const keys = disciplinas(c);
-      piezasDestacadas(c, keys).forEach((p) => casosEl.appendChild(renderPieza(c, keys, p)));
-    });
+    // Todas las piezas destacadas, barajadas: cada visita muestra otras MAX y en otro orden.
+    const todas = casos.flatMap((c) => { const keys = disciplinas(c); return piezasDestacadas(c, keys).map((p) => [c, keys, p]); });
+    for (let i = todas.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [todas[i], todas[j]] = [todas[j], todas[i]]; }
+    todas.slice(0, MAX).forEach(([c, keys, p]) => casosEl.appendChild(renderPieza(c, keys, p)));
     autoplay(casosEl);
     observe(casosEl.querySelectorAll('.reveal'));
   }).catch(() => {});
