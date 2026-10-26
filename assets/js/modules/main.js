@@ -6,7 +6,6 @@ import * as VideoModal from './video-modal.js';
 import * as Portfolio from './portfolio.js';
 import * as Featured from './featured.js';
 import * as Router from './router.js';
-import * as AboutPhoto from './about-photo.js';
 import * as Phone3D from './phone3d.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,6 +17,5 @@ document.addEventListener('DOMContentLoaded', () => {
   Portfolio.init();
   Featured.init();
   Router.init();
-  AboutPhoto.init();
   Phone3D.init();
 });
