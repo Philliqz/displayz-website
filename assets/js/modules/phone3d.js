@@ -29,7 +29,8 @@ function plano(THREE, w, h, r) {
 
 function construir(THREE) {
   const phone = new THREE.Group();
-  const aluminio = new THREE.MeshPhysicalMaterial({ color: 0xff8a3d, metalness: 0.45, roughness: 0.32, clearcoat: 0.5, clearcoatRoughness: 0.25, envMapIntensity: 1.4 });
+  // Aluminio anodizado: metal puro (sin laca ni difuso, que es lo que lo hacía ver de plástico); el color tiñe el reflejo.
+  const aluminio = new THREE.MeshPhysicalMaterial({ color: 0xff8a33, metalness: 1, roughness: 0.4, envMapIntensity: 1.5 });
   const negro = new THREE.MeshPhysicalMaterial({ color: 0x050505, metalness: 0, roughness: 0.08, clearcoat: 1 });
 
   const cuerpo = new THREE.ExtrudeGeometry(rect(THREE, W - 2 * BEVEL, H - 2 * BEVEL, R - BEVEL), {
@@ -99,11 +100,9 @@ export async function init() {
   const pmrem = new THREE.PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
   pmrem.dispose();
-  const luz = new THREE.DirectionalLight(0xffffff, 1.2);
-  luz.position.set(-6, 8, 10);
   const canto = new THREE.DirectionalLight(0xffe2c8, 2); // ilumina el canto que queda a la vista
   canto.position.set(12, 2, 4);
-  scene.add(luz, canto);
+  scene.add(canto);
 
   const { phone, lienzo, tex } = construir(THREE);
   scene.add(phone);
@@ -179,7 +178,7 @@ export async function init() {
     if (imgs.every((im) => im.complete && !im.naturalWidth)) return; // ninguna foto cargó: queda el CSS
     if (pintarPantalla(t)) { tex.needsUpdate = true; conFoto = true; }
     const s = quieto ? 0 : (t - t0) / 9000 * Math.PI * 2;
-    phone.rotation.y = -0.32 + Math.sin(s) * 0.2;    // ±11° alrededor de una pose de 3/4 que deja ver el canto naranja
+    phone.rotation.y = -0.42 + Math.sin(s) * 0.2;    // ±11° alrededor de una pose de 3/4 que deja ver el canto naranja
     phone.rotation.x = Math.sin(s * 0.5) * 0.07;     // ±4°
     renderer.render(scene, camera);
     if (conFoto) host.classList.add('is-3d'); // el 3D reemplaza al CSS solo con una foto ya en pantalla
