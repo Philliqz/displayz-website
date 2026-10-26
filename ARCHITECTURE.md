@@ -8,16 +8,14 @@ necesitar uno real.
 
 Todo el sitio lee datos de empresas a través de **un único archivo**:
 `assets/js/modules/data-store.js`. Ningún otro módulo (`portfolio.js`,
-`portfolio-preview.js`, `router.js`) hace `fetch()` directo de `database/empresas.json` —
-todos llaman a `fetchCompanies()` / `getCompanyBySlug()`.
+`featured.js`) hace `fetch()` directo de `database/empresas.json` — todos llaman a
+`fetchCompanies()`.
 
 Esto es deliberado: el día que exista un backend real (Supabase, Firebase, una API REST,
 PostgreSQL/MySQL/SQLite detrás de Node/PHP/Python), el cambio se hace **en un solo
 archivo**. `data-store.js` pasa de "hacer fetch de un JSON estático y cachearlo en
-memoria" a "consultar ese backend" — las firmas de las funciones (`fetchCompanies()`
-devuelve una Promise de un array de empresas, `getCompanyBySlug(slug)` devuelve una
-Promise de una empresa o `null`) se mantienen iguales, así que nada más en el sitio
-necesita cambiar.
+memoria" a "consultar ese backend" — la firma (`fetchCompanies()` devuelve una Promise
+de un array de empresas) se mantiene igual, así que nada más en el sitio necesita cambiar.
 
 ## Por qué esto NO escala a 100,000 empresas tal cual está
 
@@ -33,23 +31,13 @@ imágenes que ya implementa el sitio.
 Esto **no es un descuido** — es una limitación conocida y aceptada de la fase actual
 ("sitio estático, sin backend todavía"). La solución no es optimizar el JSON estático
 para que aguante más — es cambiar `data-store.js` para que hable con un backend real
-que sí pueda paginar/filtrar del lado del servidor. Ese día, `router.js` en particular
-se vuelve más eficiente de lo que es hoy: en vez de descargar la lista completa de
-empresas para luego buscar una por slug (lo que hace hoy, porque no hay otra forma con
-un JSON estático), pediría directamente esa una empresa al backend.
+que sí pueda paginar/filtrar del lado del servidor.
 
-## Por qué `empresa.html?slug=X` y no `/empresa/X`
+## Sin página por empresa (2026-10-26)
 
-GitHub Pages no permite reescritura de rutas del lado del servidor (no hay equivalente a
-un `netlify.toml` o `vercel.json`). La única forma de tener URLs "bonitas" como
-`/hikaru` sin un servidor propio es un truco con `404.html` que redirige por JavaScript
-del lado del cliente — pero eso hace que el navegador reciba brevemente un status 404
-real antes del redirect, lo cual Google desaconseja para URLs que se quieren indexar
-como principales. Por eso el sitio usa `empresa.html?slug=X`: funciona sin ninguna
-configuración especial en GitHub Pages, y es la URL que queda como canónica. Si algún
-día se agrega el truco de `404.html` para tener URLs bonitas como alias, ese archivo
-canónico (`empresa.html?slug=X`) debe seguir siendo el único indexado — la URL bonita
-sería solo una conveniencia visual, nunca la canónica.
+Existió `empresa.html?slug=X` (una plantilla, no un archivo por empresa). Se eliminó: solo la
+enlazaba la galería de la home y repetía lo que ya muestran Video/Fotografía/Diseño. En la
+home, los videos se abren en el modal y las imágenes en el visor, sin salir de la página.
 
 ## Por qué los videos guardan `{titulo, provider, url}` y no el embed
 

@@ -14,7 +14,7 @@ export function init() {
     video = document.createElement('video');
     video.controls = true;
     video.playsInline = true;
-    video.style.cssText = 'height:min(82vh,160vw); aspect-ratio:9/16; max-width:92vw; border-radius:8px; background:#000';
+    video.style.cssText = 'max-height:82vh; max-width:92vw; border-radius:8px; background:#000';
     frame.after(video);
   }
 

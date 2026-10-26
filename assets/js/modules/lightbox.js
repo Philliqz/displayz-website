@@ -46,6 +46,13 @@ export function init() {
   });
 }
 
+// Abre el visor con una lista dada (la galería de la home no es un data-lightbox-group).
+export function abrir(lista, i) {
+  if (!overlay) return;
+  images = lista;
+  open(i);
+}
+
 function open(i) {
   index = i;
   render();

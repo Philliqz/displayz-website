@@ -211,10 +211,15 @@ picture { display: block; }
 .tile-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), transparent 60%) border-box; }
 .tile-photo .tile-body { position: relative; z-index: 1; margin-top: auto; padding: 18px; }
 
-/* ---- Casos (home): galería — una pieza por caso a su proporción, texto encima al pasar el mouse ---- */
-[data-casos] { columns: 2; column-gap: var(--gap); padding: 0 var(--pad); max-width: var(--max-width); margin: 0 auto; }
-.case { position: relative; display: block; overflow: hidden; break-inside: avoid; margin-bottom: var(--gap); border-radius: var(--r-card); }
-.case picture, .case img, .case video { display: block; width: 100%; height: auto; transition: transform 0.6s ease; }
+/* ---- Casos (home): cuadrícula de celdas cuadradas; featured.js da a cada pieza su área
+   (reel 1×2, horizontal 2×1, imagen lo que quepa) y llena todas las filas ---- */
+[data-casos] { --cols: 2; display: grid; grid-template-columns: repeat(var(--cols), 1fr); gap: var(--gap);
+  grid-auto-rows: calc((min(100vw, var(--max-width)) - 2 * var(--pad) - (var(--cols) - 1) * var(--gap)) / var(--cols));
+  padding: 0 var(--pad); max-width: var(--max-width); margin: 0 auto; }
+.case { position: relative; display: block; overflow: hidden; border-radius: var(--r-card);
+  padding: 0; border: 0; background: #111; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.case picture { display: block; width: 100%; height: 100%; }
+.case img, .case video { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
 .case:hover video { transform: scale(1.04); }
 /* Imágenes: deriva lenta (zoom y paneo); duración, retraso y dirección los sortea featured.js. */
 .case img { animation: case-deriva var(--kb-dur, 18s) ease-in-out var(--kb-delay, 0s) infinite alternate; }
@@ -418,7 +423,7 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
 @media (min-width: 640px) {
   :root { --pad: 28px; --gap: 14px; }
   .bento { grid-template-columns: repeat(3, 1fr); }
-  [data-casos] { columns: 3; }
+  [data-casos] { --cols: 3; }
   .tile:last-child { grid-column: auto; }
   .gallery-track > .gallery-img { width: 42%; }
   .gallery-video .gallery-track > .gallery-img { width: 70%; }
@@ -474,7 +479,7 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
   .tile:last-child { grid-column: auto; }
   .tile-n { font-size: 48px; }
 
-  [data-casos] { columns: 4; }
+  [data-casos] { --cols: 5; }
   .case-over { padding: 16px; } .case-title { font-size: 17px; }
   .index-more { display: flex; justify-content: flex-start; }
   .index-more .btn { padding: 12px 24px; }

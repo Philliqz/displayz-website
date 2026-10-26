@@ -102,11 +102,7 @@ def write_sitemap(companies):
         f"{SITE_URL}/diseno.html",
         f"{SITE_URL}/politica.html",
     ]
-    company_urls = [
-        f"{SITE_URL}/empresa.html?slug={c['slug']}"
-        for c in companies if c["estado"] == "activo"
-    ]
-    urls = static_urls + company_urls
+    urls = static_urls  # sin páginas por empresa (empresa.html se eliminó el 2026-10-26)
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     lines += [f"  <url><loc>{u}</loc></url>" for u in urls]
@@ -133,7 +129,7 @@ def main():
     write_sitemap(companies)
 
     print(f"Escritas {len(companies)} empresas en {OUT}")
-    print(f"sitemap.xml regenerado con {len(companies)} rutas de empresa")
+    print("sitemap.xml regenerado")
     if errors:
         print("AVISOS:")
         for e in errors:

@@ -15,7 +15,6 @@ No hay que crear carpetas ni JSON por empresa — ver "Cómo agregar una empresa
 ├── video.html             galería de Video
 ├── fotografia.html        galería de Fotografía
 ├── diseno.html            galería de Diseño
-├── empresa.html           página de una empresa — empresa.html?slug=X
 ├── politica.html          política de privacidad
 ├── robots.txt, sitemap.xml, site.webmanifest, favicon.ico
 ├── database/
@@ -26,7 +25,6 @@ No hay que crear carpetas ni JSON por empresa — ver "Cómo agregar una empresa
 │   │   ├── main.js          entry point — importa e inicializa todo lo demás
 │   │   ├── data-store.js    única puerta de entrada a empresas.json (ver Escalabilidad)
 │   │   ├── video-provider.js  detecta YouTube/Vimeo/Bunny desde una URL y arma el embed
-│   │   ├── router.js        empresa.html?slug=X
 │   │   ├── portfolio.js     galerías/carrusel/lightbox/video-modal/likes
 │   │   ├── forms.js + forms/adapter-*.js   formularios, ver sección abajo
 │   │   └── nav.js, animations.js, hero-menu.js, modal.js, lightbox.js,
@@ -65,14 +63,11 @@ Los flags `video`/`fotografia`/`diseno` deben coincidir con si hay contenido rea
 `videos[]`/`galeria[]` (tipo `fotografia` o `diseno`) — son los que determinan en qué
 página aparece la empresa. No hay que tocar ningún HTML/CSS/JS.
 
-3. Corre `python3 scripts/migrate_to_empresas.py` — regenera `sitemap.xml` agregando
-   `empresa.html?slug=mi-marca` automáticamente (el script es idempotente: seguro de
-   correr aunque ya hayas editado `empresas.json` a mano, no pisa nada tuyo, solo
-   reconstruye el sitemap desde los slugs que encuentre).
-
-La empresa aparece automáticamente en Video/Fotografía/Diseño según corresponda, en el
-rotador de miniaturas del home, y tiene su propia página en `empresa.html?slug=mi-marca`
-— nada de esto requiere editar código.
+La empresa aparece automáticamente en Video/Fotografía/Diseño según corresponda, y en
+«Lo más destacado» de la home si sus piezas están marcadas `"destacado"` — nada de esto
+requiere editar código. No hay página por empresa: `empresa.html` se eliminó el
+2026-10-26 (solo la usaba la home; en la home los videos se abren en el modal y las
+imágenes en el visor).
 
 ## Videos
 
