@@ -9,16 +9,18 @@
     "nicho": "Bebidas",
     "categoria": "diseno",
     "categorias": [
+      "video",
       "diseno"
     ],
-    "video": false,
+    "video": true,
     "fotografia": false,
     "diseno": true,
     "galeria": [
       {
         "archivo": "portfolio/tiger-sugar-panama/diseno/dragon-fruit-sago.jpg",
         "alt": "Tiger Sugar — Dragon Fruit Sago",
-        "tipo": "diseno"
+        "tipo": "diseno",
+        "destacado": true
       },
       {
         "archivo": "portfolio/tiger-sugar-panama/diseno/dragon-ice-lemon-tea.jpg",
@@ -126,7 +128,15 @@
         "tipo": "diseno"
       }
     ],
-    "videos": [],
+    "videos": [
+      {
+        "titulo": "Valla",
+        "provider": "archivo",
+        "url": "portfolio/tiger-sugar-panama/video/valla.mp4",
+        "miniatura": "portfolio/tiger-sugar-panama/video/valla.jpg",
+        "destacado": true
+      }
+    ],
     "telefono": "",
     "correo": "",
     "direccion": "",

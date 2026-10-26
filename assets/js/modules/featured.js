@@ -27,17 +27,14 @@ function el(tag, className, text) {
 
 function urlEmpresa(c) { return 'empresa.html?slug=' + encodeURIComponent(c.slug); }
 
-// Las piezas del caso: los videos propios (mp4) marcados "destacado": true, uno por tile; si no
-// hay, una sola pieza — su primer video propio o su primera imagen. Los de YouTube no salen aquí:
+// Las piezas del caso: las marcadas "destacado": true (videos propios o imágenes), una por tile;
+// si no hay, una sola — su primer video propio o su primera imagen. Los de YouTube no salen aquí:
 // en la home todo video se reproduce al instante, sin reproductor externo.
 // Solo de las disciplinas activas: un video con video:false no sale aunque siga en el JSON.
 function piezasDestacadas(c, keys) {
-  const propios = keys.includes('video') ? piezas(c, 'video').filter((x) => ARCHIVO_RE.test(x.url || '')) : [];
-  const marcados = propios.filter((x) => x.destacado);
-  if (marcados.length) return marcados.map(comoVideo);
-  if (propios.length) return [comoVideo(propios[0])];
-  const g = keys.filter((k) => k !== 'video').flatMap((k) => piezas(c, k))[0];
-  return g ? [{ src: g.archivo }] : [];
+  const todas = keys.flatMap((k) => (k === 'video' ? piezas(c, k).filter((x) => ARCHIVO_RE.test(x.url || '')) : piezas(c, k)));
+  const marcadas = todas.filter((x) => x.destacado);
+  return (marcadas.length ? marcadas : todas.slice(0, 1)).map((x) => (x.archivo ? { src: x.archivo } : comoVideo(x)));
 }
 
 function comoVideo(v) {
