@@ -115,17 +115,17 @@
       <div class="svc svc-1">
         <a class="svc-media" href="empresa.html?slug=tiger-sugar-panama"><picture><source srcset="portfolio/tiger-sugar-panama/diseno/dragon-fruit-sago.webp" type="image/webp"><img src="portfolio/tiger-sugar-panama/diseno/dragon-fruit-sago.jpg" alt="Pieza de redes para Tiger Sugar Panamá" loading="lazy"></picture><span class="svc-tag">Tiger Sugar Panamá</span></a>
         <span class="svc-n">01</span><h3>Contenido mensual</h3><p>Para negocios que publican cada semana.</p><ul class="svc-inc"><li>Estrategia</li><li>Producción</li><li>Meta Ads</li></ul>
-        <a class="svc-link" href="#contacto">Lo quiero <span class="arrow">→</span></a>
+        <a class="svc-link" href="#contacto" data-servicio="Contenido mensual">Lo quiero <span class="arrow">→</span></a>
       </div>
       <div class="svc svc-2">
         <a class="svc-media" href="empresa.html?slug=onads"><picture><source srcset="portfolio/onads/video/atp.webp" type="image/webp"><img src="portfolio/onads/video/atp.jpg" alt="Fotograma de un video para OnAds" loading="lazy"></picture><span class="svc-tag">OnAds</span></a>
         <span class="svc-n">02</span><h3>Producción corporativa</h3><p>Para empresas e instituciones.</p><ul class="svc-inc"><li>Institucional</li><li>Motion graphics</li><li>Spots</li></ul>
-        <a class="svc-link" href="#contacto">Cotizar <span class="arrow">→</span></a>
+        <a class="svc-link" href="#contacto" data-servicio="Producción corporativa">Cotizar <span class="arrow">→</span></a>
       </div>
       <div class="svc svc-3">
         <a class="svc-media" href="empresa.html?slug=lissette-y-luis"><picture><source srcset="portfolio/lissette-y-luis/foto-5.webp" type="image/webp"><img src="portfolio/lissette-y-luis/foto-5.jpg" alt="Foto de la boda de Lissette y Luis" loading="lazy"></picture><span class="svc-tag">Lissette y Luis</span></a>
         <span class="svc-n">03</span><h3>Eventos</h3><p>Para bodas, 15 años y eventos de empresa.</p><ul class="svc-inc"><li>Fotografía</li><li>Video</li><li>Reel</li></ul>
-        <a class="svc-link" href="#contacto">Reservar fecha <span class="arrow">→</span></a>
+        <a class="svc-link" href="#contacto" data-servicio="Evento">Reservar fecha <span class="arrow">→</span></a>
       </div>
     </div>
   </div>
@@ -191,9 +191,10 @@
           <label class="sr-only" for="f-tipo-solicitud">¿Qué necesitas?</label>
           <select class="form-select" id="f-tipo-solicitud" name="Tipo de solicitud">
             <option value="">¿Qué necesitas? (opcional)</option>
-            <option value="Plan mensual">Plan mensual</option>
-            <option value="Proyecto puntual">Proyecto puntual</option>
-            <option value="Evento">Evento (boda, 15 años, graduación)</option>
+            <option value="Contenido mensual" data-c="#8D00A6" data-d="Para negocios que publican cada semana">Contenido mensual</option>
+            <option value="Producción corporativa" data-c="#0172DC" data-d="Para empresas e instituciones">Producción corporativa</option>
+            <option value="Evento" data-c="#017352" data-d="Bodas, 15 años y eventos de empresa">Evento</option>
+            <option value="Otro proyecto" data-d="Cuéntanos en el mensaje">Otro proyecto</option>
           </select>
           <label class="sr-only" for="f-mensaje">Mensaje</label>
           <textarea class="form-textarea" id="f-mensaje" name="Mensaje" placeholder="Mensaje (opcional)" rows="4"></textarea>
