@@ -1,4 +1,4 @@
-// Home: "Trabajo seleccionado" (casos grandes). El collage del hero lo pone hero.js.
+// Home: "Trabajo seleccionado" (casos grandes).
 // Casos = empresas visibles con "destacado": 1, 2, 3… en database/empresas.json, en
 // ese orden. Todo se llena solo desde los datos — para cambiar un caso destacado
 // basta con mover ese número en el JSON.
