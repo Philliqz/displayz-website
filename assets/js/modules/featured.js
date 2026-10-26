@@ -1,10 +1,9 @@
-// Home: "Trabajo seleccionado" (casos grandes) + "Índice" (el resto de proyectos).
+// Home: "Trabajo seleccionado" (casos grandes), collage del hero y franja de marcas.
 // Casos = empresas visibles con "destacado": 1, 2, 3… en database/empresas.json, en
-// ese orden. El índice lista las demás empresas visibles. Todo se llena solo desde
-// los datos — para cambiar un caso destacado basta con mover ese número en el JSON.
+// ese orden. Todo se llena solo desde los datos — para cambiar un caso destacado
+// basta con mover ese número en el JSON.
 import { fetchCompanies } from './data-store.js';
 import { makePictureImg } from './portfolio.js';
-import { CONFIG } from './config.js';
 import { observe } from './animations.js';
 import { getThumbnailSync } from './video-provider.js';
 
@@ -89,19 +88,7 @@ function renderCaso(c, i) {
   a.href = urlEmpresa(c);
   h3.appendChild(a);
   copy.appendChild(h3);
-  if (c.descripcion) copy.appendChild(el('p', 'case-desc', c.descripcion));
-  const dl = el('dl', 'meta');
-  [['Disciplina', keys.map((k) => SECCIONES[k]).join(' y ')],
-   ['Formato', formato(c, keys)],
-   ['Categoría', CONFIG.GRUPOS[c.nicho] || c.nicho]].forEach(([k, v]) => {
-    if (!v) return;
-    dl.appendChild(el('dt', null, k));
-    dl.appendChild(el('dd', null, v));
-  });
-  copy.appendChild(dl);
-  const ver = el('a', 'case-link', 'Ver proyecto →');
-  ver.href = urlEmpresa(c);
-  copy.appendChild(ver);
+  copy.appendChild(el('p', 'case-line', keys.map((k) => SECCIONES[k]).join(' · ') + ' — ' + formato(c, keys)));
   art.appendChild(copy);
 
   const media = el('a', 'case-media');
@@ -124,39 +111,20 @@ function renderCaso(c, i) {
   return art;
 }
 
-function renderIndice(c, n) {
-  const li = el('li');
-  const a = el('a');
-  a.href = urlEmpresa(c);
-  a.appendChild(el('span', 'index-n', pad(n)));
-  a.appendChild(el('span', 'index-name', c.nombre));
-  const d = [disciplinas(c).map((k) => SECCIONES[k]).join(' · '), CONFIG.GRUPOS[c.nicho] || c.nicho].filter(Boolean).join(' — ');
-  a.appendChild(el('span', 'index-d', d));
-  li.appendChild(a);
-  return li;
-}
-
 export function init() {
   const casosEl = document.querySelector('[data-casos]');
-  const indiceEl = document.querySelector('[data-indice]');
-  if (!casosEl && !indiceEl && !document.querySelector('[data-marcas], [data-collage]')) return;
+  if (!casosEl && !document.querySelector('[data-marcas], [data-collage]')) return;
 
   fetchCompanies().then((companies) => {
     const visibles = companies.filter((c) => c && disciplinas(c).length);
     const casos = visibles.filter((c) => Number(c.destacado) > 0)
       .sort((a, b) => Number(a.destacado) - Number(b.destacado));
-    const resto = visibles.filter((c) => !casos.includes(c))
-      .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
 
     const collageEl = document.querySelector('[data-collage]');
     if (collageEl) renderCollage(collageEl, casos);
     if (casosEl) casos.forEach((c, i) => casosEl.appendChild(renderCaso(c, i)));
     const count = document.querySelector('[data-casos-count]');
     if (count) count.textContent = pad(casos.length) + (casos.length === 1 ? ' caso' : ' casos');
-    if (indiceEl) {
-      indiceEl.start = casos.length + 1;
-      resto.forEach((c, i) => indiceEl.appendChild(renderIndice(c, casos.length + i + 1)));
-    }
     if (casosEl) observe(casosEl.querySelectorAll('.reveal'));
     // Franja de marcas: los nombres, dos veces seguidas para que el loop no salte.
     const marcasEl = document.querySelector('[data-marcas]');
