@@ -172,7 +172,10 @@ async function llenarReels(host) {
   const pantalla = host.querySelector('.phone-screen');
   pantalla.replaceChildren(...reels.map((r, k) => {
     const v = document.createElement('video');
-    Object.assign(v, { muted: true, playsInline: true, loop: true, autoplay: k === 0, preload: 'auto', src: r.url });
+    // url_ligera: 720p sin audio, hecha para el tamaño del teléfono. Solo el primero se precarga;
+    // los demás bajan cuando les toca (ver pintarPantalla).
+    Object.assign(v, { muted: true, playsInline: true, loop: true, autoplay: k === 0,
+      preload: k === 0 ? 'auto' : 'none', src: r.url_ligera || r.url });
     if (r.miniatura) v.poster = r.miniatura;
     v.setAttribute('aria-label', r.titulo || 'Reel');
     return v;
@@ -272,6 +275,8 @@ export async function init() {
       return false;
     }
     reproducir(actual);
+    const prox = medios[(i + 1) % medios.length]; // el siguiente baja mientras corre el actual
+    if (esVideo(prox) && prox.preload === 'none') { prox.preload = 'auto'; prox.load(); }
     const j = quieto ? -1 : siguiente();
     const resta = queda(actual, t);
     if (j < 0 || resta > FUNDIDO) {
