@@ -72,16 +72,21 @@ picture { display: block; }
 
 /* ---- Nav ---- */
 .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(0,0,0,0.78);
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--color-line); }
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid; border-image: var(--gradient-brand) 1; }
 .site-nav .container { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 12px; }
 .logo-link img { height: 22px; width: auto; }
 .nav-links { position: absolute; top: calc(100% + 8px); left: var(--pad); right: var(--pad); z-index: 99; list-style: none; margin: 0; padding: 8px;
-  background: rgba(13,7,18,0.98); border: 1px solid var(--color-line); border-radius: var(--r-card);
+  border-radius: var(--r-card);
   display: none; flex-direction: column; gap: 2px; }
 .site-nav.is-open .nav-links { display: flex; }
 .nav-link { display: block; padding: 14px 16px; border-radius: var(--r-ctrl); font-family: var(--font-display);
   font-weight: 500; font-size: 22px; letter-spacing: -0.02em; color: var(--color-white); }
 .nav-link:hover { background: var(--color-panel-2); }
+/* Anillo de marca: el degradado del hero, en movimiento, como borde de 1px (menú y franja de servicios). */
+:is(.nav-links, .band) { border: 1px solid transparent; background:
+  linear-gradient(160deg, rgba(141,0,166,0.32), rgba(1,114,220,0.14) 55%, transparent 85%) padding-box,
+  linear-gradient(var(--color-panel), var(--color-panel)) padding-box,
+  var(--gradient-hero) border-box; background-size: auto, auto, 300% 300%; animation: heroGradientMove 16s ease infinite; }
 /* Sección o página en la que estamos: pastilla rellena, como el botón claro. */
 .nav-link.is-active { background: var(--color-white); color: var(--color-black); }
 .btn-contact-pill { margin-left: auto; font-family: var(--font-display); font-size: 13px; font-weight: 500;
@@ -137,7 +142,6 @@ picture { display: block; }
 /* ---- Hero (home): solo tipografía sobre el banner; el trabajo va justo debajo ---- */
 .hero { padding: 40px 0 36px; }
 .hero-copy { position: relative; z-index: 3; padding: 0 20px; }
-.hero-sign { display: block; margin: 0; font-family: var(--font-display); font-size: 13px; font-weight: 500; letter-spacing: 0; line-height: 1.4; color: rgba(255,255,255,0.8); }
 .hero-title { margin: 12px 0 0; font-family: var(--font-display); font-weight: 600; letter-spacing: -0.045em;
   font-size: clamp(34px, 9.6vw, 76px); line-height: 1.02; }
 .hero-sub { margin: 12px 0 0; font-size: 15px; color: rgba(255,255,255,0.85); max-width: 440px; }
@@ -227,12 +231,14 @@ picture { display: block; }
 .index-more .btn { padding: 12px 8px; font-size: 14px; }
 
 /* ---- Servicios: tarjetas como las de «El estudio» — la pieza real de fondo, todo encima ---- */
+/* Franja de servicios: caja propia para separarla del portafolio y del estudio. */
+.band { margin: 56px var(--m-banner) 0; padding: 44px 0 var(--m-banner); border-radius: var(--r-banner); }
 .services { display: grid; gap: var(--gap); padding: 28px var(--pad) 0; max-width: var(--max-width); margin: 0 auto; }
 /* Cada tarjeta tiñe su pieza con su tramo del degradado (violeta, azul, teal). */
-.svc { --svc-c: #8D00A6; --svc-pos: 0%; position: relative; overflow: hidden; isolation: isolate; display: flex; flex-direction: column; justify-content: flex-end;
+.svc { --svc-c: #8D00A6; position: relative; overflow: hidden; isolation: isolate; display: flex; flex-direction: column; justify-content: flex-end;
   min-height: 340px; padding: 18px; border-radius: var(--r-card); border: 1px solid var(--color-line); color: var(--color-white); }
-.svc-2 { --svc-c: #0172DC; --svc-pos: 60%; }
-.svc-3 { --svc-c: #017352; --svc-pos: 100%; }
+.svc-2 { --svc-c: #0172DC; }
+.svc-3 { --svc-c: #017352; }
 .svc-bg, .svc-bg img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
 .svc-3 .svc-bg img { object-position: center 20%; }
 .svc::before { content: ""; position: absolute; inset: 0; z-index: -1;
@@ -240,8 +246,9 @@ picture { display: block; }
 .svc h3 { font-family: var(--font-display); font-weight: 600; font-size: 28px; letter-spacing: -0.035em; line-height: 1.05; margin: 0 0 6px; }
 .svc p { color: rgba(255,255,255,0.8); font-size: 14px; margin: 0 0 14px; }
 .svc-link { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 8px 8px 8px 16px;
-  border-radius: 999px; background: var(--color-white); color: var(--color-black); font-family: var(--font-display); font-size: 14px; }
-.svc-link .arrow { background: var(--gradient-btn) border-box; background-size: 300% 100%; background-position: var(--svc-pos) 0; color: var(--color-white); }
+  border-radius: 999px; background: var(--svc-c); color: var(--color-white); font-family: var(--font-display); font-size: 14px; }
+.svc-link:hover { background-image: linear-gradient(#0003, #0003); } /* oscurece solo el fondo: el texto blanco gana contraste */
+.svc-link .arrow { background: var(--color-white); color: var(--svc-c); }
 
 /* ---- Contacto ---- */
 .contact-panel { display: grid; gap: var(--m-banner); max-width: var(--max-width); margin: 0 auto; padding: 0 var(--m-banner) 48px; }
@@ -394,7 +401,7 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .banner, .hero-gradient-bg, .contact-info::before, .dot, .btn-contact-pill, .wa-float, .btn-gradient, .btn-form { animation: none; }
+  .banner, .hero-gradient-bg, .contact-info::before, .dot, .nav-links, .band, .btn-contact-pill, .wa-float, .btn-gradient, .btn-form { animation: none; }
   .phone-screen picture { animation: none; }
   .phone-screen picture:first-child { opacity: 1; }
   .reveal { opacity: 1; transform: none; transition: none; }
@@ -426,7 +433,7 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
   .logo-link img { height: 26px; }
   .nav-toggle { display: none; }
   .nav-links { position: static; display: flex; flex-direction: row; gap: 4px; padding: 4px; margin: 0 auto;
-    background: var(--color-panel); border-radius: 999px; }
+    border-radius: 999px; }
   .nav-link { padding: 8px 16px; border-radius: 999px; font-size: 14px; letter-spacing: 0; color: var(--color-muted); }
   .nav-link:hover { color: var(--color-white); background: var(--color-panel-2); }
   .nav-link.is-active, .nav-link.is-active:hover { color: var(--color-black); background: var(--color-white); }
@@ -438,8 +445,7 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
     padding: 64px max(48px, calc((100% - var(--max-width)) / 2));
     min-height: min(640px, calc(100svh - var(--nav-h) - 24px)); }
   .hero-copy { padding: 0; flex: 0 1 auto; } /* el texto ocupa lo suyo; el celular se centra en el resto */
-  .hero-sign { font-size: 15px; }
-  .hero-title { max-width: 6.8em; /* ajustado al texto: con 13ch la caja quedaba más ancha que la línea y alejaba el celular */ font-size: clamp(56px, 6vw, 104px); }
+    .hero-title { max-width: 6.8em; /* ajustado al texto: con 13ch la caja quedaba más ancha que la línea y alejaba el celular */ font-size: clamp(56px, 6vw, 104px); }
   .hero-sub { font-size: 17px; margin-top: 16px; }
   .hero-actions { display: flex; margin-top: 28px; }
   .hero-actions .btn { padding: 12px 24px; }
@@ -452,6 +458,7 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
   .contact-panel { padding-bottom: 96px; }
   .contact-info > .banner-shape { width: 80%; right: -20%; }
   .section { padding-top: 96px; }
+  .band { margin-top: 96px; padding: 72px 0 56px; }
   .section-head { padding-bottom: 28px; }
   .bento { grid-template-columns: repeat(3, 1fr); padding-top: 40px; }
   .tile { min-height: 260px; padding: 22px; }

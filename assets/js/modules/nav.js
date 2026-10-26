@@ -6,22 +6,7 @@ export function init() {
       link.setAttribute('aria-current', 'page');
     }
   });
-  initSectionSpy(path);
   initMobileToggle();
-}
-
-// En el home, "Trabajo" se rellena mientras su sección está en pantalla.
-function initSectionSpy(path) {
-  if (path !== 'index.html' || !('IntersectionObserver' in window)) return;
-  document.querySelectorAll('.nav-link[href^="index.html#"]').forEach((link) => {
-    const section = document.getElementById(link.hash.slice(1));
-    if (!section) return;
-    new IntersectionObserver(([entry]) => {
-      link.classList.toggle('is-active', entry.isIntersecting);
-      if (entry.isIntersecting) link.setAttribute('aria-current', 'location');
-      else link.removeAttribute('aria-current');
-    }, { rootMargin: '-45% 0px -45% 0px' }).observe(section);
-  });
 }
 
 function initMobileToggle() {
