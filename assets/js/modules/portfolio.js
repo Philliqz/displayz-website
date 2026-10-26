@@ -243,6 +243,7 @@ export function renderGallery(rawItems, sectionKey, company) {
       img.alt = item.titulo || tituloDe(company) + ' — video';
       const caja = document.createElement('div');
       caja.className = 'gallery-img gallery-thumb';
+      if (item.reel) caja.classList.add('is-reel'); // vertical: miniatura 9:16
       caja.dataset.evento = item.evento || 'Otros';
       caja.appendChild(node);
       const rec = document.createElement('span');
@@ -278,6 +279,7 @@ export function renderGallery(rawItems, sectionKey, company) {
   const outer = document.createElement('div');
   outer.className = 'gallery-carousel';
   if (isVideo) outer.classList.add('gallery-video');
+  if (isVideo && items.every((i) => i.reel)) outer.classList.add('solo-reels');
   if (!isVideo) outer.setAttribute('data-lightbox-group', '');
 
   const track = document.createElement('div');

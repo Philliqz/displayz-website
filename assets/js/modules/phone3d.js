@@ -207,8 +207,9 @@ async function llenarReels(host) {
   pantalla.replaceChildren(...reels.map((r, k) => {
     const v = document.createElement('video');
     // url_ligera: 720p sin audio, hecha para el tamaño del teléfono. Solo el primero se precarga;
-    // los demás bajan cuando les toca (ver pintarPantalla).
-    Object.assign(v, { muted: true, playsInline: true, loop: true, autoplay: k === 0,
+    // los demás bajan cuando les toca (ver pintarPantalla). crossOrigin antes del src: el video
+    // viene del Worker de R2 y sin CORS el lienzo WebGL queda "contaminado" y la pantalla sale negra.
+    Object.assign(v, { crossOrigin: 'anonymous', muted: true, playsInline: true, loop: true, autoplay: k === 0,
       preload: k === 0 ? 'auto' : 'none', src: r.url_ligera || r.url });
     if (r.miniatura) v.poster = r.miniatura;
     v.setAttribute('aria-label', r.titulo || 'Reel');

@@ -48,8 +48,10 @@ function comoVideo(v) {
 const FORMAS = { v: [1, 2], h: [2, 1], img: [1, 1], relleno: [1, 1] };
 
 // Llena una malla cols×filas sin huecos. En cada celda libre (de arriba abajo, de izquierda a derecha)
-// prueba las formas de los destacados —en el orden en que salieron del barajado— y, solo si ninguna
-// sirve, una imagen de relleno; si un camino se traba, retrocede. Las filas no pasan de las que llenan
+// prueba las formas de los destacados —en el orden en que salieron del barajado, pero entre reel y
+// horizontal primero el que va atrás, para que salgan en cantidades iguales o a uno de diferencia— y,
+// solo si ninguna sirve, una imagen de relleno; si un camino se traba, retrocede. De cada forma toma la
+// pieza cuya marca y cuyo nicho se han usado menos (fundador, 2026-10-26). Las filas no pasan de las que llenan
 // los destacados, para que el relleno tape huecos y no arme filas enteras. Si no hay acomodo, una fila menos.
 function acomodar(destacadas, relleno, cols, filas) {
   const forma = (x) => x.p.forma || 'img';
@@ -62,26 +64,45 @@ function acomodar(destacadas, relleno, cols, filas) {
     const cabe = (f, c, w, h) => f + h <= filas && c + w <= cols && libre.slice(f, f + h).every((fila) => fila.slice(c, c + w).every(Boolean));
     const marcar = (f, c, w, h, v) => { for (let y = f; y < f + h; y++) for (let x = c; x < c + w; x++) libre[y][x] = v; };
     const out = [];
-    let pasos = 0;
+    const puestos = { v: 0, h: 0 };
+    const uso = {};
+    const claves = (x) => ['m:' + x.c.slug, 'n:' + (x.c.nicho || x.c.slug)];
+    const gasto = (x) => claves(x).reduce((n, k, i) => n + (uso[k] || 0) * (i ? 1 : 2), 0); // marca pesa doble
+    const usar = (x, d) => claves(x).forEach((k) => { uso[k] = (uso[k] || 0) + d; });
+    let pasos = 0, mejor = null;
     const llenar = () => {
       const k = libre.flat().indexOf(true);
-      if (k < 0) return true;
+      if (k < 0) { // llena: vale si reels y horizontales quedan a uno; si no, se guarda y se busca otra
+        const d = Math.abs(puestos.v - puestos.h);
+        if (d <= 1) return true;
+        if (!mejor || d < mejor.d) mejor = { d, out: out.slice() };
+        return false;
+      }
       if (++pasos > 5000) return false; // ponytail: tope de búsqueda; pasado el tope, una fila menos
       const f = Math.floor(k / cols), c = k % cols;
-      for (const t of orden) {
+      const turno = orden.slice();
+      const iv = turno.indexOf('v'), ih = turno.indexOf('h');
+      if (iv >= 0 && ih >= 0 && puestos.v !== puestos.h && (puestos.v > puestos.h) === (iv < ih)) [turno[iv], turno[ih]] = ['h', 'v'];
+      for (const t of turno) {
         const [w, h] = FORMAS[t];
         if (!colas[t].length || !cabe(f, c, w, h)) continue;
-        const item = colas[t].shift();
+        const i = colas[t].reduce((m, x, j, l) => (gasto(x) < gasto(l[m]) ? j : m), 0);
+        const [item] = colas[t].splice(i, 1);
         marcar(f, c, w, h, false);
+        usar(item, 1);
+        if (t in puestos) puestos[t]++;
         out.push({ ...item, f, col: c, w, h });
         if (llenar()) return true;
         out.pop();
+        if (t in puestos) puestos[t]--;
+        usar(item, -1);
         marcar(f, c, w, h, true);
-        colas[t].unshift(item);
+        colas[t].splice(i, 0, item);
       }
       return false;
     };
     if (llenar()) return out;
+    if (mejor) return mejor.out; // la más pareja que se encontró dentro del tope
   }
   return [];
 }

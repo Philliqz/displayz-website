@@ -371,8 +371,14 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
 .gallery-video .gallery-img { aspect-ratio: 16 / 9; }
 .gallery-thumb { position: relative; background: #111; }
 .gallery-thumb picture, .gallery-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.gallery-video .gallery-track > .gallery-img { width: 88%; }
-.gallery-video.is-single .gallery-track > .gallery-img { width: 100%; }
+.gallery-video { --vw: 88%; }
+.gallery-video.is-single { --vw: 100%; }
+.gallery-video .gallery-track > .gallery-img { width: var(--vw); }
+/* Reels en 9:16. En una fila mixta miden lo mismo de alto que los horizontales (81/256 = 9/16 ÷ 16/9);
+   en una fila de puros reels van varios a la vista. */
+.gallery-video .gallery-img.is-reel { aspect-ratio: 9 / 16; }
+.gallery-video .gallery-track > .gallery-img.is-reel { width: calc(var(--vw) * 81 / 256); }
+.gallery-video.solo-reels .gallery-track > .gallery-img.is-reel { width: 46%; }
 .empty-state { text-align: center; padding: 72px 0; color: var(--color-muted); }
 
 /* ---- Navegación entre galerías ---- */
@@ -428,7 +434,8 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
   [data-casos] { --cols: 3; }
   .tile:last-child { grid-column: auto; }
   .gallery-track > .gallery-img { width: 42%; }
-  .gallery-video .gallery-track > .gallery-img { width: 70%; }
+  .gallery-video { --vw: 70%; }
+  .gallery-video.solo-reels .gallery-track > .gallery-img.is-reel { width: 28%; }
   .page-nav-inner { flex-direction: row; justify-content: space-between; }
   .page-nav-link { width: auto; }
   .footer-inner { flex-direction: row; justify-content: space-between; align-items: center; }
@@ -498,8 +505,9 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
   .gallery-carousel { margin: 0; }
   .gallery-track { padding: 0; scroll-padding: 0; }
   .gallery-track > .gallery-img { width: calc((100% - 24px) / 4); }
-  .gallery-video .gallery-track > .gallery-img { width: calc((100% - 8px) / 2); }
-  .gallery-video.is-single .gallery-track > .gallery-img { width: 100%; max-width: 960px; }
+  .gallery-video { --vw: calc((100% - 8px) / 2); }
+  .gallery-video.is-single { --vw: min(100%, 960px); }
+  .gallery-video.solo-reels .gallery-track > .gallery-img.is-reel { width: calc((100% - 32px) / 5); }
   .gallery-nav-btn { display: flex; position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px;
     background: rgba(0,0,0,0.7); border: 1px solid var(--color-line); border-radius: 50%; color: var(--color-white);
     align-items: center; justify-content: center; cursor: pointer; z-index: 2; }
