@@ -399,7 +399,9 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
 
   .banner { margin: 12px; border-radius: 40px; }
   .banner-shape { width: 62%; right: -6%; top: -18%; }
-  .hero { display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: center; gap: 24px; padding: 64px 48px;
+  .hero { display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: center; gap: 48px;
+    /* El fondo llega al borde; el contenido se queda en el ancho del resto del sitio. */
+    padding: 64px max(48px, calc((100% - var(--max-width)) / 2));
     min-height: min(760px, calc(100svh - var(--nav-h) - 24px)); }
   .hero-copy { padding: 0; }
   .hero-sign { font-size: 15px; }
