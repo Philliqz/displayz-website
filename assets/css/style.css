@@ -133,6 +133,17 @@ picture { display: block; }
 .hero-sub { margin: 12px 0 0; font-size: 15px; color: rgba(255,255,255,0.85); max-width: 440px; }
 .hero-actions { display: grid; grid-template-columns: 1.3fr 1fr; gap: 8px; margin-top: 20px; }
 .hero-actions .btn { padding: 10px 12px; font-size: 14px; min-height: 48px; white-space: nowrap; }
+/* Celular: marco dibujado con CSS; las piezas se funden una tras otra cada 4 s. */
+.phone { position: relative; z-index: 3; width: 180px; margin: 28px auto 0; aspect-ratio: 9 / 19; padding: 8px; border-radius: 40px;
+  background: #0d0712; box-shadow: 0 0 0 1px rgba(255,255,255,0.18), 0 30px 60px rgba(0,0,0,0.45); }
+.phone::before { content: ""; position: absolute; z-index: 2; top: 16px; left: 50%; width: 30%; height: 18px; transform: translateX(-50%);
+  border-radius: 999px; background: #0d0712; }
+.phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 32px; background: #120a1a; }
+.phone-screen picture, .phone-screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.phone-screen picture { opacity: 0; animation: phoneFade 12s -0.6s infinite; } /* la primera ya visible al cargar */
+.phone-screen picture:nth-child(2) { animation-delay: 3.4s; }
+.phone-screen picture:nth-child(3) { animation-delay: 7.4s; }
+@keyframes phoneFade { 0% { opacity: 0; } 5%, 33% { opacity: 1; } 38%, 100% { opacity: 0; } }
 .hero-avail { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 7px 12px; border-radius: 999px;
   background: rgba(0,0,0,0.25); font-size: 12px; color: rgba(255,255,255,0.9); }
 .btn-light { background: var(--color-white); color: var(--color-black); border-color: transparent; }
@@ -361,6 +372,8 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .banner, .hero-gradient-bg, .contact-info::before, .dot { animation: none; }
+  .phone-screen picture { animation: none; }
+  .phone-screen picture:first-child { opacity: 1; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
 
@@ -392,7 +405,7 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
 
   .banner { margin: 12px; border-radius: 40px; }
   .banner-shape { width: 62%; right: -6%; top: -18%; }
-  .hero { display: flex; align-items: center;
+  .hero { display: flex; align-items: center; justify-content: space-between; gap: 48px;
     /* El fondo llega al borde; el contenido se queda en el ancho del resto del sitio. */
     padding: 64px max(48px, calc((100% - var(--max-width)) / 2));
     min-height: min(640px, calc(100svh - var(--nav-h) - 24px)); }
@@ -403,6 +416,7 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
   .hero-actions { display: flex; margin-top: 28px; }
   .hero-actions .btn { padding: 12px 24px; }
   .hero-avail { margin-top: 22px; }
+  .phone { flex-shrink: 0; width: clamp(240px, 22vw, 300px); margin: 0 4% 0 0; }
 
   .services { grid-template-columns: repeat(3, 1fr); padding-top: 40px; }
   .svc { min-height: 400px; padding: 22px; }
