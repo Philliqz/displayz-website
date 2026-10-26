@@ -1,12 +1,11 @@
-// Elige una de las 3 fotos de "Sobre mí" al azar, una por sesión de visita.
+// Elige una de las 2 fotos de "Sobre mí" (la tercera, el retrato, va fija en la portada) al azar, una por sesión de visita.
 // sessionStorage y no localStorage: la foto debe quedarse fija mientras el visitante
 // navega (recargas, volver atrás) y volver a sortearse en la próxima visita.
-// Las tres comparten la relación 3/4 del CSS, que es la nativa de los archivos, así
-// que ninguna se recorta y no hace falta un encuadre distinto por foto.
+// La sección recorta con object-fit: cover, así
+// que cualquier relación de aspecto funciona.
 const FOTOS = [
   { src: 'assets/images/about-sentado.jpg', alt: 'Ismael Kentish, fundador de Displayz.Studio, sentado en un banco alto rojo sosteniendo un gimbal con cámara' },
   { src: 'assets/images/about-espalda.jpg', alt: 'Ismael Kentish, fundador de Displayz.Studio, de espaldas mirando por encima del hombro hacia la cámara' },
-  { src: 'assets/images/about-retrato.jpg', alt: 'Retrato de medio cuerpo de Ismael Kentish, fundador de Displayz.Studio, sosteniendo un gimbal con cámara' }
 ];
 
 const CLAVE = 'displayz:about-foto';

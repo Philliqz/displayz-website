@@ -280,7 +280,7 @@ export function renderGallery(rawItems, sectionKey, company) {
 
 export function setupCarousel(track, prevBtn, nextBtn) {
   let startX = 0, startScroll = 0, moved = false;
-  function step() { return track.querySelector('.gallery-img').getBoundingClientRect().width + 16; }
+  function step() { return track.querySelector('.gallery-img').getBoundingClientRect().width + (parseFloat(getComputedStyle(track).columnGap) || 0); }
   function maxScroll() { return track.scrollWidth - track.clientWidth; }
 
   nextBtn.addEventListener('click', () => {

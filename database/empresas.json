@@ -136,7 +136,8 @@
     "linkedin": "",
     "sitioWeb": "",
     "horario": "",
-    "estado": "activo"
+    "estado": "activo",
+    "destacado": 1
   },
   {
     "id": "onads",
@@ -200,7 +201,8 @@
     "linkedin": "",
     "sitioWeb": "",
     "horario": "",
-    "estado": "activo"
+    "estado": "activo",
+    "destacado": 3
   },
   {
     "id": "graduacion-canal-panama",
@@ -1228,7 +1230,8 @@
     "linkedin": "",
     "sitioWeb": "",
     "horario": "",
-    "estado": "activo"
+    "estado": "activo",
+    "destacado": 2
   },
   {
     "id": "por-amor-a-panama-monte-santo",
