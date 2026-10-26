@@ -32,8 +32,8 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/images/about-retrato.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Caveat:wght@600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/images/hero-recorte.webp" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/style.css">
 <script type="application/ld+json">
 {
@@ -74,21 +74,24 @@
 </nav>
 
 <header id="hero" class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-fade-bg"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <span class="hero-word" aria-hidden="true">Displayz</span>
+  <img class="hero-person" src="assets/images/hero-recorte.webp" alt="Ismael Kentish, fundador de Displayz.Studio, con un gimbal y cámara al hombro" width="800" height="1067" fetchpriority="high">
   <div class="hero-copy">
-    <span class="label">Panamá · Video · Fotografía · Diseño</span>
-    <h1 class="hero-title">Hago que tu marca <span class="gtext">se vea</span> como lo que vale</h1>
-    <p class="hero-lede">Soy Philliqz. Grabo, edito y diseño para negocios que quieren vender más, no solo publicar más.</p>
-    <div class="hero-actions">
-      <a href="#trabajo" class="btn">Ver trabajo →</a>
-      <a href="https://wa.me/50764498833?text=Hola%2C%20quiero%20hablar%20sobre%20mi%20marca" class="btn btn-gradient" target="_blank" rel="noopener">Hablemos de tu marca</a>
-    </div>
+    <p class="hero-hello">Hola, soy</p>
+    <h1 class="hero-name">Ismael<br>Kentish</h1>
+    <p class="hero-role gtext">Productor audiovisual &amp; diseñador</p>
+    <p class="hero-lede">Grabo, edito y diseño para negocios que quieren vender más, no solo publicar más.</p>
+    <p class="hero-avail"><i></i>Disponible en todo Panamá</p>
   </div>
-  <div class="hero-photo tint">
-    <img src="assets/images/about-retrato.jpg" alt="Ismael Kentish, fundador de Displayz.Studio, sosteniendo un gimbal con cámara" width="800" height="1067" fetchpriority="high">
-    <span class="tag label">Ismael Kentish — fundador</span>
-  </div>
+  <aside class="hero-side">
+    <p class="hero-note"><span class="hero-spark">✦</span>Ideas convertidas en contenido que vende.</p>
+    <dl class="hero-stats">
+      <div><dt class="gtext">50+</dt><dd>Proyectos</dd></div>
+      <div><dt class="gtext">500+</dt><dd>Videos</dd></div>
+      <div><dt class="gtext">1,000</dt><dd>Leads al mes</dd></div>
+    </dl>
+  </aside>
 </header>
 
 <div class="services-strip" aria-hidden="true">
