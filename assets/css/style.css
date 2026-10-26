@@ -20,6 +20,8 @@
   --color-line: #241a30;
   --color-danger: #e5484d;
   --gradient-brand: linear-gradient(120deg, var(--color-red) 0%, var(--color-violet) 35%, var(--color-blue) 70%, var(--color-teal) 100%);
+  /* Para píldoras y botones chicos: mismos 4 colores, el rojo solo como filo para que no ensucie. */
+  --gradient-btn: linear-gradient(90deg, var(--color-red) 0%, var(--color-violet) 12%, var(--color-blue) 65%, var(--color-teal) 100%);
   --gradient-hero: linear-gradient(115deg, var(--color-teal) 0%, var(--color-blue) 32%, var(--color-violet) 60%, var(--color-red) 85%, var(--color-teal) 100%);
   --font-display: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -76,7 +78,7 @@ picture { display: block; }
   font-weight: 500; font-size: 22px; letter-spacing: -0.02em; color: var(--color-white); }
 .nav-link:hover, .nav-link.is-active { background: var(--color-panel-2); }
 .btn-contact-pill { margin-left: auto; font-family: var(--font-display); font-size: 13px; font-weight: 500;
-  background: var(--gradient-brand); padding: 10px 18px; border-radius: 999px; color: var(--color-white); }
+  display: inline-flex; align-items: center; min-height: 44px; background: var(--gradient-btn); padding: 10px 18px; border-radius: 999px; color: var(--color-white); }
 .nav-toggle { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 44px; height: 44px;
   background: var(--color-panel); border: 1px solid var(--color-line); border-radius: 50%; cursor: pointer; padding: 0; }
 .nav-toggle span { display: block; width: 16px; height: 1.5px; background: var(--color-white); transition: transform 0.25s ease, opacity 0.25s ease; }
@@ -86,7 +88,7 @@ picture { display: block; }
 
 /* ---- WhatsApp flotante (al alcance del pulgar) ---- */
 .wa-float { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 90;
-  width: 56px; height: 56px; border-radius: 50%; background: var(--gradient-brand); display: flex;
+  width: 56px; height: 56px; border-radius: 50%; background: var(--gradient-btn); display: flex;
   align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(141,0,166,0.45); }
 .wa-float svg { width: 26px; height: 26px; fill: var(--color-white); }
 
@@ -96,11 +98,16 @@ picture { display: block; }
   cursor: pointer; border: 1px solid var(--color-line); background: var(--color-panel);
   color: var(--color-white); transition: border-color 0.2s ease, background 0.2s ease; -webkit-appearance: none; appearance: none; }
 .btn:hover { border-color: var(--color-violet); background: var(--color-panel-2); }
-.btn-gradient { background: var(--gradient-brand); border-color: transparent; }
-.btn-gradient:hover { background: var(--gradient-brand); border-color: transparent; filter: brightness(1.15); }
+.btn-gradient, .btn-form { background: var(--gradient-btn); border-color: transparent; }
+/* Oscurecer con una capa encima, no con filter: el filtro también aclaraba el texto y el ícono. */
+.btn-gradient:hover, .btn-form:hover { background: linear-gradient(#0003, #0003), var(--gradient-btn); border-color: transparent; }
+.btn-sm { min-height: 44px; padding: 8px 18px; }
 .btn-block { width: 100%; }
 .btn-outline .btn-ring { display: none; }
-.arrow { display: inline-grid; place-items: center; width: 26px; height: 26px; margin-right: -12px; border-radius: 50%;
+.btn-contact-pill:hover, .wa-float:hover, .filter-chip:hover, .svc-link:hover { box-shadow: inset 0 0 0 2px rgba(255,255,255,0.85); }
+:is(.btn, .btn-contact-pill, .wa-float, .filter-chip, .brand-ig-btn, .svc-link, .section-link, .case-link, .nav-toggle):focus-visible {
+  outline: 2px solid var(--color-white); outline-offset: 3px; }
+.arrow { display: inline-grid; place-items: center; width: 26px; height: 26px; flex-shrink: 0; border-radius: 50%;
   background: var(--color-white); color: var(--color-black); font-size: 14px; }
 
 /* ---- Banners: bloque redondeado de color con el isotipo gigante detrás ---- */
@@ -157,7 +164,6 @@ picture { display: block; }
 .section-title .dim { color: var(--color-dim); }
 .section-link { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display); font-size: 14px; color: var(--color-muted); white-space: nowrap; }
 .section-link:hover { color: var(--color-white); }
-.section-link .arrow, .svc-link .arrow { margin-right: 0; }
 .wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--pad); }
 /* Ícono redondo dentro de un titular (como un emoji, pero de marca). */
 .ico { display: inline-grid; place-items: center; width: 0.95em; height: 0.95em; border-radius: 50%; vertical-align: -0.12em;
@@ -233,9 +239,9 @@ picture { display: block; }
 .svc-n { align-self: flex-start; padding: 4px 10px; border-radius: 999px; background: #f1edf5; font-family: var(--font-display); font-size: 12px; color: #5a5266; }
 .svc h3 { font-family: var(--font-display); font-weight: 600; font-size: 26px; letter-spacing: -0.035em; line-height: 1.05; margin: 22px 0 8px; }
 .svc p { color: #4a4356; font-size: 15px; margin: 0 0 22px; }
-.svc-link { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; padding: 8px 8px 8px 16px;
+.svc-link { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 8px 8px 8px 16px;
   border-radius: 999px; background: #120a1a; color: var(--color-white); font-family: var(--font-display); font-size: 14px; }
-.svc-link .arrow { margin-right: 0; background: var(--gradient-brand); color: var(--color-white); }
+.svc-link .arrow { background: var(--gradient-btn); color: var(--color-white); }
 
 /* ---- Contacto ---- */
 .contact-panel { display: grid; gap: 8px; max-width: var(--max-width); margin: 0 auto; padding: 0 8px 48px; }
@@ -291,10 +297,10 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .filter-bar { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 20px 0 4px;
   margin: 0 calc(var(--pad) * -1); padding-left: var(--pad); padding-right: var(--pad); scroll-padding: 0 var(--pad); scroll-snap-type: x proximity; }
 .filter-bar::-webkit-scrollbar { display: none; }
-.filter-chip { flex-shrink: 0; min-height: 40px; font-family: var(--font-display); font-size: 14px; font-weight: 500;
+.filter-chip { flex-shrink: 0; min-height: 44px; font-family: var(--font-display); font-size: 14px; font-weight: 500;
   padding: 9px 16px; border-radius: 999px; cursor: pointer; background: var(--color-panel); color: var(--color-muted);
   border: 1px solid var(--color-line); scroll-snap-align: start; }
-.filter-chip[aria-pressed="true"] { background: var(--gradient-brand); color: var(--color-white); border-color: transparent; }
+.filter-chip[aria-pressed="true"] { background: var(--gradient-btn); color: var(--color-white); border-color: transparent; }
 
 /* ---- Bloque de empresa en galerías ---- */
 .brand-section { padding: 28px 0; border-bottom: 1px solid var(--color-line); }
@@ -307,7 +313,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .brand-nicho-tag { display: inline-block; font-size: 12px; color: var(--color-muted); margin-top: 6px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--color-line); }
 .brand-desc { color: var(--color-muted); font-size: 15px; max-width: 640px; margin: 8px 0 0; }
 .brand-ig-btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display); font-size: 14px;
-  padding: 9px 16px; border: 1px solid var(--color-line); border-radius: 999px; background: var(--color-panel); min-height: 40px; }
+  padding: 9px 16px; border: 1px solid var(--color-line); border-radius: 999px; background: var(--color-panel); min-height: 44px; }
 .brand-ig-btn:hover { border-color: var(--color-violet); }
 /* En la página de empresa el nombre y la descripción ya están en la cabecera. */
 [data-empresa-page] .brand-block { display: none; }
