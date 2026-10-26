@@ -448,14 +448,15 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
     /* El fondo llega al borde; el contenido se queda en el ancho del resto del sitio. */
     padding: calc(64px + var(--nav-h)) max(48px, calc((100% - var(--max-width)) / 2)) 64px;
     min-height: min(calc(640px + var(--nav-h)), calc(100svh - 24px)); }
-  .hero-copy { padding: 0; flex: 0 1 auto; } /* el texto ocupa lo suyo; el celular se centra en el resto */
+  .hero-copy { padding: 0; flex: 0 1 auto; } /* el texto ocupa lo suyo; el celular va al otro borde */
     .hero-title { max-width: 6.8em; /* ajustado al texto: con 13ch la caja quedaba más ancha que la línea y alejaba el celular */ font-size: clamp(56px, 6vw, 104px); }
   .hero-sub { font-size: 17px; margin-top: 16px; }
   .hero-actions { display: flex; margin-top: 28px; }
   .hero-actions .btn { padding: 12px 24px; }
   .hero-avail { margin-top: 22px; }
-  /* Dentro del relleno del hero, con aire arriba y abajo, y a la escala del titular (tope 320px). */
-  .phone { flex-shrink: 0; width: clamp(230px, min(22vw, (100vh - var(--nav-h) - 200px) * 78 / 163), 320px); width: clamp(230px, min(22vw, (100svh - var(--nav-h) - 200px) * 78 / 163), 320px); margin: 0 auto; }
+  /* Dentro del relleno del hero, con aire arriba y abajo, y a la escala del titular (tope 320px).
+     Pegado al margen derecho, el mismo que deja el texto a la izquierda. */
+  .phone { flex-shrink: 0; width: clamp(230px, min(22vw, (100vh - var(--nav-h) - 200px) * 78 / 163), 320px); width: clamp(230px, min(22vw, (100svh - var(--nav-h) - 200px) * 78 / 163), 320px); margin: 0 0 0 auto; }
 
   .services { grid-template-columns: repeat(3, 1fr); padding-top: 40px; }
   .svc { min-height: 400px; padding: 22px; }
