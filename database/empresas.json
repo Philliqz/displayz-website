@@ -2918,9 +2918,85 @@
         "miniatura": "portfolio/tecnobyte/video/nordik-2.jpg",
         "miniatura_vertical": "portfolio/tecnobyte/video/nordik-2.jpg",
         "reel": true
+      },
+      {
+        "titulo": "La Biby — Black Byte",
+        "provider": "archivo",
+        "url": "portfolio/tecnobyte/video/la-biby-black-byte.mp4",
+        "url_ligera": "portfolio/tecnobyte/video/la-biby-black-byte-telefono.mp4",
+        "miniatura": "portfolio/tecnobyte/video/la-biby-black-byte.jpg",
+        "miniatura_vertical": "portfolio/tecnobyte/video/la-biby-black-byte.jpg",
+        "reel": true
       }
     ],
     "instagram": "https://www.instagram.com/tecnobytestore/",
+    "publico": false
+  },
+  {
+    "id": "kia",
+    "slug": "kia",
+    "nombre": "KIA",
+    "titulo": "Reels para concesionario en el Panamá Motor Show",
+    "descripcion": "Concesionario de autos.",
+    "logo": "",
+    "nicho": "Automotriz",
+    "categoria": "video",
+    "categorias": [
+      "video"
+    ],
+    "video": true,
+    "fotografia": false,
+    "diseno": false,
+    "galeria": [],
+    "videos": [
+      {
+        "titulo": "Panamá Motor Show 1",
+        "provider": "archivo",
+        "url": "portfolio/kia/video/panama-motor-show-1.mp4",
+        "url_ligera": "portfolio/kia/video/panama-motor-show-1-telefono.mp4",
+        "miniatura": "portfolio/kia/video/panama-motor-show-1.jpg",
+        "miniatura_vertical": "portfolio/kia/video/panama-motor-show-1.jpg",
+        "reel": true
+      },
+      {
+        "titulo": "Panamá Motor Show 2",
+        "provider": "archivo",
+        "url": "portfolio/kia/video/panama-motor-show-2.mp4",
+        "url_ligera": "portfolio/kia/video/panama-motor-show-2-telefono.mp4",
+        "miniatura": "portfolio/kia/video/panama-motor-show-2.jpg",
+        "miniatura_vertical": "portfolio/kia/video/panama-motor-show-2.jpg",
+        "reel": true
+      }
+    ],
+    "publico": false
+  },
+  {
+    "id": "nissan",
+    "slug": "nissan",
+    "nombre": "Nissan",
+    "titulo": "Reel de stand en el Panamá Motor Show",
+    "descripcion": "Concesionario de autos.",
+    "logo": "",
+    "nicho": "Automotriz",
+    "categoria": "video",
+    "categorias": [
+      "video"
+    ],
+    "video": true,
+    "fotografia": false,
+    "diseno": false,
+    "galeria": [],
+    "videos": [
+      {
+        "titulo": "Panamá Motor Show",
+        "provider": "archivo",
+        "url": "portfolio/nissan/video/panama-motor-show.mp4",
+        "url_ligera": "portfolio/nissan/video/panama-motor-show-telefono.mp4",
+        "miniatura": "portfolio/nissan/video/panama-motor-show.jpg",
+        "miniatura_vertical": "portfolio/nissan/video/panama-motor-show.jpg",
+        "reel": true
+      }
+    ],
     "publico": false
   }
 ]

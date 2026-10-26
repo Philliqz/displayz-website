@@ -172,8 +172,36 @@ function webgl() {
 
 // Los reels del teléfono salen de los datos (videos con "reel": true); las fotos del HTML quedan
 // solo si no hay ninguno o el JSON no carga. Va antes de WebGL: el celular CSS también los usa.
+// Orden al azar en cada visita, sin dos reels seguidos de la misma marca (contando el paso del
+// último al primero, porque la lista da la vuelta). Se arma paso a paso: cada reel sale al azar
+// entre los de otra marca, salvo que una marca ya ocupe más de la mitad de lo que falta, que
+// entonces va primero (si no, después no habría con qué separarla). Si la vuelta último→primero
+// choca, se arma de nuevo; si la mezcla no tiene solución, queda el mejor intento.
+function barajar(reels) {
+  let r = reels;
+  for (let n = 0; n < 50; n++) {
+    const resto = [...reels];
+    r = [];
+    while (resto.length) {
+      const prev = r.length ? r[r.length - 1].marca : null;
+      const cuenta = {};
+      resto.forEach((x) => { cuenta[x.marca] = (cuenta[x.marca] || 0) + 1; });
+      const urge = Object.keys(cuenta).find((m) => m !== prev && cuenta[m] * 2 > resto.length);
+      const ok = resto.filter((x) => (urge ? x.marca === urge : x.marca !== prev));
+      const pool = ok.length ? ok : resto;
+      const x = pool[Math.floor(Math.random() * pool.length)];
+      r.push(x);
+      resto.splice(resto.indexOf(x), 1);
+    }
+    if (r.length < 2 || r[0].marca !== r[r.length - 1].marca) break;
+  }
+  return r;
+}
+
 async function llenarReels(host) {
-  const reels = (await fetchCompanies()).flatMap((c) => (c.video && c.videos) || []).filter((v) => v.reel && v.url);
+  const reels = barajar((await fetchCompanies())
+    .flatMap((c) => ((c.video && c.videos) || []).map((v) => ({ ...v, marca: c.slug })))
+    .filter((v) => v.reel && v.url));
   if (!reels.length) return;
   const pantalla = host.querySelector('.phone-screen');
   pantalla.replaceChildren(...reels.map((r, k) => {
