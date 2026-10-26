@@ -1,0 +1,11 @@
+# Worker que sirve los mp4 del portafolio desde R2 (bucket displayz-videos).
+# GitHub Pages no admite archivos de más de 100 MB ni sitios de más de 1 GB; los videos viven aquí.
+# Publicar: wrangler deploy (desde esta carpeta). Subir videos: wrangler r2 object put displayz-videos/<ruta> --file <ruta> --remote
+name = "displayz-videos"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+[[r2_buckets]]
+binding = "VIDEOS"
+bucket_name = "displayz-videos"

@@ -1,0 +1,67 @@
+// Sirve los mp4 del bucket con soporte de rangos (adelantar en el reproductor) y caché larga.
+// Solo rutas portfolio/<marca>/video/<archivo>.mp4: el bucket no queda listable ni expone otra cosa.
+const RUTA = /^portfolio\/[a-z0-9-]+\/video\/[a-z0-9-]+\.mp4$/;
+
+// debil: If-None-Match compara sin el prefijo W/ (RFC 9110 §8.8.3.2); If-Match exige igualdad estricta.
+const coincide = (lista, etag, debil) => lista.split(',').some((e) => {
+  e = e.trim();
+  if (debil) e = e.replace(/^W\//, '');
+  return e === '*' || e === etag;
+});
+
+export default {
+  async fetch(request, env) {
+    if (request.method !== 'GET' && request.method !== 'HEAD') {
+      return new Response('Método no permitido', { status: 405, headers: { allow: 'GET, HEAD' } });
+    }
+    let key;
+    try { key = decodeURIComponent(new URL(request.url).pathname.slice(1)); } catch { key = ''; }
+    if (!RUTA.test(key)) return new Response('No encontrado', { status: 404 });
+
+    const meta = await env.VIDEOS.head(key);
+    if (!meta) return new Response('No encontrado', { status: 404 });
+
+    const headers = new Headers();
+    meta.writeHttpMetadata(headers);
+    headers.set('etag', meta.httpEtag);
+    headers.set('accept-ranges', 'bytes');
+    headers.set('access-control-allow-origin', '*');
+
+    // Precondiciones (RFC 9110 §13.2.2): If-Match falla → 412; If-None-Match coincide → 304.
+    const ifMatch = request.headers.get('if-match');
+    if (ifMatch && !coincide(ifMatch, meta.httpEtag)) return new Response(null, { status: 412, headers });
+    const ifNoneMatch = request.headers.get('if-none-match');
+    if (ifNoneMatch && coincide(ifNoneMatch, meta.httpEtag, true)) return new Response(null, { status: 304, headers });
+
+    if (request.method === 'HEAD') {
+      headers.set('content-length', String(meta.size));
+      return new Response(null, { headers });
+    }
+
+    // If-Range con otra versión: se ignora el rango y va el archivo completo (no se mezclan versiones).
+    const ifRange = request.headers.get('if-range');
+    const conRango = request.headers.has('range') && (!ifRange || ifRange === meta.httpEtag);
+
+    let obj;
+    try {
+      obj = await env.VIDEOS.get(key, conRango ? { range: request.headers } : {});
+    } catch {
+      if (!conRango) return new Response('Error leyendo el video', { status: 502 });
+      headers.set('content-range', `bytes */${meta.size}`); // rango fuera del archivo
+      return new Response(null, { status: 416, headers });
+    }
+    if (!obj) return new Response('No encontrado', { status: 404 });
+
+    if (conRango && obj.range) {
+      // R2 trae las tres claves aunque alguna venga undefined: se mira el valor, no si existe.
+      const r = obj.range;
+      const offset = r.suffix !== undefined ? obj.size - r.suffix : (r.offset ?? 0);
+      const length = r.suffix !== undefined ? r.suffix : (r.length ?? obj.size - offset);
+      headers.set('content-range', `bytes ${offset}-${offset + length - 1}/${obj.size}`);
+      headers.set('content-length', String(length));
+      return new Response(obj.body, { status: 206, headers });
+    }
+    headers.set('content-length', String(obj.size));
+    return new Response(obj.body, { headers });
+  },
+};

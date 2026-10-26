@@ -136,6 +136,15 @@
         "miniatura": "portfolio/tiger-sugar-panama/video/valla.jpg",
         "destacado": true,
         "evento": "Spot publicitario"
+      },
+      {
+        "titulo": "Summer Time",
+        "provider": "archivo",
+        "url": "portfolio/tiger-sugar-panama/video/summer-time.mp4",
+        "url_ligera": "portfolio/tiger-sugar-panama/video/summer-time-telefono.mp4",
+        "miniatura": "portfolio/tiger-sugar-panama/video/summer-time.jpg",
+        "destacado": true,
+        "evento": "Reel para redes"
       }
     ],
     "telefono": "",
@@ -982,15 +991,16 @@
     "id": "iuma-home",
     "slug": "iuma-home",
     "nombre": "IUMA Home",
-    "titulo": "Campañas para casas modulares",
-    "descripcion": "Casas modulares — piezas gráficas para campañas: construcción, diseño moderno y cotizaciones.",
+    "titulo": "Casas modulares",
+    "descripcion": "Casas modulares — piezas gráficas y videos para campañas.",
     "logo": "portfolio/iuma-home/casas-modulares-10k.jpg",
     "nicho": "Construcción",
     "categoria": "diseno",
     "categorias": [
-      "diseno"
+      "diseno",
+      "video"
     ],
-    "video": false,
+    "video": true,
     "fotografia": false,
     "diseno": true,
     "galeria": [
@@ -1035,7 +1045,27 @@
         "tipo": "diseno"
       }
     ],
-    "videos": [],
+    "videos": [
+      {
+        "titulo": "SPA",
+        "provider": "archivo",
+        "url": "portfolio/iuma-home/video/spa.mp4",
+        "url_ligera": "portfolio/iuma-home/video/spa-telefono.mp4",
+        "miniatura": "portfolio/iuma-home/video/spa.jpg",
+        "destacado": true,
+        "evento": "Reel para redes",
+        "reel": true
+      },
+      {
+        "titulo": "Casas modulares",
+        "provider": "archivo",
+        "url": "portfolio/iuma-home/video/casas-modulares.mp4",
+        "url_ligera": "portfolio/iuma-home/video/casas-modulares-telefono.mp4",
+        "miniatura": "portfolio/iuma-home/video/casas-modulares.jpg",
+        "destacado": true,
+        "evento": "Bienes raíces"
+      }
+    ],
     "telefono": "",
     "correo": "",
     "direccion": "",
@@ -1046,7 +1076,9 @@
     "linkedin": "",
     "sitioWeb": "",
     "horario": "",
-    "estado": "activo"
+    "estado": "activo",
+    "publico": true,
+    "destacado": 25
   },
   {
     "id": "fosters",
@@ -2231,15 +2263,28 @@
     "id": "joyeria-popular",
     "slug": "joyeria-popular",
     "nombre": "Joyería Popular",
-    "descripcion": "Joyería. Ubicación y presencia exactas pendientes de confirmar con el fundador.",
+    "descripcion": "Joyería — reel de regalos por presupuesto.",
     "logo": "",
     "categoria": "",
-    "categorias": [],
-    "video": false,
+    "categorias": [
+      "video"
+    ],
+    "video": true,
     "fotografia": false,
     "diseno": false,
     "galeria": [],
-    "videos": [],
+    "videos": [
+      {
+        "titulo": "Regalos por presupuesto",
+        "provider": "archivo",
+        "url": "portfolio/joyeria-popular/video/regalos.mp4",
+        "url_ligera": "portfolio/joyeria-popular/video/regalos-telefono.mp4",
+        "miniatura": "portfolio/joyeria-popular/video/regalos.jpg",
+        "destacado": true,
+        "evento": "Reel para redes",
+        "reel": true
+      }
+    ],
     "telefono": "",
     "correo": "",
     "direccion": "",
@@ -2250,8 +2295,11 @@
     "linkedin": "",
     "sitioWeb": "",
     "horario": "",
-    "estado": "pendiente",
-    "nicho": "Joyería"
+    "estado": "activo",
+    "nicho": "Joyería",
+    "titulo": "Reel de regalos para una joyería",
+    "publico": true,
+    "destacado": 24
   },
   {
     "id": "laguna-bay",
@@ -2335,15 +2383,68 @@
     "id": "pets-garden",
     "slug": "pets-garden",
     "nombre": "Pets Garden",
-    "descripcion": "Grooming, guardería y hotel para mascotas en Costa del Este.",
+    "descripcion": "Grooming, guardería y hotel para mascotas en Costa del Este — eventos y reels.",
     "logo": "",
     "categoria": "",
-    "categorias": [],
-    "video": false,
+    "categorias": [
+      "video"
+    ],
+    "video": true,
     "fotografia": false,
     "diseno": false,
     "galeria": [],
-    "videos": [],
+    "videos": [
+      {
+        "titulo": "Cumpleaños de Vinci",
+        "provider": "archivo",
+        "url": "portfolio/pets-garden/video/cumpleanos-vinci.mp4",
+        "url_ligera": "portfolio/pets-garden/video/cumpleanos-vinci-telefono.mp4",
+        "miniatura": "portfolio/pets-garden/video/cumpleanos-vinci.jpg",
+        "destacado": true,
+        "evento": "Cumpleaños",
+        "reel": true
+      },
+      {
+        "titulo": "Festival perruno",
+        "provider": "archivo",
+        "url": "portfolio/pets-garden/video/festival-perruno.mp4",
+        "url_ligera": "portfolio/pets-garden/video/festival-perruno-telefono.mp4",
+        "miniatura": "portfolio/pets-garden/video/festival-perruno.jpg",
+        "destacado": true,
+        "evento": "Evento",
+        "reel": true
+      },
+      {
+        "titulo": "Entrenamiento",
+        "provider": "archivo",
+        "url": "portfolio/pets-garden/video/entrenamiento.mp4",
+        "url_ligera": "portfolio/pets-garden/video/entrenamiento-telefono.mp4",
+        "miniatura": "portfolio/pets-garden/video/entrenamiento.jpg",
+        "destacado": true,
+        "evento": "Reel para redes",
+        "reel": true
+      },
+      {
+        "titulo": "Grooming day",
+        "provider": "archivo",
+        "url": "portfolio/pets-garden/video/grooming-day.mp4",
+        "url_ligera": "portfolio/pets-garden/video/grooming-day-telefono.mp4",
+        "miniatura": "portfolio/pets-garden/video/grooming-day.jpg",
+        "destacado": true,
+        "evento": "Reel para redes",
+        "reel": true
+      },
+      {
+        "titulo": "Socialización",
+        "provider": "archivo",
+        "url": "portfolio/pets-garden/video/socializacion.mp4",
+        "url_ligera": "portfolio/pets-garden/video/socializacion-telefono.mp4",
+        "miniatura": "portfolio/pets-garden/video/socializacion.jpg",
+        "destacado": true,
+        "evento": "Reel para redes",
+        "reel": true
+      }
+    ],
     "telefono": "",
     "correo": "",
     "direccion": "",
@@ -2354,8 +2455,11 @@
     "linkedin": "",
     "sitioWeb": "",
     "horario": "",
-    "estado": "pendiente",
-    "nicho": "Mascotas"
+    "estado": "activo",
+    "nicho": "Mascotas",
+    "titulo": "Videos para un hotel de mascotas",
+    "publico": true,
+    "destacado": 20
   },
   {
     "id": "print-labs",
@@ -2927,15 +3031,27 @@
     "id": "truenos-y-relampagos",
     "slug": "truenos-y-relampagos",
     "nombre": "Truenos y Relámpagos",
-    "descripcion": "Sonido para eventos — mismo tipo de trabajo que Sonolux.",
+    "descripcion": "Sonido para eventos — video de su fiesta de Halloween.",
     "logo": "",
     "categoria": "",
-    "categorias": [],
-    "video": false,
+    "categorias": [
+      "video"
+    ],
+    "video": true,
     "fotografia": false,
     "diseno": false,
     "galeria": [],
-    "videos": [],
+    "videos": [
+      {
+        "titulo": "Halloween",
+        "provider": "archivo",
+        "url": "portfolio/truenos-y-relampagos/video/halloween.mp4",
+        "url_ligera": "portfolio/truenos-y-relampagos/video/halloween-telefono.mp4",
+        "miniatura": "portfolio/truenos-y-relampagos/video/halloween.jpg",
+        "destacado": true,
+        "evento": "Evento"
+      }
+    ],
     "telefono": "",
     "correo": "",
     "direccion": "",
@@ -2946,22 +3062,37 @@
     "linkedin": "",
     "sitioWeb": "",
     "horario": "",
-    "estado": "pendiente",
-    "nicho": "Eventos"
+    "estado": "activo",
+    "nicho": "Eventos",
+    "titulo": "Fiesta de Halloween",
+    "publico": true,
+    "destacado": 21
   },
   {
     "id": "miss-teen",
     "slug": "miss-teen",
     "nombre": "Miss Teen",
-    "descripcion": "Certamen de belleza — grabaciones del evento.",
+    "descripcion": "Certamen de belleza — recap del evento.",
     "logo": "",
     "categoria": "",
-    "categorias": [],
-    "video": false,
+    "categorias": [
+      "video"
+    ],
+    "video": true,
     "fotografia": false,
     "diseno": false,
     "galeria": [],
-    "videos": [],
+    "videos": [
+      {
+        "titulo": "Recap del día 3",
+        "provider": "archivo",
+        "url": "portfolio/miss-teen/video/dia-3.mp4",
+        "url_ligera": "portfolio/miss-teen/video/dia-3-telefono.mp4",
+        "miniatura": "portfolio/miss-teen/video/dia-3.jpg",
+        "destacado": true,
+        "evento": "Certamen"
+      }
+    ],
     "telefono": "",
     "correo": "",
     "direccion": "",
@@ -2972,22 +3103,37 @@
     "linkedin": "",
     "sitioWeb": "",
     "horario": "",
-    "estado": "pendiente",
-    "nicho": "Eventos"
+    "estado": "activo",
+    "nicho": "Eventos",
+    "titulo": "Certamen Miss Teen",
+    "publico": true,
+    "destacado": 19
   },
   {
     "id": "novelas-racing",
     "slug": "novelas-racing",
     "nombre": "Novelas Racing",
-    "descripcion": "Recap de evento.",
+    "descripcion": "Recap del cierre de su último tour.",
     "logo": "",
     "categoria": "",
-    "categorias": [],
-    "video": false,
+    "categorias": [
+      "video"
+    ],
+    "video": true,
     "fotografia": false,
     "diseno": false,
     "galeria": [],
-    "videos": [],
+    "videos": [
+      {
+        "titulo": "Último tour",
+        "provider": "archivo",
+        "url": "portfolio/novelas-racing/video/ultimo-tour.mp4",
+        "url_ligera": "portfolio/novelas-racing/video/ultimo-tour-telefono.mp4",
+        "miniatura": "portfolio/novelas-racing/video/ultimo-tour.jpg",
+        "destacado": true,
+        "evento": "Evento"
+      }
+    ],
     "telefono": "",
     "correo": "",
     "direccion": "",
@@ -2998,8 +3144,11 @@
     "linkedin": "",
     "sitioWeb": "",
     "horario": "",
-    "estado": "pendiente",
-    "nicho": "Eventos"
+    "estado": "activo",
+    "nicho": "Eventos",
+    "titulo": "Recap del último tour de Novelas Racing",
+    "publico": true,
+    "destacado": 22
   },
   {
     "id": "tecnobyte",
@@ -3137,5 +3286,375 @@
       }
     ],
     "publico": false
+  },
+  {
+    "id": "daniela-y-christian",
+    "slug": "daniela-y-christian",
+    "logo": "",
+    "estado": "activo",
+    "videos": [
+      {
+        "titulo": "Recap de boda",
+        "provider": "archivo",
+        "url": "portfolio/daniela-y-christian/video/recap.mp4",
+        "url_ligera": "portfolio/daniela-y-christian/video/recap-telefono.mp4",
+        "miniatura": "portfolio/daniela-y-christian/video/recap.jpg",
+        "destacado": true,
+        "evento": "Boda"
+      }
+    ],
+    "nombre": "Daniela y Christian",
+    "titulo": "Boda: recap de Daniela y Christian",
+    "descripcion": "Recap de la boda de Daniela y Christian.",
+    "nicho": "Boda",
+    "publico": true,
+    "video": true,
+    "categorias": [
+      "video"
+    ],
+    "categoria": "video",
+    "fotografia": false,
+    "diseno": false,
+    "destacado": 11
+  },
+  {
+    "id": "genesis",
+    "slug": "genesis",
+    "logo": "",
+    "estado": "activo",
+    "videos": [
+      {
+        "titulo": "Video de boda",
+        "provider": "archivo",
+        "url": "portfolio/genesis/video/boda.mp4",
+        "url_ligera": "portfolio/genesis/video/boda-telefono.mp4",
+        "miniatura": "portfolio/genesis/video/boda.jpg",
+        "destacado": true,
+        "evento": "Boda"
+      }
+    ],
+    "nombre": "Génesis",
+    "titulo": "Boda: video de Génesis",
+    "descripcion": "Video de la boda de Génesis.",
+    "nicho": "Boda",
+    "publico": true,
+    "video": true,
+    "categorias": [
+      "video"
+    ],
+    "categoria": "video",
+    "fotografia": false,
+    "diseno": false,
+    "destacado": 12
+  },
+  {
+    "id": "mohammed-y-noemi",
+    "slug": "mohammed-y-noemi",
+    "logo": "",
+    "estado": "activo",
+    "videos": [
+      {
+        "titulo": "Boda completa",
+        "provider": "archivo",
+        "url": "portfolio/mohammed-y-noemi/video/boda.mp4",
+        "url_ligera": "portfolio/mohammed-y-noemi/video/boda-telefono.mp4",
+        "miniatura": "portfolio/mohammed-y-noemi/video/boda.jpg",
+        "destacado": true,
+        "evento": "Boda"
+      }
+    ],
+    "nombre": "Mohammed y Noemí",
+    "titulo": "Boda: Mohammed y Noemí",
+    "descripcion": "Video completo de la boda de Mohammed y Noemí.",
+    "nicho": "Boda",
+    "publico": true,
+    "video": true,
+    "categorias": [
+      "video"
+    ],
+    "categoria": "video",
+    "fotografia": false,
+    "diseno": false,
+    "destacado": 13
+  },
+  {
+    "id": "eduardo-e-ines",
+    "slug": "eduardo-e-ines",
+    "logo": "",
+    "estado": "activo",
+    "videos": [
+      {
+        "titulo": "Pasillo",
+        "provider": "archivo",
+        "url": "portfolio/eduardo-e-ines/video/pasillo.mp4",
+        "url_ligera": "portfolio/eduardo-e-ines/video/pasillo-telefono.mp4",
+        "miniatura": "portfolio/eduardo-e-ines/video/pasillo.jpg",
+        "destacado": true,
+        "evento": "Boda"
+      },
+      {
+        "titulo": "Wedding film",
+        "provider": "archivo",
+        "url": "portfolio/eduardo-e-ines/video/wedding-film.mp4",
+        "miniatura": "portfolio/eduardo-e-ines/video/wedding-film.jpg",
+        "destacado": true,
+        "evento": "Boda"
+      }
+    ],
+    "nombre": "Eduardo e Inés",
+    "titulo": "Boda: Eduardo e Inés",
+    "descripcion": "Wedding film y entrada al pasillo de la boda de Eduardo e Inés.",
+    "nicho": "Boda",
+    "publico": true,
+    "video": true,
+    "categorias": [
+      "video"
+    ],
+    "categoria": "video",
+    "fotografia": false,
+    "diseno": false,
+    "destacado": 14
+  },
+  {
+    "id": "ani-y-ronny",
+    "slug": "ani-y-ronny",
+    "logo": "",
+    "estado": "activo",
+    "videos": [
+      {
+        "titulo": "Recap de boda",
+        "provider": "archivo",
+        "url": "portfolio/ani-y-ronny/video/recap.mp4",
+        "url_ligera": "portfolio/ani-y-ronny/video/recap-telefono.mp4",
+        "miniatura": "portfolio/ani-y-ronny/video/recap.jpg",
+        "destacado": true,
+        "evento": "Boda"
+      }
+    ],
+    "nombre": "Ani y Ronny",
+    "titulo": "Boda: recap de Ani y Ronny",
+    "descripcion": "Recap de boda producido con MTZ Films.",
+    "nicho": "Boda",
+    "publico": true,
+    "video": true,
+    "categorias": [
+      "video"
+    ],
+    "categoria": "video",
+    "fotografia": false,
+    "diseno": false,
+    "destacado": 15
+  },
+  {
+    "id": "daniella-y-jorge",
+    "slug": "daniella-y-jorge",
+    "logo": "",
+    "estado": "activo",
+    "videos": [
+      {
+        "titulo": "Recap de boda",
+        "provider": "archivo",
+        "url": "portfolio/daniella-y-jorge/video/recap.mp4",
+        "url_ligera": "portfolio/daniella-y-jorge/video/recap-telefono.mp4",
+        "miniatura": "portfolio/daniella-y-jorge/video/recap.jpg",
+        "destacado": true,
+        "evento": "Boda"
+      }
+    ],
+    "nombre": "Daniella y Jorge",
+    "titulo": "Boda: recap de Daniella y Jorge",
+    "descripcion": "Recap de boda producido con MTZ Films.",
+    "nicho": "Boda",
+    "publico": true,
+    "video": true,
+    "categorias": [
+      "video"
+    ],
+    "categoria": "video",
+    "fotografia": false,
+    "diseno": false,
+    "destacado": 16
+  },
+  {
+    "id": "sean-y-lola",
+    "slug": "sean-y-lola",
+    "logo": "",
+    "estado": "activo",
+    "videos": [
+      {
+        "titulo": "Recap de boda",
+        "provider": "archivo",
+        "url": "portfolio/sean-y-lola/video/recap.mp4",
+        "url_ligera": "portfolio/sean-y-lola/video/recap-telefono.mp4",
+        "miniatura": "portfolio/sean-y-lola/video/recap.jpg",
+        "destacado": true,
+        "evento": "Boda"
+      }
+    ],
+    "nombre": "Sean y Lola",
+    "titulo": "Boda: recap de Sean y Lola",
+    "descripcion": "Recap de boda producido con MTZ Films.",
+    "nicho": "Boda",
+    "publico": true,
+    "video": true,
+    "categorias": [
+      "video"
+    ],
+    "categoria": "video",
+    "fotografia": false,
+    "diseno": false,
+    "destacado": 17
+  },
+  {
+    "id": "lucia-allegra",
+    "slug": "lucia-allegra",
+    "logo": "",
+    "estado": "activo",
+    "videos": [
+      {
+        "titulo": "Intro de 15 años",
+        "provider": "archivo",
+        "url": "portfolio/lucia-allegra/video/intro.mp4",
+        "url_ligera": "portfolio/lucia-allegra/video/intro-telefono.mp4",
+        "miniatura": "portfolio/lucia-allegra/video/intro.jpg",
+        "destacado": true,
+        "evento": "15 años"
+      }
+    ],
+    "nombre": "Lucía Allegra",
+    "titulo": "15 años: intro de Lucía Allegra",
+    "descripcion": "Video de entrada para los 15 años de Lucía Allegra.",
+    "nicho": "15 años",
+    "publico": true,
+    "video": true,
+    "categorias": [
+      "video"
+    ],
+    "categoria": "video",
+    "fotografia": false,
+    "diseno": false,
+    "destacado": 18
+  },
+  {
+    "id": "carnavalitos",
+    "slug": "carnavalitos",
+    "logo": "",
+    "estado": "activo",
+    "videos": [
+      {
+        "titulo": "Recap Desata2",
+        "provider": "archivo",
+        "url": "portfolio/carnavalitos/video/desata2.mp4",
+        "url_ligera": "portfolio/carnavalitos/video/desata2-telefono.mp4",
+        "miniatura": "portfolio/carnavalitos/video/desata2.jpg",
+        "destacado": true,
+        "evento": "Evento"
+      }
+    ],
+    "nombre": "Carnavalitos",
+    "titulo": "Recap de Desata2",
+    "descripcion": "Recap del carnavalito Desata2.",
+    "nicho": "Eventos",
+    "publico": true,
+    "video": true,
+    "categorias": [
+      "video"
+    ],
+    "categoria": "video",
+    "fotografia": false,
+    "diseno": false,
+    "destacado": 23
+  },
+  {
+    "id": "karims",
+    "slug": "karims",
+    "logo": "",
+    "estado": "activo",
+    "videos": [
+      {
+        "titulo": "Perdonar — visualizer oficial",
+        "provider": "archivo",
+        "url": "portfolio/karims/video/perdonar.mp4",
+        "url_ligera": "portfolio/karims/video/perdonar-telefono.mp4",
+        "miniatura": "portfolio/karims/video/perdonar.jpg",
+        "destacado": true,
+        "evento": "Video musical"
+      }
+    ],
+    "nombre": "Karims",
+    "titulo": "Video musical: Perdonar",
+    "descripcion": "Visualizer oficial de «Perdonar», de Karims.",
+    "nicho": "Música",
+    "publico": true,
+    "video": false,
+    "categorias": [
+      "video"
+    ],
+    "categoria": "video",
+    "fotografia": false,
+    "diseno": false,
+    "destacado": 26
+  },
+  {
+    "id": "jesus-lainado",
+    "slug": "jesus-lainado",
+    "logo": "",
+    "estado": "activo",
+    "videos": [
+      {
+        "titulo": "Rastrerizado",
+        "provider": "archivo",
+        "url": "portfolio/jesus-lainado/video/rastrerizado.mp4",
+        "url_ligera": "portfolio/jesus-lainado/video/rastrerizado-telefono.mp4",
+        "miniatura": "portfolio/jesus-lainado/video/rastrerizado.jpg",
+        "destacado": true,
+        "evento": "Video musical",
+        "reel": true
+      }
+    ],
+    "nombre": "Jesús Lainado",
+    "titulo": "Video musical: Rastrerizado",
+    "descripcion": "Video de «Rastrerizado», de Jesús Lainado.",
+    "nicho": "Música",
+    "publico": true,
+    "video": true,
+    "categorias": [
+      "video"
+    ],
+    "categoria": "video",
+    "fotografia": false,
+    "diseno": false,
+    "destacado": 27
+  },
+  {
+    "id": "grupo-garzon",
+    "slug": "grupo-garzon",
+    "logo": "",
+    "estado": "activo",
+    "videos": [
+      {
+        "titulo": "Propiedad en Vía Brasil",
+        "provider": "archivo",
+        "url": "portfolio/grupo-garzon/video/via-brasil.mp4",
+        "url_ligera": "portfolio/grupo-garzon/video/via-brasil-telefono.mp4",
+        "miniatura": "portfolio/grupo-garzon/video/via-brasil.jpg",
+        "destacado": true,
+        "evento": "Bienes raíces",
+        "reel": true
+      }
+    ],
+    "nombre": "Grupo Garzón",
+    "titulo": "Recorrido de una propiedad en Vía Brasil",
+    "descripcion": "Inmobiliaria — video de una propiedad en Vía Brasil.",
+    "nicho": "Bienes Raíces",
+    "publico": true,
+    "video": true,
+    "categorias": [
+      "video"
+    ],
+    "categoria": "video",
+    "fotografia": false,
+    "diseno": false,
+    "destacado": 28
   }
 ]

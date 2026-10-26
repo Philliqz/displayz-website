@@ -1,3 +1,7 @@
 uploads/
 screenshots/
 .DS_Store
+
+# Los mp4 del portafolio viven en Cloudflare R2 (workers/videos/), no en el repo.
+portfolio/*/video/*.mp4
+.wrangler/

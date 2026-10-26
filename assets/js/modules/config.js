@@ -9,6 +9,9 @@ export const CONFIG = {
   CONTACT_EMAIL: 'ismaelkentish@gmail.com',
   WHATSAPP_URL: 'https://wa.me/50764498833',
   DATA_URL: 'database/empresas.json',
+  // Dónde viven los mp4: bucket R2 de Cloudflare servido por el Worker de workers/videos/.
+  // Vacío: se sirven desde el propio sitio. Termina en '/'.
+  VIDEO_BASE: 'https://displayz-videos.displayz.workers.dev/',
   // Etiquetas de video ("evento") que van a la página Eventos; las demás
   // (Institucional, Spot publicitario, Reel para redes, Video musical, Bienes raíces) van a Video.
   EVENTOS: ['Boda', '15 años', 'Cumpleaños', 'Certamen', 'Evento', 'Feria'],
