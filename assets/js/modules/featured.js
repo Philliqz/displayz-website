@@ -109,7 +109,7 @@ function renderIndice(c, n) {
 export function init() {
   const casosEl = document.querySelector('[data-casos]');
   const indiceEl = document.querySelector('[data-indice]');
-  if (!casosEl && !indiceEl) return;
+  if (!casosEl && !indiceEl && !document.querySelector('[data-marcas]')) return;
 
   fetchCompanies().then((companies) => {
     const visibles = companies.filter((c) => c && disciplinas(c).length);
@@ -126,5 +126,15 @@ export function init() {
       resto.forEach((c, i) => indiceEl.appendChild(renderIndice(c, casos.length + i + 1)));
     }
     if (casosEl) observe(casosEl.querySelectorAll('.reveal'));
+    // Franja de marcas: los nombres, dos veces seguidas para que el loop no salte.
+    const marcasEl = document.querySelector('[data-marcas]');
+    if (marcasEl) {
+      const nombres = visibles.map((c) => c.nombre.split(' — ')[0]);
+      [...nombres, ...nombres].forEach((n) => {
+        const s = el('span', null, n);
+        s.prepend(Object.assign(document.createElement('img'), { src: 'assets/images/isotipo.png', alt: '' }));
+        marcasEl.appendChild(s);
+      });
+    }
   }).catch(() => {});
 }
