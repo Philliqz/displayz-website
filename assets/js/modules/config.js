@@ -12,7 +12,7 @@ export const CONFIG = {
   // Dónde viven los mp4: bucket R2 de Cloudflare servido por el Worker de workers/videos/.
   // Vacío: se sirven desde el propio sitio. Termina en '/'.
   VIDEO_BASE: 'https://displayz-videos.displayz.workers.dev/',
-  // Etiquetas de video ("evento") que van a la página Eventos; las demás
+  // Etiquetas de video ("evento") que van a la página Eventos, solo si el video es horizontal; las demás
   // (Institucional, Spot publicitario, Reel para redes, Video musical, Bienes raíces) van a Video.
   EVENTOS: ['Boda', '15 años', 'Cumpleaños', 'Certamen', 'Evento', 'Feria'],
   // Categorías de los filtros de las galerías, a partir del "nicho" de cada empresa.

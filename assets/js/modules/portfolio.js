@@ -131,9 +131,11 @@ export function shuffle(list) {
 }
 
 function companyItems(company, sectionKey) {
-  // Video y Eventos se reparten los videos por su etiqueta: los de evento van a Eventos.
+  // Video y Eventos se reparten los videos: a Eventos solo van los horizontales con etiqueta de
+  // evento; un reel (vertical) va a Video aunque sea de un evento (fundador, 2026-10-26).
   if (sectionKey === 'video' || sectionKey === 'eventos') {
-    return (company.videos || []).filter((v) => CONFIG.EVENTOS.includes(v.evento) === (sectionKey === 'eventos'));
+    const esEvento = (v) => CONFIG.EVENTOS.includes(v.evento) && !v.reel;
+    return (company.videos || []).filter((v) => esEvento(v) === (sectionKey === 'eventos'));
   }
   return (company.galeria || []).filter((g) => g.tipo === sectionKey);
 }

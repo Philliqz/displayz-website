@@ -2401,7 +2401,7 @@
         "url_ligera": "portfolio/pets-garden/video/cumpleanos-vinci-telefono.mp4",
         "miniatura": "portfolio/pets-garden/video/cumpleanos-vinci.jpg",
         "destacado": true,
-        "evento": "Cumpleaños",
+        "evento": "Reel para redes",
         "reel": true
       },
       {
@@ -2411,7 +2411,7 @@
         "url_ligera": "portfolio/pets-garden/video/festival-perruno-telefono.mp4",
         "miniatura": "portfolio/pets-garden/video/festival-perruno.jpg",
         "destacado": true,
-        "evento": "Evento",
+        "evento": "Reel para redes",
         "reel": true
       },
       {
@@ -3229,7 +3229,7 @@
         "miniatura": "portfolio/kia/video/panama-motor-show-1.jpg",
         "miniatura_vertical": "portfolio/kia/video/panama-motor-show-1.jpg",
         "reel": true,
-        "evento": "Feria"
+        "evento": "Reel para redes"
       },
       {
         "titulo": "Panamá Motor Show 2",
@@ -3239,7 +3239,7 @@
         "miniatura": "portfolio/kia/video/panama-motor-show-2.jpg",
         "miniatura_vertical": "portfolio/kia/video/panama-motor-show-2.jpg",
         "reel": true,
-        "evento": "Feria"
+        "evento": "Reel para redes"
       },
       {
         "titulo": "KIA K2700",
@@ -3282,7 +3282,7 @@
         "miniatura": "portfolio/nissan/video/panama-motor-show.jpg",
         "miniatura_vertical": "portfolio/nissan/video/panama-motor-show.jpg",
         "reel": true,
-        "evento": "Feria"
+        "evento": "Reel para redes"
       }
     ],
     "publico": false
