@@ -152,7 +152,7 @@ picture { display: block; }
 /* Celular: iPhone 17 Pro Max naranja (Cosmic Orange) dibujado con CSS — el marco oficial de Apple
    no se puede usar en un sitio (su licencia lo limita a maquetas de apps). Las piezas se funden cada 4 s. */
 /* Celular: lo más grande que quepa entero en una pantalla (ancho o alto, lo que limite primero). */
-.phone { position: relative; z-index: 3; width: min(80vw, (100vh - var(--nav-h) - 48px) * 78 / 163); width: min(80vw, (100svh - var(--nav-h) - 48px) * 78 / 163); margin: 28px auto 0; aspect-ratio: 78 / 163; padding: 5px; border-radius: 42px;
+.phone { position: relative; z-index: 3; width: min(64vw, (100vh - var(--nav-h) - 48px) * 78 / 163); width: min(64vw, (100svh - var(--nav-h) - 48px) * 78 / 163); margin: 28px auto 0; aspect-ratio: 78 / 163; padding: 5px; border-radius: 42px;
   background: linear-gradient(135deg, #ffa766 0%, #f26a1b 25%, #c84a0c 55%, #f27a2e 80%, #ff9d58 100%) border-box;
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35), 0 30px 60px rgba(0,0,0,0.45); }
 /* Botón lateral */
@@ -214,8 +214,8 @@ picture { display: block; }
 /* ---- Casos (home): galería — una pieza por caso a su proporción, texto encima al pasar el mouse ---- */
 [data-casos] { columns: 1; column-gap: var(--gap); padding: 0 var(--pad); max-width: var(--max-width); margin: 0 auto; }
 .case { position: relative; display: block; overflow: hidden; break-inside: avoid; margin-bottom: var(--gap); border-radius: var(--r-card); }
-.case picture, .case img { display: block; width: 100%; height: auto; transition: transform 0.6s ease; }
-.case:hover img { transform: scale(1.04); }
+.case picture, .case img, .case video { display: block; width: 100%; height: auto; transition: transform 0.6s ease; }
+.case:hover :is(img, video) { transform: scale(1.04); }
 .case-over { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 18px;
   background: linear-gradient(to top, rgba(0,0,0,0.88), rgba(0,0,0,0.35) 45%, transparent 70%); transition: opacity 0.3s ease; }
 @media (hover: hover) { .case-over { opacity: 0; } .case:hover .case-over, .case:focus-visible .case-over { opacity: 1; } }
@@ -454,8 +454,8 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
   .hero-actions { display: flex; margin-top: 28px; }
   .hero-actions .btn { padding: 12px 24px; }
   .hero-avail { margin-top: 22px; }
-  /* Lo más grande que quepa a lo alto: invade 40px del relleno del hero para no empujarlo bajo el pliegue. */
-  .phone { flex-shrink: 0; width: clamp(260px, min(28vw, (100vh - var(--nav-h) - 80px) * 78 / 163), 400px); width: clamp(260px, min(28vw, (100svh - var(--nav-h) - 80px) * 78 / 163), 400px); margin: -40px auto; }
+  /* Dentro del relleno del hero, con aire arriba y abajo, y a la escala del titular (tope 320px). */
+  .phone { flex-shrink: 0; width: clamp(230px, min(22vw, (100vh - var(--nav-h) - 200px) * 78 / 163), 320px); width: clamp(230px, min(22vw, (100svh - var(--nav-h) - 200px) * 78 / 163), 320px); margin: 0 auto; }
 
   .services { grid-template-columns: repeat(3, 1fr); padding-top: 40px; }
   .svc { min-height: 400px; padding: 22px; }

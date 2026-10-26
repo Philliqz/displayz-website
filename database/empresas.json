@@ -2908,7 +2908,8 @@
         "url_ligera": "portfolio/tecnobyte/video/mystic-2-combos-telefono.mp4",
         "miniatura": "portfolio/tecnobyte/video/mystic-2-combos.jpg",
         "miniatura_vertical": "portfolio/tecnobyte/video/mystic-2-combos.jpg",
-        "reel": true
+        "reel": true,
+        "destacado": true
       },
       {
         "titulo": "Nordik 2",
@@ -2917,7 +2918,8 @@
         "url_ligera": "portfolio/tecnobyte/video/nordik-2-telefono.mp4",
         "miniatura": "portfolio/tecnobyte/video/nordik-2.jpg",
         "miniatura_vertical": "portfolio/tecnobyte/video/nordik-2.jpg",
-        "reel": true
+        "reel": true,
+        "destacado": true
       },
       {
         "titulo": "La Biby — Black Byte",
@@ -2930,7 +2932,8 @@
       }
     ],
     "instagram": "https://www.instagram.com/tecnobytestore/",
-    "publico": false
+    "publico": false,
+    "destacado": 4
   },
   {
     "id": "kia",

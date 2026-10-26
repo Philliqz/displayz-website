@@ -5,7 +5,7 @@
 import { fetchCompanies } from './data-store.js';
 import { makePictureImg, tituloDe } from './portfolio.js';
 import { observe } from './animations.js';
-import { getThumbnailSync } from './video-provider.js';
+import { ARCHIVO_RE } from './video-provider.js';
 
 const SECCIONES = { video: 'Video', fotografia: 'Fotografía', diseno: 'Diseño' };
 
@@ -27,38 +27,64 @@ function el(tag, className, text) {
 
 function urlEmpresa(c) { return 'empresa.html?slug=' + encodeURIComponent(c.slug); }
 
-// La pieza del caso, una sola: la miniatura del video (vertical si el video lo es) o la primera imagen.
+// Las piezas del caso: los videos propios (mp4) marcados "destacado": true, uno por tile; si no
+// hay, una sola pieza — su primer video propio o su primera imagen. Los de YouTube no salen aquí:
+// en la home todo video se reproduce al instante, sin reproductor externo.
 // Solo de las disciplinas activas: un video con video:false no sale aunque siga en el JSON.
-function pieza(c, keys) {
-  const v = keys.includes('video') && piezas(c, 'video').find((x) => x.miniatura_vertical || x.miniatura || getThumbnailSync(x.url, x.provider));
-  if (v) return { src: v.miniatura_vertical || v.miniatura || getThumbnailSync(v.url, v.provider), video: true };
+function piezasDestacadas(c, keys) {
+  const propios = keys.includes('video') ? piezas(c, 'video').filter((x) => ARCHIVO_RE.test(x.url || '')) : [];
+  const marcados = propios.filter((x) => x.destacado);
+  if (marcados.length) return marcados.map(comoVideo);
+  if (propios.length) return [comoVideo(propios[0])];
   const g = keys.filter((k) => k !== 'video').flatMap((k) => piezas(c, k))[0];
-  return g ? { src: g.archivo } : null;
+  return g ? [{ src: g.archivo }] : [];
 }
 
-// Galería: cada caso es su pieza a su proporción (por eso los tamaños varían); el texto
-// aparece encima, sobre un degradado negro, al pasar el mouse (en pantallas táctiles, siempre).
-function renderCaso(c) {
-  const keys = disciplinas(c);
-  const p = pieza(c, keys);
-  if (!p) return null;
+function comoVideo(v) {
+  return { src: v.miniatura_vertical || v.miniatura, video: v.url_ligera || v.url };
+}
+
+// Galería: cada pieza a su proporción (por eso los tamaños varían); el texto aparece encima,
+// sobre un degradado negro, al pasar el mouse (en pantallas táctiles, siempre).
+function renderPieza(c, keys, p) {
   const art = el('a', 'case reveal');
   art.href = urlEmpresa(c);
-  const { node, img } = makePictureImg(p.src);
-  img.alt = ''; // el nombre del enlace ya lo dan el título y las disciplinas del overlay
-  img.loading = 'lazy';
-  art.appendChild(node);
   if (p.video) {
+    // Mudo y en bucle: así el navegador lo deja arrancar solo. Se carga y suena solo en pantalla.
+    const v = el('video');
+    v.muted = true;
+    v.loop = true;
+    v.playsInline = true;
+    v.preload = 'none';
+    if (p.src) v.poster = p.src;
+    v.src = p.video;
+    v.setAttribute('aria-hidden', 'true');
+    art.appendChild(v);
     const rec = el('span', 'rec');
     rec.appendChild(el('i'));
     rec.appendChild(document.createTextNode('Video'));
     art.appendChild(rec);
+  } else {
+    const { node, img } = makePictureImg(p.src);
+    img.alt = ''; // el nombre del enlace ya lo dan el título y las disciplinas del overlay
+    img.loading = 'lazy';
+    art.appendChild(node);
   }
   const over = el('span', 'case-over');
   over.appendChild(el('span', 'case-title', tituloDe(c)));
   over.appendChild(el('span', 'case-line', keys.map((k) => SECCIONES[k]).join(' · ')));
   art.appendChild(over);
   return art;
+}
+
+// Reproduce cada video mientras está a la vista; fuera de pantalla, en pausa.
+function autoplay(root) {
+  const videos = root.querySelectorAll('video');
+  if (!('IntersectionObserver' in window)) { videos.forEach((v) => v.play().catch(() => {})); return; }
+  const io = new IntersectionObserver((entradas) => entradas.forEach(({ target, isIntersecting }) => {
+    if (isIntersecting) target.play().catch(() => {}); else target.pause();
+  }), { rootMargin: '200px 0px' });
+  videos.forEach((v) => io.observe(v));
 }
 
 export function init() {
@@ -70,7 +96,11 @@ export function init() {
     const casos = visibles.filter((c) => Number(c.destacado) > 0)
       .sort((a, b) => Number(a.destacado) - Number(b.destacado));
 
-    casos.map(renderCaso).filter(Boolean).forEach((n) => casosEl.appendChild(n));
+    casos.forEach((c) => {
+      const keys = disciplinas(c);
+      piezasDestacadas(c, keys).forEach((p) => casosEl.appendChild(renderPieza(c, keys, p)));
+    });
+    autoplay(casosEl);
     observe(casosEl.querySelectorAll('.reveal'));
   }).catch(() => {});
 }
