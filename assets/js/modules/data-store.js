@@ -1,7 +1,7 @@
 // Única puerta de entrada a los datos de empresas. Ningún otro módulo debe hacer
 // fetch() de database/empresas.json directamente — este es el "enchufe" que el día
 // de mañana se cambia por llamadas a un backend real (Supabase/REST/etc.) sin tener
-// que tocar portfolio.js, portfolio-preview.js ni router.js.
+// que tocar portfolio.js, featured.js ni router.js.
 import { CONFIG } from './config.js';
 
 let cache = null;

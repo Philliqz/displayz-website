@@ -2,6 +2,7 @@
 // galería. Lee de data-store.js — nunca hace fetch directo — así que este archivo no
 // sabe ni le importa si los datos vienen de un JSON estático o de un backend real.
 import { fetchCompanies } from './data-store.js';
+import { CONFIG } from './config.js';
 import { observe } from './animations.js';
 import * as Lightbox from './lightbox.js';
 import * as VideoModal from './video-modal.js';
@@ -23,8 +24,11 @@ export function init() {
       }
       if (emptyState) emptyState.style.display = 'none';
       visible.forEach((company) => {
-        container.appendChild(renderCompany(company, sectionKey));
+        const node = renderCompany(company, sectionKey);
+        node.dataset.grupo = grupoDe(company);
+        container.appendChild(node);
       });
+      renderFilters(section, container, visible);
       observe(container.querySelectorAll('.reveal'));
       Lightbox.init();
       VideoModal.init();
@@ -32,6 +36,57 @@ export function init() {
     .catch(() => {
       if (emptyState) emptyState.style.display = 'block';
     });
+}
+
+// Grupo de cada empresa para los filtros de la galería: sale de su "nicho" vía
+// CONFIG.GRUPOS. Un nicho sin mapear cae en "Otros".
+function grupoDe(company) {
+  return CONFIG.GRUPOS[company.nicho] || 'Otros';
+}
+
+function slugify(text) {
+  return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+// Filtros por categoría. Solo aparecen si hay 2+ grupos con trabajo — un filtro
+// que deja todo igual o una categoría vacía es ruido. La categoría elegida queda en
+// la URL (?cat=) para poder compartir el enlace ya filtrado.
+function renderFilters(section, container, companies) {
+  const grupos = [];
+  companies.forEach((c) => { const g = grupoDe(c); if (!grupos.includes(g)) grupos.push(g); });
+  if (grupos.length < 2) return;
+  grupos.sort((a, b) => (a === 'Otros') - (b === 'Otros') || a.localeCompare(b, 'es'));
+
+  const bar = document.createElement('div');
+  bar.className = 'filter-bar';
+  bar.setAttribute('role', 'group');
+  bar.setAttribute('aria-label', 'Filtrar por categoría');
+  const buttons = [];
+
+  function apply(grupo) {
+    container.querySelectorAll('.brand-section').forEach((el) => {
+      el.hidden = grupo !== null && el.dataset.grupo !== grupo;
+    });
+    buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.grupo === (grupo || ''))));
+    const url = new URL(window.location.href);
+    if (grupo) url.searchParams.set('cat', slugify(grupo)); else url.searchParams.delete('cat');
+    history.replaceState(null, '', url);
+  }
+
+  ['', ...grupos].forEach((g) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'filter-chip';
+    b.dataset.grupo = g;
+    b.textContent = g || 'Todo';
+    b.addEventListener('click', () => apply(g || null));
+    buttons.push(b);
+    bar.appendChild(b);
+  });
+  container.parentNode.insertBefore(bar, container);
+
+  const pedido = new URLSearchParams(window.location.search).get('cat');
+  apply(grupos.find((g) => slugify(g) === pedido) || null);
 }
 
 // Semilla determinística por día: el orden se siente "fresco" (cambia día a
@@ -53,7 +108,7 @@ function mulberry32(seed) {
   };
 }
 
-function shuffle(list) {
+export function shuffle(list) {
   const rand = mulberry32(daySeed());
   const arr = list.slice();
   for (let i = arr.length - 1; i > 0; i--) {
@@ -87,7 +142,7 @@ const LOCAL_JPG_RE = /\.jpe?g$/i;
  * contenedor cuando .gallery-track está en modo grid (galerías de ≤3 fotos)
  * — con las clases duplicadas no hace falta ese truco.
  */
-function makePictureImg(src, className) {
+export function makePictureImg(src, className) {
   const img = document.createElement('img');
   img.src = src || '';
   if (className) img.className = className;
@@ -149,40 +204,12 @@ export function renderCompany(company, sectionKey) {
     ig.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"></rect><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="2"></circle><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"></circle></svg> Instagram';
     actions.appendChild(ig);
   }
-  actions.appendChild(makeLikeBtn(company.slug));
-  header.appendChild(actions);
+  if (actions.children.length) header.appendChild(actions);
   wrap.appendChild(header);
 
   const items = companyItems(company, sectionKey);
   wrap.appendChild(renderGallery(items, sectionKey, company));
   return wrap;
-}
-
-export function makeLikeBtn(slug) {
-  const likedKey = 'displayz-like-' + slug;
-  const countKey = 'displayz-likes-' + slug;
-  let liked = localStorage.getItem(likedKey) === '1';
-  let count = parseInt(localStorage.getItem(countKey), 10);
-  if (isNaN(count)) count = liked ? 1 : 0;
-
-  const btn = document.createElement('button');
-  btn.type = 'button';
-  btn.className = 'brand-like-btn' + (liked ? ' is-liked' : '');
-  btn.setAttribute('aria-label', 'Me gusta');
-
-  function render() {
-    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 20s-7-4.35-9.5-8.5C.7 8 2.3 4.5 6 4.5c2 0 3.3 1 4.5 2.5C11.7 5.5 13 4.5 15 4.5c3.7 0 5.3 3.5 3.5 7C18 15.65 12 20 12 20z" stroke="currentColor" stroke-width="2" fill="' + (liked ? 'currentColor' : 'none') + '"/></svg><span>' + count + '</span>';
-  }
-  render();
-  btn.addEventListener('click', () => {
-    liked = true;
-    count += 1;
-    btn.classList.add('is-liked');
-    localStorage.setItem(likedKey, '1');
-    localStorage.setItem(countKey, String(count));
-    render();
-  });
-  return btn;
 }
 
 export function renderGallery(rawItems, sectionKey, company) {

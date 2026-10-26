@@ -5,7 +5,7 @@ import * as Forms from './forms.js';
 import * as Lightbox from './lightbox.js';
 import * as VideoModal from './video-modal.js';
 import * as Portfolio from './portfolio.js';
-import * as PortfolioPreview from './portfolio-preview.js';
+import * as Featured from './featured.js';
 import * as Router from './router.js';
 import * as AboutPhoto from './about-photo.js';
 
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   Lightbox.init();
   VideoModal.init();
   Portfolio.init();
-  PortfolioPreview.init();
+  Featured.init();
   Router.init();
   AboutPhoto.init();
 });

@@ -8,5 +8,21 @@ export const CONFIG = {
   SHEETS_ENDPOINT: 'https://script.google.com/macros/s/AKfycbzryuJMPNT3OMXpa9EW9kgPXxzTpuu54sbMsZsyGTexNpJnBKGuJ2zCdT2Lu2Q_1Ld5/exec',
   CONTACT_EMAIL: 'ismaelkentish@gmail.com',
   WHATSAPP_URL: 'https://wa.me/50764498833',
-  DATA_URL: 'database/empresas.json'
+  DATA_URL: 'database/empresas.json',
+  // Categorías de los filtros de las galerías, a partir del "nicho" de cada empresa.
+  // Un nicho nuevo se agrega aquí; si no está, la empresa cae en "Otros".
+  GRUPOS: {
+    'Restaurante': 'Gastronomía y bebidas',
+    'Bebidas': 'Gastronomía y bebidas',
+    'Automotriz': 'Automotriz',
+    'Bienes Raíces': 'Inmobiliaria y construcción',
+    'Construcción': 'Inmobiliaria y construcción',
+    'Clínicas': 'Salud y belleza',
+    'Belleza': 'Salud y belleza',
+    'Tecnología': 'Tecnología',
+    'Publicidad': 'Publicidad',
+    'Boda': 'Eventos sociales',
+    'Evento institucional': 'Eventos sociales',
+    'Evento': 'Corporativo e institucional'
+  }
 };
