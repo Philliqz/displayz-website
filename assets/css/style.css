@@ -416,18 +416,18 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
 
   .banner { margin: 12px; border-radius: 40px; }
   .banner-shape { width: 62%; right: -6%; top: -18%; }
-  .hero { display: flex; align-items: center; justify-content: space-between; gap: 48px;
+  .hero { display: flex; align-items: center; justify-content: flex-start; gap: clamp(48px, 5vw, 88px);
     /* El fondo llega al borde; el contenido se queda en el ancho del resto del sitio. */
     padding: 64px max(48px, calc((100% - var(--max-width)) / 2));
     min-height: min(640px, calc(100svh - var(--nav-h) - 24px)); }
   .hero-copy { padding: 0; }
   .hero-sign { font-size: 15px; }
-  .hero-title { max-width: 13ch; font-size: clamp(56px, 6vw, 104px); }
+  .hero-title { max-width: 6.8em; /* ajustado al texto: con 13ch la caja quedaba más ancha que la línea y alejaba el celular */ font-size: clamp(56px, 6vw, 104px); }
   .hero-sub { font-size: 17px; margin-top: 16px; }
   .hero-actions { display: flex; margin-top: 28px; }
   .hero-actions .btn { padding: 12px 24px; }
   .hero-avail { margin-top: 22px; }
-  .phone { flex-shrink: 0; width: clamp(240px, 22vw, 300px); margin: 0 4% 0 0; }
+  .phone { flex-shrink: 0; width: clamp(240px, 22vw, 300px); margin: 0; }
 
   .services { grid-template-columns: repeat(3, 1fr); padding-top: 40px; }
   .svc { min-height: 400px; padding: 22px; }

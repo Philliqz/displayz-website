@@ -30,7 +30,7 @@ function plano(THREE, w, h, r) {
 function construir(THREE) {
   const phone = new THREE.Group();
   // Aluminio anodizado: metal puro (sin laca ni difuso, que es lo que lo hacía ver de plástico); el color tiñe el reflejo.
-  const aluminio = new THREE.MeshPhysicalMaterial({ color: 0xff8a33, metalness: 1, roughness: 0.4, envMapIntensity: 1.5 });
+  const aluminio = new THREE.MeshPhysicalMaterial({ color: 0xc85a1c, metalness: 1, roughness: 0.4, envMapIntensity: 1.5 });
   const negro = new THREE.MeshPhysicalMaterial({ color: 0x050505, metalness: 0, roughness: 0.08, clearcoat: 1 });
 
   const cuerpo = new THREE.ExtrudeGeometry(rect(THREE, W - 2 * BEVEL, H - 2 * BEVEL, R - BEVEL), {
