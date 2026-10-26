@@ -1,4 +1,4 @@
-// Home: "Trabajo seleccionado" (casos grandes), collage del hero y franja de marcas.
+// Home: "Trabajo seleccionado" (casos grandes) y collage del hero.
 // Casos = empresas visibles con "destacado": 1, 2, 3… en database/empresas.json, en
 // ese orden. Todo se llena solo desde los datos — para cambiar un caso destacado
 // basta con mover ese número en el JSON.
@@ -113,7 +113,7 @@ function renderCaso(c, i) {
 
 export function init() {
   const casosEl = document.querySelector('[data-casos]');
-  if (!casosEl && !document.querySelector('[data-marcas], [data-collage]')) return;
+  if (!casosEl && !document.querySelector('[data-collage]')) return;
 
   fetchCompanies().then((companies) => {
     const visibles = companies.filter((c) => c && disciplinas(c).length);
@@ -126,15 +126,5 @@ export function init() {
     const count = document.querySelector('[data-casos-count]');
     if (count) count.textContent = pad(casos.length) + (casos.length === 1 ? ' caso' : ' casos');
     if (casosEl) observe(casosEl.querySelectorAll('.reveal'));
-    // Franja de marcas: los nombres, dos veces seguidas para que el loop no salte.
-    const marcasEl = document.querySelector('[data-marcas]');
-    if (marcasEl) {
-      const nombres = visibles.map((c) => c.nombre.split(' — ')[0]);
-      [...nombres, ...nombres].forEach((n) => {
-        const s = el('span', null, n);
-        s.prepend(Object.assign(document.createElement('img'), { src: 'assets/images/isotipo.png', alt: '' }));
-        marcasEl.appendChild(s);
-      });
-    }
   }).catch(() => {});
 }
