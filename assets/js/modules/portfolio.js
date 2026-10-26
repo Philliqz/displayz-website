@@ -159,6 +159,12 @@ export function makePictureImg(src, className) {
   return { node: img, img };
 }
 
+// Título público del proyecto. El nombre, logo, descripción e Instagram del cliente
+// solo salen con "publico": true (permiso del cliente); por defecto el proyecto es anónimo.
+export function tituloDe(company) {
+  return company.titulo || (company.publico ? company.nombre : 'Proyecto');
+}
+
 export function renderCompany(company, sectionKey) {
   const wrap = document.createElement('div');
   wrap.className = 'brand-section reveal';
@@ -168,34 +174,30 @@ export function renderCompany(company, sectionKey) {
 
   const block = document.createElement('div');
   block.className = 'brand-block';
-  const { node: logoNode, img: logo } = makePictureImg(company.logo || '', 'brand-logo');
-  logo.alt = company.nombre + ' — logo';
-  logo.loading = 'lazy';
   const info = document.createElement('div');
   info.className = 'brand-info';
   const name = document.createElement('h2');
   name.className = 'brand-name';
-  name.textContent = company.nombre;
+  name.textContent = tituloDe(company);
   info.appendChild(name);
-  if (company.nicho) {
-    const nichoTag = document.createElement('span');
-    nichoTag.className = 'brand-nicho-tag';
-    nichoTag.textContent = company.nicho;
-    info.appendChild(nichoTag);
-  }
-  if (company.descripcion) {
+  if (company.publico && company.descripcion) {
     const desc = document.createElement('p');
     desc.className = 'brand-desc';
     desc.textContent = company.descripcion;
     info.appendChild(desc);
   }
-  block.appendChild(logoNode);
+  if (company.publico && company.logo) {
+    const { node: logoNode, img: logo } = makePictureImg(company.logo, 'brand-logo');
+    logo.alt = company.nombre + ' — logo';
+    logo.loading = 'lazy';
+    block.appendChild(logoNode);
+  }
   block.appendChild(info);
   header.appendChild(block);
 
   const actions = document.createElement('div');
   actions.className = 'brand-actions';
-  if (company.instagram) {
+  if (company.publico && company.instagram) {
     const ig = document.createElement('a');
     ig.className = 'brand-ig-btn';
     ig.href = company.instagram;
@@ -223,7 +225,7 @@ export function renderGallery(rawItems, sectionKey, company) {
     img.draggable = false;
     img.loading = 'lazy';
     if (isVideo) {
-      img.alt = item.titulo || company.nombre + ' — video';
+      img.alt = item.titulo || tituloDe(company) + ' — video';
       const embedSrc = toEmbedSrc(item.url, item.provider);
       if (embedSrc) img.setAttribute('data-video-embed', embedSrc);
       // Mejora progresiva: si no había miniatura propia ni una automática por
@@ -244,7 +246,7 @@ export function renderGallery(rawItems, sectionKey, company) {
         });
       }
     } else {
-      img.alt = item.alt || company.nombre;
+      img.alt = item.alt || tituloDe(company);
     }
     return node;
   }
