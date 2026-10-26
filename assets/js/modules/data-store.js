@@ -8,7 +8,9 @@ let cache = null;
 
 export function fetchCompanies() {
   if (!cache) {
-    cache = fetch(CONFIG.DATA_URL)
+    // no-cache: el navegador pregunta con ETag si cambió (304 si no); sin esto GitHub Pages
+    // sirve el JSON viejo hasta 10 min después de publicar.
+    cache = fetch(CONFIG.DATA_URL, { cache: 'no-cache' })
       .then((res) => res.json())
       .then((empresas) => {
         empresas.forEach((c) => (c.videos || []).forEach((v) => {
