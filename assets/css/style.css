@@ -133,12 +133,18 @@ picture { display: block; }
 .hero-sub { margin: 12px 0 0; font-size: 15px; color: rgba(255,255,255,0.85); max-width: 440px; }
 .hero-actions { display: grid; grid-template-columns: 1.3fr 1fr; gap: 8px; margin-top: 20px; }
 .hero-actions .btn { padding: 10px 12px; font-size: 14px; min-height: 48px; white-space: nowrap; }
-/* Celular: marco dibujado con CSS; las piezas se funden una tras otra cada 4 s. */
-.phone { position: relative; z-index: 3; width: 180px; margin: 28px auto 0; aspect-ratio: 9 / 19; padding: 8px; border-radius: 40px;
-  background: #0d0712; box-shadow: 0 0 0 1px rgba(255,255,255,0.18), 0 30px 60px rgba(0,0,0,0.45); }
-.phone::before { content: ""; position: absolute; z-index: 2; top: 16px; left: 50%; width: 30%; height: 18px; transform: translateX(-50%);
-  border-radius: 999px; background: #0d0712; }
-.phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 32px; background: #120a1a; }
+/* Celular: iPhone 17 Pro Max naranja (Cosmic Orange) dibujado con CSS — el marco oficial de Apple
+   no se puede usar en un sitio (su licencia lo limita a maquetas de apps). Las piezas se funden cada 4 s. */
+.phone { position: relative; z-index: 3; width: 180px; margin: 28px auto 0; aspect-ratio: 78 / 163; padding: 5px; border-radius: 42px;
+  background: linear-gradient(135deg, #ffa766 0%, #f26a1b 25%, #c84a0c 55%, #f27a2e 80%, #ff9d58 100%) border-box;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35), 0 30px 60px rgba(0,0,0,0.45); }
+/* Botón lateral */
+.phone::after { content: ""; position: absolute; right: -4px; top: 26%; width: 4px; height: 12%; border-radius: 0 3px 3px 0;
+  background: linear-gradient(90deg, #c94f12, #f58a43) border-box; }
+.phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border: 6px solid #050505; border-radius: 37px; background: #120a1a; }
+/* Dynamic Island */
+.phone-screen::after { content: ""; position: absolute; z-index: 2; top: 10px; left: 50%; width: 30%; height: 16px; transform: translateX(-50%);
+  border-radius: 999px; background: #050505; }
 .phone-screen picture, .phone-screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .phone-screen picture { opacity: 0; animation: phoneFade 12s -0.6s infinite; } /* la primera ya visible al cargar */
 .phone-screen picture:nth-child(2) { animation-delay: 3.4s; }
