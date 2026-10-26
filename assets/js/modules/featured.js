@@ -1,4 +1,4 @@
-// Home: "Trabajo seleccionado" (casos grandes).
+// Home: "Lo más destacado" (galería, una pieza por caso).
 // Casos = empresas visibles con "destacado": 1, 2, 3… en database/empresas.json, en
 // ese orden. Todo se llena solo desde los datos — para cambiar un caso destacado
 // basta con mover ese número en el JSON.
@@ -27,49 +27,37 @@ function el(tag, className, text) {
 
 function urlEmpresa(c) { return 'empresa.html?slug=' + encodeURIComponent(c.slug); }
 
-// Imágenes de un proyecto: primero la miniatura del video (si hay), luego las de galería.
+// La pieza del caso, una sola: la miniatura del video (vertical si el video lo es) o la primera imagen.
 // Solo de las disciplinas activas: un video con video:false no sale aunque siga en el JSON.
-function medios(c, keys) {
-  const fotos = [];
-  const v = keys.includes('video') && piezas(c, 'video')
-    .map((x) => ({ x, src: x.miniatura || getThumbnailSync(x.url, x.provider) }))
-    .find((o) => o.src);
-  if (v) fotos.push({ src: v.src, vertical: v.x.miniatura_vertical, alt: v.x.titulo || tituloDe(c), video: true });
-  keys.filter((k) => k !== 'video').forEach((k) =>
-    piezas(c, k).forEach((g) => fotos.push({ src: g.archivo, alt: g.alt || tituloDe(c), tipo: k })));
-  return fotos;
+function pieza(c, keys) {
+  const v = keys.includes('video') && piezas(c, 'video').find((x) => x.miniatura_vertical || x.miniatura || getThumbnailSync(x.url, x.provider));
+  if (v) return { src: v.miniatura_vertical || v.miniatura || getThumbnailSync(v.url, v.provider), video: true };
+  const g = keys.filter((k) => k !== 'video').flatMap((k) => piezas(c, k))[0];
+  return g ? { src: g.archivo } : null;
 }
 
+// Galería: cada caso es su pieza a su proporción (por eso los tamaños varían); el texto
+// aparece encima, sobre un degradado negro, al pasar el mouse (en pantallas táctiles, siempre).
 function renderCaso(c) {
   const keys = disciplinas(c);
-  const art = el('article', 'case reveal');
-
-  const copy = el('div', 'case-copy');
-  const h3 = el('h3', 'case-title');
-  const a = el('a', null, tituloDe(c));
-  a.href = urlEmpresa(c);
-  h3.appendChild(a);
-  copy.appendChild(h3);
-  copy.appendChild(el('p', 'case-line', keys.map((k) => SECCIONES[k]).join(' · ')));
-  art.appendChild(copy);
-
-  const media = el('a', 'case-media');
-  media.href = urlEmpresa(c);
-  media.setAttribute('aria-label', 'Ver ' + tituloDe(c));
-  medios(c, keys).slice(0, 3).forEach((f) => {
-    const { node, img } = makePictureImg(f.src);
-    img.alt = f.alt;
-    img.loading = 'lazy';
-    if (!f.video) { media.appendChild(node); return; }
-    const wrap = el('div', 'media-wrap');
-    wrap.appendChild(node);
+  const p = pieza(c, keys);
+  if (!p) return null;
+  const art = el('a', 'case reveal');
+  art.href = urlEmpresa(c);
+  const { node, img } = makePictureImg(p.src);
+  img.alt = ''; // el nombre del enlace ya lo dan el título y las disciplinas del overlay
+  img.loading = 'lazy';
+  art.appendChild(node);
+  if (p.video) {
     const rec = el('span', 'rec');
     rec.appendChild(el('i'));
     rec.appendChild(document.createTextNode('Video'));
-    wrap.appendChild(rec);
-    media.appendChild(wrap);
-  });
-  art.appendChild(media);
+    art.appendChild(rec);
+  }
+  const over = el('span', 'case-over');
+  over.appendChild(el('span', 'case-title', tituloDe(c)));
+  over.appendChild(el('span', 'case-line', keys.map((k) => SECCIONES[k]).join(' · ')));
+  art.appendChild(over);
   return art;
 }
 
@@ -82,7 +70,7 @@ export function init() {
     const casos = visibles.filter((c) => Number(c.destacado) > 0)
       .sort((a, b) => Number(a.destacado) - Number(b.destacado));
 
-    casos.forEach((c) => casosEl.appendChild(renderCaso(c)));
+    casos.map(renderCaso).filter(Boolean).forEach((n) => casosEl.appendChild(n));
     observe(casosEl.querySelectorAll('.reveal'));
   }).catch(() => {});
 }

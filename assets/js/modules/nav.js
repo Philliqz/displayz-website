@@ -7,6 +7,19 @@ export function init() {
     }
   });
   initMobileToggle();
+  initSolid();
+}
+
+// La barra va transparente sobre el banner de arriba; al pasarlo toma fondo (.is-solid).
+// Sin banner (política), siempre con fondo.
+function initSolid() {
+  const nav = document.querySelector('.site-nav');
+  const banner = document.querySelector('.hero.banner, .gallery-hero');
+  if (!nav) return;
+  if (!banner || !('IntersectionObserver' in window)) { nav.classList.add('is-solid'); return; }
+  const alto = nav.offsetHeight;
+  new IntersectionObserver(([e]) => nav.classList.toggle('is-solid', !e.isIntersecting),
+    { rootMargin: `-${alto}px 0px 0px 0px` }).observe(banner);
 }
 
 function initMobileToggle() {

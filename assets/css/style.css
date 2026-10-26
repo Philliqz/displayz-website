@@ -71,19 +71,21 @@ picture { display: block; }
 .reveal.is-visible { opacity: 1; transform: none; }
 
 /* ---- Nav ---- */
-.site-nav { position: sticky; top: 0; z-index: 100; background: rgba(0,0,0,0.78);
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid; border-image: var(--gradient-brand) 1; }
+/* Transparente sobre el degradado del primer banner, que sube hasta el borde de arriba; al pasarlo
+   (nav.js pone .is-solid) toma fondo para leerse sobre el resto de la página. */
+.site-nav { position: sticky; top: 0; z-index: 100; transition: background 0.3s ease; }
+.site-nav.is-solid { background: rgba(0,0,0,0.78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
 .site-nav .container { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 12px; }
 .logo-link img { height: 22px; width: auto; }
 .nav-links { position: absolute; top: calc(100% + 8px); left: var(--pad); right: var(--pad); z-index: 99; list-style: none; margin: 0; padding: 8px;
-  border-radius: var(--r-card);
+  border-radius: var(--r-card); background: rgba(13,7,18,0.96); border: 1px solid rgba(255,255,255,0.7);
   display: none; flex-direction: column; gap: 2px; }
 .site-nav.is-open .nav-links { display: flex; }
 .nav-link { display: block; padding: 14px 16px; border-radius: var(--r-ctrl); font-family: var(--font-display);
   font-weight: 500; font-size: 22px; letter-spacing: -0.02em; color: var(--color-white); }
-.nav-link:hover { background: var(--color-panel-2); }
-/* Anillo de marca: el degradado del hero, en movimiento, como borde de 1px (menú y franja de servicios). */
-:is(.nav-links, .band) { border: 1px solid transparent; background:
+.nav-link:hover { background: rgba(255,255,255,0.15); }
+/* Anillo de marca: el degradado del hero, en movimiento, como borde de 1px (franja de servicios). */
+.band { border: 1px solid transparent; background:
   linear-gradient(160deg, rgba(141,0,166,0.32), rgba(1,114,220,0.14) 55%, transparent 85%) padding-box,
   linear-gradient(var(--color-panel), var(--color-panel)) padding-box,
   var(--gradient-hero) border-box; background-size: auto, auto, 300% 300%; animation: heroGradientMove 16s ease infinite; }
@@ -92,7 +94,7 @@ picture { display: block; }
 .btn-contact-pill { margin-left: auto; font-family: var(--font-display); font-size: 13px; font-weight: 500;
   display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; border-radius: 999px; color: var(--color-white); }
 .nav-toggle { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 44px; height: 44px;
-  background: var(--color-panel); border: 1px solid var(--color-line); border-radius: 50%; cursor: pointer; padding: 0; }
+  background: transparent; border: 1px solid rgba(255,255,255,0.7); border-radius: 50%; cursor: pointer; padding: 0; }
 .nav-toggle span { display: block; width: 16px; height: 1.5px; background: var(--color-white); transition: transform 0.25s ease, opacity 0.25s ease; }
 .site-nav.is-open .nav-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
 .site-nav.is-open .nav-toggle span:nth-child(2) { opacity: 0; }
@@ -140,7 +142,7 @@ picture { display: block; }
 .dot { width: 7px; height: 7px; border-radius: 50%; background: #3ddc97; box-shadow: 0 0 0 4px rgba(61,220,151,0.2); animation: recBlink 1.6s ease-in-out infinite; }
 
 /* ---- Hero (home): solo tipografía sobre el banner; el trabajo va justo debajo ---- */
-.hero { padding: 40px 0 36px; }
+.hero { padding: calc(40px + var(--nav-h)) 0 36px; }
 .hero-copy { position: relative; z-index: 3; padding: 0 20px; }
 .hero-title { margin: 12px 0 0; font-family: var(--font-display); font-weight: 600; letter-spacing: -0.045em;
   font-size: clamp(34px, 9.6vw, 76px); line-height: 1.02; }
@@ -209,20 +211,19 @@ picture { display: block; }
 .tile-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), transparent 60%) border-box; }
 .tile-photo .tile-body { position: relative; z-index: 1; margin-top: auto; padding: 18px; }
 
-/* ---- Casos (home): una tarjeta por proyecto ---- */
-[data-casos] { display: grid; gap: var(--gap); padding: 0 var(--pad); max-width: var(--max-width); margin: 0 auto; }
-.case { display: grid; gap: 18px; padding: 10px 10px 20px; border-radius: var(--r-card); background: var(--color-panel); border: 1px solid var(--color-line); }
-.case-media { order: -1; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-.case-media > :first-child { grid-column: 1 / -1; }
-.case-media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--r-ctrl); }
-.case-media > :first-child img { aspect-ratio: 4 / 3; }
-.case-copy { padding: 0 8px; }
-.case-title { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.035em; margin: 0 0 8px;
-  font-size: clamp(26px, 7.4vw, 40px); line-height: 1.05; }
-.case-line { color: var(--color-muted); font-size: 14px; margin: 0; }
-.case-title a:hover { color: var(--color-label); }
-.media-wrap { position: relative; }
-.rec { position: absolute; top: 10px; left: 10px; display: flex; align-items: center; gap: 6px; border-radius: 999px;
+/* ---- Casos (home): galería — una pieza por caso a su proporción, texto encima al pasar el mouse ---- */
+[data-casos] { columns: 1; column-gap: var(--gap); padding: 0 var(--pad); max-width: var(--max-width); margin: 0 auto; }
+.case { position: relative; display: block; overflow: hidden; break-inside: avoid; margin-bottom: var(--gap); border-radius: var(--r-card); }
+.case picture, .case img { display: block; width: 100%; height: auto; transition: transform 0.6s ease; }
+.case:hover img { transform: scale(1.04); }
+.case-over { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 18px;
+  background: linear-gradient(to top, rgba(0,0,0,0.88), rgba(0,0,0,0.35) 45%, transparent 70%); transition: opacity 0.3s ease; }
+@media (hover: hover) { .case-over { opacity: 0; } .case:hover .case-over, .case:focus-visible .case-over { opacity: 1; } }
+@media (any-pointer: coarse) { .case-over { opacity: 1; } } /* con pantalla táctil (también híbridos), siempre visible */
+.case-title { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.02em; font-size: 20px; line-height: 1.15; }
+.case-line { color: var(--color-soft); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
+.case:focus-visible { outline: 2px solid var(--color-white); outline-offset: 3px; }
+.rec { position: absolute; z-index: 1; top: 10px; left: 10px; display: flex; align-items: center; gap: 6px; border-radius: 999px;
   background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); padding: 6px 12px; font-size: 12px; }
 .rec i { width: 7px; height: 7px; border-radius: 50%; background: var(--color-danger); }
 
@@ -309,7 +310,9 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .form-status--error { display: block; color: var(--color-danger); }
 
 /* ---- Cabecera de galerías / empresa ---- */
-.gallery-hero { position: relative; overflow: hidden; isolation: isolate; padding: 36px 0 32px; margin: var(--m-banner); border-radius: var(--r-banner); }
+.gallery-hero { position: relative; overflow: hidden; isolation: isolate; padding: calc(36px + var(--nav-h)) 0 32px; margin: var(--m-banner); border-radius: var(--r-banner); }
+/* El banner de arriba sube detrás de la barra y llega a los bordes; solo se redondea abajo. */
+:is(.hero.banner, .gallery-hero) { margin: calc(-1 * var(--nav-h)) 0 var(--m-banner); border-radius: 0 0 var(--r-banner) var(--r-banner); }
 .gallery-hero .banner-shape { width: 90%; right: -38%; top: -30%; }
 .gallery-hero .hero-gradient-bg { opacity: 1; z-index: -2; }
 .gallery-hero .container { position: relative; z-index: 1; }
@@ -401,7 +404,7 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .banner, .hero-gradient-bg, .contact-info::before, .dot, .nav-links, .band, .btn-contact-pill, .wa-float, .btn-gradient, .btn-form { animation: none; }
+  .banner, .hero-gradient-bg, .contact-info::before, .dot, .band, .btn-contact-pill, .wa-float, .btn-gradient, .btn-form { animation: none; }
   .phone-screen picture { animation: none; }
   .phone-screen picture:first-child { opacity: 1; }
   .reveal { opacity: 1; transform: none; transition: none; }
@@ -411,6 +414,7 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
 @media (min-width: 640px) {
   :root { --pad: 28px; --gap: 14px; }
   .bento { grid-template-columns: repeat(3, 1fr); }
+  [data-casos] { columns: 2; }
   .tile:last-child { grid-column: auto; }
   .gallery-track > .gallery-img { width: 42%; }
   .gallery-video .gallery-track > .gallery-img { width: 70%; }
@@ -420,7 +424,7 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
   .btn-form { width: auto; align-self: flex-start; }
   /* Tableta: dos columnas como en escritorio; apilado, el celular quedaba centrado bajo un texto
      alineado a la izquierda. */
-  .hero { display: flex; align-items: center; gap: 28px; padding: 48px 28px 44px; }
+  .hero { display: flex; align-items: center; gap: 28px; padding: calc(48px + var(--nav-h)) 28px 44px; }
   .hero-copy { padding: 0; flex: 1; min-width: 0; }
   .hero-title { font-size: 7.2vw; }
   .phone { flex-shrink: 0; width: clamp(190px, 26vw, 240px); margin: 0; }
@@ -433,17 +437,17 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
   .logo-link img { height: 26px; }
   .nav-toggle { display: none; }
   .nav-links { position: static; display: flex; flex-direction: row; gap: 4px; padding: 4px; margin: 0 auto;
-    border-radius: 999px; }
-  .nav-link { padding: 8px 16px; border-radius: 999px; font-size: 14px; letter-spacing: 0; color: var(--color-muted); }
-  .nav-link:hover { color: var(--color-white); background: var(--color-panel-2); }
+    border-radius: 999px; background: transparent; }
+  .nav-link { padding: 8px 16px; border-radius: 999px; font-size: 14px; letter-spacing: 0; color: var(--color-white); }
+  .nav-link:hover { background: rgba(255,255,255,0.15); }
   .nav-link.is-active, .nav-link.is-active:hover { color: var(--color-black); background: var(--color-white); }
   .btn-contact-pill { margin-left: 0; }
   .wa-float { display: none; }
 
   .hero { display: flex; align-items: center; justify-content: flex-start; gap: clamp(48px, 5vw, 88px);
     /* El fondo llega al borde; el contenido se queda en el ancho del resto del sitio. */
-    padding: 64px max(48px, calc((100% - var(--max-width)) / 2));
-    min-height: min(640px, calc(100svh - var(--nav-h) - 24px)); }
+    padding: calc(64px + var(--nav-h)) max(48px, calc((100% - var(--max-width)) / 2)) 64px;
+    min-height: min(calc(640px + var(--nav-h)), calc(100svh - 24px)); }
   .hero-copy { padding: 0; flex: 0 1 auto; } /* el texto ocupa lo suyo; el celular se centra en el resto */
     .hero-title { max-width: 6.8em; /* ajustado al texto: con 13ch la caja quedaba más ancha que la línea y alejaba el celular */ font-size: clamp(56px, 6vw, 104px); }
   .hero-sub { font-size: 17px; margin-top: 16px; }
@@ -465,8 +469,7 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
   .tile:last-child { grid-column: auto; }
   .tile-n { font-size: 48px; }
 
-  [data-casos] { grid-template-columns: repeat(3, 1fr); }
-  .case { align-content: start; }
+  [data-casos] { columns: 3; }
   .index-more { display: flex; justify-content: flex-start; }
   .index-more .btn { padding: 12px 24px; }
 
@@ -475,7 +478,8 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
   .contact-info { padding: 56px 48px; }
   .contact-form-panel { padding: 40px 36px; }
 
-  .gallery-hero, .legal-header { padding: 64px 0 48px; }
+  .gallery-hero { padding: calc(64px + var(--nav-h)) 0 48px; }
+  .legal-header { padding: 64px 0 48px; }
   .gallery-hero .banner-shape { width: 40%; right: -6%; top: -40%; }
   .brand-section { padding: 48px 0; }
   .gallery-carousel { margin: 0; }
