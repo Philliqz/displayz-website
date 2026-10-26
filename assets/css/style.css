@@ -127,9 +127,27 @@ picture { display: block; }
 /* ---- Hero (home): titular + collage de tres piezas reales superpuestas ---- */
 .hero { padding: 28px 0 20px; }
 .hero-copy { position: relative; z-index: 3; padding: 0 20px; }
-.hero-sign { display: block; font-family: var(--font-display); font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.8); }
+.hero-sign { display: block; margin: 0; font-family: var(--font-display); font-size: 13px; font-weight: 500; letter-spacing: 0; line-height: 1.4; color: rgba(255,255,255,0.8); }
 .hero-title { margin: 12px 0 0; font-family: var(--font-display); font-weight: 600; letter-spacing: -0.045em;
   font-size: clamp(34px, 9.6vw, 76px); line-height: 1.02; }
+.hero-sub { margin: 12px 0 0; font-size: 15px; color: rgba(255,255,255,0.85); max-width: 440px; }
+/* Pastillas de intención: la activa se rellena; su barra inferior marca el tiempo de la diapositiva. */
+.hero-tabs { display: grid; grid-template-columns: repeat(4, 1fr) 40px; gap: 6px; margin-top: 20px; }
+.hero-tab { position: relative; overflow: hidden; min-height: 40px; padding: 8px 4px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(0,0,0,0.2); color: var(--color-white); font-family: var(--font-display); font-size: 13px; font-weight: 500; cursor: pointer; }
+.hero-tab:hover { background: rgba(0,0,0,0.35); }
+.hero-tab[aria-pressed="true"] { background: var(--color-white); border-color: var(--color-white); color: var(--color-black); }
+.hero-bar { position: absolute; left: 14px; right: 14px; bottom: 4px; height: 3px; border-radius: 2px; transform: scaleX(0); transform-origin: left; background: var(--gradient-btn) border-box; }
+.hero-tab[aria-pressed="true"] .hero-bar { animation: heroBar 6s linear forwards; }
+.hero:hover .hero-bar, .hero.is-paused .hero-bar { animation-play-state: paused; }
+.hero.is-manual .hero-bar { display: none; }
+@keyframes heroBar { to { transform: scaleX(1); } }
+.hero-pause { width: 40px; min-height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); background: rgba(0,0,0,0.2);
+  color: var(--color-white); font-size: 11px; cursor: pointer; }
+.hero-tab:focus-visible, .hero-pause:focus-visible { outline: 2px solid var(--color-white); outline-offset: 2px; }
+/* Cambio de diapositiva: fundido corto del texto y del collage. */
+[data-hero-live], .hero .collage { transition: opacity 0.22s ease; }
+.hero.is-swapping [data-hero-live], .hero.is-swapping .collage { opacity: 0; }
 .hero-actions { display: grid; grid-template-columns: 1.3fr 1fr; gap: 8px; margin-top: 20px; }
 .hero-actions .btn { padding: 10px 12px; font-size: 14px; min-height: 48px; white-space: nowrap; }
 .hero-avail { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 7px 12px; border-radius: 999px;
@@ -382,6 +400,7 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .banner, .hero-gradient-bg, .contact-info::before, .dot { animation: none; }
+  .hero-bar { display: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
 
@@ -418,6 +437,9 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
   .hero-copy { padding: 0; }
   .hero-sign { font-size: 15px; }
   .hero-title { font-size: clamp(46px, 4.6vw, 80px); }
+  .hero-sub { font-size: 17px; margin-top: 16px; }
+  .hero-tabs { display: flex; margin-top: 24px; }
+  .hero-tab { padding: 8px 18px; font-size: 14px; }
   .hero-actions { display: flex; margin-top: 28px; }
   .hero-actions .btn { padding: 12px 24px; }
   .hero-avail { margin-top: 22px; }

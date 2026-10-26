@@ -1,4 +1,4 @@
-// Home: "Trabajo seleccionado" (casos grandes) y collage del hero.
+// Home: "Trabajo seleccionado" (casos grandes). El collage del hero lo pone hero.js.
 // Casos = empresas visibles con "destacado": 1, 2, 3… en database/empresas.json, en
 // ese orden. Todo se llena solo desde los datos — para cambiar un caso destacado
 // basta con mover ese número en el JSON.
@@ -51,32 +51,6 @@ function medios(c, keys) {
   return fotos;
 }
 
-// Portada: una pieza por caso destacado. La de video va al frente.
-function renderCollage(collageEl, casos) {
-  const cartas = casos.slice(0, 3).map((c) => {
-    const f = medios(c, disciplinas(c))[0];
-    return f && { c, f };
-  }).filter(Boolean);
-  cartas.sort((a, b) => Number(!!a.f.video) - Number(!!b.f.video));
-  // La última va al frente, sean 1, 2 o 3; las demás se reparten detrás a cada lado.
-  const lados = ['collage-left', 'collage-right'];
-  cartas.forEach(({ c, f }, i) => {
-    const frente = i === cartas.length - 1;
-    const a = el('a', 'collage-card ' + (frente ? 'collage-front' : lados[i]));
-    a.href = urlEmpresa(c);
-    const etiqueta = (f.video ? 'Video' : SECCIONES[f.tipo]) + ' · ' + c.nombre;
-    a.setAttribute('aria-label', 'Ver proyecto: ' + etiqueta);
-    // Las tarjetas son verticales: un Short se ve mejor con su miniatura vertical, si la hay.
-    const { node, img } = makePictureImg(f.vertical || f.src);
-    img.alt = '';
-    if (!frente) img.loading = 'lazy';
-    a.appendChild(node);
-    if (f.video) a.appendChild(el('span', 'collage-play', '▶')).setAttribute('aria-hidden', 'true');
-    a.appendChild(el('span', 'collage-tag', etiqueta));
-    collageEl.appendChild(a);
-  });
-}
-
 function renderCaso(c, i) {
   const keys = disciplinas(c);
   const art = el('article', 'case reveal');
@@ -113,18 +87,16 @@ function renderCaso(c, i) {
 
 export function init() {
   const casosEl = document.querySelector('[data-casos]');
-  if (!casosEl && !document.querySelector('[data-collage]')) return;
+  if (!casosEl) return;
 
   fetchCompanies().then((companies) => {
     const visibles = companies.filter((c) => c && disciplinas(c).length);
     const casos = visibles.filter((c) => Number(c.destacado) > 0)
       .sort((a, b) => Number(a.destacado) - Number(b.destacado));
 
-    const collageEl = document.querySelector('[data-collage]');
-    if (collageEl) renderCollage(collageEl, casos);
-    if (casosEl) casos.forEach((c, i) => casosEl.appendChild(renderCaso(c, i)));
+    casos.forEach((c, i) => casosEl.appendChild(renderCaso(c, i)));
     const count = document.querySelector('[data-casos-count]');
     if (count) count.textContent = pad(casos.length) + (casos.length === 1 ? ' caso' : ' casos');
-    if (casosEl) observe(casosEl.querySelectorAll('.reveal'));
+    observe(casosEl.querySelectorAll('.reveal'));
   }).catch(() => {});
 }

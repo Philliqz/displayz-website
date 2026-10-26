@@ -72,18 +72,28 @@
   </div>
 </nav>
 
-<header id="hero" class="hero banner">
+<header id="hero" class="hero banner" data-hero>
   <img class="banner-shape" src="assets/images/isotipo.svg" alt="" aria-hidden="true">
   <div class="hero-copy">
-    <span class="hero-sign">Displayz Studio · Estudio creativo en Panamá</span>
-    <h1 class="hero-title">Video, foto y diseño para marcas que quieren vender más</h1>
+    <h1 class="hero-sign">Displayz Studio · Video, foto y diseño en Panamá</h1>
+    <!-- Titular, subtítulo, botones y collage cambian por intención; los pone hero.js -->
+    <div data-hero-live aria-live="off">
+      <p class="hero-title" data-hero-title>Contenido cada semana para que tu marca venda más</p>
+      <p class="hero-sub" data-hero-sub>Fotos, videos y diseños para redes, listos cada semana.</p>
+    </div>
+    <div class="hero-tabs" role="group" aria-label="¿Qué necesitas?">
+      <button type="button" class="hero-tab" data-hero-tab="mensual" aria-pressed="true">Mensual<span class="hero-bar"></span></button>
+      <button type="button" class="hero-tab" data-hero-tab="eventos" aria-pressed="false">Eventos<span class="hero-bar"></span></button>
+      <button type="button" class="hero-tab" data-hero-tab="fotos" aria-pressed="false">Fotos<span class="hero-bar"></span></button>
+      <button type="button" class="hero-tab" data-hero-tab="video" aria-pressed="false">Video<span class="hero-bar"></span></button>
+      <button type="button" class="hero-pause" data-hero-pause aria-label="Pausar diapositivas">❚❚</button>
+    </div>
     <div class="hero-actions">
-      <a href="#trabajo" class="btn btn-light">Ver proyectos <span class="arrow">→</span></a>
-      <a href="https://wa.me/50764498833?text=Hola%2C%20quiero%20hablar%20sobre%20mi%20marca" class="btn btn-glass" target="_blank" rel="noopener">Hablemos</a>
+      <a href="#contacto" class="btn btn-light" data-hero-cta data-servicio="Contenido mensual">Quiero mi plan <span class="arrow">→</span></a>
+      <a href="diseno.html" class="btn btn-glass" data-hero-ver>Ver trabajo</a>
     </div>
     <span class="hero-avail"><i class="dot"></i>Disponible en todo Panamá</span>
   </div>
-  <!-- Tres piezas de los casos destacados ("destacado": 1, 2, 3 en empresas.json); las pone featured.js -->
   <div class="collage" data-collage></div>
 </header>
 
@@ -189,6 +199,8 @@
             <option value="Contenido mensual" data-c="#8D00A6" data-d="Para negocios que publican cada semana">Contenido mensual</option>
             <option value="Producción corporativa" data-c="#0172DC" data-d="Para empresas e instituciones">Producción corporativa</option>
             <option value="Evento" data-c="#017352" data-d="Bodas, 15 años y eventos de empresa">Evento</option>
+            <option value="Sesión de fotos" data-d="Graduaciones, parejas, marcas y retratos">Sesión de fotos</option>
+            <option value="Video puntual" data-d="Un spot, un institucional o un recap">Video puntual</option>
             <option value="Otro proyecto" data-d="Cuéntanos en el mensaje">Otro proyecto</option>
           </select>
           <label class="sr-only" for="f-mensaje">Mensaje</label>

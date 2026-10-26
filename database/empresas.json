@@ -183,13 +183,15 @@
         "titulo": "Cómo funciona — OnAds",
         "provider": "youtube",
         "url": "https://youtube.com/shorts/31pmTj8myz8",
-        "miniatura": "portfolio/onads/video/como-funciona.jpg"
+        "miniatura": "portfolio/onads/video/como-funciona.jpg",
+        "miniatura_vertical": "portfolio/onads/video/como-funciona-vertical.jpg"
       },
       {
         "titulo": "QR de oro — OnAds",
         "provider": "youtube",
         "url": "https://youtube.com/shorts/rQ4REsEk1lo",
-        "miniatura": "portfolio/onads/video/qr-de-oro.jpg"
+        "miniatura": "portfolio/onads/video/qr-de-oro.jpg",
+        "miniatura_vertical": "portfolio/onads/video/qr-de-oro-vertical.jpg"
       }
     ],
     "telefono": "",
