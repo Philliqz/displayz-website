@@ -53,6 +53,10 @@ const ICONOS = {
   reels: 'M6 2.5h12A3.5 3.5 0 0 1 21.5 6v12a3.5 3.5 0 0 1-3.5 3.5H6A3.5 3.5 0 0 1 2.5 18V6A3.5 3.5 0 0 1 6 2.5zM2.5 8h19M9 2.5 12 8M14.5 2.5 17.5 8M10 11.5v6l5-3z',
 };
 
+// Barra de pestañas de Instagram: 49 pt + 34 de zona segura. El reel ocupa solo lo que queda
+// encima, como en la app; si se dibujara a pantalla completa, su parte baja quedaría tapada.
+const NAV_PT = 83;
+
 function capaReels(ancho, alto, avatar) {
   // Todo en puntos de iOS (pantalla de 440 × 956 pt del 17 Pro Max), escalado por k al lienzo.
   const c = document.createElement('canvas');
@@ -78,8 +82,7 @@ function capaReels(ancho, alto, avatar) {
     if (img) g.drawImage(img, x - r * 0.72, y - r * 0.72, r * 1.44, r * 1.44);
     g.restore();
   };
-  const NAV = 83;                 // barra de pestañas: 49 pt + 34 de zona segura
-  const pie = H_PT - NAV;         // donde empieza la barra
+  const pie = H_PT - NAV_PT;         // donde empieza la barra
 
   // Degradados para que el texto se lea sobre cualquier video.
   let d = g.createLinearGradient(0, 0, 0, 130);
@@ -134,7 +137,7 @@ function capaReels(ancho, alto, avatar) {
 
   // Barra de pestañas de Instagram e indicador de inicio.
   g.shadowBlur = 0;
-  g.fillStyle = '#000'; g.fillRect(0, pie, 440, NAV);
+  g.fillStyle = '#000'; g.fillRect(0, pie, 440, NAV_PT);
   g.fillStyle = g.strokeStyle = '#fff';
   const paso = 440 / 5, yIc = pie + 25;
   ['inicio', 'buscar', 'crear', 'reels'].forEach((n, f) => icono(n, paso * (f + 0.5), yIc, 25));
@@ -144,9 +147,9 @@ function capaReels(ancho, alto, avatar) {
   return c;
 }
 
-// Dibuja img o video en modo cover con opacidad a.
+// Dibuja img o video en modo cover sobre el área del reel (encima de la barra), con opacidad a.
 function cubrir(ctx, img, a) {
-  const cw = ctx.canvas.width, ch = ctx.canvas.height;
+  const cw = ctx.canvas.width, ch = ctx.canvas.height - NAV_PT * cw / 440;
   const iw = img.videoWidth || img.naturalWidth, ih = img.videoHeight || img.naturalHeight;
   if (!iw || !ih) return;
   const k = Math.max(cw / iw, ch / ih), w = iw * k, h = ih * k;
