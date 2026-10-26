@@ -13,6 +13,7 @@ No hay que crear carpetas ni JSON por empresa — ver "Cómo agregar una empresa
 /
 ├── index.html            página principal
 ├── video.html             galería de Video
+├── eventos.html           galería de Eventos (videos cuyo "evento" está en CONFIG.EVENTOS)
 ├── fotografia.html        galería de Fotografía
 ├── diseno.html            galería de Diseño
 ├── politica.html          política de privacidad

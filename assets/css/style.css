@@ -369,6 +369,8 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
 .gallery-nav-btn { display: none; }
 .gallery-carousel.is-static .gallery-track { cursor: default; }
 .gallery-video .gallery-img { aspect-ratio: 16 / 9; }
+.gallery-thumb { position: relative; background: #111; }
+.gallery-thumb picture, .gallery-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .gallery-video .gallery-track > .gallery-img { width: 88%; }
 .gallery-video.is-single .gallery-track > .gallery-img { width: 100%; }
 .empty-state { text-align: center; padding: 72px 0; color: var(--color-muted); }

@@ -134,7 +134,8 @@
         "provider": "archivo",
         "url": "portfolio/tiger-sugar-panama/video/valla.mp4",
         "miniatura": "portfolio/tiger-sugar-panama/video/valla.jpg",
-        "destacado": true
+        "destacado": true,
+        "evento": "Spot publicitario"
       }
     ],
     "telefono": "",
@@ -189,21 +190,24 @@
         "provider": "youtube",
         "url": "https://youtube.com/shorts/hus_HceZKdU",
         "miniatura": "portfolio/onads/video/atp.jpg",
-        "miniatura_vertical": "portfolio/onads/video/atp-vertical.jpg"
+        "miniatura_vertical": "portfolio/onads/video/atp-vertical.jpg",
+        "evento": "Spot publicitario"
       },
       {
         "titulo": "Cómo funciona — OnAds",
         "provider": "youtube",
         "url": "https://youtube.com/shorts/31pmTj8myz8",
         "miniatura": "portfolio/onads/video/como-funciona.jpg",
-        "miniatura_vertical": "portfolio/onads/video/como-funciona-vertical.jpg"
+        "miniatura_vertical": "portfolio/onads/video/como-funciona-vertical.jpg",
+        "evento": "Spot publicitario"
       },
       {
         "titulo": "QR de oro — OnAds",
         "provider": "youtube",
         "url": "https://youtube.com/shorts/rQ4REsEk1lo",
         "miniatura": "portfolio/onads/video/qr-de-oro.jpg",
-        "miniatura_vertical": "portfolio/onads/video/qr-de-oro-vertical.jpg"
+        "miniatura_vertical": "portfolio/onads/video/qr-de-oro-vertical.jpg",
+        "evento": "Spot publicitario"
       }
     ],
     "telefono": "",
@@ -1126,7 +1130,8 @@
         "miniatura": "portfolio/fosters/video/chanchomilla.jpg",
         "miniatura_vertical": "portfolio/fosters/video/chanchomilla.jpg",
         "reel": true,
-        "destacado": true
+        "destacado": true,
+        "evento": "Reel para redes"
       }
     ],
     "telefono": "",
@@ -1295,7 +1300,8 @@
         "url": "portfolio/ali-y-rola/video/boda.mp4",
         "url_ligera": "portfolio/ali-y-rola/video/boda-telefono.mp4",
         "miniatura": "portfolio/ali-y-rola/video/boda.jpg",
-        "destacado": true
+        "destacado": true,
+        "evento": "Boda"
       }
     ],
     "telefono": "",
@@ -1332,7 +1338,8 @@
         "titulo": "Recap evento Por Amor a Panamá x Monte Santo",
         "provider": "iframe",
         "url": "https://mega.nz/embed/WfZw3CaB#ivVQBOB40xwGxiCGJHhHO2lScLypOkr-GPcjeVBTwNw",
-        "miniatura": "portfolio/por-amor-a-panama-monte-santo/video/miniatura.jpg"
+        "miniatura": "portfolio/por-amor-a-panama-monte-santo/video/miniatura.jpg",
+        "evento": "Evento"
       }
     ],
     "telefono": "",
@@ -2711,7 +2718,8 @@
         "miniatura": "portfolio/cobre-panama/video/el-tajo.jpg",
         "miniatura_vertical": "portfolio/cobre-panama/video/el-tajo.jpg",
         "reel": true,
-        "destacado": true
+        "destacado": true,
+        "evento": "Institucional"
       }
     ],
     "telefono": "",
@@ -2776,7 +2784,8 @@
         "url": "portfolio/argos-panama/video/planta-carbono-neutro.mp4",
         "url_ligera": "portfolio/argos-panama/video/planta-carbono-neutro-telefono.mp4",
         "miniatura": "portfolio/argos-panama/video/planta-carbono-neutro.jpg",
-        "destacado": true
+        "destacado": true,
+        "evento": "Institucional"
       }
     ],
     "telefono": "",
@@ -2816,7 +2825,8 @@
         "url": "portfolio/seguros-kam/video/video-corporativo.mp4",
         "url_ligera": "portfolio/seguros-kam/video/video-corporativo-telefono.mp4",
         "miniatura": "portfolio/seguros-kam/video/video-corporativo.jpg",
-        "destacado": true
+        "destacado": true,
+        "evento": "Institucional"
       }
     ],
     "telefono": "",
@@ -3016,7 +3026,8 @@
         "miniatura": "portfolio/tecnobyte/video/mystic-2-combos.jpg",
         "miniatura_vertical": "portfolio/tecnobyte/video/mystic-2-combos.jpg",
         "reel": true,
-        "destacado": true
+        "destacado": true,
+        "evento": "Reel para redes"
       },
       {
         "titulo": "Nordik 2",
@@ -3026,7 +3037,8 @@
         "miniatura": "portfolio/tecnobyte/video/nordik-2.jpg",
         "miniatura_vertical": "portfolio/tecnobyte/video/nordik-2.jpg",
         "reel": true,
-        "destacado": true
+        "destacado": true,
+        "evento": "Reel para redes"
       },
       {
         "titulo": "La Biby — Black Byte",
@@ -3035,7 +3047,8 @@
         "url_ligera": "portfolio/tecnobyte/video/la-biby-black-byte-telefono.mp4",
         "miniatura": "portfolio/tecnobyte/video/la-biby-black-byte.jpg",
         "miniatura_vertical": "portfolio/tecnobyte/video/la-biby-black-byte.jpg",
-        "reel": true
+        "reel": true,
+        "evento": "Reel para redes"
       }
     ],
     "instagram": "https://www.instagram.com/tecnobytestore/",
@@ -3066,7 +3079,8 @@
         "url_ligera": "portfolio/kia/video/panama-motor-show-1-telefono.mp4",
         "miniatura": "portfolio/kia/video/panama-motor-show-1.jpg",
         "miniatura_vertical": "portfolio/kia/video/panama-motor-show-1.jpg",
-        "reel": true
+        "reel": true,
+        "evento": "Feria"
       },
       {
         "titulo": "Panamá Motor Show 2",
@@ -3075,7 +3089,8 @@
         "url_ligera": "portfolio/kia/video/panama-motor-show-2-telefono.mp4",
         "miniatura": "portfolio/kia/video/panama-motor-show-2.jpg",
         "miniatura_vertical": "portfolio/kia/video/panama-motor-show-2.jpg",
-        "reel": true
+        "reel": true,
+        "evento": "Feria"
       },
       {
         "titulo": "KIA K2700",
@@ -3085,7 +3100,8 @@
         "miniatura": "portfolio/kia/video/k2700.jpg",
         "miniatura_vertical": "portfolio/kia/video/k2700.jpg",
         "reel": true,
-        "destacado": true
+        "destacado": true,
+        "evento": "Reel para redes"
       }
     ],
     "publico": false,
@@ -3116,7 +3132,8 @@
         "url_ligera": "portfolio/nissan/video/panama-motor-show-telefono.mp4",
         "miniatura": "portfolio/nissan/video/panama-motor-show.jpg",
         "miniatura_vertical": "portfolio/nissan/video/panama-motor-show.jpg",
-        "reel": true
+        "reel": true,
+        "evento": "Feria"
       }
     ],
     "publico": false

@@ -11,13 +11,13 @@ import { toEmbedSrc, getThumbnailSync, fetchThumbnail } from './video-provider.j
 export function init() {
   const section = document.querySelector('[data-portfolio-section]');
   if (!section) return;
-  const sectionKey = section.getAttribute('data-portfolio-section'); // "video" | "fotografia" | "diseno"
+  const sectionKey = section.getAttribute('data-portfolio-section'); // "video" | "eventos" | "fotografia" | "diseno"
   const container = section.querySelector('[data-portfolio-companies]');
   const emptyState = section.querySelector('[data-portfolio-empty]');
 
   fetchCompanies()
     .then((companies) => {
-      const visible = shuffle(companies.filter((c) => c && c[sectionKey] && companyItems(c, sectionKey).length));
+      const visible = shuffle(companies.filter((c) => c && c[sectionKey === 'eventos' ? 'video' : sectionKey] && companyItems(c, sectionKey).length));
       if (!visible.length) {
         if (emptyState) emptyState.style.display = 'block';
         return;
@@ -28,7 +28,7 @@ export function init() {
         node.dataset.grupo = grupoDe(company);
         container.appendChild(node);
       });
-      renderFilters(section, container, visible);
+      renderFilters(container, sectionKey);
       observe(container.querySelectorAll('.reveal'));
       Lightbox.init();
       VideoModal.init();
@@ -48,25 +48,37 @@ function slugify(text) {
   return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
-// Filtros por categoría. Solo aparecen si hay 2+ grupos con trabajo — un filtro
-// que deja todo igual o una categoría vacía es ruido. La categoría elegida queda en
-// la URL (?cat=) para poder compartir el enlace ya filtrado.
-function renderFilters(section, container, companies) {
-  const grupos = [];
-  companies.forEach((c) => { const g = grupoDe(c); if (!grupos.includes(g)) grupos.push(g); });
+// Filtros. Solo aparecen si hay 2+ grupos con trabajo — un filtro que deja todo
+// igual o una categoría vacía es ruido. La categoría elegida queda en la URL (?cat=)
+// para poder compartir el enlace ya filtrado. En Video se filtra por tipo de evento
+// de cada video (y se esconde la marca que se queda sin ninguno); en las demás, por
+// el grupo de la empresa.
+function renderFilters(container, sectionKey) {
+  const porEvento = sectionKey === 'video' || sectionKey === 'eventos';
+  const clave = porEvento ? 'evento' : 'grupo';
+  const piezas = Array.from(container.querySelectorAll(porEvento ? '[data-evento]' : '.brand-section'));
+  const grupos = [...new Set(piezas.map((el) => el.dataset[clave]))];
   if (grupos.length < 2) return;
   grupos.sort((a, b) => (a === 'Otros') - (b === 'Otros') || a.localeCompare(b, 'es'));
 
   const bar = document.createElement('div');
   bar.className = 'filter-bar';
   bar.setAttribute('role', 'group');
-  bar.setAttribute('aria-label', 'Filtrar por categoría');
+  bar.setAttribute('aria-label', porEvento ? 'Filtrar por tipo de evento' : 'Filtrar por categoría');
   const buttons = [];
 
   function apply(grupo) {
-    container.querySelectorAll('.brand-section').forEach((el) => {
-      el.hidden = grupo !== null && el.dataset.grupo !== grupo;
-    });
+    piezas.forEach((el) => { el.hidden = grupo !== null && el.dataset[clave] !== grupo; });
+    if (porEvento) {
+      container.querySelectorAll('.brand-section').forEach((el) => { el.hidden = !el.querySelector('[data-evento]:not([hidden])'); });
+      // Con menos miniaturas a la vista, el carrusel pasa a fijo (sin flechas), como si se hubiera creado así.
+      container.querySelectorAll('.gallery-carousel').forEach((g) => {
+        const n = g.querySelectorAll('[data-evento]:not([hidden])').length;
+        g.classList.toggle('is-static', n <= 3);
+        g.classList.toggle('is-single', n === 1);
+        g.querySelector('.gallery-track').scrollLeft = 0;
+      });
+    }
     buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.grupo === (grupo || ''))));
     const url = new URL(window.location.href);
     if (grupo) url.searchParams.set('cat', slugify(grupo)); else url.searchParams.delete('cat');
@@ -119,7 +131,10 @@ export function shuffle(list) {
 }
 
 function companyItems(company, sectionKey) {
-  if (sectionKey === 'video') return company.videos || [];
+  // Video y Eventos se reparten los videos por su etiqueta: los de evento van a Eventos.
+  if (sectionKey === 'video' || sectionKey === 'eventos') {
+    return (company.videos || []).filter((v) => CONFIG.EVENTOS.includes(v.evento) === (sectionKey === 'eventos'));
+  }
   return (company.galeria || []).filter((g) => g.tipo === sectionKey);
 }
 
@@ -215,19 +230,28 @@ export function renderCompany(company, sectionKey) {
 }
 
 export function renderGallery(rawItems, sectionKey, company) {
-  const isVideo = sectionKey === 'video';
+  const isVideo = sectionKey === 'video' || sectionKey === 'eventos';
   const items = shuffle(rawItems);
 
   function makeImg(item) {
     const autoThumb = isVideo ? getThumbnailSync(item.url, item.provider) : null;
     const src = isVideo ? (item.miniatura || autoThumb || company.logo || '') : item.archivo;
-    const { node, img } = makePictureImg(src, 'gallery-img');
+    const { node, img } = makePictureImg(src, isVideo ? '' : 'gallery-img');
     img.draggable = false;
     img.loading = 'lazy';
     if (isVideo) {
       img.alt = item.titulo || tituloDe(company) + ' — video';
+      const caja = document.createElement('div');
+      caja.className = 'gallery-img gallery-thumb';
+      caja.dataset.evento = item.evento || 'Otros';
+      caja.appendChild(node);
+      const rec = document.createElement('span');
+      rec.className = 'rec';
+      rec.appendChild(document.createElement('i'));
+      rec.appendChild(document.createTextNode(item.evento || 'Video'));
+      caja.appendChild(rec);
       const embedSrc = toEmbedSrc(item.url, item.provider);
-      if (embedSrc) img.setAttribute('data-video-embed', embedSrc);
+      if (embedSrc) caja.setAttribute('data-video-embed', embedSrc);
       // Mejora progresiva: si no había miniatura propia ni una automática por
       // URL (ej. Vimeo), preguntar de forma async y actualizar si aparece algo
       // mejor que el logo de respaldo. Nunca bloquea el render inicial. Si el
@@ -245,9 +269,9 @@ export function renderGallery(rawItems, sectionKey, company) {
           img.src = src2;
         });
       }
-    } else {
-      img.alt = item.alt || tituloDe(company);
+      return caja;
     }
+    img.alt = item.alt || tituloDe(company);
     return node;
   }
 
@@ -282,7 +306,7 @@ export function renderGallery(rawItems, sectionKey, company) {
 
 export function setupCarousel(track, prevBtn, nextBtn) {
   let startX = 0, startScroll = 0, moved = false;
-  function step() { return track.querySelector('.gallery-img').getBoundingClientRect().width + (parseFloat(getComputedStyle(track).columnGap) || 0); }
+  function step() { return track.querySelector('.gallery-img:not([hidden])').getBoundingClientRect().width + (parseFloat(getComputedStyle(track).columnGap) || 0); }
   function maxScroll() { return track.scrollWidth - track.clientWidth; }
 
   nextBtn.addEventListener('click', () => {

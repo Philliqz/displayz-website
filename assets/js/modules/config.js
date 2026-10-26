@@ -9,6 +9,9 @@ export const CONFIG = {
   CONTACT_EMAIL: 'ismaelkentish@gmail.com',
   WHATSAPP_URL: 'https://wa.me/50764498833',
   DATA_URL: 'database/empresas.json',
+  // Etiquetas de video ("evento") que van a la página Eventos; las demás
+  // (Institucional, Spot publicitario, Reel para redes, Video musical, Bienes raíces) van a Video.
+  EVENTOS: ['Boda', '15 años', 'Cumpleaños', 'Certamen', 'Evento', 'Feria'],
   // Categorías de los filtros de las galerías, a partir del "nicho" de cada empresa.
   // Un nicho nuevo se agrega aquí; si no está, la empresa cae en "Otros".
   GRUPOS: {

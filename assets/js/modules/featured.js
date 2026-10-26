@@ -10,7 +10,7 @@ import * as VideoModal from './video-modal.js';
 import * as Lightbox from './lightbox.js';
 
 // Columnas y filas por ancho (igual que los @media de [data-casos] en style.css).
-const MALLAS = [[960, 5, 4], [640, 3, 6], [0, 2, 6]];
+const MALLAS = [[960, 5, 5], [640, 3, 7], [0, 2, 7]];
 const SECCIONES = { video: 'Video', fotografia: 'Fotografía', diseno: 'Diseño' };
 
 function disciplinas(c) {
@@ -41,37 +41,47 @@ function piezasDestacadas(c, keys) {
 
 // forma: 'v' (reel, 1×2 celdas), 'h' (horizontal, 2×1) o 'img' (ver FORMAS).
 function comoVideo(v) {
-  return { src: v.miniatura_vertical || v.miniatura, video: v.url_ligera || v.url, completo: v.url, forma: v.reel ? 'v' : 'h' };
+  return { evento: v.evento, src: v.miniatura_vertical || v.miniatura, video: v.url_ligera || v.url, completo: v.url, forma: v.reel ? 'v' : 'h' };
 }
 
-// Las imágenes suelen ser 4:5 o 1:1: grandes (2×2) si caben, si no 1×1; así casi no se recortan.
-const FORMAS = { v: [[1, 2]], h: [[2, 1]], img: [[2, 2], [1, 1]] };
+// Imágenes siempre chicas (1×1); videos siempre de 2 celdas (pedido del fundador, 2026-10-26).
+const FORMAS = { v: [1, 2], h: [2, 1], img: [1, 1], relleno: [1, 1] };
 
-// Llena una malla cols×filas: en cada celda libre (de arriba abajo, de izquierda a derecha) pone la
-// primera pieza cuya forma quepa; si ninguna cabe, la primera que quede ocupa 1×1 (recortada).
-// Si se acaban las piezas antes de llenar, prueba con una fila menos: el bloque nunca queda disparejo.
-// ponytail: voraz, no busca el mejor acomodo; basta con el pool de destacados de hoy (~12 piezas).
-function acomodar(pool, cols, filas) {
-  for (; filas > 0; filas--) {
+// Llena una malla cols×filas sin huecos. En cada celda libre (de arriba abajo, de izquierda a derecha)
+// prueba las formas de los destacados —en el orden en que salieron del barajado— y, solo si ninguna
+// sirve, una imagen de relleno; si un camino se traba, retrocede. Las filas no pasan de las que llenan
+// los destacados, para que el relleno tape huecos y no arme filas enteras. Si no hay acomodo, una fila menos.
+function acomodar(destacadas, relleno, cols, filas) {
+  const forma = (x) => x.p.forma || 'img';
+  const celdas = destacadas.reduce((n, x) => n + FORMAS[forma(x)][0] * FORMAS[forma(x)][1], 0);
+  const orden = [...new Set(destacadas.map(forma)), 'relleno'];
+  for (filas = Math.min(filas, Math.max(Math.ceil(celdas / cols), orden.includes('v') ? 2 : 1)); filas > 0; filas--) { // un reel pide 2 filas
+    const colas = { v: [], h: [], img: [], relleno: relleno.slice() };
+    destacadas.forEach((x) => colas[forma(x)].push(x));
     const libre = Array.from({ length: filas }, () => Array(cols).fill(true));
     const cabe = (f, c, w, h) => f + h <= filas && c + w <= cols && libre.slice(f, f + h).every((fila) => fila.slice(c, c + w).every(Boolean));
-    const resto = pool.slice();
+    const marcar = (f, c, w, h, v) => { for (let y = f; y < f + h; y++) for (let x = c; x < c + w; x++) libre[y][x] = v; };
     const out = [];
-    let ok = true;
-    for (let f = 0; f < filas && ok; f++) for (let c = 0; c < cols && ok; c++) {
-      if (!libre[f][c]) continue;
-      let i = -1, w = 1, h = 1;
-      for (let k = 0; k < resto.length && i < 0; k++) {
-        const opciones = FORMAS[resto[k].p.forma || 'img'];
-        const fit = opciones.find(([a, b]) => cabe(f, c, a, b));
-        if (fit) { i = k; [w, h] = fit; }
+    let pasos = 0;
+    const llenar = () => {
+      const k = libre.flat().indexOf(true);
+      if (k < 0) return true;
+      if (++pasos > 5000) return false; // ponytail: tope de búsqueda; pasado el tope, una fila menos
+      const f = Math.floor(k / cols), c = k % cols;
+      for (const t of orden) {
+        const [w, h] = FORMAS[t];
+        if (!colas[t].length || !cabe(f, c, w, h)) continue;
+        const item = colas[t].shift();
+        marcar(f, c, w, h, false);
+        out.push({ ...item, f, col: c, w, h });
+        if (llenar()) return true;
+        out.pop();
+        marcar(f, c, w, h, true);
+        colas[t].unshift(item);
       }
-      if (i < 0) i = resto.length ? 0 : -1;
-      if (i < 0) { ok = false; break; }
-      for (let y = f; y < f + h; y++) for (let x = c; x < c + w; x++) libre[y][x] = false;
-      out.push({ ...resto.splice(i, 1)[0], f, col: c, w, h });
-    }
-    if (ok) return out;
+      return false;
+    };
+    if (llenar()) return out;
   }
   return [];
 }
@@ -96,7 +106,7 @@ function renderPieza({ c, keys, p, f, col, w, h }, imagenes) {
     art.appendChild(v);
     const rec = el('span', 'rec');
     rec.appendChild(el('i'));
-    rec.appendChild(document.createTextNode('Video'));
+    rec.appendChild(document.createTextNode(p.evento || 'Video'));
     art.appendChild(rec);
   } else {
     const { node, img } = makePictureImg(p.src);
@@ -138,13 +148,19 @@ export function init() {
 
     // Todas las piezas destacadas, barajadas una vez por visita; la malla se rehace al cambiar de ancho.
     const todas = casos.flatMap((c) => { const keys = disciplinas(c); return piezasDestacadas(c, keys).map((p) => ({ c, keys, p })); });
-    for (let i = todas.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [todas[i], todas[j]] = [todas[j], todas[i]]; }
+    // Relleno: las demás imágenes de esas marcas — acomodar() solo las usa para tapar huecos.
+    const usadas = new Set(todas.map((x) => x.p.src));
+    const relleno = casos.flatMap((c) => { const keys = disciplinas(c); return keys.filter((k) => k !== 'video')
+      .flatMap((k) => piezas(c, k)).filter((x) => !usadas.has(x.archivo)).map((x) => ({ c, keys, p: { src: x.archivo } })); });
+    const barajar = (l) => { for (let i = l.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [l[i], l[j]] = [l[j], l[i]]; } return l; };
+    barajar(todas);
+    barajar(relleno);
 
     const pintar = () => {
       const [, cols, filas] = MALLAS.find(([ancho]) => matchMedia(`(min-width: ${ancho}px)`).matches);
       const imagenes = [];
       const enfocada = casosEl.contains(document.activeElement) ? document.activeElement.pieza : null;
-      casosEl.replaceChildren(...acomodar(todas, cols, filas).map((x) => renderPieza(x, imagenes)));
+      casosEl.replaceChildren(...acomodar(todas, relleno, cols, filas).map((x) => renderPieza(x, imagenes)));
       if (enfocada) ([...casosEl.children].find((b) => b.pieza === enfocada) || casosEl.firstElementChild)?.focus();
       autoplay(casosEl);
       VideoModal.init();
