@@ -1,69 +1,43 @@
-// Hero: iPhone 17 Pro Max Cosmic Orange en 3D (three.js, geometría propia — no hay modelo libre).
+// Hero: iPhone 17 Pro Max Cosmic Orange en 3D. Modelo «Iphone 17 pro max cosmic orange» de TechFreak
+// (Sketchfab, CC BY 4.0 — crédito en el pie), comprimido con gltf-transform (meshopt + webp).
 // La pantalla dibuja las fotos de .phone-screen (luego reels: drawImage acepta <video>).
 // Si no hay WebGL o falla la carga, queda el celular CSS tal cual.
-const THREE_URL = 'https://cdn.jsdelivr.net/npm/three@0.160.0/+esm';
-const ROOM_URL = 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js/+esm';
+const CDN = 'https://cdn.jsdelivr.net/npm/three@0.160.0';
+const THREE_URL = CDN + '/+esm';
+const ROOM_URL = CDN + '/examples/jsm/environments/RoomEnvironment.js/+esm';
+const GLTF_URL = CDN + '/examples/jsm/loaders/GLTFLoader.js/+esm';
+const MESHOPT_URL = CDN + '/examples/jsm/libs/meshopt_decoder.module.js/+esm';
+const MODELO = 'assets/models/iphone-17-pro-max.glb';
+const PANTALLA = 'BsXHDwLKqtDOfrW'; // nombre del material de la pantalla en el modelo
 
-// Medidas reales en cm: 7,8 × 16,34 × 0,875.
-const W = 7.8, H = 16.34, D = 0.875, R = 1.25, BEVEL = 0.22;
+const H = 16.34;                  // alto al que se escala el modelo (cm reales)
 const MARGEN = 1.24;              // el canvas es 24 % más alto que .phone para que el giro no se corte
 const CADA = 4000, FUNDIDO = 800; // ms por foto y de fundido
 
-function rect(THREE, w, h, r) {
-  const s = new THREE.Shape(), x = -w / 2, y = -h / 2;
-  s.moveTo(x + r, y);
-  s.lineTo(x + w - r, y); s.quadraticCurveTo(x + w, y, x + w, y + r);
-  s.lineTo(x + w, y + h - r); s.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-  s.lineTo(x + r, y + h); s.quadraticCurveTo(x, y + h, x, y + h - r);
-  s.lineTo(x, y + r); s.quadraticCurveTo(x, y, x + r, y);
-  return s;
-}
+// Centra el modelo, lo lleva a H de alto y pone el canvas como textura de la pantalla.
+function preparar(THREE, gltf) {
+  const phone = gltf.scene;
+  const caja = new THREE.Box3().setFromObject(phone);
+  const k = H / caja.getSize(new THREE.Vector3()).y;
+  phone.scale.setScalar(k);
+  phone.position.copy(caja.getCenter(new THREE.Vector3()).multiplyScalar(-k));
+  const grupo = new THREE.Group();
+  grupo.add(phone);
 
-// ShapeGeometry deja la UV en coordenadas del mundo; la pantalla necesita 0-1.
-function plano(THREE, w, h, r) {
-  const g = new THREE.ShapeGeometry(rect(THREE, w, h, r), 24);
-  const p = g.attributes.position, uv = g.attributes.uv;
-  for (let i = 0; i < p.count; i++) uv.setXY(i, p.getX(i) / w + 0.5, p.getY(i) / h + 0.5);
-  return g;
-}
-
-function construir(THREE) {
-  const phone = new THREE.Group();
-  // Aluminio anodizado: metal puro (sin laca ni difuso, que es lo que lo hacía ver de plástico); el color tiñe el reflejo.
-  const aluminio = new THREE.MeshPhysicalMaterial({ color: 0xc85a1c, metalness: 1, roughness: 0.4, envMapIntensity: 1.5 });
-  const negro = new THREE.MeshPhysicalMaterial({ color: 0x050505, metalness: 0, roughness: 0.08, clearcoat: 1 });
-
-  const cuerpo = new THREE.ExtrudeGeometry(rect(THREE, W - 2 * BEVEL, H - 2 * BEVEL, R - BEVEL), {
-    depth: D - 2 * BEVEL, bevelEnabled: true, bevelThickness: BEVEL, bevelSize: BEVEL, bevelSegments: 10, curveSegments: 32,
-  });
-  cuerpo.translate(0, 0, -(D - 2 * BEVEL) / 2);
-  phone.add(new THREE.Mesh(cuerpo, aluminio));
-
-  const z = D / 2 + 0.002;
-  const cristal = new THREE.Mesh(plano(THREE, W - 0.14, H - 0.14, R - 0.07), negro);
-  cristal.position.z = z;
-  phone.add(cristal);
-
-  // Pantalla: canvas 2D como textura.
   const lienzo = document.createElement('canvas');
-  lienzo.width = 600; lienzo.height = Math.round(600 * (H - 0.5) / (W - 0.5));
+  lienzo.width = 600; lienzo.height = 1300;
   const tex = new THREE.CanvasTexture(lienzo);
   tex.colorSpace = THREE.SRGBColorSpace;
-  const pantalla = new THREE.Mesh(plano(THREE, W - 0.5, H - 0.5, R - 0.25), new THREE.MeshBasicMaterial({ map: tex, toneMapped: false }));
-  pantalla.position.z = z + 0.002;
-  phone.add(pantalla);
-
-  const isla = new THREE.Mesh(plano(THREE, 2.1, 0.62, 0.31), new THREE.MeshBasicMaterial({ color: 0x000000 }));
-  isla.position.set(0, H / 2 - 0.85, z + 0.004);
-  phone.add(isla);
-
-  // Botones: lateral derecho (encendido y Control de Cámara), izquierdo (Acción y volumen).
-  [[1, 3.2, 1.6], [1, -1.3, 1.0], [-1, 4.4, 0.6], [-1, 3.0, 1.2], [-1, 1.5, 1.2]].forEach(([lado, y, alto]) => {
-    const b = new THREE.Mesh(new THREE.BoxGeometry(0.08, alto, D * 0.42), aluminio);
-    b.position.set(lado * (W / 2 + 0.02), y, 0);
-    phone.add(b);
+  tex.flipY = false; // las UV de glTF van con el origen arriba
+  let pantalla = null;
+  phone.traverse((o) => {
+    if (o.isMesh && o.material.name === PANTALLA) {
+      o.material = new THREE.MeshBasicMaterial({ map: tex, toneMapped: false });
+      pantalla = o;
+    }
   });
-  return { phone, lienzo, tex };
+  if (!pantalla) throw new Error('modelo sin pantalla');
+  return { phone: grupo, lienzo, tex };
 }
 
 // Dibuja img en modo cover con opacidad a.
@@ -87,24 +61,31 @@ export async function init() {
   const imgs = [...host.querySelectorAll('.phone-screen img')];
   const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  let THREE, RoomEnvironment;
+  let THREE, RoomEnvironment, gltf;
   try {
-    [THREE, { RoomEnvironment }] = await Promise.all([import(THREE_URL), import(ROOM_URL)]);
-  } catch (e) { return; } // sin red al CDN: queda el celular CSS
+    let GLTFLoader, MeshoptDecoder;
+    [THREE, { RoomEnvironment }, { GLTFLoader }, { MeshoptDecoder }] = await Promise.all(
+      [import(THREE_URL), import(ROOM_URL), import(GLTF_URL), import(MESHOPT_URL)]);
+    gltf = await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(MODELO);
+  } catch (e) { return; } // sin red al CDN o sin modelo: queda el celular CSS
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  // Preparar el modelo y crear el renderer antes de tocar la página: si algo falla, queda el CSS.
+  let phone, lienzo, tex, renderer;
+  try {
+    ({ phone, lienzo, tex } = preparar(THREE, gltf));
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  } catch (e) { return; }
   renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth < 768 ? 1.5 : 2));
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.2;
+  renderer.toneMappingExposure = 0.95;
   const scene = new THREE.Scene();
   const pmrem = new THREE.PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
   pmrem.dispose();
-  const canto = new THREE.DirectionalLight(0xffe2c8, 2); // ilumina el canto que queda a la vista
+  const canto = new THREE.DirectionalLight(0xffe2c8, 1); // ilumina el canto que queda a la vista
   canto.position.set(12, 2, 4);
   scene.add(canto);
 
-  const { phone, lienzo, tex } = construir(THREE);
   scene.add(phone);
   const ctx = lienzo.getContext('2d');
 
