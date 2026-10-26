@@ -27,6 +27,10 @@
   --font-body: 'Inter', sans-serif;
   --r-card: 16px;
   --r-ctrl: 12px;
+  /* Bloques de color (banners, contacto): esquinas y margen crecen con el ancho, sin saltos entre
+     celular, tableta y PC. */
+  --r-banner: clamp(28px, 18px + 2.5vw, 40px);
+  --m-banner: clamp(8px, 6px + 0.6vw, 12px);
   --pad: 16px;
   --gap: 12px;
   --nav-h: 64px;
@@ -81,7 +85,7 @@ picture { display: block; }
 /* Sección o página en la que estamos: pastilla rellena, como el botón claro. */
 .nav-link.is-active { background: var(--color-white); color: var(--color-black); }
 .btn-contact-pill { margin-left: auto; font-family: var(--font-display); font-size: 13px; font-weight: 500;
-  display: inline-flex; align-items: center; min-height: 44px; background: var(--gradient-btn) border-box; padding: 10px 18px; border-radius: 999px; color: var(--color-white); }
+  display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; border-radius: 999px; color: var(--color-white); }
 .nav-toggle { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 44px; height: 44px;
   background: var(--color-panel); border: 1px solid var(--color-line); border-radius: 50%; cursor: pointer; padding: 0; }
 .nav-toggle span { display: block; width: 16px; height: 1.5px; background: var(--color-white); transition: transform 0.25s ease, opacity 0.25s ease; }
@@ -91,7 +95,7 @@ picture { display: block; }
 
 /* ---- WhatsApp flotante (al alcance del pulgar) ---- */
 .wa-float { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 90;
-  width: 56px; height: 56px; border-radius: 50%; background: var(--gradient-btn) border-box; display: flex;
+  width: 56px; height: 56px; border-radius: 50%; display: flex;
   align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(141,0,166,0.45); }
 .wa-float svg { width: 26px; height: 26px; fill: var(--color-white); }
 
@@ -101,9 +105,15 @@ picture { display: block; }
   cursor: pointer; border: 1px solid var(--color-line); background: var(--color-panel);
   color: var(--color-white); transition: border-color 0.2s ease, background 0.2s ease; -webkit-appearance: none; appearance: none; }
 .btn:hover { border-color: var(--color-violet); background: var(--color-panel-2); }
-.btn-gradient, .btn-form { background: var(--gradient-btn) border-box; border-color: transparent; }
+.btn-gradient, .btn-form { border-color: transparent; }
+/* Los botones de acción llevan el degradado del hero y se mueven con él: misma animación y duración,
+   arrancan juntos al cargar, así que cambian de color al mismo tiempo que el banner. */
+:is(.btn-contact-pill, .wa-float, .btn-gradient, .btn-form) { background-color: transparent;
+  background-image: var(--gradient-hero); background-size: 300% 300%; background-origin: border-box;
+  animation: heroGradientMove 16s ease infinite; }
 /* Oscurecer con una capa encima, no con filter: el filtro también aclaraba el texto y el ícono. */
-.btn-gradient:hover, .btn-form:hover { background: linear-gradient(#0003, #0003), var(--gradient-btn) border-box; border-color: transparent; }
+.btn-gradient:hover, .btn-form:hover { background-image: linear-gradient(#0003, #0003), var(--gradient-hero);
+  background-size: auto, 300% 300%; border-color: transparent; }
 .btn-sm { min-height: 44px; padding: 8px 18px; }
 .btn-block { width: 100%; }
 .btn-outline .btn-ring { display: none; }
@@ -114,7 +124,7 @@ picture { display: block; }
   background: var(--color-white); color: var(--color-black); font-size: 14px; }
 
 /* ---- Banners: bloque redondeado de color con el isotipo gigante detrás ---- */
-.banner { position: relative; overflow: hidden; margin: 8px; border-radius: 28px; isolation: isolate;
+.banner { position: relative; overflow: hidden; margin: var(--m-banner); border-radius: var(--r-banner); isolation: isolate;
   background: var(--gradient-hero) border-box; background-size: 300% 300%; animation: heroGradientMove 16s ease infinite; }
 .banner-shape { position: absolute; z-index: -1; width: 120%; max-width: none; right: -45%; top: -12%;
   opacity: 0.13; pointer-events: none; user-select: none; }
@@ -233,8 +243,8 @@ picture { display: block; }
 .svc-link .arrow { background: var(--gradient-btn) border-box; background-size: 300% 100%; background-position: var(--svc-pos) 0; color: var(--color-white); }
 
 /* ---- Contacto ---- */
-.contact-panel { display: grid; gap: 8px; max-width: var(--max-width); margin: 0 auto; padding: 0 8px 48px; }
-.contact-info { position: relative; overflow: hidden; isolation: isolate; padding: 28px 22px; border-radius: 28px; background: var(--color-panel); }
+.contact-panel { display: grid; gap: var(--m-banner); max-width: var(--max-width); margin: 0 auto; padding: 0 var(--m-banner) 48px; }
+.contact-info { position: relative; overflow: hidden; isolation: isolate; padding: 28px 22px; border-radius: var(--r-banner); background: var(--color-panel); }
 .contact-info > .banner-shape { position: absolute; z-index: 0; right: -55%; top: -8%; width: 130%; opacity: 0.12; }
 .contact-info::before { content: ""; position: absolute; inset: 0; z-index: 0; background: var(--gradient-hero) border-box;
   background-size: 300% 300%; animation: heroGradientMove 18s ease infinite; opacity: 1; }
@@ -249,7 +259,7 @@ picture { display: block; }
 .contact-label { font-size: 12px; color: var(--color-muted); }
 .contact-list a { font-family: var(--font-display); font-size: 17px; overflow-wrap: anywhere; }
 .ig-link { display: inline-flex; align-items: center; gap: 8px; }
-.contact-form-panel { padding: 24px 18px; border-radius: 28px; border: 1px solid var(--color-line); background: var(--color-panel); }
+.contact-form-panel { padding: 24px 18px; border-radius: var(--r-banner); border: 1px solid var(--color-line); background: var(--color-panel); }
 .contact-form-title { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.03em; font-size: 24px; line-height: 1.1; margin: 0 0 6px; }
 .contact-form-desc { color: var(--color-muted); font-size: 14px; margin: 0 0 18px; }
 
@@ -291,7 +301,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .form-status--error { display: block; color: var(--color-danger); }
 
 /* ---- Cabecera de galerías / empresa ---- */
-.gallery-hero { position: relative; overflow: hidden; isolation: isolate; padding: 36px 0 32px; margin: 8px; border-radius: 28px; }
+.gallery-hero { position: relative; overflow: hidden; isolation: isolate; padding: 36px 0 32px; margin: var(--m-banner); border-radius: var(--r-banner); }
 .gallery-hero .banner-shape { width: 90%; right: -38%; top: -30%; }
 .gallery-hero .hero-gradient-bg { opacity: 1; z-index: -2; }
 .gallery-hero .container { position: relative; z-index: 1; }
@@ -383,7 +393,7 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .banner, .hero-gradient-bg, .contact-info::before, .dot { animation: none; }
+  .banner, .hero-gradient-bg, .contact-info::before, .dot, .btn-contact-pill, .wa-float, .btn-gradient, .btn-form { animation: none; }
   .phone-screen picture { animation: none; }
   .phone-screen picture:first-child { opacity: 1; }
   .reveal { opacity: 1; transform: none; transition: none; }
@@ -406,6 +416,7 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
   .hero-copy { padding: 0; flex: 1; min-width: 0; }
   .hero-title { font-size: 7.2vw; }
   .phone { flex-shrink: 0; width: clamp(190px, 26vw, 240px); margin: 0; }
+  .banner-shape { width: 62%; right: -6%; top: -18%; } /* isotipo del hero: con dos columnas, el tamaño de PC */
 }
 
 /* ================= Escritorio (≥ 960px) ================= */
@@ -421,8 +432,6 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
   .btn-contact-pill { margin-left: 0; }
   .wa-float { display: none; }
 
-  .banner { margin: 12px; border-radius: 40px; }
-  .banner-shape { width: 62%; right: -6%; top: -18%; }
   .hero { display: flex; align-items: center; justify-content: flex-start; gap: clamp(48px, 5vw, 88px);
     /* El fondo llega al borde; el contenido se queda en el ancho del resto del sitio. */
     padding: 64px max(48px, calc((100% - var(--max-width)) / 2));
@@ -438,8 +447,7 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
 
   .services { grid-template-columns: repeat(3, 1fr); padding-top: 40px; }
   .svc { min-height: 400px; padding: 22px; }
-  .contact-panel { padding: 0 12px 96px; gap: 12px; }
-  .contact-info, .contact-form-panel { border-radius: 40px; }
+  .contact-panel { padding-bottom: 96px; }
   .contact-info > .banner-shape { width: 80%; right: -20%; }
   .section { padding-top: 96px; }
   .section-head { padding-bottom: 28px; }
@@ -459,7 +467,6 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
   .contact-form-panel { padding: 40px 36px; }
 
   .gallery-hero, .legal-header { padding: 64px 0 48px; }
-  .gallery-hero { margin: 12px; border-radius: 40px; }
   .gallery-hero .banner-shape { width: 40%; right: -6%; top: -40%; }
   .brand-section { padding: 48px 0; }
   .gallery-carousel { margin: 0; }
