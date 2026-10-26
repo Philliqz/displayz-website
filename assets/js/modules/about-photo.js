@@ -1,4 +1,4 @@
-// Elige una de las 2 fotos de "Sobre mí" (la tercera, el retrato, va fija en la portada) al azar, una por sesión de visita.
+// Elige una de las 2 fotos de "El estudio" (la tercera, el retrato, va fija en la portada) al azar, una por sesión de visita.
 // sessionStorage y no localStorage: la foto debe quedarse fija mientras el visitante
 // navega (recargas, volver atrás) y volver a sortearse en la próxima visita.
 // La sección recorta con object-fit: cover, así
