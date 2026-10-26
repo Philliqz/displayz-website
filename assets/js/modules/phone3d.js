@@ -40,7 +40,111 @@ function preparar(THREE, gltf) {
   return { phone: grupo, lienzo, tex };
 }
 
-// Dibuja img en modo cover con opacidad a.
+// Overlay de Reels de Instagram dibujado una sola vez (se pinta encima de cada cuadro).
+// Medidas en puntos de un iPhone de 440 pt de ancho, escaladas al lienzo.
+const ICONOS = {
+  corazon: 'M12 20.5C6 16 2.5 12.6 2.5 8.6 2.5 5.8 4.7 3.5 7.4 3.5c1.9 0 3.6 1.1 4.6 2.7 1-1.6 2.7-2.7 4.6-2.7 2.7 0 4.9 2.3 4.9 5.1 0 4-3.5 7.4-9.5 11.9z',
+  comentario: 'M20.7 16.9A9.2 9.2 0 1 0 17 20.6l4.5 1z',
+  enviar: 'M21.5 2.5 10.3 13.7M21.5 2.5 14.6 21l-4.3-7.3L3 9.4z',
+  camara: 'M4 7.5h3.2L9 5h6l1.8 2.5H20a1.5 1.5 0 0 1 1.5 1.5v9.5A1.5 1.5 0 0 1 20 20H4a1.5 1.5 0 0 1-1.5-1.5V9A1.5 1.5 0 0 1 4 7.5zM12 17a3.6 3.6 0 1 0 0-7.2 3.6 3.6 0 0 0 0 7.2z',
+  inicio: 'M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z',
+  buscar: 'M10.5 18a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15zM16 16l5.5 5.5',
+  crear: 'M6 2.5h12A3.5 3.5 0 0 1 21.5 6v12a3.5 3.5 0 0 1-3.5 3.5H6A3.5 3.5 0 0 1 2.5 18V6A3.5 3.5 0 0 1 6 2.5zM12 7v10M7 12h10',
+  reels: 'M6 2.5h12A3.5 3.5 0 0 1 21.5 6v12a3.5 3.5 0 0 1-3.5 3.5H6A3.5 3.5 0 0 1 2.5 18V6A3.5 3.5 0 0 1 6 2.5zM2.5 8h19M9 2.5 12 8M14.5 2.5 17.5 8M10 11.5v6l5-3z',
+};
+
+function capaReels(ancho, alto, avatar) {
+  // Todo en puntos de iOS (pantalla de 440 × 956 pt del 17 Pro Max), escalado por k al lienzo.
+  const c = document.createElement('canvas');
+  c.width = ancho; c.height = alto;
+  const g = c.getContext('2d'), k = ancho / 440, H_PT = alto / k;
+  g.scale(k, k);
+  const fuente = (peso, pt) => `${peso} ${pt}px Inter, -apple-system, system-ui, sans-serif`;
+  const icono = (nombre, cx, cy, pt, relleno) => {
+    g.save(); g.translate(cx - pt / 2, cy - pt / 2); g.scale(pt / 24, pt / 24);
+    g.lineWidth = 1.9; g.lineJoin = g.lineCap = 'round';
+    const p = new Path2D(ICONOS[nombre]);
+    relleno ? g.fill(p) : g.stroke(p);
+    g.restore();
+  };
+  const texto = (t, x, y, peso, pt, alinear = 'left', max) => {
+    g.font = fuente(peso, pt); g.textAlign = alinear;
+    if (max) while (t.length > 4 && g.measureText(t).width > max) t = t.slice(0, -2) + '…';
+    g.fillText(t, x, y);
+  };
+  const circulo = (x, y, r, img) => {
+    g.save(); g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2);
+    g.fillStyle = '#0d0712'; g.fill(); g.clip();
+    if (img) g.drawImage(img, x - r * 0.72, y - r * 0.72, r * 1.44, r * 1.44);
+    g.restore();
+  };
+  const NAV = 83;                 // barra de pestañas: 49 pt + 34 de zona segura
+  const pie = H_PT - NAV;         // donde empieza la barra
+
+  // Degradados para que el texto se lea sobre cualquier video.
+  let d = g.createLinearGradient(0, 0, 0, 130);
+  d.addColorStop(0, 'rgba(0,0,0,0.4)'); d.addColorStop(1, 'rgba(0,0,0,0)');
+  g.fillStyle = d; g.fillRect(0, 0, 440, 130);
+  d = g.createLinearGradient(0, pie - 260, 0, pie);
+  d.addColorStop(0, 'rgba(0,0,0,0)'); d.addColorStop(1, 'rgba(0,0,0,0.55)');
+  g.fillStyle = d; g.fillRect(0, pie - 260, 440, 260);
+
+  g.fillStyle = g.strokeStyle = '#fff';
+  // Barra de estado: hora centrada en la oreja izquierda; señal, wifi y batería en la derecha.
+  texto('9:41', 78, 39, 600, 17, 'center');
+  [4, 6.5, 9, 11.5].forEach((h, n) => { g.beginPath(); g.roundRect(330 + n * 4.6, 38 - h, 3, h, 1); g.fill(); });
+  g.save(); g.translate(351, 26); g.scale(0.7, 0.7); g.lineWidth = 2.6; g.lineCap = 'round';
+  g.stroke(new Path2D('M2 8.8a15 15 0 0 1 20 0M5.3 12.2a10.4 10.4 0 0 1 13.4 0M8.6 15.6a5.6 5.6 0 0 1 6.8 0'));
+  g.beginPath(); g.arc(12, 18.6, 1.6, 0, Math.PI * 2); g.fill(); g.restore();
+  g.save(); g.globalAlpha = 0.45; g.lineWidth = 1;
+  g.beginPath(); g.roundRect(375, 27, 26, 12.5, 4); g.stroke();
+  g.beginPath(); g.roundRect(402.5, 31, 1.6, 4.5, 0.8); g.fill(); g.restore();
+  g.beginPath(); g.roundRect(377, 29, 19, 8.5, 2.5); g.fill();
+
+  g.shadowColor = 'rgba(0,0,0,0.3)'; g.shadowBlur = 3;
+  // Cabecera.
+  texto('Reels', 16, 96, 700, 24);
+  icono('camara', 410, 88, 26);
+
+  // Columna derecha, de abajo arriba desde la barra: audio, más, compartir, comentarios, me gusta.
+  const cx = 412;
+  const audio = pie - 30;                       // centro del cuadro del audio
+  g.save(); g.shadowBlur = 0; g.lineWidth = 2;
+  g.beginPath(); g.roundRect(cx - 14, audio - 14, 28, 28, 6); g.stroke(); g.restore();
+  circulo(cx, audio, 10, avatar);
+  [-7, 0, 7].forEach((dx) => { g.beginPath(); g.arc(cx + dx, audio - 44, 2, 0, Math.PI * 2); g.fill(); });
+  [['enviar', '1.032'], ['comentario', '248'], ['corazon', '12,4 mil']].forEach(([n, cifra], f) => {
+    const y = audio - 108 - f * 64;            // centro del ícono
+    icono(n, cx, y, 28);
+    texto(cifra, cx, y + 30, 600, 13, 'center');
+  });
+
+  // Autor, descripción y audio, alineados a la izquierda con 14 pt de margen.
+  const base = pie - 82;                        // centro de la fila del autor
+  circulo(30, base, 16, avatar);
+  g.save(); g.shadowBlur = 0; g.lineWidth = 1.2; g.beginPath(); g.arc(30, base, 16, 0, Math.PI * 2); g.stroke(); g.restore();
+  texto('displayz.studio', 54, base + 5, 600, 14);
+  g.font = fuente(600, 14);
+  const xs = 54 + g.measureText('displayz.studio').width + 10;
+  g.save(); g.shadowBlur = 0; g.lineWidth = 1; g.globalAlpha = 0.8;
+  g.beginPath(); g.roundRect(xs, base - 13, 60, 26, 8); g.stroke(); g.restore();
+  texto('Seguir', xs + 30, base + 4.5, 600, 13, 'center');
+  texto('Video, foto y diseño para tu marca y tus eventos', 14, base + 36, 400, 14, 'left', 320);
+  texto('♫  displayz.studio · Audio original', 14, base + 60, 400, 13, 'left', 320);
+
+  // Barra de pestañas de Instagram e indicador de inicio.
+  g.shadowBlur = 0;
+  g.fillStyle = '#000'; g.fillRect(0, pie, 440, NAV);
+  g.fillStyle = g.strokeStyle = '#fff';
+  const paso = 440 / 5, yIc = pie + 25;
+  ['inicio', 'buscar', 'crear', 'reels'].forEach((n, f) => icono(n, paso * (f + 0.5), yIc, 25));
+  circulo(paso * 4.5, yIc, 13, avatar);
+  g.save(); g.lineWidth = 1.2; g.beginPath(); g.arc(paso * 4.5, yIc, 13, 0, Math.PI * 2); g.stroke(); g.restore();
+  g.beginPath(); g.roundRect(220 - 70, H_PT - 13, 140, 5, 2.5); g.fill();
+  return c;
+}
+
+// Dibuja img o video en modo cover con opacidad a.
 function cubrir(ctx, img, a) {
   const cw = ctx.canvas.width, ch = ctx.canvas.height;
   const iw = img.videoWidth || img.naturalWidth, ih = img.videoHeight || img.naturalHeight;
@@ -58,7 +162,7 @@ function webgl() {
 export async function init() {
   const host = document.querySelector('.phone');
   if (!host || !webgl()) return;
-  const imgs = [...host.querySelectorAll('.phone-screen img')];
+  const medios = [...host.querySelectorAll('.phone-screen img, .phone-screen video')];
   const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   let THREE, RoomEnvironment, gltf;
@@ -106,38 +210,67 @@ export async function init() {
   new ResizeObserver(ajustar).observe(canvas);
   ajustar();
 
-  // Pantalla: imgs[i] y, durante el fundido, la siguiente ya cargada encima. Se sigue a cada foto
-  // por su lugar en imgs, no por el orden en que terminan de cargar.
-  const lista = (im) => im.complete && im.naturalWidth;
-  let i = 0, desde = performance.now(), ultima = null;
+  // Avatar del overlay: el isotipo. Se espera a las fuentes para que el texto salga en Inter.
+  const avatar = new Image();
+  avatar.src = 'assets/images/isotipo.svg';
+  // Son adornos: si tardan más de 1,5 s, se sigue sin ellos.
+  await Promise.race([Promise.all([avatar.decode().catch(() => {}), document.fonts.ready]),
+    new Promise((r) => setTimeout(r, 1500))]);
+  const capa = capaReels(lienzo.width, lienzo.height, avatar.naturalWidth ? avatar : null);
+
+  // Pantalla: medios[i] (foto o video) y, durante el fundido, el siguiente ya cargado encima;
+  // encima de todo, el overlay de Reels. Cada medio se sigue por su lugar en medios, no por el
+  // orden en que termina de cargar. Una foto dura CADA por reloj; un video, lo que le queda
+  // según su propio currentTime (así pausar fuera de pantalla no descuadra nada).
+  const esVideo = (m) => m.tagName === 'VIDEO';
+  const lista = (m) => (esVideo(m) ? m.readyState >= 2 : m.complete && m.naturalWidth);
+  const rota = (m) => (esVideo(m) ? !!m.error : m.complete && !m.naturalWidth);
+  const reproducir = (m) => { if (esVideo(m) && !quieto && m.paused) m.play().catch(() => {}); };
+  // El HTML los trae con autoplay: aquí manda el script. Solo el primero corre; con varios medios
+  // ninguno se repite solo (el turno lo marca el fundido), y con movimiento reducido todos quietos.
+  medios.filter(esVideo).forEach((v) => {
+    if (medios.length > 1) v.loop = false;
+    if (quieto || v !== medios[0]) v.pause();
+  });
+  let i = 0, desde = performance.now(), ultima = null, entrando = -1;
+  const queda = (m, t) => (esVideo(m) ? ((m.duration || 0) - m.currentTime) * 1000 : CADA - (t - desde));
   function siguiente() {
-    for (let k = 1; k < imgs.length; k++) {
-      const j = (i + k) % imgs.length;
-      if (lista(imgs[j])) return j;
+    for (let k = 1; k < medios.length; k++) {
+      const j = (i + k) % medios.length;
+      if (lista(medios[j])) return j;
     }
     return -1;
   }
   function pintarPantalla(t) {
-    const actual = imgs[i];
+    const actual = medios[i];
     if (!actual) return false;
     if (!lista(actual)) {
-      if (actual.complete) i = (i + 1) % imgs.length; // rota: se salta
+      if (rota(actual)) { i = (i + 1) % medios.length; desde = t; entrando = -1; ultima = null; } // rota: se salta
       return false;
     }
+    reproducir(actual);
     const j = quieto ? -1 : siguiente();
-    const transcurrido = t - desde;
-    if (j < 0 || transcurrido < CADA - FUNDIDO) {
-      if (ultima === actual) return false;
+    const resta = queda(actual, t);
+    if (j < 0 || resta > FUNDIDO) {
+      if (ultima === actual && !esVideo(actual)) return false; // una foto fija no se repinta
       ctx.fillStyle = '#120a1a'; ctx.fillRect(0, 0, lienzo.width, lienzo.height);
       cubrir(ctx, actual, 1);
+      ctx.drawImage(capa, 0, 0);
       ultima = actual;
       return true;
     }
-    const a = Math.min(1, (transcurrido - (CADA - FUNDIDO)) / FUNDIDO);
+    const sig = medios[j];
+    if (entrando !== j) { // empieza el fundido: el que entra arranca desde su inicio, una sola vez
+      entrando = j;
+      if (esVideo(sig)) sig.currentTime = 0;
+    }
+    reproducir(sig); // también si se pausó al salir de pantalla a mitad del fundido
+    const a = Math.min(1, 1 - resta / FUNDIDO);
     cubrir(ctx, actual, 1);
-    cubrir(ctx, imgs[j], a);
+    cubrir(ctx, sig, a);
+    ctx.drawImage(capa, 0, 0);
     ultima = null;
-    if (a >= 1) { i = j; desde = t; }
+    if (a >= 1) { if (esVideo(actual)) actual.pause(); i = j; desde = t; entrando = -1; }
     return true;
   }
 
@@ -152,11 +285,12 @@ export async function init() {
   new IntersectionObserver(([e]) => {
     visible = e.isIntersecting;
     if (visible) { desde = performance.now(); correr(); }
+    else medios.forEach((m) => { if (esVideo(m)) m.pause(); }); // fuera de pantalla no se decodifica
   }).observe(host);
   function cuadro(t) {
     raf = 0;
     if (muerto || !visible) return;
-    if (imgs.every((im) => im.complete && !im.naturalWidth)) return; // ninguna foto cargó: queda el CSS
+    if (medios.every(rota)) return; // ningún medio cargó: queda el CSS
     if (pintarPantalla(t)) { tex.needsUpdate = true; conFoto = true; }
     const s = quieto ? 0 : (t - t0) / 9000 * Math.PI * 2;
     phone.rotation.y = -0.42 + Math.sin(s) * 0.2;    // ±11° alrededor de una pose de 3/4 que deja ver el canto naranja

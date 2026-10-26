@@ -145,7 +145,7 @@ picture { display: block; }
 /* Dynamic Island */
 .phone-screen::after { content: ""; position: absolute; z-index: 2; top: 10px; left: 50%; width: 30%; height: 16px; transform: translateX(-50%);
   border-radius: 999px; background: #050505; }
-.phone-screen picture, .phone-screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.phone-screen picture, .phone-screen img, .phone-screen video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .phone-screen picture { opacity: 0; animation: phoneFade 12s -0.6s infinite; } /* la primera ya visible al cargar */
 .phone-screen picture:nth-child(2) { animation-delay: 3.4s; }
 .phone-screen picture:nth-child(3) { animation-delay: 7.4s; }
