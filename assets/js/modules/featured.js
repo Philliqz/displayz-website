@@ -39,6 +39,45 @@ function formato(c, keys) {
   }).join(' · ');
 }
 
+// Imágenes de un proyecto: primero la miniatura del video (si hay), luego las de galería.
+// Solo de las disciplinas activas: un video con video:false no sale aunque siga en el JSON.
+function medios(c, keys) {
+  const fotos = [];
+  const v = keys.includes('video') && piezas(c, 'video')
+    .map((x) => ({ x, src: x.miniatura || getThumbnailSync(x.url, x.provider) }))
+    .find((o) => o.src);
+  if (v) fotos.push({ src: v.src, vertical: v.x.miniatura_vertical, alt: v.x.titulo || c.nombre, video: true });
+  keys.filter((k) => k !== 'video').forEach((k) =>
+    piezas(c, k).forEach((g) => fotos.push({ src: g.archivo, alt: g.alt || c.nombre, tipo: k })));
+  return fotos;
+}
+
+// Portada: una pieza por caso destacado. La de video va al frente.
+function renderCollage(collageEl, casos) {
+  const cartas = casos.slice(0, 3).map((c) => {
+    const f = medios(c, disciplinas(c))[0];
+    return f && { c, f };
+  }).filter(Boolean);
+  cartas.sort((a, b) => Number(!!a.f.video) - Number(!!b.f.video));
+  // La última va al frente, sean 1, 2 o 3; las demás se reparten detrás a cada lado.
+  const lados = ['collage-left', 'collage-right'];
+  cartas.forEach(({ c, f }, i) => {
+    const frente = i === cartas.length - 1;
+    const a = el('a', 'collage-card ' + (frente ? 'collage-front' : lados[i]));
+    a.href = urlEmpresa(c);
+    const etiqueta = (f.video ? 'Video' : SECCIONES[f.tipo]) + ' · ' + c.nombre;
+    a.setAttribute('aria-label', 'Ver proyecto: ' + etiqueta);
+    // Las tarjetas son verticales: un Short se ve mejor con su miniatura vertical, si la hay.
+    const { node, img } = makePictureImg(f.vertical || f.src);
+    img.alt = '';
+    if (!frente) img.loading = 'lazy';
+    a.appendChild(node);
+    if (f.video) a.appendChild(el('span', 'collage-play', '▶')).setAttribute('aria-hidden', 'true');
+    a.appendChild(el('span', 'collage-tag', etiqueta));
+    collageEl.appendChild(a);
+  });
+}
+
 function renderCaso(c, i) {
   const keys = disciplinas(c);
   const art = el('article', 'case reveal');
@@ -65,19 +104,10 @@ function renderCaso(c, i) {
   copy.appendChild(ver);
   art.appendChild(copy);
 
-  // Tres imágenes: primero la miniatura del video (si hay), luego las de galería.
   const media = el('a', 'case-media');
   media.href = urlEmpresa(c);
   media.setAttribute('aria-label', 'Ver ' + c.nombre);
-  // Solo de las disciplinas activas: un video con video:false no sale aunque siga en el JSON.
-  const fotos = [];
-  const v = keys.includes('video') && piezas(c, 'video')
-    .map((x) => ({ x, src: x.miniatura || getThumbnailSync(x.url, x.provider) }))
-    .find((o) => o.src);
-  if (v) fotos.push({ src: v.src, alt: v.x.titulo || c.nombre, video: true });
-  keys.filter((k) => k !== 'video').forEach((k) =>
-    piezas(c, k).forEach((g) => fotos.push({ src: g.archivo, alt: g.alt || c.nombre })));
-  fotos.slice(0, 3).forEach((f) => {
+  medios(c, keys).slice(0, 3).forEach((f) => {
     const { node, img } = makePictureImg(f.src);
     img.alt = f.alt;
     img.loading = 'lazy';
@@ -109,7 +139,7 @@ function renderIndice(c, n) {
 export function init() {
   const casosEl = document.querySelector('[data-casos]');
   const indiceEl = document.querySelector('[data-indice]');
-  if (!casosEl && !indiceEl && !document.querySelector('[data-marcas]')) return;
+  if (!casosEl && !indiceEl && !document.querySelector('[data-marcas], [data-collage]')) return;
 
   fetchCompanies().then((companies) => {
     const visibles = companies.filter((c) => c && disciplinas(c).length);
@@ -118,6 +148,8 @@ export function init() {
     const resto = visibles.filter((c) => !casos.includes(c))
       .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
 
+    const collageEl = document.querySelector('[data-collage]');
+    if (collageEl) renderCollage(collageEl, casos);
     if (casosEl) casos.forEach((c, i) => casosEl.appendChild(renderCaso(c, i)));
     const count = document.querySelector('[data-casos-count]');
     if (count) count.textContent = pad(casos.length) + (casos.length === 1 ? ' caso' : ' casos');

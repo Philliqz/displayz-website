@@ -176,7 +176,8 @@
         "titulo": "Video ATP — OnAds",
         "provider": "youtube",
         "url": "https://youtube.com/shorts/hus_HceZKdU",
-        "miniatura": "portfolio/onads/video/atp.jpg"
+        "miniatura": "portfolio/onads/video/atp.jpg",
+        "miniatura_vertical": "portfolio/onads/video/atp-vertical.jpg"
       },
       {
         "titulo": "Cómo funciona — OnAds",
