@@ -124,7 +124,7 @@ picture { display: block; }
   background: radial-gradient(ellipse 90% 70% at 30% 40%, transparent 10%, rgba(0,0,0,0.82) 85%) border-box; }
 .dot { width: 7px; height: 7px; border-radius: 50%; background: #3ddc97; box-shadow: 0 0 0 4px rgba(61,220,151,0.2); animation: recBlink 1.6s ease-in-out infinite; }
 
-/* ---- Hero (home): titular + collage de tres piezas reales superpuestas ---- */
+/* ---- Hero (home): titular + mosaico de tres piezas reales ---- */
 .hero { padding: 28px 0 20px; }
 .hero-copy { position: relative; z-index: 3; padding: 0 20px; }
 .hero-sign { display: block; margin: 0; font-family: var(--font-display); font-size: 13px; font-weight: 500; letter-spacing: 0; line-height: 1.4; color: rgba(255,255,255,0.8); }
@@ -135,17 +135,13 @@ picture { display: block; }
 .hero-actions .btn { padding: 10px 12px; font-size: 14px; min-height: 48px; white-space: nowrap; }
 .hero-avail { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 7px 12px; border-radius: 999px;
   background: rgba(0,0,0,0.25); font-size: 12px; color: rgba(255,255,255,0.9); }
-.collage { position: relative; height: 262px; margin: 26px 20px 4px; }
-.collage-card { position: absolute; top: 18px; width: 46%; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 20px;
-  border: 3px solid rgba(255,255,255,0.9); box-shadow: 0 18px 40px rgba(0,0,0,0.35); transition: transform 0.3s ease; }
-.collage-card picture, .collage-card img { width: 100%; height: 100%; object-fit: cover; }
-.collage:empty { display: none; }
-.collage-left { left: 0; transform: rotate(-8deg); }
-.collage-right { right: 0; transform: rotate(7deg); }
-.collage-front { left: 50%; top: 0; z-index: 2; width: 54%; transform: translateX(-50%); }
-.collage-card:focus-visible { z-index: 4; outline: 3px solid var(--color-white); outline-offset: 3px; }
-.collage-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: grid; place-items: center;
-  width: 52px; height: 52px; padding-left: 4px; border-radius: 50%; background: rgba(255,255,255,0.92); color: #120a1a; font-size: 18px; }
+/* Mosaico recto: una pieza alta a la izquierda y dos apiladas a la derecha. */
+.collage { display: grid; grid-template-columns: 1.15fr 1fr; grid-template-rows: 1fr 1fr; gap: 8px; height: 320px; margin: 26px 20px 4px; }
+.collage-card { overflow: hidden; border-radius: var(--r-card); box-shadow: 0 18px 40px rgba(0,0,0,0.3); }
+.collage-card:first-child { grid-row: span 2; }
+.collage-card picture, .collage-card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.collage-card:hover img { transform: scale(1.04); }
+.collage-card:focus-visible { outline: 3px solid var(--color-white); outline-offset: 3px; }
 .btn-light { background: var(--color-white); color: var(--color-black); border-color: transparent; }
 .btn-light:hover { background: var(--color-soft); border-color: transparent; }
 .btn-light .arrow { background: var(--color-black); color: var(--color-white); }
@@ -412,13 +408,7 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
   .hero-actions { display: flex; margin-top: 28px; }
   .hero-actions .btn { padding: 12px 24px; }
   .hero-avail { margin-top: 22px; }
-  .collage { height: 520px; margin: 0; }
-  .collage-card { top: 50%; width: 56%; }
-  .hero:has(.collage:empty) { grid-template-columns: 1fr; }
-  .collage-left { left: 0; transform: translateY(-46%) rotate(-10deg); }
-  .collage-right { right: 0; transform: translateY(-54%) rotate(8deg); }
-  .collage-front { top: 50%; width: 62%; transform: translate(-50%, -50%); }
-  .collage-card:hover { z-index: 4; }
+  .collage { height: 520px; margin: 0; gap: 12px; }
 
   .services { grid-template-columns: repeat(3, 1fr); padding-top: 40px; }
   .svc { min-height: 400px; padding: 22px; }
