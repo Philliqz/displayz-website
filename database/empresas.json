@@ -2883,5 +2883,34 @@
     "horario": "",
     "estado": "pendiente",
     "nicho": "Eventos"
+  },
+  {
+    "id": "tecnobyte",
+    "slug": "tecnobyte",
+    "nombre": "Tecnobyte",
+    "titulo": "Reels para tienda de tecnología",
+    "descripcion": "Tienda de tecnología y celulares.",
+    "logo": "",
+    "nicho": "Tecnología",
+    "categoria": "video",
+    "categorias": [
+      "video"
+    ],
+    "video": true,
+    "fotografia": false,
+    "diseno": false,
+    "galeria": [],
+    "videos": [
+      {
+        "titulo": "Mystic 2 — combos",
+        "provider": "archivo",
+        "url": "portfolio/tecnobyte/video/mystic-2-combos.mp4",
+        "miniatura": "portfolio/tecnobyte/video/mystic-2-combos.jpg",
+        "miniatura_vertical": "portfolio/tecnobyte/video/mystic-2-combos.jpg",
+        "reel": true
+      }
+    ],
+    "instagram": "https://www.instagram.com/tecnobytestore/",
+    "publico": false
   }
 ]

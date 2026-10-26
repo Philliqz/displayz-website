@@ -3,15 +3,17 @@
 // única función que sabe transformar eso en algo embebible.
 
 const YOUTUBE_ID_RE = /(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/))([\w-]{6,})/i;
+export const ARCHIVO_RE = /\.(mp4|webm|mov)(\?|#|$)/i;
 const VIMEO_ID_RE = /vimeo\.com\/(?:video\/)?(\d+)/i;
 
 /**
  * @param {string} url
- * @returns {'youtube'|'vimeo'|'bunny'|'iframe'}
+ * @returns {'youtube'|'vimeo'|'bunny'|'archivo'|'iframe'}
  */
 export function detectProvider(url) {
   if (!url) return 'iframe';
   const low = url.toLowerCase();
+  if (ARCHIVO_RE.test(low)) return 'archivo'; // mp4 propio del sitio (los reels del teléfono)
   if (low.includes('youtube.com') || low.includes('youtu.be')) return 'youtube';
   if (low.includes('vimeo.com')) return 'vimeo';
   if (low.includes('mediadelivery.net')) return 'bunny';
@@ -57,7 +59,7 @@ export function toEmbedSrc(url, provider) {
     return id ? `https://player.vimeo.com/video/${id}` : url;
   }
 
-  // 'bunny' (links de Bunny Stream ya vienen listos para iframe) e 'iframe' (genérico):
+  // 'archivo' (se reproduce en <video>, ver video-modal.js), 'bunny' (links de Bunny Stream ya vienen listos para iframe) e 'iframe' (genérico):
   // pasar la URL tal cual, sin transformar. Nunca lanza error — si la URL es inválida,
   // el iframe simplemente no carga, igual que hoy si alguien pega un link roto.
   return url;

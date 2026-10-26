@@ -1,7 +1,9 @@
 // Hero: iPhone 17 Pro Max Cosmic Orange en 3D. Modelo «Iphone 17 pro max cosmic orange» de TechFreak
 // (Sketchfab, CC BY 4.0 — crédito en el pie), comprimido con gltf-transform (meshopt + webp).
-// La pantalla dibuja las fotos de .phone-screen (luego reels: drawImage acepta <video>).
+// La pantalla dibuja los reels de los datos (o, sin ellos, las fotos de .phone-screen).
 // Si no hay WebGL o falla la carga, queda el celular CSS tal cual.
+import { fetchCompanies } from './data-store.js';
+
 const CDN = 'https://cdn.jsdelivr.net/npm/three@0.160.0';
 const THREE_URL = CDN + '/+esm';
 const ROOM_URL = CDN + '/examples/jsm/environments/RoomEnvironment.js/+esm';
@@ -162,10 +164,26 @@ function webgl() {
   try { return !!document.createElement('canvas').getContext('webgl2'); } catch (e) { return false; }
 }
 
+// Los reels del teléfono salen de los datos (videos con "reel": true); las fotos del HTML quedan
+// solo si no hay ninguno o el JSON no carga. Va antes de WebGL: el celular CSS también los usa.
+async function llenarReels(host) {
+  const reels = (await fetchCompanies()).flatMap((c) => (c.video && c.videos) || []).filter((v) => v.reel && v.url);
+  if (!reels.length) return;
+  const pantalla = host.querySelector('.phone-screen');
+  pantalla.replaceChildren(...reels.map((r, k) => {
+    const v = document.createElement('video');
+    Object.assign(v, { muted: true, playsInline: true, loop: true, autoplay: k === 0, preload: 'auto', src: r.url });
+    if (r.miniatura) v.poster = r.miniatura;
+    v.setAttribute('aria-label', r.titulo || 'Reel');
+    return v;
+  }));
+}
+
 export async function init() {
   const host = document.querySelector('.phone');
-  if (!host || !webgl()) return;
-  const medios = [...host.querySelectorAll('.phone-screen img, .phone-screen video')];
+  if (!host) return;
+  const reels = llenarReels(host).catch(() => {}); // en paralelo con la carga 3D
+  if (!webgl()) return;
   const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   let THREE, RoomEnvironment, gltf;
@@ -221,6 +239,8 @@ export async function init() {
     new Promise((r) => setTimeout(r, 1500))]);
   const capa = capaReels(lienzo.width, lienzo.height, avatar.naturalWidth ? avatar : null);
 
+  await reels;
+  const medios = [...host.querySelectorAll('.phone-screen img, .phone-screen video')];
   // Pantalla: medios[i] (foto o video) y, durante el fundido, el siguiente ya cargado encima;
   // encima de todo, el overlay de Reels. Cada medio se sigue por su lugar en medios, no por el
   // orden en que termina de cargar. Una foto dura CADA por reloj; un video, lo que le queda
