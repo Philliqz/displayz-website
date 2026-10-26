@@ -2909,6 +2909,15 @@
         "miniatura": "portfolio/tecnobyte/video/mystic-2-combos.jpg",
         "miniatura_vertical": "portfolio/tecnobyte/video/mystic-2-combos.jpg",
         "reel": true
+      },
+      {
+        "titulo": "Nordik 2",
+        "provider": "archivo",
+        "url": "portfolio/tecnobyte/video/nordik-2.mp4",
+        "url_ligera": "portfolio/tecnobyte/video/nordik-2-telefono.mp4",
+        "miniatura": "portfolio/tecnobyte/video/nordik-2.jpg",
+        "miniatura_vertical": "portfolio/tecnobyte/video/nordik-2.jpg",
+        "reel": true
       }
     ],
     "instagram": "https://www.instagram.com/tecnobytestore/",

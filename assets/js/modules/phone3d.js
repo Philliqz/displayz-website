@@ -14,7 +14,7 @@ const PANTALLA = 'BsXHDwLKqtDOfrW'; // nombre del material de la pantalla en el 
 
 const H = 16.34;                  // alto al que se escala el modelo (cm reales)
 const MARGEN = 1.24;              // el canvas es 24 % más alto que .phone para que el giro no se corte
-const CADA = 4000, FUNDIDO = 800; // ms por foto y de fundido
+const CADA = 4000, REEL = 10000, SWIPE = 450; // ms por foto, por reel y del swipe al siguiente
 
 // Centra el modelo, lo lleva a H de alto y pone el canvas como textura de la pantalla.
 function preparar(THREE, gltf) {
@@ -150,14 +150,20 @@ function capaReels(ancho, alto, avatar) {
 }
 
 // Dibuja img o video en modo cover sobre el área del reel (encima de la barra), con opacidad a.
-function cubrir(ctx, img, a) {
+// Dibuja img o video en modo cover sobre el área del reel (encima de la barra), corrido dy px en
+// vertical y recortado a su propio rectángulo dentro de esa área: en el swipe ninguno asoma
+// sobre el otro ni sobre la barra de abajo.
+function cubrir(ctx, img, dy = 0) {
   const cw = ctx.canvas.width, ch = ctx.canvas.height - NAV_PT * cw / 440;
   const iw = img.videoWidth || img.naturalWidth, ih = img.videoHeight || img.naturalHeight;
   if (!iw || !ih) return;
   const k = Math.max(cw / iw, ch / ih), w = iw * k, h = ih * k;
-  ctx.globalAlpha = a;
-  ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
-  ctx.globalAlpha = 1;
+  ctx.save();
+  const y0 = Math.max(0, dy), y1 = Math.min(ch, dy + ch);
+  if (y1 <= y0) { ctx.restore(); return; }
+  ctx.beginPath(); ctx.rect(0, y0, cw, y1 - y0); ctx.clip();
+  ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2 + dy, w, h);
+  ctx.restore();
 }
 
 function webgl() {
@@ -244,22 +250,24 @@ export async function init() {
 
   await reels;
   const medios = [...host.querySelectorAll('.phone-screen img, .phone-screen video')];
-  // Pantalla: medios[i] (foto o video) y, durante el fundido, el siguiente ya cargado encima;
-  // encima de todo, el overlay de Reels. Cada medio se sigue por su lugar en medios, no por el
-  // orden en que termina de cargar. Una foto dura CADA por reloj; un video, lo que le queda
-  // según su propio currentTime (así pausar fuera de pantalla no descuadra nada).
+  // Pantalla: medios[i] (foto o video) y, durante el swipe, el siguiente entrando desde abajo
+  // como en Instagram; encima de todo, el overlay de Reels. Cada medio se sigue por su lugar en
+  // medios, no por el orden en que termina de cargar. Una foto dura CADA por reloj; un video,
+  // sus primeros REEL ms (o entero si es más corto), según su propio currentTime (así pausar
+  // fuera de pantalla no descuadra nada).
   const esVideo = (m) => m.tagName === 'VIDEO';
   const lista = (m) => (esVideo(m) ? m.readyState >= 2 : m.complete && m.naturalWidth);
   const rota = (m) => (esVideo(m) ? !!m.error : m.complete && !m.naturalWidth);
   const reproducir = (m) => { if (esVideo(m) && !quieto && m.paused) m.play().catch(() => {}); };
   // El HTML los trae con autoplay: aquí manda el script. Solo el primero corre; con varios medios
-  // ninguno se repite solo (el turno lo marca el fundido), y con movimiento reducido todos quietos.
+  // ninguno se repite solo (el turno lo marca el swipe), y con movimiento reducido todos quietos.
   medios.filter(esVideo).forEach((v) => {
     if (medios.length > 1) v.loop = false;
     if (quieto || v !== medios[0]) v.pause();
   });
-  let i = 0, desde = performance.now(), ultima = null, entrando = -1;
-  const queda = (m, t) => (esVideo(m) ? ((m.duration || 0) - m.currentTime) * 1000 : CADA - (t - desde));
+  let i = 0, desde = performance.now(), ultima = null, entrando = -1, inicio = 0, pausa = 0;
+  const queda = (m, t) => (esVideo(m) ? Math.min((m.duration || 0) * 1000, REEL) - m.currentTime * 1000 : CADA - (t - desde));
+  const alto = lienzo.height - NAV_PT * lienzo.width / 440; // área del reel, sin la barra
   function siguiente() {
     for (let k = 1; k < medios.length; k++) {
       const j = (i + k) % medios.length;
@@ -277,25 +285,28 @@ export async function init() {
     reproducir(actual);
     const prox = medios[(i + 1) % medios.length]; // el siguiente baja mientras corre el actual
     if (esVideo(prox) && prox.preload === 'none') { prox.preload = 'auto'; prox.load(); }
-    const j = quieto ? -1 : siguiente();
-    const resta = queda(actual, t);
-    if (j < 0 || resta > FUNDIDO) {
+    // Un swipe empezado se termina con el mismo medio, aunque se haya salido de pantalla a mitad.
+    const j = entrando >= 0 ? entrando : quieto ? -1 : siguiente();
+    if (entrando < 0 && (j < 0 || queda(actual, t) > 0)) {
       if (ultima === actual && !esVideo(actual)) return false; // una foto fija no se repinta
       ctx.fillStyle = '#120a1a'; ctx.fillRect(0, 0, lienzo.width, lienzo.height);
-      cubrir(ctx, actual, 1);
+      cubrir(ctx, actual);
       ctx.drawImage(capa, 0, 0);
       ultima = actual;
       return true;
     }
     const sig = medios[j];
-    if (entrando !== j) { // empieza el fundido: el que entra arranca desde su inicio, una sola vez
+    if (entrando !== j) { // empieza el swipe: el que entra arranca desde su inicio, una sola vez
       entrando = j;
+      inicio = t; // el swipe corre por reloj: si el siguiente llegó tarde, igual se ve entero
       if (esVideo(sig)) sig.currentTime = 0;
     }
-    reproducir(sig); // también si se pausó al salir de pantalla a mitad del fundido
-    const a = Math.min(1, 1 - resta / FUNDIDO);
-    cubrir(ctx, actual, 1);
-    cubrir(ctx, sig, a);
+    reproducir(sig); // también si se pausó al salir de pantalla a mitad del swipe
+    const a = Math.min(1, (t - inicio) / SWIPE);
+    const sube = (a < 0.5 ? 4 * a * a * a : 1 - (-2 * a + 2) ** 3 / 2) * alto; // ease-in-out como el dedo
+    ctx.fillStyle = '#000'; ctx.fillRect(0, 0, lienzo.width, alto);
+    cubrir(ctx, actual, -sube);
+    cubrir(ctx, sig, alto - sube);
     ctx.drawImage(capa, 0, 0);
     ultima = null;
     if (a >= 1) { if (esVideo(actual)) actual.pause(); i = j; desde = t; entrando = -1; }
@@ -312,8 +323,11 @@ export async function init() {
   });
   new IntersectionObserver(([e]) => {
     visible = e.isIntersecting;
-    if (visible) { desde = performance.now(); correr(); }
-    else medios.forEach((m) => { if (esVideo(m)) m.pause(); }); // fuera de pantalla no se decodifica
+    if (visible) { desde = performance.now(); inicio = desde - pausa; correr(); } // el swipe sigue donde iba
+    else {
+      pausa = performance.now() - inicio;
+      medios.forEach((m) => { if (esVideo(m)) m.pause(); }); // fuera de pantalla no se decodifica
+    }
   }).observe(host);
   function cuadro(t) {
     raf = 0;
