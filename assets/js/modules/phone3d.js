@@ -220,11 +220,15 @@ async function llenarReels(host) {
   }));
 }
 
+// ponytail: diagnóstico temporal (?diag) para el iPhone del fundador (2026-10-27): dice en qué paso se cae el 3D.
+const avisar = (m) => { if (/[?&]diag/.test(location.search)) new Image().src = `https://displayz-videos.displayz.workers.dev/diag?d=${encodeURIComponent(m)}`; };
+
 export async function init() {
   const host = document.querySelector('.phone');
   if (!host) return;
-  const reels = llenarReels(host).catch(() => {}); // en paralelo con la carga 3D
-  if (!webgl()) return;
+  avisar('init');
+  const reels = llenarReels(host).catch((e) => avisar(`reels: ${e}`)); // en paralelo con la carga 3D
+  if (!webgl()) return avisar('sin webgl2');
   const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   let THREE, RoomEnvironment, gltf;
@@ -233,14 +237,15 @@ export async function init() {
     [THREE, { RoomEnvironment }, { GLTFLoader }, { MeshoptDecoder }] = await Promise.all(
       [import(THREE_URL), import(ROOM_URL), import(GLTF_URL), import(MESHOPT_URL)]);
     gltf = await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(MODELO);
-  } catch (e) { return; } // sin red al CDN o sin modelo: queda el celular CSS
+  } catch (e) { return avisar(`carga 3D: ${e}`); } // sin red al CDN o sin modelo: queda el celular CSS
 
   // Preparar el modelo y crear el renderer antes de tocar la página: si algo falla, queda el CSS.
   let phone, lienzo, tex, renderer;
   try {
     ({ phone, lienzo, tex } = preparar(THREE, gltf));
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  } catch (e) { return; }
+  } catch (e) { return avisar(`renderer: ${e}`); }
+  avisar('3D listo');
   renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth < 768 ? 1.5 : 2));
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 0.95;
