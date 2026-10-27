@@ -223,8 +223,10 @@ async function llenarReels(host) {
 export async function init() {
   const host = document.querySelector('.phone');
   if (!host) return;
+  const paso = (m) => window.diagPaso && window.diagPaso(m); // ponytail: diagnóstico temporal, ver diag.js
+  paso('3D init');
   const reels = llenarReels(host).catch(() => {}); // en paralelo con la carga 3D
-  if (!webgl()) return;
+  if (!webgl()) return paso('3D: sin webgl2');
   const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   let THREE, RoomEnvironment, gltf;
@@ -233,14 +235,15 @@ export async function init() {
     [THREE, { RoomEnvironment }, { GLTFLoader }, { MeshoptDecoder }] = await Promise.all(
       [import(THREE_URL), import(ROOM_URL), import(GLTF_URL), import(MESHOPT_URL)]);
     gltf = await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(MODELO);
-  } catch (e) { return; } // sin red al CDN o sin modelo: queda el celular CSS
+  } catch (e) { return paso(`3D carga: ${e}`); } // sin red al CDN o sin modelo: queda el celular CSS
 
   // Preparar el modelo y crear el renderer antes de tocar la página: si algo falla, queda el CSS.
   let phone, lienzo, tex, renderer;
   try {
     ({ phone, lienzo, tex } = preparar(THREE, gltf));
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  } catch (e) { return; }
+  } catch (e) { return paso(`3D renderer: ${e}`); }
+  paso('3D renderer ok');
   renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth < 768 ? 1.5 : 2));
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 0.95;
@@ -281,6 +284,7 @@ export async function init() {
   const capa = capaReels(lienzo.width, lienzo.height, avatar.naturalWidth ? avatar : null);
 
   await reels;
+  paso('3D reels ok');
   const medios = [...host.querySelectorAll('.phone-screen img, .phone-screen video')];
   // Pantalla: medios[i] (foto o video) y, durante el swipe, el siguiente entrando desde abajo
   // como en Instagram; encima de todo, el overlay de Reels. Cada medio se sigue por su lugar en

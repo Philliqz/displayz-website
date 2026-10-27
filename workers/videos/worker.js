@@ -14,6 +14,11 @@ export default {
     if (request.method !== 'GET' && request.method !== 'HEAD') {
       return new Response('Método no permitido', { status: 405, headers: { allow: 'GET, HEAD' } });
     }
+    // ponytail: diagnóstico temporal del iPhone (2026-10-27), ver assets/js/diag.js; se quita al resolverlo.
+    if (new URL(request.url).pathname === '/diag') {
+      console.log('DIAG', request.headers.get('user-agent'), new URL(request.url).searchParams.get('d'));
+      return new Response(null, { status: 204, headers: { 'access-control-allow-origin': '*' } });
+    }
     let key;
     try { key = decodeURIComponent(new URL(request.url).pathname.slice(1)); } catch { key = ''; }
     if (!RUTA.test(key)) return new Response('No encontrado', { status: 404 });
