@@ -171,7 +171,10 @@ picture { display: block; }
 .phone-3d { position: absolute; top: -12%; bottom: -12%; left: -35%; right: -35%; width: 170%; height: 124%; pointer-events: none; visibility: hidden; }
 .phone.is-3d .phone-3d { visibility: visible; }
 .phone.is-3d { background: none; box-shadow: none; }
-.phone.is-3d::after, .phone.is-3d .phone-screen { visibility: hidden; }
+.phone.is-3d::after { visibility: hidden; }
+/* La pantalla HTML queda detrás del 3D casi transparente, no oculta: Safari iOS pausa un video
+   silenciado que no está visible y el lienzo se quedaba congelado en el primer cuadro (2026-10-27). */
+.phone.is-3d .phone-screen { opacity: 0.01; }
 .hero-avail { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 7px 12px; border-radius: 999px;
   background: rgba(0,0,0,0.25); font-size: 12px; color: rgba(255,255,255,0.9); }
 .btn-light { background: var(--color-white); color: var(--color-black); border-color: transparent; }
