@@ -5,7 +5,7 @@ const RUTA = /^portfolio\/[a-z0-9-]+\/video\/[a-z0-9-]+\.mp4$/;
 
 // Media Encoder exportó 68 videos con nivel H.264 6.0 y el iPhone no los reproduce (2026-10-26).
 // El nivel es un byte (avcC y cada SPS); aquí se sirve como 4.1, lo que corresponde a 1080p a
-// 3.75 Mbps, sin volver a subir los archivos. niveles.json: posiciones de ese byte por archivo.
+// 3.75 Mbps, sin volver a subir los archivos. niveles.json: MD5 y posiciones de ese byte por archivo.
 const NIVEL = 41;
 
 // Cambia los bytes de nivel que caen en este tramo; inicio = posición absoluta del primer byte.
@@ -45,7 +45,9 @@ export default {
     const meta = await env.VIDEOS.head(key);
     if (!meta) return new Response('No encontrado', { status: 404 });
 
-    const offs = NIVELES[key];
+    // Solo si el archivo es el mismo con el que se midieron las posiciones (ETag de R2 = MD5):
+    // otro archivo subido con la misma clave se sirve tal cual, sin tocarle bytes.
+    const offs = NIVELES[key]?.md5 === meta.etag ? NIVELES[key].o : null;
     // Otro ETag para la versión con el nivel cambiado: no se mezcla con lo que haya en caché.
     const etag = offs ? meta.httpEtag.replace(/"$/, `-n${NIVEL}"`) : meta.httpEtag;
     const headers = new Headers();
@@ -78,6 +80,7 @@ export default {
       return new Response(null, { status: 416, headers });
     }
     if (!obj) return new Response('No encontrado', { status: 404 });
+    if (offs && obj.etag !== meta.etag) return new Response('El video cambió, reintenta', { status: 503, headers: { 'retry-after': '1' } }); // carrera head/get
 
     if (conRango && obj.range) {
       // R2 trae las tres claves aunque alguna venga undefined: se mira el valor, no si existe.
