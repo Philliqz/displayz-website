@@ -211,6 +211,9 @@ async function llenarReels(host) {
     // viene del Worker de R2 y sin CORS el lienzo WebGL queda "contaminado" y la pantalla sale negra.
     Object.assign(v, { crossOrigin: 'anonymous', muted: true, playsInline: true, loop: true, autoplay: k === 0,
       preload: k === 0 ? 'auto' : 'none', src: r.url_ligera || r.url });
+    // Safari iOS solo deja arrancar solo un video con el atributo muted en el HTML (la propiedad no basta).
+    v.defaultMuted = true;
+    v.setAttribute('playsinline', '');
     if (r.miniatura) v.poster = r.miniatura;
     v.setAttribute('aria-label', r.titulo || 'Reel');
     return v;
@@ -310,11 +313,17 @@ export async function init() {
     if (!actual) return false;
     if (!lista(actual)) {
       if (rota(actual)) { i = (i + 1) % medios.length; desde = t; entrando = -1; ultima = null; } // rota: se salta
+      else reproducir(actual); // Safari iOS no carga datos hasta el play(): esperar a "listo" lo dejaba quieto
       return false;
     }
     reproducir(actual);
     const prox = medios[(i + 1) % medios.length]; // el siguiente baja mientras corre el actual
-    if (esVideo(prox) && prox.preload === 'none') { prox.preload = 'auto'; prox.load(); }
+    if (esVideo(prox) && prox.preload === 'none') {
+      prox.preload = 'auto';
+      // iOS ignora preload: un play() silenciado y pausa en cuanto arranca deja el primer cuadro listo.
+      if (!quieto) prox.play().then(() => { if (medios[i] !== prox && medios[entrando] !== prox) prox.pause(); }, () => {});
+      else prox.load();
+    }
     // Un swipe empezado se termina con el mismo medio, aunque se haya salido de pantalla a mitad.
     const j = entrando >= 0 ? entrando : quieto ? -1 : siguiente();
     if (entrando < 0 && (j < 0 || queda(actual, t) > 0)) {

@@ -118,6 +118,8 @@ function renderPieza({ c, keys, p, f, col, w, h }, imagenes) {
     // Mudo y en bucle: así el navegador lo deja arrancar solo. Se carga y suena solo en pantalla.
     const v = el('video');
     v.muted = true;
+    v.defaultMuted = true; // atributo muted: Safari iOS no arranca solo un video sin él
+    v.setAttribute('playsinline', '');
     v.loop = true;
     v.playsInline = true;
     v.preload = 'none';
