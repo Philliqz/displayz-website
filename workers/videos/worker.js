@@ -80,7 +80,7 @@ export default {
       return new Response(null, { status: 416, headers });
     }
     if (!obj) return new Response('No encontrado', { status: 404 });
-    if (offs && obj.etag !== meta.etag) return new Response('El video cambió, reintenta', { status: 503, headers: { 'retry-after': '1' } }); // carrera head/get
+    if (obj.etag !== meta.etag) return new Response('El video cambió, reintenta', { status: 503, headers: { 'retry-after': '1' } }); // carrera head/get
 
     if (conRango && obj.range) {
       // R2 trae las tres claves aunque alguna venga undefined: se mira el valor, no si existe.
