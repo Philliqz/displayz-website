@@ -220,15 +220,11 @@ async function llenarReels(host) {
   }));
 }
 
-// ponytail: diagnóstico temporal (?diag) para el iPhone del fundador (2026-10-27): dice en qué paso se cae el 3D.
-const avisar = (m) => { if (/[?&]diag/.test(location.search)) new Image().src = `https://displayz-videos.displayz.workers.dev/diag?d=${encodeURIComponent(m)}`; };
-
 export async function init() {
   const host = document.querySelector('.phone');
   if (!host) return;
-  avisar('init');
-  const reels = llenarReels(host).catch((e) => avisar(`reels: ${e}`)); // en paralelo con la carga 3D
-  if (!webgl()) return avisar('sin webgl2');
+  const reels = llenarReels(host).catch(() => {}); // en paralelo con la carga 3D
+  if (!webgl()) return;
   const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   let THREE, RoomEnvironment, gltf;
@@ -237,15 +233,14 @@ export async function init() {
     [THREE, { RoomEnvironment }, { GLTFLoader }, { MeshoptDecoder }] = await Promise.all(
       [import(THREE_URL), import(ROOM_URL), import(GLTF_URL), import(MESHOPT_URL)]);
     gltf = await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(MODELO);
-  } catch (e) { return avisar(`carga 3D: ${e}`); } // sin red al CDN o sin modelo: queda el celular CSS
+  } catch (e) { return; } // sin red al CDN o sin modelo: queda el celular CSS
 
   // Preparar el modelo y crear el renderer antes de tocar la página: si algo falla, queda el CSS.
   let phone, lienzo, tex, renderer;
   try {
     ({ phone, lienzo, tex } = preparar(THREE, gltf));
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  } catch (e) { return avisar(`renderer: ${e}`); }
-  avisar('3D listo');
+  } catch (e) { return; }
   renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth < 768 ? 1.5 : 2));
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 0.95;
@@ -295,8 +290,7 @@ export async function init() {
   const esVideo = (m) => m.tagName === 'VIDEO';
   const lista = (m) => (esVideo(m) ? m.readyState >= 2 : m.complete && m.naturalWidth);
   const rota = (m) => (esVideo(m) ? !!m.error : m.complete && !m.naturalWidth);
-  let fallo = ''; // diagnóstico (?diag): por qué Safari rechazó play()
-  const reproducir = (m) => { if (esVideo(m) && !quieto && m.paused) m.play().catch((e) => { fallo = `${e.name}: ${e.message}`; }); };
+  const reproducir = (m) => { if (esVideo(m) && !quieto && m.paused) m.play().catch(() => {}); };
   // El HTML los trae con autoplay: aquí manda el script. Solo el primero corre; con varios medios
   // ninguno se repite solo (el turno lo marca el swipe), y con movimiento reducido todos quietos.
   medios.filter(esVideo).forEach((v) => {
@@ -373,22 +367,6 @@ export async function init() {
       medios.forEach((m) => { if (esVideo(m)) m.pause(); }); // fuera de pantalla no se decodifica
     }
   }).observe(host);
-  // ponytail: diagnóstico temporal para el iPhone del fundador (2026-10-27); se quita al resolverlo.
-  if (new URLSearchParams(location.search).has('diag')) {
-    const d = document.body.appendChild(document.createElement('pre'));
-    d.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:9999;margin:0;padding:8px;font:12px/1.4 monospace;background:rgba(0,0,0,.85);color:#3f3;white-space:pre-wrap';
-    setInterval(() => {
-      const m = medios[i];
-      d.textContent = `reducir movimiento: ${quieto} · a la vista: ${visible} · 3D: ${host.classList.contains('is-3d')}\n`
-        + `medio ${i + 1}/${medios.length} ${m ? m.tagName : '-'} · pausado ${m && m.paused} · listo ${m && m.readyState} · red ${m && m.networkState} · seg ${m && m.currentTime != null ? m.currentTime.toFixed(1) : '-'} · error ${(m && m.error && m.error.code) || '-'}\n`
-        + `play(): ${fallo || 'sin rechazo'}\n${m && m.currentSrc ? m.currentSrc.split('/').slice(-3).join('/') : ''}`;
-    }, 500);
-    let envios = 0; // y al Worker, para leerlo sin captura: cada 2 s durante 1 min
-    const enviar = setInterval(() => {
-      if (++envios > 30) return clearInterval(enviar);
-      new Image().src = `https://displayz-videos.displayz.workers.dev/diag?d=${encodeURIComponent(d.textContent.replace(/\n/g, ' | '))}`;
-    }, 2000);
-  }
   function cuadro(t) {
     raf = 0;
     if (muerto || !visible) return;
