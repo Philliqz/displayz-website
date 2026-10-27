@@ -369,6 +369,11 @@ export async function init() {
         + `medio ${i + 1}/${medios.length} ${m ? m.tagName : '-'} · pausado ${m && m.paused} · listo ${m && m.readyState} · red ${m && m.networkState} · seg ${m && m.currentTime != null ? m.currentTime.toFixed(1) : '-'} · error ${(m && m.error && m.error.code) || '-'}\n`
         + `play(): ${fallo || 'sin rechazo'}\n${m && m.currentSrc ? m.currentSrc.split('/').slice(-3).join('/') : ''}`;
     }, 500);
+    let envios = 0; // y al Worker, para leerlo sin captura: cada 2 s durante 1 min
+    const enviar = setInterval(() => {
+      if (++envios > 30) return clearInterval(enviar);
+      new Image().src = `https://displayz-videos.displayz.workers.dev/diag?d=${encodeURIComponent(d.textContent.replace(/\n/g, ' | '))}`;
+    }, 2000);
   }
   function cuadro(t) {
     raf = 0;
