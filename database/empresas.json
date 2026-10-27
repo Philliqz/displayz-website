@@ -3396,6 +3396,7 @@
         "titulo": "Wedding film",
         "provider": "archivo",
         "url": "portfolio/eduardo-e-ines/video/wedding-film.mp4",
+        "url_ligera": "portfolio/eduardo-e-ines/video/wedding-film-telefono.mp4",
         "miniatura": "portfolio/eduardo-e-ines/video/wedding-film.jpg",
         "destacado": true,
         "evento": "Boda"
@@ -3586,7 +3587,7 @@
     "descripcion": "Visualizer oficial de «Perdonar», de Karims.",
     "nicho": "Música",
     "publico": true,
-    "video": false,
+    "video": true,
     "categorias": [
       "video"
     ],
