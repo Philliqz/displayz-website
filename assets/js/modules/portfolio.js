@@ -19,6 +19,7 @@ export function init() {
     .then((companies) => {
       const visible = shuffle(companies.filter((c) => c && c[sectionKey === 'eventos' ? 'video' : sectionKey] && companyItems(c, sectionKey).length));
       if (!visible.length) {
+        container.hidden = true;
         if (emptyState) emptyState.style.display = 'block';
         return;
       }
@@ -34,6 +35,7 @@ export function init() {
       VideoModal.init();
     })
     .catch(() => {
+      container.hidden = true;
       if (emptyState) emptyState.style.display = 'block';
     });
 }
@@ -286,6 +288,10 @@ export function renderGallery(rawItems, sectionKey, company) {
 
   const track = document.createElement('div');
   track.className = 'gallery-track';
+  // Enfocable para desplazarlo con las flechas del teclado (WCAG 2.1.1).
+  track.tabIndex = 0;
+  track.setAttribute('role', 'region');
+  track.setAttribute('aria-label', 'Galería de ' + tituloDe(company));
   items.forEach((item) => track.appendChild(makeImg(item)));
 
   const prevBtn = document.createElement('button');

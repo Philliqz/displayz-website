@@ -184,6 +184,7 @@ export function init() {
       const imagenes = [];
       const enfocada = casosEl.contains(document.activeElement) ? document.activeElement.pieza : null;
       casosEl.replaceChildren(...acomodar(todas, relleno, cols, filas).map((x) => renderPieza(x, imagenes)));
+      casosEl.hidden = !casosEl.children.length; // sin destacados no queda el alto reservado
       if (enfocada) ([...casosEl.children].find((b) => b.pieza === enfocada) || casosEl.firstElementChild)?.focus();
       autoplay(casosEl);
       VideoModal.init();
@@ -191,5 +192,5 @@ export function init() {
     };
     pintar();
     MALLAS.forEach(([ancho]) => ancho && matchMedia(`(min-width: ${ancho}px)`).addEventListener('change', pintar));
-  }).catch(() => {});
+  }).catch(() => { casosEl.hidden = true; });
 }
