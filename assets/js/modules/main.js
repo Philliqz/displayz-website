@@ -1,4 +1,4 @@
-import * as Nav from './nav.js';
+import * as Nav from './nav.js?v=20261101';
 import * as Animations from './animations.js';
 import * as Forms from './forms.js';
 import * as Lightbox from './lightbox.js';
@@ -6,7 +6,7 @@ import * as VideoModal from './video-modal.js';
 import * as Portfolio from './portfolio.js';
 import * as Featured from './featured.js';
 import * as AboutPhoto from './about-photo.js';
-import * as Phone3D from './phone3d.js';
+import * as Phone3D from './phone3d.js?v=20261101';
 
 document.addEventListener('DOMContentLoaded', () => {
   Nav.init();
