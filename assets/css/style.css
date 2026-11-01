@@ -361,6 +361,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 /* ---- Galería: en celular es un carrusel que se desliza con el dedo ---- */
 /* Mientras el JS llena la galería o los destacados, reserva una pantalla: así #contacto no salta (CLS). */
 [data-portfolio-companies]:empty, [data-casos]:empty { min-height: 100svh; }
+[data-portfolio-companies][hidden], [data-casos][hidden] { display: none; }
 .gallery-carousel { position: relative; margin: 0 calc(var(--pad) * -1); }
 .gallery-track { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
   padding: 0 var(--pad); scroll-padding: 0 var(--pad); user-select: none; cursor: grab; -webkit-overflow-scrolling: touch; }
