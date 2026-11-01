@@ -15,6 +15,7 @@ const PANTALLA = 'BsXHDwLKqtDOfrW'; // nombre del material de la pantalla en el 
 const H = 16.34;                  // alto al que se escala el modelo (cm reales)
 const MARGEN = 1.24;              // el canvas es 24 % más alto que .phone para que el giro no se corte
 const CADA = 4000, REEL = 10000, SWIPE = 450; // ms por foto, por reel y del swipe al siguiente
+const PASO = 1000 / 30;           // ms entre dibujos del 3D (tope de 30 cuadros/s)
 
 // Centra el modelo, lo lleva a H de alto y pone el canvas como textura de la pantalla.
 function preparar(THREE, gltf) {
@@ -375,9 +376,11 @@ export async function init() {
     raf = 0;
     if (muerto || !visible) return;
     // Tope de 30 cuadros/s: los reels van a 30 y 30 reparte parejo en pantallas de 60, 90 y 120 Hz.
-    // Con 4 ms de holgura para el temblor del reloj, a 60 Hz se dibuja 1 de cada 2 refrescos, a 120 Hz 1 de 4.
-    if (t - previo < 1000 / 30 - 4) return correr();
-    previo = t;
+    // 4 ms de holgura para el temblor del reloj. previo avanza de 1/30 s en 1/30 s (conserva la fase),
+    // así en 100, 144 o 165 Hz el promedio también es 30; si se atrasó más de un refresco (primer cuadro,
+    // vuelta a pantalla, tirón) arranca de nuevo en t, sin recuperar cuadros de golpe.
+    if (t - previo < PASO - 4) return correr();
+    previo = previo + PASO > t - PASO / 3 ? previo + PASO : t;
     if (medios.every(rota)) return; // ningún medio cargó: queda el CSS
     if (pintarPantalla(t)) { tex.needsUpdate = true; conFoto = true; }
     const s = quieto ? 0 : (t - t0) / 9000 * Math.PI * 2;
