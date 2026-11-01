@@ -357,7 +357,7 @@ export async function init() {
 
   // Un solo bucle: se detiene fuera de pantalla, con movimiento reducido una vez pintada la foto,
   // y para siempre si se pierde el contexto WebGL (vuelve el celular CSS).
-  let raf = 0, visible = true, conFoto = false, muerto = false;
+  let raf = 0, visible = true, conFoto = false, muerto = false, previo = -Infinity;
   const t0 = performance.now();
   const correr = () => { if (!raf && !muerto) raf = requestAnimationFrame(cuadro); };
   canvas.addEventListener('webglcontextlost', () => {
@@ -374,6 +374,10 @@ export async function init() {
   function cuadro(t) {
     raf = 0;
     if (muerto || !visible) return;
+    // Tope de 30 cuadros/s: los reels van a 30 y 30 reparte parejo en pantallas de 60, 90 y 120 Hz.
+    // Con 4 ms de holgura para el temblor del reloj, a 60 Hz se dibuja 1 de cada 2 refrescos, a 120 Hz 1 de 4.
+    if (t - previo < 1000 / 30 - 4) return correr();
+    previo = t;
     if (medios.every(rota)) return; // ningún medio cargó: queda el CSS
     if (pintarPantalla(t)) { tex.needsUpdate = true; conFoto = true; }
     const s = quieto ? 0 : (t - t0) / 9000 * Math.PI * 2;
