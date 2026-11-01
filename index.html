@@ -7,6 +7,8 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: (function () { try { return localStorage.getItem('cookies') === 'si' ? 'granted' : 'denied'; } catch (e) { return 'denied'; } })() });
   gtag('js', new Date());
 
   gtag('config', 'G-Q38R0X46XS');
@@ -33,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=20261101">
+<link rel="stylesheet" href="assets/css/style.css?v=20261101-2">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -235,7 +237,6 @@
   <iframe title="Reproductor de video" style="width:min(960px,88vw); height:min(540px,50vw); border:0; border-radius:8px" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
 </div>
 
-<script src="assets/js/diag.js"></script>
-<script type="module" src="assets/js/modules/main.js?v=20261101"></script>
+<script type="module" src="assets/js/modules/main.js?v=20261101-2"></script>
 </body>
 </html>
