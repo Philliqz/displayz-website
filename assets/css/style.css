@@ -71,11 +71,26 @@ picture { display: block; }
 .reveal.is-visible { opacity: 1; transform: none; }
 
 /* ---- Nav ---- */
-/* Transparente sobre el degradado del primer banner, que sube hasta el borde de arriba; al pasarlo
-   (nav.js pone .is-solid) toma fondo para leerse sobre el resto de la página. */
-.site-nav { position: sticky; top: 0; z-index: 100; transition: background 0.3s ease; }
-.site-nav.is-solid { background: rgba(0,0,0,0.78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+/* Transparente arriba del todo, sobre el degradado del banner, con los botones en blanco; al bajar
+   (nav.js pone .is-solid) aparece detrás un degradado negro que se desvanece hacia abajo, sin borde
+   de barra, y los botones toman el degradado de marca. */
+.site-nav { position: sticky; top: 0; z-index: 100; }
+.site-nav::before { content: ""; position: absolute; z-index: -1; inset: 0 0 -36px; pointer-events: none; opacity: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.6) 55%, transparent); transition: opacity 0.3s ease; }
+.site-nav.is-solid::before { opacity: 1; }
 .site-nav .container { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 12px; }
+.site-nav:not(.is-solid) .btn-contact-pill { background: var(--color-white); color: var(--color-black); animation: none; }
+.site-nav:not(.is-solid) .nav-toggle { background: var(--color-white); border-color: transparent; }
+.site-nav:not(.is-solid) .nav-toggle span { background: var(--color-black); }
+.site-nav.is-solid .nav-toggle { background: var(--gradient-hero) border-box; background-size: 300% 300%; border-color: transparent;
+  animation: heroGradientMove 16s ease infinite; }
+/* Móvil y tablet: menú a la izquierda, logo al centro, Contacto a la derecha. */
+@media (max-width: 959px) {
+  .site-nav .container { display: grid; grid-template-columns: 1fr auto 1fr; }
+  .nav-toggle { grid-column: 1; grid-row: 1; justify-self: start; }
+  .logo-link { grid-column: 2; grid-row: 1; }
+  .btn-contact-pill { grid-column: 3; grid-row: 1; justify-self: end; }
+}
 .logo-link img { height: 22px; width: auto; }
 .nav-links { position: absolute; top: calc(100% + 8px); left: var(--pad); right: var(--pad); z-index: 99; list-style: none; margin: 0; padding: 8px;
   border-radius: var(--r-card); background: rgba(13,7,18,0.96); border: 1px solid rgba(255,255,255,0.7);
@@ -152,16 +167,30 @@ picture { display: block; }
 /* Celular: iPhone 17 Pro Max naranja (Cosmic Orange) dibujado con CSS — el marco oficial de Apple
    no se puede usar en un sitio (su licencia lo limita a maquetas de apps). Las piezas se funden cada 4 s. */
 /* Celular: lo más grande que quepa entero en una pantalla (ancho o alto, lo que limite primero). */
-.phone { position: relative; z-index: 3; width: min(64vw, (100vh - var(--nav-h) - 48px) * 78 / 163); width: min(64vw, (100svh - var(--nav-h) - 48px) * 78 / 163); margin: 28px auto 0; aspect-ratio: 78 / 163; padding: 5px; border-radius: 42px;
-  background: linear-gradient(135deg, #ffa766 0%, #f26a1b 25%, #c84a0c 55%, #f27a2e 80%, #ff9d58 100%) border-box;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35), 0 30px 60px rgba(0,0,0,0.45); }
-/* Botón lateral */
-.phone::after { content: ""; position: absolute; right: -4px; top: 26%; width: 4px; height: 12%; border-radius: 0 3px 3px 0;
-  background: linear-gradient(90deg, #c94f12, #f58a43) border-box; }
-.phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border: 6px solid #050505; border-radius: 37px; background: #120a1a; }
-/* Dynamic Island */
-.phone-screen::after { content: ""; position: absolute; z-index: 2; top: 10px; left: 50%; width: 30%; height: 16px; transform: translateX(-50%);
-  border-radius: 999px; background: #050505; }
+/* Marco de aluminio visto de frente: el canto redondeado brilla en los lados (degradado horizontal), con un
+   chaflán claro afuera y uno oscuro hacia el vidrio, y las líneas de antena cerca de arriba y de abajo. */
+.phone { position: relative; z-index: 3; width: min(64vw, (100vh - var(--nav-h) - 48px) * 78 / 163); width: min(64vw, (100svh - var(--nav-h) - 48px) * 78 / 163); margin: 28px auto 0; aspect-ratio: 78 / 163; padding: 4px; border-radius: 44px;
+  background:
+    linear-gradient(transparent 8.6%, rgba(90,30,5,0.55) 8.6%, rgba(90,30,5,0.55) 9.1%, transparent 9.1%, transparent 90.9%, rgba(90,30,5,0.55) 90.9%, rgba(90,30,5,0.55) 91.4%, transparent 91.4%),
+    linear-gradient(90deg, #b9480f 0%, #ffb27a 3%, #f2782f 9%, #e8651f 50%, #f2782f 91%, #ffb27a 97%, #b9480f 100%);
+  box-shadow: inset 0 0 0 1px rgba(255,214,180,0.55), inset 0 0 0 2.5px rgba(150,55,10,0.45), 0 30px 60px rgba(0,0,0,0.45); }
+/* Botones del iPhone 17 Pro Max: a la izquierda Acción y volumen (+ y −); a la derecha el lateral y, más abajo,
+   el Control de Cámara (casi al ras, de zafiro: más oscuro). Cada lado es un solo pseudo con capas de fondo. */
+.phone::before, .phone::after { content: ""; position: absolute; width: 3px; --boton: linear-gradient(90deg, #a8410d, #f58a43 60%, #ffb27a); }
+.phone::before { left: -3px; top: 17%; height: 27%; border-radius: 3px 0 0 3px; transform: scaleX(-1);
+  background: var(--boton) 0 0 / 100% 14% no-repeat, var(--boton) 0 45.7% / 100% 30% no-repeat, var(--boton) 0 100% / 100% 30% no-repeat; }
+.phone::after { right: -3px; top: 27%; height: 39%; border-radius: 0 3px 3px 0;
+  background: var(--boton) 0 0 / 100% 28% no-repeat, linear-gradient(90deg, #5a2208, #8c3a10 60%, #b9561e) 0 100% / 66% 20.5% no-repeat; }
+.phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border: 5px solid #050505; border-radius: 40px; background: #120a1a;
+  box-shadow: 0 0 0 0.5px rgba(0,0,0,0.9); }
+/* Dynamic Island, con el lente de la cámara frontal a la derecha */
+.phone-screen::after { content: ""; position: absolute; z-index: 2; top: 9px; left: 50%; width: 31%; height: 18px; transform: translateX(-50%);
+  border-radius: 999px; animation: lente 2.6s ease-in-out infinite;
+  background: radial-gradient(circle at 78% 50%, rgba(110,165,255,calc(var(--luz) * 0.9)) 0 1px, rgba(70,120,255,calc(var(--luz) * 0.35)) 2.2px, transparent 4px),
+    radial-gradient(circle at 78% 50%, #1d2a45 0 2.4px, #0b0f1a 2.6px 4px, transparent 4.2px), #030303; }
+/* El lente palpita suave, para que el teléfono se sienta encendido (pedido del fundador, 2026-11-01). */
+@property --luz { syntax: "<number>"; inherits: false; initial-value: 0.2; }
+@keyframes lente { 50% { --luz: 1; } }
 .phone-screen picture, .phone-screen img, .phone-screen video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .phone-screen picture { opacity: 0; animation: phoneFade 12s -0.6s infinite; } /* la primera ya visible al cargar */
 .phone-screen picture:nth-child(2) { animation-delay: 3.4s; }
@@ -171,10 +200,12 @@ picture { display: block; }
 .phone-3d { position: absolute; top: -12%; bottom: -12%; left: -35%; right: -35%; width: 170%; height: 124%; pointer-events: none; visibility: hidden; }
 .phone.is-3d .phone-3d { visibility: visible; }
 .phone.is-3d { background: none; box-shadow: none; }
-.phone.is-3d::after { visibility: hidden; }
+.phone.is-3d::before, .phone.is-3d::after { visibility: hidden; }
 /* La pantalla HTML queda detrás del 3D casi transparente, no oculta: Safari iOS pausa un video
    silenciado que no está visible y el lienzo se quedaba congelado en el primer cuadro (2026-10-27). */
 .phone.is-3d .phone-screen { opacity: 0.01; }
+/* iPhone (phone3d.js, plano): la capa de Reels encima de los videos; la isla dinámica (z 2) queda arriba. */
+.phone-capa { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; pointer-events: none; }
 .hero-avail { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 7px 12px; border-radius: 999px;
   background: rgba(0,0,0,0.25); font-size: 12px; color: rgba(255,255,255,0.9); }
 .btn-light { background: var(--color-white); color: var(--color-black); border-color: transparent; }
@@ -220,7 +251,8 @@ picture { display: block; }
   grid-auto-rows: calc((min(100vw, var(--max-width)) - 2 * var(--pad) - (var(--cols) - 1) * var(--gap)) / var(--cols));
   padding: 0 var(--pad); max-width: var(--max-width); margin: 0 auto; }
 .case { position: relative; display: block; overflow: hidden; border-radius: var(--r-card);
-  padding: 0; border: 0; background: #111; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+  padding: 0; border: 0; background: #111; color: inherit; font: inherit; text-align: left; cursor: pointer;
+  isolation: isolate; -webkit-mask-image: -webkit-radial-gradient(white, black); } /* Safari: sin máscara, el video se sale 1 px del borde redondeado */
 .case picture { display: block; width: 100%; height: 100%; }
 .case img, .case video { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
 .case:hover video { transform: scale(1.04); }
@@ -234,7 +266,7 @@ picture { display: block; }
 .case-title { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.02em; font-size: 14px; line-height: 1.2;
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; } /* en tiles bajos no tapa la etiqueta Video */
 .case-line { color: var(--color-soft); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
-.case:focus-visible { outline: 2px solid var(--color-white); outline-offset: 3px; }
+.case:focus-visible { outline: 2px solid var(--color-white); outline-offset: -4px; } /* por dentro: la máscara recorta lo de fuera */
 .rec { position: absolute; z-index: 1; top: 10px; left: 10px; display: flex; align-items: center; gap: 6px; border-radius: 999px;
   background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); padding: 6px 12px; font-size: 12px; }
 .rec i { width: 7px; height: 7px; border-radius: 50%; background: var(--color-danger); }
@@ -427,8 +459,8 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .banner, .hero-gradient-bg, .case img, .contact-info::before, .dot, .band, .btn-contact-pill, .wa-float, .btn-gradient, .btn-form { animation: none; }
-  .phone-screen picture { animation: none; }
+  .banner, .hero-gradient-bg, .case img, .contact-info::before, .dot, .band, .btn-contact-pill, .site-nav.is-solid .nav-toggle, .wa-float, .btn-gradient, .btn-form { animation: none; }
+  .phone-screen picture, .phone-screen::after { animation: none; }
   .phone-screen picture:first-child { opacity: 1; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }

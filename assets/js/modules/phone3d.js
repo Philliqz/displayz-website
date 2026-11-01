@@ -221,14 +221,101 @@ async function llenarReels(host) {
   }));
 }
 
+// iPhone: teléfono plano (el celular CSS) con los reels en video normal, la capa de Instagram y el swipe
+// del 3D, pero sin el modelo. En el
+// 3D, Safari iOS deja de decodificar la imagen desde el 3.er reel aunque el video sigue corriendo
+// (?diag del 2026-10-31: currentTime avanza y los cuadros entregados se quedan fijos), probado con
+// lienzo 2D, con textura de video directa y con solo dos elementos. Decisión del fundador, 2026-10-31.
+async function plano(host, reels, quieto) {
+  await reels;
+  const pantalla = host.querySelector('.phone-screen');
+  const vs = [...pantalla.querySelectorAll('video')];
+  if (!vs.length) return; // sin reels quedan las fotos del HTML
+  const lista = vs.map((x) => ({ src: x.getAttribute('src'), poster: x.poster, nombre: x.getAttribute('aria-label') }));
+  // Dos videos que se turnan: el que se ve y el que entra en el swipe. Los demás sobran.
+  // Con un solo reel no hay segundo (su poster taparía al que se reproduce).
+  vs.slice(2).forEach((x) => x.remove());
+  const [v, w] = vs, dos = vs.slice(0, 2);
+  if (w) { w.removeAttribute('src'); w.removeAttribute('autoplay'); }
+
+  // La misma capa de Reels del 3D, en un lienzo encima de los videos, al tamaño real de la pantalla.
+  const avatar = new Image();
+  avatar.src = 'assets/images/isotipo.svg';
+  await Promise.race([Promise.all([avatar.decode().catch(() => {}), document.fonts.ready]),
+    new Promise((r) => setTimeout(r, 1500))]);
+  const capa = document.createElement('canvas');
+  capa.className = 'phone-capa';
+  pantalla.appendChild(capa);
+  const ajustar = () => {
+    const { clientWidth: cw, clientHeight: ch } = pantalla;
+    if (!cw || !ch) return;
+    const d = Math.min(devicePixelRatio, 3);
+    capa.width = Math.round(cw * d); capa.height = Math.round(ch * d);
+    capa.getContext('2d').drawImage(capaReels(capa.width, capa.height, avatar.naturalWidth ? avatar : null), 0, 0);
+    // El reel ocupa solo lo que queda encima de la barra de pestañas, como en la app.
+    dos.forEach((x) => { x.style.height = `calc(100% - ${NAV_PT * cw / 440}px)`; });
+  };
+  new ResizeObserver(ajustar).observe(pantalla);
+  ajustar();
+
+  let k = 0, visible = true, actual = v, sig = w, moviendo = false;
+  const correr = () => { if (visible && !quieto && !moviendo) actual.play().catch(() => {}); };
+  const poner = (x, n) => { x.poster = lista[n].poster; x.src = lista[n].src; x.setAttribute('aria-label', lista[n].nombre || 'Reel'); };
+  const mover = (x, y, animar) => {
+    x.style.transition = animar ? `transform ${SWIPE}ms cubic-bezier(0.65, 0, 0.35, 1)` : 'none';
+    x.style.transform = `translateY(${y}%)`;
+  };
+  // El siguiente se prepara apenas termina el swipe: carga detrás del actual (que lo tapa entero, sin
+  // asomar por ningún borde) y un play() con pausa inmediata le deja el primer cuadro listo, porque iOS
+  // no carga nada antes de un play(). Así entra con imagen y no en negro.
+  const preparar = (x) => {
+    if (lista.length < 2) return;
+    poner(x, (k + 1) % lista.length);
+    x.style.zIndex = '0'; actual.style.zIndex = '1';
+    mover(x, 0, false);
+    // Sin play() fuera de pantalla; y si el swipe ya empezó, este es el que entra: no se pausa.
+    if (!quieto && visible) x.play().then(() => { if (x !== actual && !(moviendo && visible)) x.pause(); }, () => {});
+  };
+  // Swipe como en Instagram: el siguiente entra desde abajo mientras el actual sube, y sigue desde
+  // donde quedó su primer cuadro.
+  const pasar = () => {
+    if (moviendo || !visible) return;
+    moviendo = true;
+    k = (k + 1) % lista.length;
+    mover(sig, 100, false);
+    sig.getBoundingClientRect(); // fija la posición de partida antes de animar
+    sig.play().catch(() => {});
+    mover(actual, -100, true);
+    mover(sig, 0, true);
+    setTimeout(() => {
+      actual.pause();
+      [actual, sig] = [sig, actual];
+      moviendo = false;
+      preparar(sig);
+      correr();
+    }, SWIPE);
+  };
+  preparar(w);
+  if (lista.length > 1) {
+    dos.forEach((x) => {
+      x.loop = false;
+      x.addEventListener('ended', () => { if (x === actual) pasar(); });
+      x.addEventListener('timeupdate', () => { if (x === actual && x.currentTime * 1000 >= REEL) pasar(); }); // REEL ms por reel, como el 3D
+    });
+  }
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) correr(); else dos.forEach((x) => x.pause()); }).observe(host);
+  if (quieto) v.pause();
+}
+
 export async function init() {
   const host = document.querySelector('.phone');
   if (!host) return;
   const paso = (m) => window.diagPaso && window.diagPaso(m); // ponytail: diagnóstico temporal, ver diag.js
   paso('3D init');
   const reels = llenarReels(host).catch(() => {}); // en paralelo con la carga 3D
-  if (!webgl()) return paso('3D: sin webgl2');
   const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (/iPhone/.test(navigator.userAgent)) return plano(host, reels, quieto);
+  if (!webgl()) return paso('3D: sin webgl2');
 
   let THREE, RoomEnvironment, gltf;
   try {

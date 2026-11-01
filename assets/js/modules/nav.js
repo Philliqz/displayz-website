@@ -10,16 +10,16 @@ export function init() {
   initSolid();
 }
 
-// La barra va transparente sobre el banner de arriba; al pasarlo toma fondo (.is-solid).
+// La barra va transparente solo arriba del todo, sobre el banner; en cuanto se baja toma fondo
+// (.is-solid): en móvil el banner es alto y su contenido pasaba por debajo sin contraste.
 // Sin banner (política), siempre con fondo.
 function initSolid() {
   const nav = document.querySelector('.site-nav');
-  const banner = document.querySelector('.hero.banner, .gallery-hero');
   if (!nav) return;
-  if (!banner || !('IntersectionObserver' in window)) { nav.classList.add('is-solid'); return; }
-  const alto = nav.offsetHeight;
-  new IntersectionObserver(([e]) => nav.classList.toggle('is-solid', !e.isIntersecting),
-    { rootMargin: `-${alto}px 0px 0px 0px` }).observe(banner);
+  if (!document.querySelector('.hero.banner, .gallery-hero')) { nav.classList.add('is-solid'); return; }
+  const poner = () => nav.classList.toggle('is-solid', scrollY > 8);
+  addEventListener('scroll', poner, { passive: true });
+  poner();
 }
 
 function initMobileToggle() {
