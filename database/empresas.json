@@ -1333,7 +1333,10 @@
         "url_ligera": "portfolio/ali-y-rola/video/boda-telefono.mp4",
         "miniatura": "portfolio/ali-y-rola/video/boda.jpg",
         "destacado": true,
-        "evento": "Boda"
+        "evento": "Boda",
+        "titulo_corto": "Ali & Rola",
+        "duracion": 105,
+        "inicio_banner": 54
       }
     ],
     "telefono": "",
@@ -1368,11 +1371,15 @@
     "videos": [
       {
         "titulo": "Recap evento Por Amor a Panamá x Monte Santo",
-        "provider": "iframe",
-        "url": "https://mega.nz/embed/WfZw3CaB#ivVQBOB40xwGxiCGJHhHO2lScLypOkr-GPcjeVBTwNw",
+        "provider": "archivo",
+        "url": "portfolio/por-amor-a-panama-monte-santo/video/recap.mp4",
+        "url_ligera": "portfolio/por-amor-a-panama-monte-santo/video/recap-telefono.mp4",
         "miniatura": "portfolio/por-amor-a-panama-monte-santo/video/miniatura.jpg",
-        "evento": "Evento"
-      }
+        "evento": "Evento",
+        "titulo_corto": "Evento benéfico",
+        "duracion": 116,
+        "inicio_banner": 54
+        }
     ],
     "telefono": "",
     "correo": "",
@@ -3049,7 +3056,10 @@
         "url_ligera": "portfolio/truenos-y-relampagos/video/halloween-telefono.mp4",
         "miniatura": "portfolio/truenos-y-relampagos/video/halloween.jpg",
         "destacado": true,
-        "evento": "Evento"
+        "evento": "Evento",
+        "titulo_corto": "Halloween",
+        "duracion": 83,
+        "inicio_banner": 24
       }
     ],
     "telefono": "",
@@ -3090,7 +3100,10 @@
         "url_ligera": "portfolio/miss-teen/video/dia-3-telefono.mp4",
         "miniatura": "portfolio/miss-teen/video/dia-3.jpg",
         "destacado": true,
-        "evento": "Certamen"
+        "evento": "Certamen",
+        "titulo_corto": "Miss Teen",
+        "duracion": 98,
+        "inicio_banner": 33
       }
     ],
     "telefono": "",
@@ -3131,7 +3144,10 @@
         "url_ligera": "portfolio/novelas-racing/video/ultimo-tour-telefono.mp4",
         "miniatura": "portfolio/novelas-racing/video/ultimo-tour.jpg",
         "destacado": true,
-        "evento": "Evento"
+        "evento": "Evento",
+        "titulo_corto": "Último tour",
+        "duracion": 43,
+        "inicio_banner": 0
       }
     ],
     "telefono": "",
@@ -3300,7 +3316,11 @@
         "url_ligera": "portfolio/daniela-y-christian/video/recap-telefono.mp4",
         "miniatura": "portfolio/daniela-y-christian/video/recap.jpg",
         "destacado": true,
-        "evento": "Boda"
+        "evento": "Boda",
+        "titulo_corto": "Daniela & Christian",
+        "duracion": 87,
+        "inicio_banner": 18,
+        "orden_eventos": 1
       }
     ],
     "nombre": "Daniela y Christian",
@@ -3330,7 +3350,10 @@
         "url_ligera": "portfolio/genesis/video/boda-telefono.mp4",
         "miniatura": "portfolio/genesis/video/boda.jpg",
         "destacado": true,
-        "evento": "Boda"
+        "evento": "Boda",
+        "titulo_corto": "Génesis",
+        "duracion": 23,
+        "inicio_banner": 3
       }
     ],
     "nombre": "Génesis",
@@ -3360,7 +3383,11 @@
         "url_ligera": "portfolio/mohammed-y-noemi/video/boda-telefono.mp4",
         "miniatura": "portfolio/mohammed-y-noemi/video/boda.jpg",
         "destacado": true,
-        "evento": "Boda"
+        "evento": "Boda",
+        "titulo_corto": "Mohammed & Noemí",
+        "duracion": 166,
+        "inicio_banner": 39,
+        "orden_eventos": 2
       }
     ],
     "nombre": "Mohammed y Noemí",
@@ -3390,7 +3417,10 @@
         "url_ligera": "portfolio/eduardo-e-ines/video/pasillo-telefono.mp4",
         "miniatura": "portfolio/eduardo-e-ines/video/pasillo.jpg",
         "destacado": true,
-        "evento": "Boda"
+        "evento": "Boda",
+        "titulo_corto": "Eduardo & Inés · Pasillo",
+        "duracion": 22,
+        "inicio_banner": 3
       },
       {
         "titulo": "Wedding film",
@@ -3399,7 +3429,10 @@
         "url_ligera": "portfolio/eduardo-e-ines/video/wedding-film-telefono.mp4",
         "miniatura": "portfolio/eduardo-e-ines/video/wedding-film.jpg",
         "destacado": true,
-        "evento": "Boda"
+        "evento": "Boda",
+        "titulo_corto": "Eduardo & Inés",
+        "duracion": 221,
+        "inicio_banner": 21
       }
     ],
     "nombre": "Eduardo e Inés",
@@ -3429,7 +3462,10 @@
         "url_ligera": "portfolio/ani-y-ronny/video/recap-telefono.mp4",
         "miniatura": "portfolio/ani-y-ronny/video/recap.jpg",
         "destacado": true,
-        "evento": "Boda"
+        "evento": "Boda",
+        "titulo_corto": "Ani & Ronny",
+        "duracion": 43,
+        "inicio_banner": 9
       }
     ],
     "nombre": "Ani y Ronny",
@@ -3444,7 +3480,12 @@
     "categoria": "video",
     "fotografia": false,
     "diseno": false,
-    "destacado": 15
+    "destacado": 15,
+    "colaboracion": {
+      "nombre": "MTZ Films",
+      "usuario": "@mtzfilms",
+      "instagram": "https://www.instagram.com/mtzfilms/"
+    }
   },
   {
     "id": "daniella-y-jorge",
@@ -3459,7 +3500,11 @@
         "url_ligera": "portfolio/daniella-y-jorge/video/recap-telefono.mp4",
         "miniatura": "portfolio/daniella-y-jorge/video/recap.jpg",
         "destacado": true,
-        "evento": "Boda"
+        "evento": "Boda",
+        "titulo_corto": "Daniella & Jorge",
+        "duracion": 77,
+        "inicio_banner": 33,
+        "orden_eventos": 3
       }
     ],
     "nombre": "Daniella y Jorge",
@@ -3474,7 +3519,12 @@
     "categoria": "video",
     "fotografia": false,
     "diseno": false,
-    "destacado": 16
+    "destacado": 16,
+    "colaboracion": {
+      "nombre": "MTZ Films",
+      "usuario": "@mtzfilms",
+      "instagram": "https://www.instagram.com/mtzfilms/"
+    }
   },
   {
     "id": "sean-y-lola",
@@ -3489,7 +3539,11 @@
         "url_ligera": "portfolio/sean-y-lola/video/recap-telefono.mp4",
         "miniatura": "portfolio/sean-y-lola/video/recap.jpg",
         "destacado": true,
-        "evento": "Boda"
+        "evento": "Boda",
+        "titulo_corto": "Sean & Lola",
+        "duracion": 52,
+        "inicio_banner": 21,
+        "orden_eventos": 4
       }
     ],
     "nombre": "Sean y Lola",
@@ -3504,7 +3558,12 @@
     "categoria": "video",
     "fotografia": false,
     "diseno": false,
-    "destacado": 17
+    "destacado": 17,
+    "colaboracion": {
+      "nombre": "MTZ Films",
+      "usuario": "@mtzfilms",
+      "instagram": "https://www.instagram.com/mtzfilms/"
+    }
   },
   {
     "id": "lucia-allegra",
@@ -3519,7 +3578,10 @@
         "url_ligera": "portfolio/lucia-allegra/video/intro-telefono.mp4",
         "miniatura": "portfolio/lucia-allegra/video/intro.jpg",
         "destacado": true,
-        "evento": "15 años"
+        "evento": "15 años",
+        "titulo_corto": "Lucía Allegra",
+        "duracion": 27,
+        "inicio_banner": 9
       }
     ],
     "nombre": "Lucía Allegra",
@@ -3549,7 +3611,10 @@
         "url_ligera": "portfolio/carnavalitos/video/desata2-telefono.mp4",
         "miniatura": "portfolio/carnavalitos/video/desata2.jpg",
         "destacado": true,
-        "evento": "Evento"
+        "evento": "Evento",
+        "titulo_corto": "Desata2",
+        "duracion": 107,
+        "inicio_banner": 36
       }
     ],
     "nombre": "Carnavalitos",

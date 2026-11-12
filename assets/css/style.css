@@ -566,3 +566,143 @@ picture.brand-logo > img.brand-logo { width: 100%; height: 100%; padding: 0; bor
   .lightbox-img { max-width: 88vw; max-height: 88vh; }
   .site-footer { padding-bottom: 28px; }
 }
+
+/* ---- Reproductor de video (modal, todas las páginas) ---- */
+#video-modal iframe { transform: scale(0.94); transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.vp { position: relative; width: min(1100px, 100%); max-height: 86svh; aspect-ratio: 16 / 9; border-radius: var(--r-card);
+  overflow: hidden; background: #000; transform: scale(0.94) translateY(12px); opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s ease; box-shadow: 0 30px 80px rgba(0,0,0,0.6); }
+.vp[hidden] { display: none; }
+.lightbox-overlay.is-open .vp, .lightbox-overlay.is-open iframe { transform: none; opacity: 1; }
+.vp-video { width: 100%; height: 100%; object-fit: contain; display: block; cursor: pointer; background: #000; }
+.vp-barra { position: absolute; inset: auto 0 0 0; display: flex; align-items: center; gap: 10px; padding: 36px 14px 12px;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent); transition: opacity 0.3s ease; }
+.vp.is-quieto .vp-barra { opacity: 0; }
+.vp.is-quieto { cursor: none; }
+.vp-btn { width: 40px; height: 40px; flex-shrink: 0; display: grid; place-items: center; border: 0; border-radius: 50%;
+  background: transparent; color: var(--color-white); cursor: pointer; transition: background 0.2s ease; }
+.vp-btn:hover { background: rgba(255,255,255,0.15); }
+.vp-btn svg, .ev-ctrl svg { width: 22px; height: 22px; fill: currentColor; }
+.vp-btn:focus-visible, .ev-ctrl:focus-visible, .ev-ver:focus-visible, .ev-tab:focus-visible { outline: 2px solid var(--color-white); outline-offset: 2px; }
+.vp-tiempo { font-family: var(--font-display); font-size: 13px; font-variant-numeric: tabular-nums; color: var(--color-soft); min-width: 36px; }
+.vp-progreso { flex: 1; min-width: 0; height: 18px; margin: 0; background: transparent; cursor: pointer; -webkit-appearance: none; appearance: none; }
+.vp-progreso::-webkit-slider-runnable-track { height: 4px; border-radius: 4px;
+  background: linear-gradient(90deg, var(--color-white) var(--p, 0%), rgba(255,255,255,0.25) var(--p, 0%)); }
+.vp-progreso::-moz-range-track { height: 4px; border-radius: 4px; background: rgba(255,255,255,0.25); }
+.vp-progreso::-moz-range-progress { height: 4px; border-radius: 4px; background: var(--color-white); }
+.vp-progreso::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; margin-top: -5px; border-radius: 50%; background: var(--color-white); border: 0; }
+.vp-progreso::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: var(--color-white); border: 0; }
+/* Cargando: un anillo sobre el video. */
+.vp.is-cargando::after { content: ''; position: absolute; top: 50%; left: 50%; width: 44px; height: 44px; margin: -22px 0 0 -22px;
+  border-radius: 50%; border: 3px solid rgba(255,255,255,0.25); border-top-color: var(--color-white); animation: vpGira 0.8s linear infinite; pointer-events: none; }
+.vp-fin { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 18px; padding: 24px; text-align: center; background: rgba(0,0,0,0.72); backdrop-filter: blur(6px); animation: vpAparece 0.4s ease; }
+.vp-fin[hidden] { display: none; }
+.vp-fin-titulo { margin: 0; font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; font-size: clamp(22px, 4vw, 40px); line-height: 1.05; }
+.vp-fin-botones { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.vp-fin-wa, .vp-fin-otra { display: inline-flex; align-items: center; min-height: 46px; padding: 10px 22px; border-radius: 999px;
+  font-family: var(--font-display); font-size: 15px; font-weight: 600; cursor: pointer; }
+.vp-fin-wa { background: #25D366; color: #fff; border: 0; }
+.vp-fin-otra { background: transparent; color: var(--color-white); border: 1px solid rgba(255,255,255,0.5); }
+.vp-fin-wa:hover { background: #1ebe5b; } .vp-fin-otra:hover { border-color: var(--color-white); }
+@keyframes vpAparece { from { opacity: 0; } }
+@keyframes vpGira { to { transform: rotate(360deg); } }
+@media (max-width: 639px) { .vp-tiempo[data-vp="total"] { display: none; } .vp-barra { gap: 4px; padding: 28px 6px 6px; } }
+
+/* ---- Página Eventos: banner con video de fondo, pestañas por tipo y galería con previa ---- */
+.ev-hero { min-height: min(86svh, 760px); display: flex; align-items: flex-end; padding-bottom: 40px; background: var(--color-panel); }
+.ev-hero-video, .ev-hero-shade { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; }
+.ev-hero-video { object-fit: cover; transition: opacity 0.6s ease, transform 1.2s ease; }
+/* Oscurece a la izquierda y abajo, donde va el texto; el centro del video queda limpio. */
+.ev-hero-shade { z-index: -1; background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.15) 55%, rgba(0,0,0,0.45)),
+  linear-gradient(to right, rgba(0,0,0,0.6), transparent 60%); }
+.ev-hero-copy { transition: opacity 0.6s ease, transform 0.6s ease; }
+/* Cambio de video: se funden video y texto (600 ms, igual que FUNDIDO en eventos.js). */
+.ev-hero.is-cambiando .ev-hero-video { opacity: 0; transform: scale(1.03); }
+.ev-hero.is-cambiando .ev-hero-copy { opacity: 0; transform: translateY(14px); }
+.ev-hero-inner { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; width: 100%; }
+.ev-hero-title { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: -0.04em;
+  font-size: clamp(48px, 13vw, 132px); line-height: 0.9; margin: 14px 0 12px; max-width: 9ch; text-wrap: balance; }
+.ev-hero-meta { color: var(--color-soft); margin: 0 0 20px; max-width: 460px; font-size: 15px; }
+.ev-ver { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 10px 22px 10px 16px; border: 0; border-radius: 999px;
+  background: var(--color-white); color: var(--color-black); font-family: var(--font-display); font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: transform 0.2s ease; }
+.ev-ver[hidden] { display: none; }
+.ev-ver:hover { transform: scale(1.03); }
+.ev-ver svg { width: 20px; height: 20px; fill: currentColor; }
+.ev-ver-dur { color: #555; font-weight: 500; font-variant-numeric: tabular-nums; }
+.ev-controles { display: flex; gap: 8px; }
+.ev-ctrl { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(0,0,0,0.3); backdrop-filter: blur(8px); color: var(--color-white); cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease; }
+.ev-ctrl:hover { background: rgba(255,255,255,0.15); border-color: var(--color-white); }
+.ev-ctrl[aria-pressed="true"] { background: var(--color-white); color: var(--color-black); border-color: var(--color-white); }
+.ev-ctrl svg { width: 20px; height: 20px; }
+.ev-hero-progreso { position: absolute; inset: auto 0 0 0; height: 3px; background: rgba(255,255,255,0.12); }
+.ev-hero-progreso i { display: block; height: 100%; background: var(--gradient-btn); transform-origin: left; transform: scaleX(0); transition: transform 0.3s linear; }
+.ev-dur { position: absolute; z-index: 1; top: 10px; right: 10px; padding: 3px 8px; border-radius: 6px; background: rgba(0,0,0,0.75);
+  font-family: var(--font-display); font-weight: 600; font-size: 13px; font-variant-numeric: tabular-nums; }
+
+.ev-section { padding: 32px 0 64px; }
+/* Pestañas: un solo grupo centrado. Bodas y 15 años resaltan; Todos va apagada. */
+.ev-tabs { display: flex; justify-content: center; }
+.ev-tabs:not(:empty) { width: fit-content; margin: 0 auto; padding: 5px; gap: 4px; border-radius: 999px;
+  border: 1px solid var(--color-line); background: rgba(255,255,255,0.03); }
+.ev-tab { min-height: 42px; padding: 8px 20px; border: 0; border-radius: 999px; background: transparent; cursor: pointer;
+  font-family: var(--font-display); font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--color-white);
+  transition: background 0.25s ease, color 0.25s ease; }
+.ev-tab--todos { color: var(--color-dim); font-weight: 500; }
+.ev-tab { white-space: nowrap; }
+@media (max-width: 639px) { .ev-tabs:not(:empty) { max-width: 100%; gap: 2px; padding: 4px; } .ev-tab { padding: 8px 12px; font-size: 14px; } }
+.ev-tab:hover { background: rgba(255,255,255,0.08); }
+.ev-tab[aria-pressed="true"] { background: var(--color-white); color: var(--color-black); }
+.ev-tab--todos[aria-pressed="true"] { background: rgba(255,255,255,0.12); color: var(--color-soft); }
+.ev-count { color: var(--color-dim); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; margin: 22px 0 12px; text-align: center; }
+.ev-grid { display: grid; grid-template-columns: 1fr; gap: var(--gap); }
+.ev-card { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: var(--r-card);
+  overflow: hidden; background: var(--color-panel); color: var(--color-white); text-align: left;
+  scroll-margin-top: calc(var(--nav-h) + 12px); }
+.ev-card-btn { position: absolute; inset: 0; z-index: 2; width: 100%; padding: 0; border: 0; border-radius: inherit; background: transparent; cursor: pointer; }
+.ev-card-btn:focus-visible { outline: 2px solid var(--color-white); outline-offset: -3px; }
+/* El crédito queda por encima del botón para poder tocarlo. */
+.ev-credito { position: relative; z-index: 3; color: var(--color-white); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.ev-credito:hover { color: var(--color-label); }
+.ev-card[hidden] { display: none; }
+.ev-media, .ev-img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ev-img { object-fit: cover; display: block; }
+picture.ev-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ev-previa { opacity: 0; transition: opacity 0.35s ease; }
+.ev-card.is-playing .ev-previa { opacity: 1; }
+/* Sin z-index: así el enlace del crédito puede subir por encima del botón que cubre la tarjeta. */
+.ev-pie { position: absolute; inset: auto 0 0 0; display: grid; gap: 4px; padding: 40px 16px 14px;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4) 60%, transparent); }
+.ev-card-title { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: -0.03em;
+  font-size: 26px; line-height: 0.95; }
+.ev-card-desc { color: var(--color-soft); font-size: 13px; line-height: 1.35; display: -webkit-box; -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; overflow: hidden; }
+@media (hover: hover) {
+  .ev-card .ev-img:not(.ev-previa) { transition: transform 0.5s ease; }
+  .ev-card:hover .ev-img:not(.ev-previa) { transform: scale(1.03); }
+}
+
+/* WhatsApp en verde (página Eventos): a la vista también en computadora. */
+.wa-float.wa-verde { background: #25D366; animation: none; box-shadow: 0 6px 24px rgba(37,211,102,0.45); }
+/* Con el reproductor abierto el WhatsApp queda encima; en pantalla completa solo se ve el video. */
+body:has(#video-modal.is-open) .wa-float { z-index: 1001; }
+body:has(:fullscreen) .wa-float { display: none !important; }
+.wa-float.wa-verde:hover { background: #1ebe5b; box-shadow: 0 6px 24px rgba(37,211,102,0.55); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ev-hero-video, .ev-hero-copy, .ev-previa, .vp, #video-modal iframe, .ev-hero-progreso i { transition: none; }
+}
+
+@media (min-width: 640px) {
+  .ev-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 960px) {
+  .ev-hero { padding-bottom: 56px; }
+  .ev-ctrl { width: 48px; height: 48px; }
+  .ev-section { padding-top: 44px; }
+  .ev-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .ev-card-title { font-size: 30px; }
+  .wa-float.wa-verde { display: flex; right: 24px; bottom: 24px; }
+}

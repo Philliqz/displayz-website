@@ -14,13 +14,13 @@
   gtag('config', 'G-Q38R0X46XS');
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Eventos — Displayz.Studio</title>
-<meta name="description" content="Bodas, 15 años, graduaciones, eventos colegiales y de empresa, grabados por Displayz.Studio.">
+<title>Video de bodas, 15 años y eventos en Panamá — Displayz.Studio</title>
+<meta name="description" content="Video de bodas, 15 años, certámenes y eventos en Panamá, grabados y editados por Displayz.Studio. Mira los videos y cotiza tu evento por WhatsApp.">
 <link rel="canonical" href="https://displayz.studio/eventos.html">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Eventos — Displayz.Studio">
-<meta property="og:description" content="Bodas, 15 años, graduaciones, eventos colegiales y de empresa.">
+<meta property="og:title" content="Video de bodas, 15 años y eventos en Panamá — Displayz.Studio">
+<meta property="og:description" content="Bodas, 15 años, certámenes y eventos en Panamá. Mira los videos y cotiza tu evento.">
 <meta property="og:image" content="https://displayz.studio/assets/images/logotipo.png">
 <meta property="og:url" content="https://displayz.studio/eventos.html">
 <meta name="twitter:card" content="summary_large_image">
@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=20261101-2">
+<link rel="stylesheet" href="assets/css/style.css?v=20261111-5">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -73,21 +73,36 @@
   </div>
 </nav>
 
-<header class="gallery-hero">
-  <div class="hero-gradient-bg"></div>
-  <img class="banner-shape" src="assets/images/isotipo.svg" alt="" aria-hidden="true">
-  <div class="container">
-    <span class="gallery-eyebrow">Galería</span>
-    <h1 class="gallery-title">Eventos</h1>
-    <p class="gallery-desc">Bodas, 15 años, graduaciones, eventos colegiales y de empresa.</p>
+<header class="gallery-hero ev-hero is-cambiando" data-ev-hero>
+  <noscript><style>.ev-hero.is-cambiando .ev-hero-copy { opacity: 1; transform: none; }</style></noscript>
+  <video class="ev-hero-video" muted playsinline preload="none" aria-hidden="true"></video>
+  <div class="ev-hero-shade"></div>
+  <div class="container ev-hero-inner">
+    <div class="ev-hero-copy" data-ev-copy>
+      <span class="gallery-eyebrow" data-ev-tipo>Eventos</span>
+      <h1 class="ev-hero-title" data-ev-titulo>Eventos</h1>
+      <p class="ev-hero-meta" data-ev-meta></p>
+      <button type="button" class="ev-ver" data-ev-play data-video-embed="">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        Ver video completo<span class="ev-ver-dur" data-ev-dur></span>
+      </button>
+    </div>
+    <div class="ev-controles" role="group" aria-label="Controles del video de fondo">
+      <button type="button" class="ev-ctrl" data-ev-pausa aria-label="Pausar"></button>
+      <button type="button" class="ev-ctrl" data-ev-sonido aria-label="Activar sonido"></button>
+      <button type="button" class="ev-ctrl" data-ev-siguiente aria-label="Siguiente video"></button>
+    </div>
   </div>
+  <div class="ev-hero-progreso" aria-hidden="true"><i data-ev-progreso></i></div>
 </header>
 
 <main>
-<section data-portfolio-section="eventos">
+<section class="ev-section" data-eventos>
   <div class="container">
-    <div data-portfolio-companies></div>
-    <p class="empty-state" data-portfolio-empty style="display:none">Más eventos próximamente. ¿Tienes una fecha? <a href="index.html#contacto">Escríbenos</a>.</p>
+    <div class="ev-tabs" role="toolbar" aria-label="Tipo de evento" data-ev-tabs></div>
+    <p class="ev-count" data-ev-count></p>
+    <div class="ev-grid" data-ev-grid></div>
+    <p class="empty-state" data-ev-empty hidden>Más eventos próximamente. ¿Tienes una fecha? <a href="index.html#contacto">Escríbenos</a>.</p>
   </div>
 </section>
 
@@ -96,9 +111,9 @@
     <div class="contact-panel">
       <div class="contact-info">
         <img class="banner-shape" src="assets/images/isotipo.svg" alt="" aria-hidden="true">
-        <span class="section-eyebrow">Contacto</span>
-        <h2 class="contact-heading">¿Te gusta lo que ves?</h2>
-        <p class="contact-lede">Si quieres impulsar tu marca con producción así, hablemos y armamos el plan.</p>
+        <span class="section-eyebrow">Eventos</span>
+        <h2 class="contact-heading">Cotiza tu evento</h2>
+        <p class="contact-lede">Tu boda, tus 15 años o la fecha que vas a celebrar. Cuéntanos el día y el lugar y armamos la propuesta.</p>
         <ul class="contact-list">
           <li><span class="contact-label">Email</span><a href="mailto:ismaelkentish@gmail.com">ismaelkentish@gmail.com</a></li>
           <li>
@@ -110,7 +125,7 @@
           </li>
           <li><span class="contact-label">WhatsApp</span><a href="https://wa.me/50764498833" target="_blank" rel="noopener">+507 6449-8833</a></li>
         </ul>
-        <a href="https://wa.me/50764498833?text=Hola%2C%20quiero%20hablar%20sobre%20mi%20marca" class="btn btn-light btn-sm" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px;margin-right:6px"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.4-1.36a9.94 9.94 0 0 0 4.64 1.15h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.13-2.9-7C17.17 3.03 14.7 2 12.04 2Zm0 18.11h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.78.83-3.03-.2-.31a8.18 8.18 0 0 1-1.27-4.39c0-4.53 3.7-8.22 8.24-8.22 2.2 0 4.27.86 5.83 2.42a8.16 8.16 0 0 1 2.41 5.82c0 4.53-3.7 8.26-8.24 8.26Zm4.51-6.16c-.25-.12-1.46-.72-1.68-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.78.96-.14.16-.29.18-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.49-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.39 1.01 2.56.12.16 1.75 2.68 4.25 3.75.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.46-.6 1.66-1.17.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>Escribir por WhatsApp</a>
+        <a href="https://wa.me/50764498833?text=Hola%2C%20quiero%20cotizar%20un%20evento" class="btn btn-light btn-sm" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px;margin-right:6px"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.4-1.36a9.94 9.94 0 0 0 4.64 1.15h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.13-2.9-7C17.17 3.03 14.7 2 12.04 2Zm0 18.11h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.78.83-3.03-.2-.31a8.18 8.18 0 0 1-1.27-4.39c0-4.53 3.7-8.22 8.24-8.22 2.2 0 4.27.86 5.83 2.42a8.16 8.16 0 0 1 2.41 5.82c0 4.53-3.7 8.26-8.24 8.26Zm4.51-6.16c-.25-.12-1.46-.72-1.68-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.78.96-.14.16-.29.18-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.49-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.39 1.01 2.56.12.16 1.75 2.68 4.25 3.75.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.46-.6 1.66-1.17.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>Escribir por WhatsApp</a>
       </div>
       <div class="contact-form-panel">
         <h3 class="contact-form-title">O llena el formulario</h3>
@@ -130,9 +145,9 @@
           <label class="sr-only" for="f-email">Email</label>
           <input class="form-input" id="f-email" type="email" name="Email" placeholder="Email (opcional)">
           <label class="sr-only" for="f-empresa">Empresa o usuario de Instagram</label>
-          <input class="form-input" id="f-empresa" type="text" name="Empresa/Instagram" placeholder="Empresa o usuario de Instagram (opcional)">
+          <input class="form-input" id="f-empresa" type="text" name="Empresa/Instagram" placeholder="Usuario de Instagram (opcional)">
           <label class="sr-only" for="f-mensaje">Mensaje</label>
-          <textarea class="form-textarea" id="f-mensaje" name="Mensaje" placeholder="Cuéntanos sobre tu marca y qué necesitas (opcional)" rows="4"></textarea>
+          <textarea class="form-textarea" id="f-mensaje" name="Mensaje" placeholder="Tipo de evento, fecha y lugar (opcional)" rows="4"></textarea>
           <button type="submit" class="btn btn-outline btn-form">
             <span class="btn-ring"></span>
             <span class="btn-label">Enviar mensaje</span>
@@ -172,12 +187,12 @@
   <button class="lightbox-nav lightbox-next" aria-label="Siguiente">›</button>
 </div>
 
-<div class="lightbox-overlay" id="video-modal">
+<div class="lightbox-overlay" id="video-modal" data-cta="¿Te gustó? Cotiza tu evento">
   <button class="lightbox-close" data-close-video aria-label="Cerrar">×</button>
   <iframe title="Reproductor de video" style="width:min(960px,88vw); height:min(540px,50vw); border:0; border-radius:8px" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
 </div>
 
-<a class="wa-float" href="https://wa.me/50764498833?text=Hola%2C%20quiero%20hablar%20sobre%20mi%20marca" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.4-1.36a9.94 9.94 0 0 0 4.64 1.15h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.13-2.9-7C17.17 3.03 14.7 2 12.04 2Zm0 18.11h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.78.83-3.03-.2-.31a8.18 8.18 0 0 1-1.27-4.39c0-4.53 3.7-8.22 8.24-8.22 2.2 0 4.27.86 5.83 2.42a8.16 8.16 0 0 1 2.41 5.82c0 4.53-3.7 8.26-8.24 8.26Zm4.51-6.16c-.25-.12-1.46-.72-1.68-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.78.96-.14.16-.29.18-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.49-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.39 1.01 2.56.12.16 1.75 2.68 4.25 3.75.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.46-.6 1.66-1.17.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28Z"/></svg></a>
-<script type="module" src="assets/js/modules/main.js?v=20261101-2"></script>
+<a class="wa-float wa-verde" href="https://wa.me/50764498833?text=Hola%2C%20quiero%20cotizar%20un%20evento" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.4-1.36a9.94 9.94 0 0 0 4.64 1.15h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.13-2.9-7C17.17 3.03 14.7 2 12.04 2Zm0 18.11h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.78.83-3.03-.2-.31a8.18 8.18 0 0 1-1.27-4.39c0-4.53 3.7-8.22 8.24-8.22 2.2 0 4.27.86 5.83 2.42a8.16 8.16 0 0 1 2.41 5.82c0 4.53-3.7 8.26-8.24 8.26Zm4.51-6.16c-.25-.12-1.46-.72-1.68-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.78.96-.14.16-.29.18-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.49-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.39 1.01 2.56.12.16 1.75 2.68 4.25 3.75.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.46-.6 1.66-1.17.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28Z"/></svg></a>
+<script type="module" src="assets/js/modules/main.js?v=20261111-5"></script>
 </body>
 </html>
