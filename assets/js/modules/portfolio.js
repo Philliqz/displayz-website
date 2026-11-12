@@ -5,7 +5,7 @@ import { fetchCompanies } from './data-store.js';
 import { CONFIG } from './config.js';
 import { observe } from './animations.js';
 import * as Lightbox from './lightbox.js';
-import * as VideoModal from './video-modal.js?v=20261112-1';
+import * as VideoModal from './video-modal.js?v=20261112-2';
 import { toEmbedSrc, getThumbnailSync, fetchThumbnail } from './video-provider.js';
 
 export function init() {
