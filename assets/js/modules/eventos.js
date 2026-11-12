@@ -5,10 +5,10 @@
 // Entran los videos horizontales cuya etiqueta está en CONFIG.EVENTOS (los reels van a Video).
 import { fetchCompanies } from './data-store.js';
 import { CONFIG } from './config.js';
-import * as VideoModal from './video-modal.js?v=20261111-5';
-import { svg } from './video-modal.js?v=20261111-5';
+import * as VideoModal from './video-modal.js?v=20261112-1';
+import { svg } from './video-modal.js?v=20261112-1';
 import { toEmbedSrc, ARCHIVO_RE } from './video-provider.js';
-import { tituloDe, makePictureImg, shuffle } from './portfolio.js?v=20261111-5';
+import { tituloDe, makePictureImg, shuffle } from './portfolio.js?v=20261112-1';
 
 // Pestañas propias; cualquier otra etiqueta (Certamen, Evento, Cumpleaños…) cae en Eventos.
 const PESTANAS = [['Boda', 'Bodas'], ['15 años', '15 años'], [null, 'Eventos']];
@@ -236,17 +236,33 @@ function crearBanner(hero) {
     video.poster = item.mini;
     if (quieto || !item.fondo) { video.removeAttribute('src'); hero.classList.remove('is-cambiando'); return; }
     const src = video.muted ? item.fondo : item.audio;
+    if (!video.muted) video.volume = 0;
     video.src = item.inicio ? `${src}#t=${item.inicio}` : src;
     correr();
     // Vuelve a aparecer cuando el video ya corre; si no arranca (pausado, red lenta), con el póster.
     clearTimeout(cambio);
     cambio = setTimeout(() => hero.classList.remove('is-cambiando'), pausadoAMano || modalAbierto ? 0 : 1500);
   };
+  // El sonido también se funde: baja con la imagen y sube cuando entra el siguiente (sin cortes).
+  // Safari iOS no deja tocar el volumen desde código: ahí el cambio sigue siendo seco.
+  let rampa = 0;
+  const fundirSonido = (hasta) => {
+    cancelAnimationFrame(rampa);
+    const desde = video.volume, t0 = performance.now();
+    const paso = (t) => {
+      const k = Math.max(0, Math.min((t - t0) / FUNDIDO, 1)); // el primer cuadro de rAF puede ser anterior a t0
+      video.volume = desde + (hasta - desde) * k;
+      if (k < 1) rampa = requestAnimationFrame(paso);
+    };
+    rampa = requestAnimationFrame(paso);
+  };
+  video.addEventListener('playing', () => { if (!video.muted) fundirSonido(1); });
   // Fundido: se apaga el banner, se cambia el video y el texto, y se enciende al arrancar.
   const poner = (item) => {
     const primero = !actual; // el primero entra directo: el banner ya arranca apagado (is-cambiando en el HTML)
     actual = item;
     hero.classList.add('is-cambiando');
+    if (!video.muted && !primero) fundirSonido(0);
     if (quieto || primero) return aplicar(item);
     setTimeout(() => { if (actual === item) aplicar(item); }, FUNDIDO);
   };
@@ -279,6 +295,7 @@ function crearBanner(hero) {
       video.src = `${actual.audio}#t=${video.currentTime}`;
     }
     if (!video.muted && video.paused && !pausadoAMano) correr();
+    if (!video.muted) fundirSonido(1); // por si quedó en 0 a mitad de un fundido
   });
   siguiente.innerHTML = svg('siguiente');
   siguiente.addEventListener('click', otro);

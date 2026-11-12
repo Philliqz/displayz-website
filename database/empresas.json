@@ -195,28 +195,60 @@
     ],
     "videos": [
       {
-        "titulo": "Video ATP — OnAds",
-        "provider": "youtube",
-        "url": "https://youtube.com/shorts/hus_HceZKdU",
-        "miniatura": "portfolio/onads/video/atp.jpg",
-        "miniatura_vertical": "portfolio/onads/video/atp-vertical.jpg",
-        "evento": "Spot publicitario"
-      },
-      {
-        "titulo": "Cómo funciona — OnAds",
-        "provider": "youtube",
-        "url": "https://youtube.com/shorts/31pmTj8myz8",
-        "miniatura": "portfolio/onads/video/como-funciona.jpg",
-        "miniatura_vertical": "portfolio/onads/video/como-funciona-vertical.jpg",
-        "evento": "Spot publicitario"
-      },
-      {
         "titulo": "QR de oro — OnAds",
         "provider": "youtube",
         "url": "https://youtube.com/shorts/rQ4REsEk1lo",
         "miniatura": "portfolio/onads/video/qr-de-oro.jpg",
         "miniatura_vertical": "portfolio/onads/video/qr-de-oro-vertical.jpg",
         "evento": "Spot publicitario"
+      },
+      {
+        "titulo": "Cómo funciona",
+        "provider": "archivo",
+        "url": "portfolio/onads/video/como-funciona.mp4",
+        "url_ligera": "portfolio/onads/video/como-funciona-telefono.mp4",
+        "miniatura": "portfolio/onads/video/como-funciona.jpg",
+        "miniatura_vertical": "portfolio/onads/video/como-funciona.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 25,
+        "origen": "COMO FUNCIONA v1 -- ONADS.mp4"
+      },
+      {
+        "titulo": "¿Eres gerente de marketing?",
+        "provider": "archivo",
+        "url": "portfolio/onads/video/eres-gerente-de-marketing.mp4",
+        "url_ligera": "portfolio/onads/video/eres-gerente-de-marketing-telefono.mp4",
+        "miniatura": "portfolio/onads/video/eres-gerente-de-marketing.jpg",
+        "miniatura_vertical": "portfolio/onads/video/eres-gerente-de-marketing.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 34,
+        "origen": "ERES GERENTE DE MARKETING V1 -- ONADS.mp4"
+      },
+      {
+        "titulo": "Video ATP",
+        "provider": "archivo",
+        "url": "portfolio/onads/video/video-atp.mp4",
+        "url_ligera": "portfolio/onads/video/video-atp-telefono.mp4",
+        "miniatura": "portfolio/onads/video/video-atp.jpg",
+        "miniatura_vertical": "portfolio/onads/video/video-atp.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 21,
+        "origen": "VIDEO ATP -- ONADS.mp4"
+      },
+      {
+        "titulo": "Video helicóptero",
+        "provider": "archivo",
+        "url": "portfolio/onads/video/video-helicoptero.mp4",
+        "url_ligera": "portfolio/onads/video/video-helicoptero-telefono.mp4",
+        "miniatura": "portfolio/onads/video/video-helicoptero.jpg",
+        "miniatura_vertical": "portfolio/onads/video/video-helicoptero.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 24,
+        "origen": "VIDEO HELICOPTERO -- ONADS.mp4"
       }
     ],
     "telefono": "",
@@ -1164,6 +1196,30 @@
         "reel": true,
         "destacado": true,
         "evento": "Reel para redes"
+      },
+      {
+        "titulo": "Chanchomilla — visita de influencers",
+        "provider": "archivo",
+        "url": "portfolio/fosters/video/chanchomilla-visita-de-influencers.mp4",
+        "url_ligera": "portfolio/fosters/video/chanchomilla-visita-de-influencers-telefono.mp4",
+        "miniatura": "portfolio/fosters/video/chanchomilla-visita-de-influencers.jpg",
+        "miniatura_vertical": "portfolio/fosters/video/chanchomilla-visita-de-influencers.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 60,
+        "origen": "CHANCHOMILLA VISITA DE INFLUENCERS -- FOSTERS.mp4"
+      },
+      {
+        "titulo": "Margarita sangría 2x1",
+        "provider": "archivo",
+        "url": "portfolio/fosters/video/margarita-sangria-2x1.mp4",
+        "url_ligera": "portfolio/fosters/video/margarita-sangria-2x1-telefono.mp4",
+        "miniatura": "portfolio/fosters/video/margarita-sangria-2x1.jpg",
+        "miniatura_vertical": "portfolio/fosters/video/margarita-sangria-2x1.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 13,
+        "origen": "MARGARITA SANGRIA 2X1 -- FOSTERS.mp4"
       }
     ],
     "telefono": "",
@@ -1379,7 +1435,7 @@
         "titulo_corto": "Evento benéfico",
         "duracion": 116,
         "inicio_banner": 54
-        }
+      }
     ],
     "telefono": "",
     "correo": "",
@@ -1509,9 +1565,10 @@
     "logo": "portfolio/atelier-dental/diseno/atelier-beneficio-1.jpg",
     "categoria": "diseno",
     "categorias": [
-      "diseno"
+      "diseno",
+      "video"
     ],
-    "video": false,
+    "video": true,
     "fotografia": false,
     "diseno": true,
     "galeria": [
@@ -1606,7 +1663,20 @@
         "tipo": "diseno"
       }
     ],
-    "videos": [],
+    "videos": [
+      {
+        "titulo": "¿Qué hago primero: ortodoncia o implante?",
+        "provider": "archivo",
+        "url": "portfolio/atelier-dental/video/que-hago-primero-ortodoncia-o-implante.mp4",
+        "url_ligera": "portfolio/atelier-dental/video/que-hago-primero-ortodoncia-o-implante-telefono.mp4",
+        "miniatura": "portfolio/atelier-dental/video/que-hago-primero-ortodoncia-o-implante.jpg",
+        "miniatura_vertical": "portfolio/atelier-dental/video/que-hago-primero-ortodoncia-o-implante.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 36,
+        "origen": "QUE DEBO HACER PRIMERO ORTODONCIA O IMPLANTE -- ATELIER DENTAL.mp4"
+      }
+    ],
     "telefono": "",
     "correo": "",
     "direccion": "",
@@ -2082,9 +2152,10 @@
     "nicho": "Bienes Raíces",
     "categoria": "diseno",
     "categorias": [
-      "diseno"
+      "diseno",
+      "video"
     ],
-    "video": false,
+    "video": true,
     "fotografia": false,
     "diseno": true,
     "galeria": [
@@ -2149,7 +2220,80 @@
         "tipo": "diseno"
       }
     ],
-    "videos": [],
+    "videos": [
+      {
+        "titulo": "Ahorra 8 dólares",
+        "provider": "archivo",
+        "url": "portfolio/senderos-del-maria/video/ahorra-8-dolares.mp4",
+        "url_ligera": "portfolio/senderos-del-maria/video/ahorra-8-dolares-telefono.mp4",
+        "miniatura": "portfolio/senderos-del-maria/video/ahorra-8-dolares.jpg",
+        "miniatura_vertical": "portfolio/senderos-del-maria/video/ahorra-8-dolares.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 35,
+        "origen": "AHORRA 8 DOLARES -- SENDEROS DEL MARIA.mp4"
+      },
+      {
+        "titulo": "Dos tipos de personas",
+        "provider": "archivo",
+        "url": "portfolio/senderos-del-maria/video/dos-tipos-de-personas.mp4",
+        "url_ligera": "portfolio/senderos-del-maria/video/dos-tipos-de-personas-telefono.mp4",
+        "miniatura": "portfolio/senderos-del-maria/video/dos-tipos-de-personas.jpg",
+        "miniatura_vertical": "portfolio/senderos-del-maria/video/dos-tipos-de-personas.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 9,
+        "origen": "DOS TIPOS DE PERSONAS -- SENDEROS DEL MARIA.mp4"
+      },
+      {
+        "titulo": "Interés preferencial",
+        "provider": "archivo",
+        "url": "portfolio/senderos-del-maria/video/interes-preferencial.mp4",
+        "url_ligera": "portfolio/senderos-del-maria/video/interes-preferencial-telefono.mp4",
+        "miniatura": "portfolio/senderos-del-maria/video/interes-preferencial.jpg",
+        "miniatura_vertical": "portfolio/senderos-del-maria/video/interes-preferencial.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 17,
+        "origen": "INTERES PREFERENCIAL -- SENDEROS DEL MARIA.mp4"
+      },
+      {
+        "titulo": "Lo que no te dicen de alquilar",
+        "provider": "archivo",
+        "url": "portfolio/senderos-del-maria/video/lo-que-no-te-dicen-de-alquilar.mp4",
+        "url_ligera": "portfolio/senderos-del-maria/video/lo-que-no-te-dicen-de-alquilar-telefono.mp4",
+        "miniatura": "portfolio/senderos-del-maria/video/lo-que-no-te-dicen-de-alquilar.jpg",
+        "miniatura_vertical": "portfolio/senderos-del-maria/video/lo-que-no-te-dicen-de-alquilar.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 16,
+        "origen": "LO QUE NO TE DICEN DE ALQUILAR -- SDM (1).mp4"
+      },
+      {
+        "titulo": "Promocional",
+        "provider": "archivo",
+        "url": "portfolio/senderos-del-maria/video/promocional.mp4",
+        "url_ligera": "portfolio/senderos-del-maria/video/promocional-telefono.mp4",
+        "miniatura": "portfolio/senderos-del-maria/video/promocional.jpg",
+        "miniatura_vertical": "portfolio/senderos-del-maria/video/promocional.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 17,
+        "origen": "PROMOCIONAL v2 -- SENDEROS.mp4"
+      },
+      {
+        "titulo": "Requisitos para cotizar tu hipoteca",
+        "provider": "archivo",
+        "url": "portfolio/senderos-del-maria/video/requisitos-para-cotizar-tu-hipoteca.mp4",
+        "url_ligera": "portfolio/senderos-del-maria/video/requisitos-para-cotizar-tu-hipoteca-telefono.mp4",
+        "miniatura": "portfolio/senderos-del-maria/video/requisitos-para-cotizar-tu-hipoteca.jpg",
+        "miniatura_vertical": "portfolio/senderos-del-maria/video/requisitos-para-cotizar-tu-hipoteca.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 14,
+        "origen": "REQUISITOS PARA COTIZAR TU HIPOTECAv2 -- SENDEROS DEL MARIA.mp4"
+      }
+    ],
     "telefono": "",
     "correo": "",
     "direccion": "",
@@ -2247,12 +2391,51 @@
     "descripcion": "Venta de productos y equipos de detailing automotriz (B2B) en Costa del Este.",
     "logo": "",
     "categoria": "",
-    "categorias": [],
-    "video": false,
+    "categorias": [
+      "video"
+    ],
+    "video": true,
     "fotografia": false,
     "diseno": false,
     "galeria": [],
-    "videos": [],
+    "videos": [
+      {
+        "titulo": "Carrete de mangueras",
+        "provider": "archivo",
+        "url": "portfolio/detailers-international/video/carrete-de-mangueras.mp4",
+        "url_ligera": "portfolio/detailers-international/video/carrete-de-mangueras-telefono.mp4",
+        "miniatura": "portfolio/detailers-international/video/carrete-de-mangueras.jpg",
+        "miniatura_vertical": "portfolio/detailers-international/video/carrete-de-mangueras.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 57,
+        "origen": "CARRETE DE MANGUERAS -- DETAILERS INTERNTIONA.mp4"
+      },
+      {
+        "titulo": "Nueva etapa",
+        "provider": "archivo",
+        "url": "portfolio/detailers-international/video/nueva-etapa.mp4",
+        "url_ligera": "portfolio/detailers-international/video/nueva-etapa-telefono.mp4",
+        "miniatura": "portfolio/detailers-international/video/nueva-etapa.jpg",
+        "miniatura_vertical": "portfolio/detailers-international/video/nueva-etapa.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 37,
+        "origen": "NUEVA ETAPA -- DETAILERS INTERNATIONAL.mp4"
+      },
+      {
+        "titulo": "Revestimiento de interior",
+        "provider": "archivo",
+        "url": "portfolio/detailers-international/video/revestimiento-de-interior.mp4",
+        "url_ligera": "portfolio/detailers-international/video/revestimiento-de-interior-telefono.mp4",
+        "miniatura": "portfolio/detailers-international/video/revestimiento-de-interior.jpg",
+        "miniatura_vertical": "portfolio/detailers-international/video/revestimiento-de-interior.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 56,
+        "origen": "REVERSTIMIENTO DE INTERIOR -- DETAILERS.mp4"
+      }
+    ],
     "telefono": "",
     "correo": "",
     "direccion": "",
@@ -2290,6 +2473,78 @@
         "destacado": true,
         "evento": "Reel para redes",
         "reel": true
+      },
+      {
+        "titulo": "Décimo",
+        "provider": "archivo",
+        "url": "portfolio/joyeria-popular/video/decimo.mp4",
+        "url_ligera": "portfolio/joyeria-popular/video/decimo-telefono.mp4",
+        "miniatura": "portfolio/joyeria-popular/video/decimo.jpg",
+        "miniatura_vertical": "portfolio/joyeria-popular/video/decimo.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 34,
+        "origen": "DECIMO -- JOYERIA POPULAR.mp4"
+      },
+      {
+        "titulo": "Opción con Krediya",
+        "provider": "archivo",
+        "url": "portfolio/joyeria-popular/video/opcion-con-krediya.mp4",
+        "url_ligera": "portfolio/joyeria-popular/video/opcion-con-krediya-telefono.mp4",
+        "miniatura": "portfolio/joyeria-popular/video/opcion-con-krediya.jpg",
+        "miniatura_vertical": "portfolio/joyeria-popular/video/opcion-con-krediya.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 16,
+        "origen": "OPCION CON KREDIYA -- JOYERIA POPULAR.mp4"
+      },
+      {
+        "titulo": "Perfumes de uso diario",
+        "provider": "archivo",
+        "url": "portfolio/joyeria-popular/video/perfumes-de-uso-diario.mp4",
+        "url_ligera": "portfolio/joyeria-popular/video/perfumes-de-uso-diario-telefono.mp4",
+        "miniatura": "portfolio/joyeria-popular/video/perfumes-de-uso-diario.jpg",
+        "miniatura_vertical": "portfolio/joyeria-popular/video/perfumes-de-uso-diario.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 31,
+        "origen": "PERFUMES DE USO DIARIO -- JOYERIA POPULAR.mp4"
+      },
+      {
+        "titulo": "Prendas de acero y chapado",
+        "provider": "archivo",
+        "url": "portfolio/joyeria-popular/video/prendas-de-acero-y-chapado.mp4",
+        "url_ligera": "portfolio/joyeria-popular/video/prendas-de-acero-y-chapado-telefono.mp4",
+        "miniatura": "portfolio/joyeria-popular/video/prendas-de-acero-y-chapado.jpg",
+        "miniatura_vertical": "portfolio/joyeria-popular/video/prendas-de-acero-y-chapado.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 24,
+        "origen": "PRENDAS DE ACERO Y CHAPADO -- JOYERIA POPULAR.mp4"
+      },
+      {
+        "titulo": "Relojes duraderos",
+        "provider": "archivo",
+        "url": "portfolio/joyeria-popular/video/relojes-duraderos.mp4",
+        "url_ligera": "portfolio/joyeria-popular/video/relojes-duraderos-telefono.mp4",
+        "miniatura": "portfolio/joyeria-popular/video/relojes-duraderos.jpg",
+        "miniatura_vertical": "portfolio/joyeria-popular/video/relojes-duraderos.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 40,
+        "origen": "RELOJES DURADEROS -- JOYERIA POPULAR.mp4"
+      },
+      {
+        "titulo": "3 prendas que te hacen ver caro",
+        "provider": "archivo",
+        "url": "portfolio/joyeria-popular/video/3-prendas-que-te-hacen-ver-caro.mp4",
+        "url_ligera": "portfolio/joyeria-popular/video/3-prendas-que-te-hacen-ver-caro-telefono.mp4",
+        "miniatura": "portfolio/joyeria-popular/video/3-prendas-que-te-hacen-ver-caro.jpg",
+        "miniatura_vertical": "portfolio/joyeria-popular/video/3-prendas-que-te-hacen-ver-caro.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 38,
+        "origen": "3 PRENDAS QUE TE HACEN VER CARO -- JOYERIA PO.mp4"
       }
     ],
     "telefono": "",
@@ -2831,6 +3086,78 @@
         "reel": true,
         "destacado": true,
         "evento": "Institucional"
+      },
+      {
+        "titulo": "Túnel de decantación",
+        "provider": "archivo",
+        "url": "portfolio/cobre-panama/video/tunel-de-decantacion.mp4",
+        "url_ligera": "portfolio/cobre-panama/video/tunel-de-decantacion-telefono.mp4",
+        "miniatura": "portfolio/cobre-panama/video/tunel-de-decantacion.jpg",
+        "miniatura_vertical": "portfolio/cobre-panama/video/tunel-de-decantacion.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 73,
+        "origen": "TUNEL DE DECANTACION -- COBRE PANAMA.mp4"
+      },
+      {
+        "titulo": "Impacto ambiental",
+        "provider": "archivo",
+        "url": "portfolio/cobre-panama/video/impacto-ambiental.mp4",
+        "url_ligera": "portfolio/cobre-panama/video/impacto-ambiental-telefono.mp4",
+        "miniatura": "portfolio/cobre-panama/video/impacto-ambiental.jpg",
+        "miniatura_vertical": "portfolio/cobre-panama/video/impacto-ambiental.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 48,
+        "origen": "final IMPACTO AMBIENTAL -- COBRE PANAMA_2.mp4"
+      },
+      {
+        "titulo": "Concentrado y puerto",
+        "provider": "archivo",
+        "url": "portfolio/cobre-panama/video/concentrado-y-puerto.mp4",
+        "url_ligera": "portfolio/cobre-panama/video/concentrado-y-puerto-telefono.mp4",
+        "miniatura": "portfolio/cobre-panama/video/concentrado-y-puerto.jpg",
+        "miniatura_vertical": "portfolio/cobre-panama/video/concentrado-y-puerto.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 105,
+        "origen": "CONCENTRADO Y PUERTO -- COBRE PANAMA.mp4"
+      },
+      {
+        "titulo": "Flotación",
+        "provider": "archivo",
+        "url": "portfolio/cobre-panama/video/flotacion.mp4",
+        "url_ligera": "portfolio/cobre-panama/video/flotacion-telefono.mp4",
+        "miniatura": "portfolio/cobre-panama/video/flotacion.jpg",
+        "miniatura_vertical": "portfolio/cobre-panama/video/flotacion.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 52,
+        "origen": "FLOTACION final -- COBRE PANAMA_2.mp4"
+      },
+      {
+        "titulo": "Presa de relave",
+        "provider": "archivo",
+        "url": "portfolio/cobre-panama/video/presa-de-relave.mp4",
+        "url_ligera": "portfolio/cobre-panama/video/presa-de-relave-telefono.mp4",
+        "miniatura": "portfolio/cobre-panama/video/presa-de-relave.jpg",
+        "miniatura_vertical": "portfolio/cobre-panama/video/presa-de-relave.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 72,
+        "origen": "PRESA DE RELAVE -- COBRE PANAMA.mp4"
+      },
+      {
+        "titulo": "Reforestación",
+        "provider": "archivo",
+        "url": "portfolio/cobre-panama/video/reforestacion.mp4",
+        "url_ligera": "portfolio/cobre-panama/video/reforestacion-telefono.mp4",
+        "miniatura": "portfolio/cobre-panama/video/reforestacion.jpg",
+        "miniatura_vertical": "portfolio/cobre-panama/video/reforestacion.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 67,
+        "origen": "REFORESTACION -- COBRE PANAMA.mp4"
       }
     ],
     "telefono": "",
@@ -2856,12 +3183,27 @@
     "descripcion": "Serie de videos institucionales con motion graphics. Sin permiso confirmado para uso público del nombre en portafolio; no publicar visualmente hasta confirmarlo.",
     "logo": "",
     "categoria": "",
-    "categorias": [],
-    "video": false,
+    "categorias": [
+      "video"
+    ],
+    "video": true,
     "fotografia": false,
     "diseno": false,
     "galeria": [],
-    "videos": [],
+    "videos": [
+      {
+        "titulo": "Características de los trenes",
+        "provider": "archivo",
+        "url": "portfolio/metro-de-panama/video/caracteristicas-de-los-trenes.mp4",
+        "url_ligera": "portfolio/metro-de-panama/video/caracteristicas-de-los-trenes-telefono.mp4",
+        "miniatura": "portfolio/metro-de-panama/video/caracteristicas-de-los-trenes.jpg",
+        "miniatura_vertical": "portfolio/metro-de-panama/video/caracteristicas-de-los-trenes.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 60,
+        "origen": "CARACTERISTICAS DE TRENES -- METRO.mp4"
+      }
+    ],
     "telefono": "",
     "correo": "",
     "direccion": "",
@@ -2989,12 +3331,39 @@
     "descripcion": "Equipos de sonido para eventos — grabación de video.",
     "logo": "",
     "categoria": "",
-    "categorias": [],
-    "video": false,
+    "categorias": [
+      "video"
+    ],
+    "video": true,
     "fotografia": false,
     "diseno": false,
     "galeria": [],
-    "videos": [],
+    "videos": [
+      {
+        "titulo": "Trasciende 2026",
+        "provider": "archivo",
+        "url": "portfolio/agonys-system/video/trasciende-2026.mp4",
+        "url_ligera": "portfolio/agonys-system/video/trasciende-2026-telefono.mp4",
+        "miniatura": "portfolio/agonys-system/video/trasciende-2026.jpg",
+        "miniatura_vertical": "portfolio/agonys-system/video/trasciende-2026.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 79,
+        "origen": "TRASIENDE 2026 -- AGONYS.mp4"
+      },
+      {
+        "titulo": "DAS Audio",
+        "provider": "archivo",
+        "url": "portfolio/agonys-system/video/das-audio.mp4",
+        "url_ligera": "portfolio/agonys-system/video/das-audio-telefono.mp4",
+        "miniatura": "portfolio/agonys-system/video/das-audio.jpg",
+        "miniatura_vertical": "portfolio/agonys-system/video/das-audio.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 38,
+        "origen": "DAS AUDIO -- AGONYS SYSTEM.mp4"
+      }
+    ],
     "telefono": "",
     "correo": "",
     "direccion": "",
@@ -3015,12 +3384,119 @@
     "descripcion": "Sonido y luces para bodas — video mostrando equipos y experiencia de shows.",
     "logo": "",
     "categoria": "",
-    "categorias": [],
-    "video": false,
+    "categorias": [
+      "video"
+    ],
+    "video": true,
     "fotografia": false,
     "diseno": false,
     "galeria": [],
-    "videos": [],
+    "videos": [
+      {
+        "titulo": "75 de Fernando",
+        "provider": "archivo",
+        "url": "portfolio/sonolux/video/75-de-fernando.mp4",
+        "url_ligera": "portfolio/sonolux/video/75-de-fernando-telefono.mp4",
+        "miniatura": "portfolio/sonolux/video/75-de-fernando.jpg",
+        "evento": "Cumpleaños",
+        "duracion": 43,
+        "origen": "75 DE FERNANDO -- SONOLUX.mp4"
+      },
+      {
+        "titulo": "Valeria & Ramón",
+        "provider": "archivo",
+        "url": "portfolio/sonolux/video/valeria-ramon.mp4",
+        "url_ligera": "portfolio/sonolux/video/valeria-ramon-telefono.mp4",
+        "miniatura": "portfolio/sonolux/video/valeria-ramon.jpg",
+        "evento": "Boda",
+        "duracion": 65,
+        "origen": "VALERIA & RAMÓN -- SONOLUX.mp4"
+      },
+      {
+        "titulo": "Ale & Bernie",
+        "provider": "archivo",
+        "url": "portfolio/sonolux/video/ale-bernie.mp4",
+        "url_ligera": "portfolio/sonolux/video/ale-bernie-telefono.mp4",
+        "miniatura": "portfolio/sonolux/video/ale-bernie.jpg",
+        "evento": "Boda",
+        "duracion": 75,
+        "origen": "ALE Y BERNIE -- SONOLUX.mp4"
+      },
+      {
+        "titulo": "Alexandra & Daniel",
+        "provider": "archivo",
+        "url": "portfolio/sonolux/video/alexandra-daniel.mp4",
+        "url_ligera": "portfolio/sonolux/video/alexandra-daniel-telefono.mp4",
+        "miniatura": "portfolio/sonolux/video/alexandra-daniel.jpg",
+        "miniatura_vertical": "portfolio/sonolux/video/alexandra-daniel.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 56,
+        "origen": "ALEXANDRA Y DANIEL -- SONOLUX.mp4"
+      },
+      {
+        "titulo": "Alexandra & Joey",
+        "provider": "archivo",
+        "url": "portfolio/sonolux/video/alexandra-joey.mp4",
+        "url_ligera": "portfolio/sonolux/video/alexandra-joey-telefono.mp4",
+        "miniatura": "portfolio/sonolux/video/alexandra-joey.jpg",
+        "evento": "Boda",
+        "duracion": 40,
+        "origen": "ALEXANDRA Y JOEY -- SONOLUX.mp4"
+      },
+      {
+        "titulo": "Bahía Motors",
+        "provider": "archivo",
+        "url": "portfolio/sonolux/video/bahia-motors.mp4",
+        "url_ligera": "portfolio/sonolux/video/bahia-motors-telefono.mp4",
+        "miniatura": "portfolio/sonolux/video/bahia-motors.jpg",
+        "evento": "Evento",
+        "duracion": 47,
+        "origen": "BAHIA MOTORS -- SONOLUX.mp4"
+      },
+      {
+        "titulo": "Isabel & William",
+        "provider": "archivo",
+        "url": "portfolio/sonolux/video/isabel-william.mp4",
+        "url_ligera": "portfolio/sonolux/video/isabel-william-telefono.mp4",
+        "miniatura": "portfolio/sonolux/video/isabel-william.jpg",
+        "evento": "Boda",
+        "duracion": 59,
+        "origen": "ISABEL & WILLIAM -- SONOLUX.mp4"
+      },
+      {
+        "titulo": "Las perlas",
+        "provider": "archivo",
+        "url": "portfolio/sonolux/video/las-perlas.mp4",
+        "url_ligera": "portfolio/sonolux/video/las-perlas-telefono.mp4",
+        "miniatura": "portfolio/sonolux/video/las-perlas.jpg",
+        "miniatura_vertical": "portfolio/sonolux/video/las-perlas.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 96,
+        "origen": "LAS PERLAS -- SONOLUX.mp4"
+      },
+      {
+        "titulo": "Rosie & David",
+        "provider": "archivo",
+        "url": "portfolio/sonolux/video/rosie-david.mp4",
+        "url_ligera": "portfolio/sonolux/video/rosie-david-telefono.mp4",
+        "miniatura": "portfolio/sonolux/video/rosie-david.jpg",
+        "evento": "Boda",
+        "duracion": 30,
+        "origen": "ROSIE & DAVID -- SONOLUX.mp4"
+      },
+      {
+        "titulo": "Suzie & Daniel",
+        "provider": "archivo",
+        "url": "portfolio/sonolux/video/suzie-daniel.mp4",
+        "url_ligera": "portfolio/sonolux/video/suzie-daniel-telefono.mp4",
+        "miniatura": "portfolio/sonolux/video/suzie-daniel.jpg",
+        "evento": "Boda",
+        "duracion": 52,
+        "origen": "SUZIE & DANIEL  -- SONOLUX.mp4"
+      }
+    ],
     "telefono": "",
     "correo": "",
     "direccion": "",
@@ -3060,6 +3536,36 @@
         "titulo_corto": "Halloween",
         "duracion": 83,
         "inicio_banner": 24
+      },
+      {
+        "titulo": "Martinelli de León",
+        "provider": "archivo",
+        "url": "portfolio/truenos-y-relampagos/video/martinelli-de-leon.mp4",
+        "url_ligera": "portfolio/truenos-y-relampagos/video/martinelli-de-leon-telefono.mp4",
+        "miniatura": "portfolio/truenos-y-relampagos/video/martinelli-de-leon.jpg",
+        "evento": "Evento",
+        "duracion": 89,
+        "origen": "MARTINELLI DE LEON -- TRUENOS Y RELAMPAGOS.mp4"
+      },
+      {
+        "titulo": "Mónica & Roberto",
+        "provider": "archivo",
+        "url": "portfolio/truenos-y-relampagos/video/monica-roberto.mp4",
+        "url_ligera": "portfolio/truenos-y-relampagos/video/monica-roberto-telefono.mp4",
+        "miniatura": "portfolio/truenos-y-relampagos/video/monica-roberto.jpg",
+        "evento": "Boda",
+        "duracion": 108,
+        "origen": "MONICA Y ROBERTO -- TRUENOS Y RELAMPAGOS.mp4"
+      },
+      {
+        "titulo": "American Trade",
+        "provider": "archivo",
+        "url": "portfolio/truenos-y-relampagos/video/american-trade.mp4",
+        "url_ligera": "portfolio/truenos-y-relampagos/video/american-trade-telefono.mp4",
+        "miniatura": "portfolio/truenos-y-relampagos/video/american-trade.jpg",
+        "evento": "Evento",
+        "duracion": 74,
+        "origen": "AMERICAN TRADE -- TRUENOS Y RELAMPAGOS.mp4"
       }
     ],
     "telefono": "",
@@ -3104,6 +3610,94 @@
         "titulo_corto": "Miss Teen",
         "duracion": 98,
         "inicio_banner": 33
+      },
+      {
+        "titulo": "Baby Mini Universe",
+        "provider": "archivo",
+        "url": "portfolio/miss-teen/video/baby-mini-universe.mp4",
+        "url_ligera": "portfolio/miss-teen/video/baby-mini-universe-telefono.mp4",
+        "miniatura": "portfolio/miss-teen/video/baby-mini-universe.jpg",
+        "evento": "Certamen",
+        "duracion": 191,
+        "origen": "BABY MINI UNIVERSE -- VIDEO.mp4"
+      },
+      {
+        "titulo": "Miss Teen",
+        "provider": "archivo",
+        "url": "portfolio/miss-teen/video/miss-teen.mp4",
+        "url_ligera": "portfolio/miss-teen/video/miss-teen-telefono.mp4",
+        "miniatura": "portfolio/miss-teen/video/miss-teen.jpg",
+        "miniatura_vertical": "portfolio/miss-teen/video/miss-teen.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 18,
+        "origen": "MISS TEEN v3 -- DISPLAYZ.mp4"
+      },
+      {
+        "titulo": "Presentación",
+        "provider": "archivo",
+        "url": "portfolio/miss-teen/video/presentacion.mp4",
+        "url_ligera": "portfolio/miss-teen/video/presentacion-telefono.mp4",
+        "miniatura": "portfolio/miss-teen/video/presentacion.jpg",
+        "evento": "Certamen",
+        "duracion": 68,
+        "origen": "PRESENTACION -- TEEN PANAMA.mp4"
+      },
+      {
+        "titulo": "Zhoe Puertos",
+        "provider": "archivo",
+        "url": "portfolio/miss-teen/video/zhoe-puertos.mp4",
+        "url_ligera": "portfolio/miss-teen/video/zhoe-puertos-telefono.mp4",
+        "miniatura": "portfolio/miss-teen/video/zhoe-puertos.jpg",
+        "evento": "Certamen",
+        "duracion": 150,
+        "origen": "ZHOE PUERTOS -- TEEN UNIVERSE.mp4"
+      },
+      {
+        "titulo": "Aeropuerto",
+        "provider": "archivo",
+        "url": "portfolio/miss-teen/video/aeropuerto.mp4",
+        "url_ligera": "portfolio/miss-teen/video/aeropuerto-telefono.mp4",
+        "miniatura": "portfolio/miss-teen/video/aeropuerto.jpg",
+        "miniatura_vertical": "portfolio/miss-teen/video/aeropuerto.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 61,
+        "origen": "AEREOPUERTO -- MISS TEEN PANAMA.mp4"
+      },
+      {
+        "titulo": "Elida · Sombras y luces",
+        "provider": "archivo",
+        "url": "portfolio/miss-teen/video/elida-sombras-y-luces.mp4",
+        "url_ligera": "portfolio/miss-teen/video/elida-sombras-y-luces-telefono.mp4",
+        "miniatura": "portfolio/miss-teen/video/elida-sombras-y-luces.jpg",
+        "evento": "Certamen",
+        "duracion": 26,
+        "origen": "ELIDA SOMBRAS Y LUCES -- TEEN PANAMA.mp4"
+      },
+      {
+        "titulo": "Isamar",
+        "provider": "archivo",
+        "url": "portfolio/miss-teen/video/isamar.mp4",
+        "url_ligera": "portfolio/miss-teen/video/isamar-telefono.mp4",
+        "miniatura": "portfolio/miss-teen/video/isamar.jpg",
+        "miniatura_vertical": "portfolio/miss-teen/video/isamar.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 41,
+        "origen": "ISAMAR -- MISS TEEN.mp4"
+      },
+      {
+        "titulo": "Mariaelena",
+        "provider": "archivo",
+        "url": "portfolio/miss-teen/video/mariaelena.mp4",
+        "url_ligera": "portfolio/miss-teen/video/mariaelena-telefono.mp4",
+        "miniatura": "portfolio/miss-teen/video/mariaelena.jpg",
+        "miniatura_vertical": "portfolio/miss-teen/video/mariaelena.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 36,
+        "origen": "MARIAELENA -- TEEN UNIVERSE.mp4"
       }
     ],
     "telefono": "",
@@ -3214,6 +3808,42 @@
         "miniatura_vertical": "portfolio/tecnobyte/video/la-biby-black-byte.jpg",
         "reel": true,
         "evento": "Reel para redes"
+      },
+      {
+        "titulo": "Consolas",
+        "provider": "archivo",
+        "url": "portfolio/tecnobyte/video/consolas.mp4",
+        "url_ligera": "portfolio/tecnobyte/video/consolas-telefono.mp4",
+        "miniatura": "portfolio/tecnobyte/video/consolas.jpg",
+        "miniatura_vertical": "portfolio/tecnobyte/video/consolas.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 77,
+        "origen": "CONSOLAS - TECNOBYTE.mp4"
+      },
+      {
+        "titulo": "Crediviva",
+        "provider": "archivo",
+        "url": "portfolio/tecnobyte/video/crediviva.mp4",
+        "url_ligera": "portfolio/tecnobyte/video/crediviva-telefono.mp4",
+        "miniatura": "portfolio/tecnobyte/video/crediviva.jpg",
+        "miniatura_vertical": "portfolio/tecnobyte/video/crediviva.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 60,
+        "origen": "CREDIVIVA - TECNOBYTE.mp4"
+      },
+      {
+        "titulo": "Ofertas Black Friday",
+        "provider": "archivo",
+        "url": "portfolio/tecnobyte/video/ofertas-black-friday.mp4",
+        "url_ligera": "portfolio/tecnobyte/video/ofertas-black-friday-telefono.mp4",
+        "miniatura": "portfolio/tecnobyte/video/ofertas-black-friday.jpg",
+        "miniatura_vertical": "portfolio/tecnobyte/video/ofertas-black-friday.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 52,
+        "origen": "VIDEO 4 - TECNOBYTE.mp4"
       }
     ],
     "instagram": "https://www.instagram.com/tecnobytestore/",
@@ -3267,6 +3897,54 @@
         "reel": true,
         "destacado": true,
         "evento": "Reel para redes"
+      },
+      {
+        "titulo": "4 modelos",
+        "provider": "archivo",
+        "url": "portfolio/kia/video/4-modelos.mp4",
+        "url_ligera": "portfolio/kia/video/4-modelos-telefono.mp4",
+        "miniatura": "portfolio/kia/video/4-modelos.jpg",
+        "miniatura_vertical": "portfolio/kia/video/4-modelos.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 59,
+        "origen": "4 MODELOS -- MAIK KIA.mp4"
+      },
+      {
+        "titulo": "Entrega de KIA Soluto",
+        "provider": "archivo",
+        "url": "portfolio/kia/video/entrega-de-kia-soluto.mp4",
+        "url_ligera": "portfolio/kia/video/entrega-de-kia-soluto-telefono.mp4",
+        "miniatura": "portfolio/kia/video/entrega-de-kia-soluto.jpg",
+        "miniatura_vertical": "portfolio/kia/video/entrega-de-kia-soluto.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 84,
+        "origen": "ENTREGA DE KIA SOLUTO -- MAIK.mp4"
+      },
+      {
+        "titulo": "KIA Soluto mundialista",
+        "provider": "archivo",
+        "url": "portfolio/kia/video/kia-soluto-mundialista.mp4",
+        "url_ligera": "portfolio/kia/video/kia-soluto-mundialista-telefono.mp4",
+        "miniatura": "portfolio/kia/video/kia-soluto-mundialista.jpg",
+        "miniatura_vertical": "portfolio/kia/video/kia-soluto-mundialista.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 54,
+        "origen": "KIA SOLUTO MUNDIAL -- MAIK.mp4"
+      },
+      {
+        "titulo": "Promo mundialista",
+        "provider": "archivo",
+        "url": "portfolio/kia/video/promo-mundialista.mp4",
+        "url_ligera": "portfolio/kia/video/promo-mundialista-telefono.mp4",
+        "miniatura": "portfolio/kia/video/promo-mundialista.jpg",
+        "miniatura_vertical": "portfolio/kia/video/promo-mundialista.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 64,
+        "origen": "PROMO MUNDIAL -- KIA CALLE 50.mp4"
       }
     ],
     "publico": false,
@@ -3299,6 +3977,18 @@
         "miniatura_vertical": "portfolio/nissan/video/panama-motor-show.jpg",
         "reel": true,
         "evento": "Reel para redes"
+      },
+      {
+        "titulo": "Nissan Magnite",
+        "provider": "archivo",
+        "url": "portfolio/nissan/video/nissan-magnite.mp4",
+        "url_ligera": "portfolio/nissan/video/nissan-magnite-telefono.mp4",
+        "miniatura": "portfolio/nissan/video/nissan-magnite.jpg",
+        "miniatura_vertical": "portfolio/nissan/video/nissan-magnite.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 57,
+        "origen": "NISSAN MAGNITE -- LISSETTE.mp4"
       }
     ],
     "publico": false
@@ -3615,6 +4305,16 @@
         "titulo_corto": "Desata2",
         "duracion": 107,
         "inicio_banner": 36
+      },
+      {
+        "titulo": "Recap Arriesg2",
+        "provider": "archivo",
+        "url": "portfolio/carnavalitos/video/recap-arriesg2.mp4",
+        "url_ligera": "portfolio/carnavalitos/video/recap-arriesg2-telefono.mp4",
+        "miniatura": "portfolio/carnavalitos/video/recap-arriesg2.jpg",
+        "evento": "Evento",
+        "duracion": 121,
+        "origen": "RECAP ARRIESG2 -- CARNAVALITOS.mp4"
       }
     ],
     "nombre": "Carnavalitos",
@@ -3722,5 +4422,205 @@
     "fotografia": false,
     "diseno": false,
     "destacado": 28
+  },
+  {
+    "id": "ellianis-cristel",
+    "slug": "ellianis-cristel",
+    "nombre": "Ellianis Cristel",
+    "titulo": "",
+    "descripcion": "",
+    "logo": "",
+    "nicho": "",
+    "categoria": "video",
+    "categorias": [
+      "video"
+    ],
+    "video": true,
+    "fotografia": false,
+    "diseno": false,
+    "galeria": [],
+    "videos": [
+      {
+        "titulo": "15 años de Ellianis Cristel",
+        "provider": "archivo",
+        "url": "portfolio/ellianis-cristel/video/15-anos-ellianis-cristel.mp4",
+        "url_ligera": "portfolio/ellianis-cristel/video/15-anos-ellianis-cristel-telefono.mp4",
+        "miniatura": "portfolio/ellianis-cristel/video/15-anos-ellianis-cristel.jpg",
+        "evento": "15 años",
+        "duracion": 111,
+        "origen": "15 AÑOS - ELLIANIS CRISTEL - 1.30.mp4"
+      }
+    ],
+    "publico": false
+  },
+  {
+    "id": "tips-apc",
+    "slug": "tips-apc",
+    "nombre": "3 tips para tu APC",
+    "titulo": "",
+    "descripcion": "",
+    "logo": "",
+    "nicho": "",
+    "categoria": "video",
+    "categorias": [
+      "video"
+    ],
+    "video": true,
+    "fotografia": false,
+    "diseno": false,
+    "galeria": [],
+    "videos": [
+      {
+        "titulo": "3 tips para mejorar tu APC",
+        "provider": "archivo",
+        "url": "portfolio/tips-apc/video/3-tips-para-mejorar-tu-apc.mp4",
+        "url_ligera": "portfolio/tips-apc/video/3-tips-para-mejorar-tu-apc-telefono.mp4",
+        "miniatura": "portfolio/tips-apc/video/3-tips-para-mejorar-tu-apc.jpg",
+        "miniatura_vertical": "portfolio/tips-apc/video/3-tips-para-mejorar-tu-apc.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 20,
+        "origen": "3 TIPS PARA MEJORAR TU APC(1).mp4"
+      }
+    ],
+    "publico": false
+  },
+  {
+    "id": "victor",
+    "slug": "victor",
+    "nombre": "Victor",
+    "titulo": "",
+    "descripcion": "",
+    "logo": "",
+    "nicho": "",
+    "categoria": "video",
+    "categorias": [
+      "video"
+    ],
+    "video": true,
+    "fotografia": false,
+    "diseno": false,
+    "galeria": [],
+    "videos": [
+      {
+        "titulo": "Amenaza",
+        "provider": "archivo",
+        "url": "portfolio/victor/video/amenaza.mp4",
+        "url_ligera": "portfolio/victor/video/amenaza-telefono.mp4",
+        "miniatura": "portfolio/victor/video/amenaza.jpg",
+        "miniatura_vertical": "portfolio/victor/video/amenaza.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 70,
+        "origen": "AMENAZA -- VICTOR.mp4"
+      }
+    ],
+    "publico": false
+  },
+  {
+    "id": "lourdes",
+    "slug": "lourdes",
+    "nombre": "Lourdes",
+    "titulo": "",
+    "descripcion": "",
+    "logo": "",
+    "nicho": "",
+    "categoria": "video",
+    "categorias": [
+      "video"
+    ],
+    "video": true,
+    "fotografia": false,
+    "diseno": false,
+    "galeria": [],
+    "videos": [
+      {
+        "titulo": "Lourdes · Cinqueñera party",
+        "provider": "archivo",
+        "url": "portfolio/lourdes/video/lourdes-cinquenera-party.mp4",
+        "url_ligera": "portfolio/lourdes/video/lourdes-cinquenera-party-telefono.mp4",
+        "miniatura": "portfolio/lourdes/video/lourdes-cinquenera-party.jpg",
+        "evento": "15 años",
+        "duracion": 71,
+        "origen": "LOURDES CINQUEÑERA PARTY -- TYR.mp4"
+      }
+    ],
+    "publico": false
+  },
+  {
+    "id": "andres-makeup",
+    "slug": "andres-makeup",
+    "nombre": "Andrés (maquillaje)",
+    "titulo": "",
+    "descripcion": "",
+    "logo": "",
+    "nicho": "",
+    "categoria": "video",
+    "categorias": [
+      "video"
+    ],
+    "video": true,
+    "fotografia": false,
+    "diseno": false,
+    "galeria": [],
+    "videos": [
+      {
+        "titulo": "Makeup #1",
+        "provider": "archivo",
+        "url": "portfolio/andres-makeup/video/makeup-1.mp4",
+        "url_ligera": "portfolio/andres-makeup/video/makeup-1-telefono.mp4",
+        "miniatura": "portfolio/andres-makeup/video/makeup-1.jpg",
+        "miniatura_vertical": "portfolio/andres-makeup/video/makeup-1.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 31,
+        "origen": "MAKEUP #1 -- ANDRES.mp4"
+      },
+      {
+        "titulo": "Makeup #2",
+        "provider": "archivo",
+        "url": "portfolio/andres-makeup/video/makeup-2.mp4",
+        "url_ligera": "portfolio/andres-makeup/video/makeup-2-telefono.mp4",
+        "miniatura": "portfolio/andres-makeup/video/makeup-2.jpg",
+        "miniatura_vertical": "portfolio/andres-makeup/video/makeup-2.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 82,
+        "origen": "MAKEUP #2 -- ANDRES.mp4"
+      }
+    ],
+    "publico": false
+  },
+  {
+    "id": "vive-feliz-clinic",
+    "slug": "vive-feliz-clinic",
+    "nombre": "Vive Feliz Clinic",
+    "titulo": "",
+    "descripcion": "",
+    "logo": "",
+    "nicho": "",
+    "categoria": "video",
+    "categorias": [
+      "video"
+    ],
+    "video": true,
+    "fotografia": false,
+    "diseno": false,
+    "galeria": [],
+    "videos": [
+      {
+        "titulo": "Vive Feliz Clinic",
+        "provider": "archivo",
+        "url": "portfolio/vive-feliz-clinic/video/vive-feliz-clinic.mp4",
+        "url_ligera": "portfolio/vive-feliz-clinic/video/vive-feliz-clinic-telefono.mp4",
+        "miniatura": "portfolio/vive-feliz-clinic/video/vive-feliz-clinic.jpg",
+        "miniatura_vertical": "portfolio/vive-feliz-clinic/video/vive-feliz-clinic.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 37,
+        "origen": "VIVE FELIZ CLINIC -- DEMO VIDEO.mp4"
+      }
+    ],
+    "publico": false
   }
 ]
