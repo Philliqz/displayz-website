@@ -4622,5 +4622,61 @@
       }
     ],
     "publico": false
+  },
+  {
+    "id": "novoforma",
+    "slug": "novoforma",
+    "nombre": "Novoforma",
+    "titulo": "",
+    "descripcion": "",
+    "logo": "",
+    "nicho": "",
+    "categoria": "video",
+    "categorias": [
+      "video"
+    ],
+    "video": true,
+    "fotografia": false,
+    "diseno": false,
+    "galeria": [],
+    "videos": [
+      {
+        "titulo": "Nov in Black",
+        "provider": "archivo",
+        "url": "portfolio/novoforma/video/nov-in-black.mp4",
+        "url_ligera": "portfolio/novoforma/video/nov-in-black-telefono.mp4",
+        "miniatura": "portfolio/novoforma/video/nov-in-black.jpg",
+        "miniatura_vertical": "portfolio/novoforma/video/nov-in-black.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 18,
+        "origen": "V1 NOV IN BLACK 9X16.mp4"
+      },
+      {
+        "titulo": "¿Cuál de estas mesitas elegirías para tu casa?",
+        "provider": "archivo",
+        "url": "portfolio/novoforma/video/cual-de-estas-mesitas-elegirias-para-tu-casa.mp4",
+        "url_ligera": "portfolio/novoforma/video/cual-de-estas-mesitas-elegirias-para-tu-casa-telefono.mp4",
+        "miniatura": "portfolio/novoforma/video/cual-de-estas-mesitas-elegirias-para-tu-casa.jpg",
+        "miniatura_vertical": "portfolio/novoforma/video/cual-de-estas-mesitas-elegirias-para-tu-casa.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 15,
+        "origen": "V2 CUAL DE ESTAS MESITAS ELIGIRIAS PARA TU CASA 9X16.mp4"
+      },
+      {
+        "titulo": "Nuevo aire para tu sala",
+        "provider": "archivo",
+        "url": "portfolio/novoforma/video/nuevo-aire-para-tu-sala.mp4",
+        "url_ligera": "portfolio/novoforma/video/nuevo-aire-para-tu-sala-telefono.mp4",
+        "miniatura": "portfolio/novoforma/video/nuevo-aire-para-tu-sala.jpg",
+        "miniatura_vertical": "portfolio/novoforma/video/nuevo-aire-para-tu-sala.jpg",
+        "reel": true,
+        "evento": "Reel para redes",
+        "duracion": 15,
+        "origen": "V3 NUEVO AIRE PARA TU SALA 9X16.mp4"
+      }
+    ],
+    "publico": false
   }
 ]
