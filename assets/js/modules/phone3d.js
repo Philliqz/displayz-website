@@ -3,8 +3,8 @@
 // La pantalla dibuja los reels de los datos (o, sin ellos, las fotos de .phone-screen).
 // Si no hay WebGL o falla la carga, queda el celular CSS tal cual.
 import { fetchCompanies } from './data-store.js';
-import { svg } from './video-modal.js?v=20261113-1';
-import * as Feed from './reels-feed.js?v=20261113-1';
+import { svg } from './video-modal.js?v=20261113-2';
+import * as Feed from './reels-feed.js?v=20261113-2';
 
 // Audio del teléfono (fundador, 2026-11-13): arranca en silencio; con el botón suena solo el reel
 // en pantalla y solo mientras el teléfono se ve (al bajar por la página se calla). Los videos del
@@ -89,7 +89,7 @@ function controles(host) {
     });
   });
   ver.addEventListener('click', () => {
-    Feed.abrir(estado.reels, estado.i, estado.sonido, (s) => { estado.sonido = s; });
+    Feed.abrir(estado.reels, estado.i, true, (s) => { estado.sonido = s; }); // abrir el visor ya es pedir verlo con audio (fundador, 2026-11-13)
   });
   document.addEventListener('reels:abierto', () => {
     estado.feed = true;

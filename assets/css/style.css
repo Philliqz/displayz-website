@@ -762,3 +762,19 @@ body:has(:fullscreen) .wa-float { display: none !important; }
 .feed-arriba { top: calc(50% - 54px); }
 .feed-abajo { top: calc(50% + 8px); }
 @media (hover: hover) and (min-width: 640px) { .feed-arriba, .feed-abajo { display: grid; } }
+/* WhatsApp dentro del visor y pista de swipe (2026-11-13). */
+.feed-wa { position: absolute; z-index: 3; right: 14px; bottom: calc(90px + env(safe-area-inset-bottom)); display: inline-flex; align-items: center;
+  justify-content: center; gap: 8px; width: 54px; height: 54px; border-radius: 999px; background: #25D366; color: #fff;
+  box-shadow: 0 6px 24px rgba(37,211,102,0.45); font-family: var(--font-display); font-weight: 600; font-size: 15px; }
+.feed-wa:hover { background: #1ebe5b; }
+.feed-wa:focus-visible { outline: 2px solid var(--color-white); outline-offset: 2px; }
+.feed-wa svg { width: 28px; height: 28px; fill: #fff; flex-shrink: 0; }
+.feed-wa span { display: none; }
+@media (min-width: 640px) { .feed-wa { width: auto; padding: 0 20px 0 14px; right: 24px; bottom: 24px; } .feed-wa span { display: inline; } }
+.feed-pista { position: absolute; z-index: 3; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; justify-items: center; gap: 10px;
+  padding: 18px 20px; border-radius: 20px; background: rgba(0,0,0,0.45); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  color: #fff; font-family: var(--font-display); font-weight: 600; font-size: 15px; pointer-events: none; transition: opacity 0.4s ease; }
+.feed-pista svg { width: 44px; height: 44px; animation: feedSwipe 1.4s ease-in-out infinite; }
+.feed-pista.is-fuera { opacity: 0; }
+@keyframes feedSwipe { 0% { transform: translateY(24px); opacity: 0; } 25% { opacity: 1; } 70% { transform: translateY(-24px); opacity: 1; } 100% { transform: translateY(-30px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .feed-pista svg { animation: none; } }

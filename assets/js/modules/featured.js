@@ -3,10 +3,10 @@
 // se barajan en cada visita: el número ya no ordena, solo incluye. Los videos se abren en el modal
 // y las imágenes en el visor, sin salir de la home.
 import { fetchCompanies } from './data-store.js';
-import { makePictureImg, tituloDe } from './portfolio.js?v=20261113-1';
+import { makePictureImg, tituloDe } from './portfolio.js?v=20261113-2';
 import { observe } from './animations.js';
 import { ARCHIVO_RE } from './video-provider.js';
-import * as VideoModal from './video-modal.js?v=20261113-1';
+import * as VideoModal from './video-modal.js?v=20261113-2';
 import * as Lightbox from './lightbox.js';
 
 // Columnas y filas por ancho (igual que los @media de [data-casos] en style.css).

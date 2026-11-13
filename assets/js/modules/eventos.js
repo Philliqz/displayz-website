@@ -5,10 +5,10 @@
 // Entran los videos horizontales cuya etiqueta está en CONFIG.EVENTOS (los reels van a Video).
 import { fetchCompanies } from './data-store.js';
 import { CONFIG } from './config.js';
-import * as VideoModal from './video-modal.js?v=20261113-1';
-import { svg } from './video-modal.js?v=20261113-1';
+import * as VideoModal from './video-modal.js?v=20261113-2';
+import { svg } from './video-modal.js?v=20261113-2';
 import { toEmbedSrc, ARCHIVO_RE } from './video-provider.js';
-import { tituloDe, makePictureImg, shuffle } from './portfolio.js?v=20261113-1';
+import { tituloDe, makePictureImg, shuffle } from './portfolio.js?v=20261113-2';
 
 // Pestañas propias; cualquier otra etiqueta (Certamen, Evento, Cumpleaños…) cae en Eventos.
 const PESTANAS = [['Boda', 'Bodas'], ['15 años', '15 años'], [null, 'Eventos']];
