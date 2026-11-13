@@ -708,3 +708,57 @@ body:has(:fullscreen) .wa-float { display: none !important; }
   .ev-card-title { font-size: 22px; }
   .wa-float.wa-verde { display: flex; right: 24px; bottom: 24px; }
 }
+
+/* ---- Teléfono del hero: audio y «Ver reels» (phone3d.js, 2026-11-13) ---- */
+.phone.con-ctrl { margin-bottom: 68px; }
+.phone-ctrl { position: absolute; z-index: 4; top: calc(100% + 16px); left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 8px; }
+.phone-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 46px; height: 46px;
+  padding: 0 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.35); background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: var(--color-white); cursor: pointer;
+  font-family: var(--font-display); font-size: 15px; font-weight: 600; white-space: nowrap; transition: background 0.2s ease, border-color 0.2s ease; }
+.phone-btn:hover { background: rgba(255,255,255,0.15); border-color: var(--color-white); }
+.phone-btn:focus-visible { outline: 2px solid var(--color-white); outline-offset: 2px; }
+.phone-btn svg { width: 20px; height: 20px; fill: currentColor; flex-shrink: 0; }
+.phone-sonido[aria-pressed="true"] { background: var(--color-white); color: var(--color-black); border-color: var(--color-white); }
+.phone-ver { padding: 0 18px 0 14px; background: var(--color-white); color: var(--color-black); border-color: var(--color-white); }
+.phone-ver:hover { background: #e9e4f0; border-color: #e9e4f0; }
+/* Aviso que aparece y se va sobre el botón de audio. */
+.phone-aviso { position: absolute; bottom: calc(100% + 10px); left: 0; padding: 7px 12px; border-radius: 999px;
+  background: var(--color-white); color: var(--color-black); font-size: 13px; font-weight: 600; white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35); opacity: 0; transform: translateY(6px); pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease; }
+.phone-aviso::after { content: ""; position: absolute; top: 100%; left: 17px; border: 6px solid transparent; border-top-color: var(--color-white); }
+.phone-aviso.is-visible { opacity: 1; transform: none; }
+@media (min-width: 640px) { .phone.con-ctrl { margin-bottom: 0; } .hero:has(.con-ctrl) { padding-bottom: 104px; } }
+@media (min-width: 960px) { .hero:has(.con-ctrl) { padding-bottom: 112px; } }
+
+/* ---- Visor de reels a pantalla completa (reels-feed.js) ---- */
+.feed-abierto, .feed-abierto body { overflow: hidden; }
+.feed-abierto .wa-float, .feed-abierto .cookies { display: none !important; }
+.feed { position: fixed; inset: 0; z-index: 2000; background: #000; color: var(--color-white); }
+.feed-lista { height: 100%; overflow-y: auto; scroll-snap-type: y mandatory; overscroll-behavior: contain; scrollbar-width: none; }
+.feed-lista::-webkit-scrollbar { display: none; }
+.feed-item { position: relative; height: 100vh; height: 100dvh; scroll-snap-align: start; scroll-snap-stop: always;
+  display: grid; place-items: center; overflow: hidden; }
+.feed-poster, .feed-video { grid-area: 1 / 1; width: 100%; max-width: calc(100dvh * 9 / 16); height: 100%; object-fit: cover; background: #000; }
+.feed-video { z-index: 1; }
+.feed-info { position: absolute; z-index: 2; left: 50%; bottom: 0; width: 100%; max-width: calc(100dvh * 9 / 16); transform: translateX(-50%);
+  display: grid; gap: 4px; padding: 60px 72px calc(22px + env(safe-area-inset-bottom)) 16px;
+  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent); pointer-events: none; }
+.feed-info strong { font-family: var(--font-display); font-size: 17px; line-height: 1.2; }
+.feed-info span { color: var(--color-soft); font-size: 14px; }
+.feed-btn { position: absolute; z-index: 3; width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.35); background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  color: var(--color-white); cursor: pointer; }
+.feed-btn:hover { background: rgba(255,255,255,0.15); border-color: var(--color-white); }
+.feed-btn:focus-visible { outline: 2px solid var(--color-white); outline-offset: 2px; }
+.feed-btn:disabled { opacity: 0.3; cursor: default; }
+.feed-btn svg { width: 22px; height: 22px; fill: currentColor; }
+.feed-cerrar { top: calc(14px + env(safe-area-inset-top)); right: 14px; }
+.feed-sonido { top: calc(14px + env(safe-area-inset-top)); left: 14px; }
+.feed-sonido[aria-pressed="true"] { background: var(--color-white); color: var(--color-black); }
+.feed-arriba, .feed-abajo { display: none; right: 24px; }
+.feed-arriba { top: calc(50% - 54px); }
+.feed-abajo { top: calc(50% + 8px); }
+@media (hover: hover) and (min-width: 640px) { .feed-arriba, .feed-abajo { display: grid; } }

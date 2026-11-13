@@ -3,10 +3,10 @@
 // se barajan en cada visita: el número ya no ordena, solo incluye. Los videos se abren en el modal
 // y las imágenes en el visor, sin salir de la home.
 import { fetchCompanies } from './data-store.js';
-import { makePictureImg, tituloDe } from './portfolio.js?v=20261112-2';
+import { makePictureImg, tituloDe } from './portfolio.js?v=20261113-1';
 import { observe } from './animations.js';
 import { ARCHIVO_RE } from './video-provider.js';
-import * as VideoModal from './video-modal.js?v=20261112-2';
+import * as VideoModal from './video-modal.js?v=20261113-1';
 import * as Lightbox from './lightbox.js';
 
 // Columnas y filas por ancho (igual que los @media de [data-casos] en style.css).
@@ -29,14 +29,19 @@ function el(tag, className, text) {
   return n;
 }
 
-// Las piezas del caso: las marcadas "destacado": true (videos propios o imágenes), una por tile;
-// si no hay, una sola — su primer video propio o su primera imagen. Los de YouTube no salen aquí:
-// en la home todo video se reproduce al instante, sin reproductor externo.
+// Las piezas candidatas de una marca. Videos: todos los propios (mp4) de cualquier marca visible,
+// para que la sección cambie en cada visita y entre lo nuevo sin marcarlo a mano (fundador,
+// 2026-11-13: «siempre me aparecen los mismos videos»). Imágenes: solo de las marcas con
+// "destacado" — las marcadas, o la primera si la marca no tiene videos. Los de YouTube no salen
+// aquí: en la home todo video se reproduce al instante, sin reproductor externo.
 // Solo de las disciplinas activas: un video con video:false no sale aunque siga en el JSON.
 function piezasDestacadas(c, keys) {
-  const todas = keys.flatMap((k) => (k === 'video' ? piezas(c, k).filter((x) => ARCHIVO_RE.test(x.url || '')) : piezas(c, k)));
-  const marcadas = todas.filter((x) => x.destacado);
-  return (marcadas.length ? marcadas : todas.slice(0, 1)).map((x) => (x.archivo ? { src: x.archivo } : comoVideo(x)));
+  const videos = keys.includes('video') ? piezas(c, 'video').filter((x) => ARCHIVO_RE.test(x.url || '')) : [];
+  if (!(Number(c.destacado) > 0)) return videos.map(comoVideo);
+  const imagenes = keys.filter((k) => k !== 'video').flatMap((k) => piezas(c, k));
+  const marcadas = imagenes.filter((x) => x.destacado);
+  const fotos = marcadas.length ? marcadas : (videos.length ? [] : imagenes.slice(0, 1));
+  return [...videos.map(comoVideo), ...fotos.map((x) => ({ src: x.archivo }))];
 }
 
 // forma: 'v' (reel, 1×2 celdas), 'h' (horizontal, 2×1) o 'img' (ver FORMAS).
@@ -170,7 +175,7 @@ export function init() {
     const casos = visibles.filter((c) => Number(c.destacado) > 0);
 
     // Todas las piezas destacadas, barajadas una vez por visita; la malla se rehace al cambiar de ancho.
-    const todas = casos.flatMap((c) => { const keys = disciplinas(c); return piezasDestacadas(c, keys).map((p) => ({ c, keys, p })); });
+    const todas = visibles.flatMap((c) => { const keys = disciplinas(c); return piezasDestacadas(c, keys).map((p) => ({ c, keys, p })); });
     // Relleno: las demás imágenes de esas marcas — acomodar() solo las usa para tapar huecos.
     const usadas = new Set(todas.map((x) => x.p.src));
     const relleno = casos.flatMap((c) => { const keys = disciplinas(c); return keys.filter((k) => k !== 'video')

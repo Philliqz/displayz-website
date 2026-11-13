@@ -3,6 +3,111 @@
 // La pantalla dibuja los reels de los datos (o, sin ellos, las fotos de .phone-screen).
 // Si no hay WebGL o falla la carga, queda el celular CSS tal cual.
 import { fetchCompanies } from './data-store.js';
+import { svg } from './video-modal.js?v=20261113-1';
+import * as Feed from './reels-feed.js?v=20261113-1';
+
+// Audio del teléfono (fundador, 2026-11-13): arranca en silencio; con el botón suena solo el reel
+// en pantalla y solo mientras el teléfono se ve (al bajar por la página se calla). Los videos del
+// teléfono (url_ligera) no traen audio: con sonido se cambia al completo (url) en el mismo segundo.
+const estado = { reels: [], i: 0, sonido: false, enVista: false, feed: false, actual: null, host: null, aviso: null };
+const audible = () => estado.sonido && estado.enVista && !estado.feed;
+
+function aplicarSonido() {
+  if (!estado.host) return;
+  estado.host.querySelectorAll('.phone-screen video').forEach((v) => {
+    const quiero = estado.sonido ? v.dataset.completo : v.dataset.ligera;
+    if (quiero && v.getAttribute('src') && v.getAttribute('src') !== quiero) {
+      const t = v.currentTime, corria = !v.paused;
+      v.src = quiero;
+      if (t) v.currentTime = t;
+      if (corria) jugar(v);
+    }
+    v.muted = !(audible() && v === estado.actual);
+  });
+  pintarBoton();
+}
+
+// play() con red: si el navegador no deja sonar sin un toque, sigue en silencio y vuelve el aviso.
+function jugar(v) {
+  return v.play().catch((e) => {
+    if (e.name !== 'NotAllowedError' || v.muted) return;
+    estado.sonido = false;
+    aplicarSonido();
+    mostrarAviso();
+    v.play().catch(() => {});
+  });
+}
+
+function pintarBoton() {
+  const b = estado.host?.querySelector('.phone-sonido');
+  if (!b) return;
+  b.innerHTML = svg(estado.sonido ? 'sonido' : 'mudo');
+  b.setAttribute('aria-pressed', String(estado.sonido));
+  b.setAttribute('aria-label', estado.sonido ? 'Silenciar el teléfono' : 'Activar el audio');
+}
+
+function mostrarAviso() {
+  const a = estado.aviso;
+  if (!a || estado.sonido) return;
+  a.classList.add('is-visible');
+  clearTimeout(a.t);
+  a.t = setTimeout(() => a.classList.remove('is-visible'), 4000);
+}
+
+// Botones bajo el teléfono: audio y «Ver reels» (el visor deslizable de reels-feed.js).
+function controles(host) {
+  const caja = document.createElement('div');
+  caja.className = 'phone-ctrl';
+  const aviso = document.createElement('span');
+  aviso.className = 'phone-aviso';
+  aviso.textContent = 'Activa el audio';
+  aviso.setAttribute('aria-hidden', 'true');
+  const son = document.createElement('button');
+  son.type = 'button';
+  son.className = 'phone-btn phone-sonido';
+  const ver = document.createElement('button');
+  ver.type = 'button';
+  ver.className = 'phone-btn phone-ver';
+  ver.innerHTML = svg('play') + '<span>Ver reels</span>';
+  caja.append(aviso, son, ver);
+  host.appendChild(caja);
+  host.classList.add('con-ctrl');
+  estado.aviso = aviso;
+  pintarBoton();
+
+  son.addEventListener('click', () => {
+    estado.sonido = !estado.sonido;
+    aviso.classList.remove('is-visible');
+    aplicarSonido();
+    const v = estado.actual;
+    if (v && estado.sonido) { v.muted = !audible(); jugar(v); }
+    // iPhone: el reel que entra en el swipe también tiene que quedar habilitado por este toque.
+    host.querySelectorAll('.phone-screen video').forEach((w) => {
+      if (w === v || !estado.sonido || !w.getAttribute('src') || !host.classList.contains('is-plano')) return;
+      w.muted = false;
+      w.play().then(() => { if (w !== estado.actual) w.pause(); w.muted = w !== estado.actual || !audible(); }, () => { w.muted = true; });
+    });
+  });
+  ver.addEventListener('click', () => {
+    Feed.abrir(estado.reels, estado.i, estado.sonido, (s) => { estado.sonido = s; });
+  });
+  document.addEventListener('reels:abierto', () => {
+    estado.feed = true;
+    host.querySelectorAll('.phone-screen video').forEach((v) => { v.muted = true; v.pause(); });
+  });
+  document.addEventListener('reels:cerrado', () => {
+    estado.feed = false;
+    aplicarSonido();
+    if (estado.actual && estado.enVista) jugar(estado.actual);
+  });
+  // El sonido se limita a cuando el teléfono se ve: con menos del 40 % en pantalla, se calla.
+  let avisado = false;
+  new IntersectionObserver(([e]) => {
+    estado.enVista = e.intersectionRatio >= 0.4;
+    aplicarSonido();
+    if (estado.enVista && !avisado) { avisado = true; setTimeout(mostrarAviso, 1200); }
+  }, { threshold: [0, 0.4] }).observe(host);
+}
 
 const CDN = 'https://cdn.jsdelivr.net/npm/three@0.160.0';
 const THREE_URL = CDN + '/+esm';
@@ -201,9 +306,10 @@ function barajar(reels) {
 
 async function llenarReels(host) {
   const reels = barajar((await fetchCompanies())
-    .flatMap((c) => ((c.video && c.videos) || []).map((v) => ({ ...v, marca: c.slug })))
+    .flatMap((c) => ((c.video && c.videos) || []).map((v) => ({ ...v, marca: c.slug, empresa: c.publico === false ? '' : c.nombre })))
     .filter((v) => v.reel && v.url));
   if (!reels.length) return;
+  estado.reels = reels;
   const pantalla = host.querySelector('.phone-screen');
   pantalla.replaceChildren(...reels.map((r, k) => {
     const v = document.createElement('video');
@@ -217,6 +323,8 @@ async function llenarReels(host) {
     v.setAttribute('playsinline', '');
     if (r.miniatura) v.poster = r.miniatura;
     v.setAttribute('aria-label', r.titulo || 'Reel');
+    v.dataset.ligera = r.url_ligera || r.url;
+    v.dataset.completo = r.url;
     return v;
   }));
 }
@@ -231,7 +339,8 @@ async function plano(host, reels, quieto) {
   const pantalla = host.querySelector('.phone-screen');
   const vs = [...pantalla.querySelectorAll('video')];
   if (!vs.length) return; // sin reels quedan las fotos del HTML
-  const lista = vs.map((x) => ({ src: x.getAttribute('src'), poster: x.poster, nombre: x.getAttribute('aria-label') }));
+  host.classList.add('is-plano');
+  const lista = vs.map((x) => ({ src: x.dataset.ligera, completo: x.dataset.completo, poster: x.poster, nombre: x.getAttribute('aria-label') }));
   // Dos videos que se turnan: el que se ve y el que entra en el swipe. Los demás sobran.
   // Con un solo reel no hay segundo (su poster taparía al que se reproduce).
   vs.slice(2).forEach((x) => x.remove());
@@ -259,8 +368,15 @@ async function plano(host, reels, quieto) {
   ajustar();
 
   let k = 0, visible = true, actual = v, sig = w, moviendo = false;
-  const correr = () => { if (visible && !quieto && !moviendo) actual.play().catch(() => {}); };
-  const poner = (x, n) => { x.poster = lista[n].poster; x.src = lista[n].src; x.setAttribute('aria-label', lista[n].nombre || 'Reel'); };
+  estado.actual = v;
+  const correr = () => { if (visible && !quieto && !moviendo && !estado.feed) jugar(actual); };
+  const poner = (x, n) => {
+    x.poster = lista[n].poster;
+    x.dataset.ligera = lista[n].src;
+    x.dataset.completo = lista[n].completo;
+    x.src = estado.sonido ? lista[n].completo : lista[n].src;
+    x.setAttribute('aria-label', lista[n].nombre || 'Reel');
+  };
   const mover = (x, y, animar) => {
     x.style.transition = animar ? `transform ${SWIPE}ms cubic-bezier(0.65, 0, 0.35, 1)` : 'none';
     x.style.transform = `translateY(${y}%)`;
@@ -274,21 +390,26 @@ async function plano(host, reels, quieto) {
     x.style.zIndex = '0'; actual.style.zIndex = '1';
     mover(x, 0, false);
     // Sin play() fuera de pantalla; y si el swipe ya empezó, este es el que entra: no se pausa.
+    x.muted = true; // el que espera no suena
     if (!quieto && visible) x.play().then(() => { if (x !== actual && !(moviendo && visible)) x.pause(); }, () => {});
   };
   // Swipe como en Instagram: el siguiente entra desde abajo mientras el actual sube, y sigue desde
   // donde quedó su primer cuadro.
   const pasar = () => {
-    if (moviendo || !visible) return;
+    if (moviendo || !visible || estado.feed) return;
     moviendo = true;
     k = (k + 1) % lista.length;
+    estado.i = k;
     mover(sig, 100, false);
     sig.getBoundingClientRect(); // fija la posición de partida antes de animar
-    sig.play().catch(() => {});
+    estado.actual = sig;
+    sig.muted = !audible();
+    jugar(sig);
     mover(actual, -100, true);
     mover(sig, 0, true);
     setTimeout(() => {
       actual.pause();
+      actual.muted = true;
       [actual, sig] = [sig, actual];
       moviendo = false;
       preparar(sig);
@@ -310,7 +431,8 @@ async function plano(host, reels, quieto) {
 export async function init() {
   const host = document.querySelector('.phone');
   if (!host) return;
-  const reels = llenarReels(host).catch(() => {}); // en paralelo con la carga 3D
+  estado.host = host;
+  const reels = llenarReels(host).then(() => { if (estado.reels.length) controles(host); }).catch(() => {}); // en paralelo con la carga 3D
   const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (/iPhone/.test(navigator.userAgent)) return plano(host, reels, quieto);
   if (!webgl()) return;
@@ -378,13 +500,14 @@ export async function init() {
   const esVideo = (m) => m.tagName === 'VIDEO';
   const lista = (m) => (esVideo(m) ? m.readyState >= 2 : m.complete && m.naturalWidth);
   const rota = (m) => (esVideo(m) ? !!m.error : m.complete && !m.naturalWidth);
-  const reproducir = (m) => { if (esVideo(m) && !quieto && m.paused) m.play().catch(() => {}); };
+  const reproducir = (m) => { if (esVideo(m) && !quieto && m.paused && !estado.feed) jugar(m); };
   // El HTML los trae con autoplay: aquí manda el script. Solo el primero corre; con varios medios
   // ninguno se repite solo (el turno lo marca el swipe), y con movimiento reducido todos quietos.
   medios.filter(esVideo).forEach((v) => {
     if (medios.length > 1) v.loop = false;
     if (quieto || v !== medios[0]) v.pause();
   });
+  estado.actual = medios[0];
   let i = 0, desde = performance.now(), ultima = null, entrando = -1, inicio = 0, pausa = 0;
   const queda = (m, t) => (esVideo(m) ? Math.min((m.duration || 0) * 1000, REEL) - m.currentTime * 1000 : CADA - (t - desde));
   const alto = lienzo.height - NAV_PT * lienzo.width / 440; // área del reel, sin la barra
@@ -408,6 +531,7 @@ export async function init() {
     if (esVideo(prox) && prox.preload === 'none') {
       prox.preload = 'auto';
       // iOS ignora preload: un play() silenciado y pausa en cuanto arranca deja el primer cuadro listo.
+      prox.muted = true; // se precarga en silencio
       if (!quieto) prox.play().then(() => { if (medios[i] !== prox && medios[entrando] !== prox) prox.pause(); }, () => {});
       else prox.load();
     }
@@ -425,7 +549,7 @@ export async function init() {
     if (entrando !== j) { // empieza el swipe: el que entra arranca desde su inicio, una sola vez
       entrando = j;
       inicio = t; // el swipe corre por reloj: si el siguiente llegó tarde, igual se ve entero
-      if (esVideo(sig)) sig.currentTime = 0;
+      if (esVideo(sig)) { sig.currentTime = 0; estado.actual = sig; estado.i = j; sig.muted = !audible(); }
     }
     reproducir(sig); // también si se pausó al salir de pantalla a mitad del swipe
     const a = Math.min(1, (t - inicio) / SWIPE);
@@ -435,7 +559,7 @@ export async function init() {
     cubrir(ctx, sig, alto - sube);
     ctx.drawImage(capa, 0, 0);
     ultima = null;
-    if (a >= 1) { if (esVideo(actual)) actual.pause(); i = j; desde = t; entrando = -1; }
+    if (a >= 1) { if (esVideo(actual)) { actual.pause(); actual.muted = true; } i = j; desde = t; entrando = -1; }
     return true;
   }
 
